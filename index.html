@@ -6,98 +6,185 @@
   <title>Finance Tracker Pro</title>
   <style>
     :root {
-      --bg: #081120;
-      --panel: rgba(16, 24, 40, 0.82);
-      --panel-strong: rgba(11, 18, 32, 0.94);
-      --text: #f8fafc;
-      --muted: #94a3b8;
-      --border: rgba(255, 255, 255, 0.10);
-      --soft: rgba(255, 255, 255, 0.06);
-      --input: rgba(255, 255, 255, 0.06);
-      --accent: #67e8f9;
-      --accent-2: #8b5cf6;
-      --green: #22c55e;
-      --red: #ef4444;
-      --yellow: #f59e0b;
-      --shadow: 0 20px 40px rgba(0, 0, 0, 0.24);
+      --bg-1: #060816;
+      --bg-2: #0a1230;
+      --bg-3: #170b39;
+      --text: #f8fbff;
+      --muted: #a2b1cb;
+      --glass: rgba(255, 255, 255, 0.08);
+      --glass-strong: rgba(255, 255, 255, 0.12);
+      --glass-soft: rgba(255, 255, 255, 0.05);
+      --border: rgba(255, 255, 255, 0.16);
+      --border-soft: rgba(255, 255, 255, 0.10);
+      --accent: #72e6ff;
+      --accent-2: #7f63ff;
+      --accent-3: #ff5fd2;
+      --green: #29d391;
+      --red: #ff6b86;
+      --red-dark: #7f1d1d;
+      --yellow: #ffbd59;
+      --blue: #74b7ff;
+      --shadow-xl: 0 30px 80px rgba(0, 0, 0, 0.35);
+      --shadow-lg: 0 18px 45px rgba(0, 0, 0, 0.22);
+      --shadow-md: 0 10px 24px rgba(0, 0, 0, 0.18);
+      --blur: 24px;
       --page:
-        radial-gradient(circle at top left, rgba(103, 232, 249, 0.14), transparent 28%),
-        radial-gradient(circle at top right, rgba(139, 92, 246, 0.15), transparent 26%),
-        linear-gradient(180deg, #081120 0%, #07111c 100%);
+        radial-gradient(circle at 8% 12%, rgba(114, 230, 255, 0.22), transparent 26%),
+        radial-gradient(circle at 88% 10%, rgba(127, 99, 255, 0.22), transparent 24%),
+        radial-gradient(circle at 50% 100%, rgba(255, 95, 210, 0.10), transparent 30%),
+        linear-gradient(145deg, var(--bg-1) 0%, var(--bg-2) 48%, var(--bg-3) 100%);
     }
 
     body.light {
-      --bg: #eef4ff;
-      --panel: rgba(255, 255, 255, 0.86);
-      --panel-strong: rgba(255, 255, 255, 0.97);
-      --text: #0f172a;
-      --muted: #475569;
-      --border: rgba(15, 23, 42, 0.08);
-      --soft: rgba(15, 23, 42, 0.05);
-      --input: rgba(15, 23, 42, 0.04);
-      --accent: #0891b2;
-      --accent-2: #7c3aed;
-      --green: #15803d;
-      --red: #dc2626;
-      --yellow: #b45309;
-      --shadow: 0 16px 36px rgba(15, 23, 42, 0.10);
+      --bg-1: #eef5ff;
+      --bg-2: #e8f0ff;
+      --bg-3: #f7fbff;
+      --text: #0b1328;
+      --muted: #61708c;
+      --glass: rgba(255, 255, 255, 0.55);
+      --glass-strong: rgba(255, 255, 255, 0.72);
+      --glass-soft: rgba(255, 255, 255, 0.40);
+      --border: rgba(255, 255, 255, 0.72);
+      --border-soft: rgba(30, 41, 59, 0.08);
+      --accent: #1bc9ff;
+      --accent-2: #6d53ff;
+      --accent-3: #ff58bd;
+      --green: #19a765;
+      --red: #dc365f;
+      --red-dark: #7f1d1d;
+      --yellow: #bd6a00;
+      --blue: #2563eb;
+      --shadow-xl: 0 24px 60px rgba(25, 40, 90, 0.14);
+      --shadow-lg: 0 14px 35px rgba(25, 40, 90, 0.12);
+      --shadow-md: 0 8px 18px rgba(25, 40, 90, 0.10);
       --page:
-        radial-gradient(circle at top left, rgba(8, 145, 178, 0.12), transparent 28%),
-        radial-gradient(circle at top right, rgba(124, 58, 237, 0.12), transparent 26%),
-        linear-gradient(180deg, #f8fbff 0%, #edf3ff 100%);
+        radial-gradient(circle at 8% 12%, rgba(27, 201, 255, 0.16), transparent 26%),
+        radial-gradient(circle at 88% 10%, rgba(109, 83, 255, 0.14), transparent 24%),
+        radial-gradient(circle at 50% 100%, rgba(255, 88, 189, 0.08), transparent 28%),
+        linear-gradient(145deg, var(--bg-1) 0%, var(--bg-2) 48%, var(--bg-3) 100%);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
-    html,
-    body {
+    html, body {
       margin: 0;
       min-height: 100%;
-      font-family: Arial, sans-serif;
+      font-family: Inter, Arial, sans-serif;
       background: var(--page);
       color: var(--text);
+      letter-spacing: -0.01em;
     }
 
-    button,
-    input,
-    select {
-      font: inherit;
+    body {
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(255,255,255,0.015), rgba(255,255,255,0.015)),
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.08), transparent 18%),
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.05), transparent 18%);
+      mix-blend-mode: screen;
+      opacity: 0.55;
+      z-index: 0;
+    }
+
+    button, input, select, textarea { font: inherit; }
+
+    .glass {
+      background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
+      backdrop-filter: blur(var(--blur)) saturate(160%);
+      -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .glass-soft {
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      backdrop-filter: blur(18px) saturate(160%);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-md);
+    }
+
+    .glass::before,
+    .glass-soft::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0.06) 18%, rgba(255,255,255,0.00) 45%);
+      opacity: 0.75;
     }
 
     .app {
+      position: relative;
+      z-index: 1;
       min-height: 100vh;
       display: grid;
-      grid-template-columns: 260px 1fr;
+      grid-template-columns: 290px 1fr;
     }
 
     .sidebar {
-      border-right: 1px solid var(--border);
+      position: relative;
       padding: 20px 16px;
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(16px);
+      border-right: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .brand,
+    .card,
+    .item,
+    .mini-card,
+    .category-card,
+    .mobile-sidebar {
+      position: relative;
     }
 
     .brand {
-      background: linear-gradient(135deg, rgba(103, 232, 249, 0.12), rgba(139, 92, 246, 0.12));
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 18px;
-      box-shadow: var(--shadow);
-      margin-bottom: 18px;
+      overflow: hidden;
+      border-radius: 34px;
+      padding: 22px;
+      margin-bottom: 20px;
     }
 
     .brand h1 {
-      margin: 0 0 8px;
-      font-size: 24px;
+      margin: 0 0 10px;
+      font-size: 28px;
+      line-height: 1;
+      font-weight: 800;
     }
 
     .brand p {
       margin: 0;
       color: var(--muted);
       font-size: 14px;
-      line-height: 1.5;
+      line-height: 1.6;
+      max-width: 240px;
+    }
+
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
     }
 
     .nav {
@@ -108,24 +195,51 @@
     .nav button,
     .btn,
     .toggle-btn,
-    .hamburger-btn {
-      border: 1px solid transparent;
-      cursor: pointer;
-      transition: 0.2s ease;
+    .hamburger-btn,
+    .mobile-close,
+    .schedule-btn {
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
     }
 
     .nav button {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid transparent;
+      border-radius: 20px;
+      padding: 15px 16px;
       background: transparent;
       color: var(--text);
       text-align: left;
-      padding: 14px 16px;
-      border-radius: 15px;
+      font-weight: 700;
+      cursor: pointer;
     }
 
-    .nav button.active,
-    .nav button:hover {
-      background: var(--soft);
+    .nav button span {
+      position: relative;
+      z-index: 2;
+    }
+
+    .nav button::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(135deg, rgba(114,230,255,0.16), rgba(127,99,255,0.14));
+      opacity: 0;
+      transition: opacity 0.18s ease;
+    }
+
+    .nav button:hover,
+    .nav button.active {
       border-color: var(--border);
+      background: rgba(255,255,255,0.04);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-1px);
+    }
+
+    .nav button:hover::before,
+    .nav button.active::before {
+      opacity: 1;
     }
 
     .sidebar-actions {
@@ -135,16 +249,16 @@
     }
 
     .main {
-      padding: 24px;
+      padding: 26px;
     }
 
     .topbar {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      gap: 16px;
+      gap: 18px;
       flex-wrap: wrap;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
 
     .topbar-left {
@@ -157,12 +271,18 @@
 
     .topbar h2 {
       margin: 0;
-      font-size: 30px;
+      font-size: 36px;
+      line-height: 1;
+      font-weight: 850;
+      letter-spacing: -0.03em;
     }
 
     .topbar p {
-      margin: 8px 0 0;
+      margin: 10px 0 0;
       color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 840px;
     }
 
     .quick-actions {
@@ -172,79 +292,177 @@
       align-items: center;
     }
 
-    .btn {
-      background: var(--soft);
+    .btn,
+    .toggle-btn,
+    .hamburger-btn,
+    .mobile-close,
+    .schedule-btn {
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
       color: var(--text);
-      border-color: var(--border);
-      border-radius: 14px;
-      padding: 12px 14px;
+      border-radius: 20px;
+      box-shadow: var(--shadow-md);
+      cursor: pointer;
+      backdrop-filter: blur(18px) saturate(160%);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
     }
 
-    .btn.primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: white;
-      border-color: transparent;
+    .btn {
+      padding: 13px 16px;
       font-weight: 700;
     }
 
-    .btn.danger {
-      background: rgba(239, 68, 68, 0.16);
+    .btn.primary {
+      border-color: rgba(255,255,255,0.20);
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.22), transparent 30%),
+        linear-gradient(135deg, rgba(114,230,255,0.88), rgba(127,99,255,0.88) 56%, rgba(255,95,210,0.82));
       color: white;
-      border-color: rgba(239, 68, 68, 0.24);
+      box-shadow: 0 18px 40px rgba(114,230,255,0.20), 0 12px 28px rgba(127,99,255,0.20);
+    }
+
+    .btn.danger {
+      background: linear-gradient(180deg, rgba(255,107,134,0.20), rgba(255,107,134,0.10));
+      border-color: rgba(255,107,134,0.24);
+      color: #ffdce4;
+    }
+
+    body.light .btn.danger {
+      color: var(--red-dark);
+    }
+
+    .schedule-btn {
+      padding: 10px 12px;
+      font-weight: 800;
+      border-radius: 16px;
+      font-size: 13px;
+    }
+
+    .schedule-btn.paid {
+      color: var(--green);
+      border-color: rgba(41,211,145,0.22);
+      background: linear-gradient(180deg, rgba(41,211,145,0.14), rgba(41,211,145,0.08));
+    }
+
+    .schedule-btn.delayed {
+      color: var(--yellow);
+      border-color: rgba(255,189,89,0.22);
+      background: linear-gradient(180deg, rgba(255,189,89,0.14), rgba(255,189,89,0.08));
+    }
+
+    .schedule-btn.pending {
+      color: var(--blue);
+      border-color: rgba(116,183,255,0.22);
+      background: linear-gradient(180deg, rgba(116,183,255,0.14), rgba(116,183,255,0.08));
     }
 
     .btn:hover,
     .toggle-btn:hover,
+    .hamburger-btn:hover,
+    .mobile-close:hover,
     .card.clickable:hover,
-    .hamburger-btn:hover {
-      transform: translateY(-1px);
+    .category-card:hover,
+    .schedule-btn:hover {
+      transform: translateY(-2px);
     }
 
-    .hidden {
-      display: none !important;
+    .hidden { display: none !important; }
+
+    .switch-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .switch-label {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .theme-switch {
+      position: relative;
+      width: 60px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
+      box-shadow: var(--shadow-md);
+      cursor: pointer;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .theme-switch::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 6px 14px rgba(0,0,0,0.24);
+      transition: transform 0.18s ease;
+    }
+
+    body.light .theme-switch::after {
+      transform: translateX(26px);
     }
 
     .stats {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
       gap: 16px;
       margin-bottom: 18px;
     }
 
     .card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 18px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(16px);
+      overflow: hidden;
+      border-radius: 32px;
+      padding: 22px;
     }
 
     .card.clickable {
       cursor: pointer;
-      background: linear-gradient(135deg, rgba(103, 232, 249, 0.12), rgba(139, 92, 246, 0.10));
     }
 
     .stat-label {
+      position: relative;
+      z-index: 2;
       color: var(--muted);
-      font-size: 13px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
       margin-bottom: 12px;
+      font-weight: 800;
     }
 
     .stat-value {
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 8px;
+      position: relative;
+      z-index: 2;
+      font-size: 30px;
+      line-height: 1;
+      font-weight: 850;
+      margin-bottom: 10px;
     }
 
     .stat-sub {
+      position: relative;
+      z-index: 2;
       color: var(--muted);
       font-size: 13px;
+      line-height: 1.5;
     }
 
     .content-grid {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-columns: 1.22fr 0.78fr;
+      gap: 16px;
+    }
+
+    .stack {
+      display: grid;
       gap: 16px;
     }
 
@@ -254,23 +472,23 @@
       align-items: flex-start;
       gap: 12px;
       flex-wrap: wrap;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 2;
     }
 
     .section-title h3 {
       margin: 0;
-      font-size: 22px;
+      font-size: 24px;
+      font-weight: 850;
+      letter-spacing: -0.02em;
     }
 
     .section-title p {
-      margin: 6px 0 0;
+      margin: 8px 0 0;
       color: var(--muted);
       font-size: 14px;
-    }
-
-    .stack {
-      display: grid;
-      gap: 16px;
+      line-height: 1.6;
     }
 
     .list {
@@ -279,13 +497,14 @@
     }
 
     .item {
-      background: var(--panel-strong);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 16px;
+      overflow: hidden;
+      border-radius: 26px;
+      padding: 18px;
     }
 
     .item-head {
+      position: relative;
+      z-index: 2;
       display: flex;
       justify-content: space-between;
       gap: 12px;
@@ -296,27 +515,35 @@
     .item-title {
       margin: 0;
       font-size: 18px;
-      font-weight: 700;
+      font-weight: 850;
+      letter-spacing: -0.02em;
     }
 
     .meta {
+      position: relative;
+      z-index: 2;
       color: var(--muted);
       font-size: 13px;
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 6px;
+      margin-top: 8px;
+      line-height: 1.55;
     }
 
     .row-actions {
+      position: relative;
+      z-index: 2;
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
-      margin-top: 12px;
+      margin-top: 14px;
       align-items: center;
     }
 
     .pill-row {
+      position: relative;
+      z-index: 2;
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
@@ -325,54 +552,61 @@
     .pill {
       display: inline-flex;
       align-items: center;
-      border: 1px solid var(--border);
-      background: var(--soft);
       border-radius: 999px;
-      padding: 7px 10px;
+      padding: 9px 13px;
       font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.15);
     }
 
     .pill.green {
       color: var(--green);
-      background: rgba(34, 197, 94, 0.12);
-      border-color: rgba(34, 197, 94, 0.22);
+      background: rgba(41,211,145,0.10);
+      border-color: rgba(41,211,145,0.22);
     }
 
     .pill.red {
       color: var(--red);
-      background: rgba(239, 68, 68, 0.12);
-      border-color: rgba(239, 68, 68, 0.22);
+      background: rgba(255,107,134,0.10);
+      border-color: rgba(255,107,134,0.22);
     }
 
     .pill.yellow {
       color: var(--yellow);
-      background: rgba(245, 158, 11, 0.12);
-      border-color: rgba(245, 158, 11, 0.22);
+      background: rgba(255,189,89,0.10);
+      border-color: rgba(255,189,89,0.22);
+    }
+
+    .pill.blue {
+      color: var(--blue);
+      background: rgba(116,183,255,0.10);
+      border-color: rgba(116,183,255,0.22);
     }
 
     .toggle-btn {
-      border-radius: 12px;
-      padding: 10px 12px;
-      background: var(--soft);
-      color: var(--text);
-      border-color: var(--border);
+      padding: 11px 14px;
+      font-weight: 800;
+      border-radius: 18px;
     }
 
     .toggle-btn.paid {
       color: var(--green);
-      background: rgba(34, 197, 94, 0.16);
-      border-color: rgba(34, 197, 94, 0.24);
-      font-weight: 700;
+      background: linear-gradient(180deg, rgba(41,211,145,0.14), rgba(41,211,145,0.08));
+      border-color: rgba(41,211,145,0.22);
     }
 
     .toggle-btn.unpaid {
       color: var(--yellow);
-      background: rgba(245, 158, 11, 0.16);
-      border-color: rgba(245, 158, 11, 0.24);
-      font-weight: 700;
+      background: linear-gradient(180deg, rgba(255,189,89,0.14), rgba(255,189,89,0.08));
+      border-color: rgba(255,189,89,0.22);
     }
 
     .form-grid {
+      position: relative;
+      z-index: 2;
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 12px;
@@ -386,40 +620,65 @@
 
     .field label {
       color: var(--muted);
-      font-size: 13px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 800;
     }
 
     input,
-    select {
+    select,
+    textarea {
       width: 100%;
+      min-height: 58px;
+      padding: 15px 16px;
+      border-radius: 22px;
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 13px 14px;
-      background: var(--input);
       color: var(--text);
+      background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
+      box-shadow: var(--shadow-md);
       outline: none;
+      backdrop-filter: blur(16px) saturate(160%);
+      -webkit-backdrop-filter: blur(16px) saturate(160%);
+      transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
     }
 
-    input::placeholder {
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: rgba(114,230,255,0.34);
+      box-shadow: 0 0 0 4px rgba(114,230,255,0.10), var(--shadow-md);
+    }
+
+    input::placeholder,
+    textarea::placeholder {
       color: var(--muted);
     }
 
     .empty {
       text-align: center;
       color: var(--muted);
-      border: 1px dashed var(--border);
-      background: var(--soft);
-      border-radius: 18px;
-      padding: 28px 12px;
+      border-radius: 24px;
+      padding: 34px 12px;
+      line-height: 1.65;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border: 1px dashed rgba(255,255,255,0.18);
     }
 
     .ledger-row {
+      position: relative;
+      z-index: 2;
       display: grid;
       grid-template-columns: 1fr auto;
       gap: 12px;
       align-items: center;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
     .ledger-row:last-child {
@@ -428,66 +687,65 @@
 
     .amount.income {
       color: var(--green);
-      font-weight: 700;
+      font-weight: 850;
     }
 
     .amount.expense {
       color: var(--red);
-      font-weight: 700;
+      font-weight: 850;
     }
 
     .mini-grid {
+      position: relative;
+      z-index: 2;
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
     }
 
     .mini-card {
-      background: var(--soft);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 16px;
+      border-radius: 24px;
+      padding: 18px;
     }
 
     .mini-card .label {
       color: var(--muted);
       font-size: 12px;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 800;
+      position: relative;
+      z-index: 2;
     }
 
     .mini-card .value {
-      font-size: 22px;
-      font-weight: 700;
+      position: relative;
+      z-index: 2;
+      font-size: 24px;
+      font-weight: 850;
+      line-height: 1;
     }
 
     .categories-grid {
+      position: relative;
+      z-index: 2;
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 12px;
     }
 
     .category-card {
-      background: var(--soft);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 16px;
+      border-radius: 24px;
+      padding: 18px;
       cursor: pointer;
-      transition: 0.2s ease;
-    }
-
-    .category-card:hover {
-      transform: translateY(-1px);
     }
 
     .hamburger-btn {
       display: none;
-      width: 46px;
-      height: 46px;
-      flex-shrink: 0;
-      border-radius: 14px;
-      background: var(--soft);
-      color: var(--text);
-      border-color: var(--border);
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
       align-items: center;
       justify-content: center;
       padding: 0;
@@ -507,51 +765,13 @@
       background: var(--text);
     }
 
-    .switch-wrap {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .switch-label {
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .theme-switch {
-      position: relative;
-      width: 58px;
-      height: 32px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: var(--soft);
-      cursor: pointer;
-      transition: 0.2s ease;
-      flex-shrink: 0;
-    }
-
-    .theme-switch::after {
-      content: "";
-      position: absolute;
-      top: 3px;
-      left: 3px;
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      transition: 0.2s ease;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
-    }
-
-    body.light .theme-switch::after {
-      transform: translateX(26px);
-    }
-
     .mobile-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(2, 6, 23, 0.52);
+      background: rgba(3, 6, 18, 0.52);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       z-index: 999;
     }
 
@@ -560,14 +780,16 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: min(82vw, 320px);
+      width: min(84vw, 340px);
       height: 100vh;
       z-index: 1000;
       padding: 20px 16px;
-      background: var(--panel-strong);
       border-right: 1px solid var(--border);
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-xl);
       overflow-y: auto;
+      background: linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.06));
+      backdrop-filter: blur(28px) saturate(170%);
+      -webkit-backdrop-filter: blur(28px) saturate(170%);
     }
 
     .mobile-sidebar-header {
@@ -575,16 +797,14 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 18px;
+      gap: 12px;
     }
 
     .mobile-close {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      background: var(--soft);
-      color: var(--text);
-      border: 1px solid var(--border);
-      cursor: pointer;
+      width: 44px;
+      height: 44px;
+      border-radius: 16px;
+      padding: 0;
     }
 
     .mobile-open .mobile-overlay {
@@ -593,14 +813,201 @@
 
     .mobile-open .mobile-sidebar {
       display: block;
+      animation: drawerIn 0.20s ease;
+    }
+
+    @keyframes drawerIn {
+      from {
+        opacity: 0;
+        transform: translateX(-18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .toast {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 1200;
+      max-width: 320px;
+      padding: 14px 16px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.06));
+      color: var(--text);
+      box-shadow: var(--shadow-lg);
+      backdrop-filter: blur(22px) saturate(160%);
+      -webkit-backdrop-filter: blur(22px) saturate(160%);
+      font-weight: 700;
+      opacity: 0;
+      transform: translateY(8px);
+      pointer-events: none;
+      transition: 0.22s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .bank-card {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .bank-icon,
+    .savings-icon {
+      width: 62px;
+      height: 62px;
+      border-radius: 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 24px;
+      color: white;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.35), transparent 28%),
+        linear-gradient(145deg, var(--accent), var(--accent-2) 58%, var(--accent-3));
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.25),
+        0 14px 30px rgba(114,230,255,0.16),
+        0 8px 22px rgba(127,99,255,0.18);
+      flex-shrink: 0;
+    }
+
+    .bank-card-content {
+      min-width: 0;
+    }
+
+    .bank-card-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+
+    .bank-balance-glow,
+    .savings-balance-glow {
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: 800;
+      background: linear-gradient(180deg, rgba(41,211,145,0.14), rgba(41,211,145,0.08));
+      border: 1px solid rgba(41,211,145,0.22);
+      color: var(--green);
+      box-shadow: 0 0 24px rgba(41,211,145,0.08);
+      white-space: nowrap;
+    }
+
+    .bank-subline {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 6px;
+      line-height: 1.55;
+    }
+
+    .bank-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto auto;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .client-header-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .client-summary-badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .schedule-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .schedule-row {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 14px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: var(--shadow-md);
+    }
+
+    .schedule-title {
+      font-weight: 800;
+      font-size: 15px;
+    }
+
+    .schedule-sub {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .schedule-amount {
+      font-size: 18px;
+      font-weight: 850;
+      text-align: left;
+    }
+
+    .schedule-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .progress-wrap {
+      position: relative;
+      z-index: 2;
+      margin-top: 14px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.10);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.10);
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
+      box-shadow: 0 0 20px rgba(127,99,255,0.25);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 12px;
+      align-items: start;
     }
 
     @media (max-width: 1100px) {
-      .stats {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .content-grid {
+      .content-grid,
+      .two-col {
         grid-template-columns: 1fr;
       }
 
@@ -609,7 +1016,7 @@
       }
     }
 
-    @media (max-width: 860px) {
+    @media (max-width: 900px) {
       .app {
         grid-template-columns: 1fr;
       }
@@ -629,27 +1036,61 @@
       #backBtn {
         display: none !important;
       }
-    }
-
-    @media (max-width: 680px) {
-      .stats,
-      .form-grid,
-      .mini-grid,
-      .categories-grid {
-        grid-template-columns: 1fr;
-      }
 
       .topbar h2 {
-        font-size: 28px;
+        font-size: 30px;
       }
+    }
 
-      .stat-value {
-        font-size: 24px;
+    @media (max-width: 760px) {
+      .form-grid,
+      .mini-grid,
+      .categories-grid,
+      .bank-actions,
+      .schedule-row,
+      .two-col {
+        grid-template-columns: 1fr;
       }
 
       .row-actions {
         flex-direction: column;
         align-items: stretch;
+      }
+
+      .row-actions input,
+      .row-actions button,
+      .row-actions .btn,
+      .row-actions textarea,
+      .row-actions select {
+        width: 100%;
+        max-width: none !important;
+      }
+
+      .bank-card {
+        grid-template-columns: 1fr;
+      }
+
+      .bank-icon,
+      .savings-icon {
+        width: 56px;
+        height: 56px;
+        font-size: 22px;
+      }
+
+      .stat-value {
+        font-size: 25px;
+      }
+
+      .schedule-actions {
+        justify-content: stretch;
+      }
+
+      .schedule-actions .schedule-btn {
+        width: 100%;
+      }
+
+      .client-header-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -659,11 +1100,12 @@
 
   <aside class="mobile-sidebar" id="mobileSidebar">
     <div class="mobile-sidebar-header">
-      <div class="brand" style="margin-bottom:0; width: calc(100% - 56px);">
+      <div class="brand glass" style="margin-bottom:0; width: calc(100% - 56px);">
+        <div class="brand-badge">Private tracker</div>
         <h1>Finance Tracker</h1>
         <p>Your private finance software.</p>
       </div>
-      <button class="mobile-close" type="button" onclick="closeMobileMenu()">✕</button>
+      <button class="mobile-close glass-soft" type="button" onclick="closeMobileMenu()">✕</button>
     </div>
 
     <div class="nav" id="mobileSidebarNav"></div>
@@ -679,9 +1121,10 @@
 
   <div class="app">
     <aside class="sidebar">
-      <div class="brand">
+      <div class="brand glass">
+        <div class="brand-badge">Private tracker</div>
         <h1>Finance Tracker</h1>
-        <p>Your private finance software with clients, applications, bills, subscriptions, categories, and automated balance tracking.</p>
+        <p>Your private finance software with bank balances, savings, clients, applications, bills, subscriptions, categories, and automated balance tracking.</p>
       </div>
 
       <div class="nav" id="desktopNav"></div>
@@ -698,7 +1141,7 @@
     <main class="main">
       <div class="topbar">
         <div class="topbar-left">
-          <button class="hamburger-btn" id="hamburgerBtn" type="button" aria-label="Open menu">
+          <button class="hamburger-btn glass-soft" id="hamburgerBtn" type="button" aria-label="Open menu">
             <span class="hamburger-lines">
               <span></span>
               <span></span>
@@ -725,8 +1168,10 @@
     </main>
   </div>
 
+  <div class="toast" id="toast"></div>
+
   <script>
-    const STORAGE_KEY = "financeTrackerStableV3";
+    const STORAGE_KEY = "financeTrackerStableV9";
 
     function makeId() {
       return Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
@@ -741,6 +1186,8 @@
         { id: makeId(), name: "Transport" },
         { id: makeId(), name: "Business" }
       ],
+      bankAccounts: [],
+      savings: [],
       clients: [],
       applications: [],
       bills: [],
@@ -763,6 +1210,8 @@
           currentView: parsed.currentView || "dashboard",
           selectedCategoryId: parsed.selectedCategoryId || null,
           categories: Array.isArray(parsed.categories) && parsed.categories.length ? parsed.categories : clone(DEFAULT_STATE.categories),
+          bankAccounts: Array.isArray(parsed.bankAccounts) ? parsed.bankAccounts : [],
+          savings: Array.isArray(parsed.savings) ? parsed.savings : [],
           clients: Array.isArray(parsed.clients) ? parsed.clients : [],
           applications: Array.isArray(parsed.applications) ? parsed.applications : [],
           bills: Array.isArray(parsed.bills) ? parsed.bills : [],
@@ -775,9 +1224,12 @@
     }
 
     let state = loadState();
+    let toastTimer = null;
 
     const NAV_ITEMS = [
       { key: "dashboard", label: "Dashboard" },
+      { key: "bankBalances", label: "Bank Balance" },
+      { key: "savings", label: "Savings" },
       { key: "clients", label: "Clients" },
       { key: "applications", label: "Applications" },
       { key: "bills", label: "Bills" },
@@ -786,22 +1238,46 @@
       { key: "transactions", label: "Transactions" }
     ];
 
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      if (!toast) return;
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 1800);
+    }
+
     function saveState() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     }
 
     function applyTheme() {
-      if (state.theme === "light") {
-        document.body.classList.add("light");
-      } else {
-        document.body.classList.remove("light");
-      }
+      if (state.theme === "light") document.body.classList.add("light");
+      else document.body.classList.remove("light");
     }
 
     function toggleTheme() {
       state.theme = state.theme === "dark" ? "light" : "dark";
       saveState();
       renderApp();
+    }
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function toNumberInput(value) {
+      if (typeof value === "number") return value;
+      const cleaned = String(value || "").replace(/,/g, "").replace(/[^\d.-]/g, "");
+      const numeric = Number(cleaned);
+      return Number.isNaN(numeric) ? NaN : numeric;
     }
 
     function formatMoney(value) {
@@ -815,9 +1291,21 @@
       }).format(numeric);
     }
 
+    function formatCurrency(value, currency) {
+      if (value === "" || value === null || value === undefined) return "Not set";
+      const numeric = Number(value);
+      if (Number.isNaN(numeric)) return String(value);
+      const code = currency === "USD" ? "USD" : "PHP";
+      return new Intl.NumberFormat(code === "USD" ? "en-US" : "en-PH", {
+        style: "currency",
+        currency: code,
+        maximumFractionDigits: 2
+      }).format(numeric);
+    }
+
     function formatDate(dateString) {
       if (!dateString) return "No date";
-      const date = new Date(dateString);
+      const date = new Date(dateString + (dateString.length === 10 ? "T12:00:00" : ""));
       if (Number.isNaN(date.getTime())) return dateString;
       return date.toLocaleDateString("en-PH", {
         year: "numeric",
@@ -826,20 +1314,29 @@
       });
     }
 
-    function escapeHtml(value) {
-      return String(value || "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+    function getMonthLabelFromDate(dateString) {
+      const date = new Date(dateString + "T12:00:00");
+      if (Number.isNaN(date.getTime())) return "Unknown month";
+      return date.toLocaleDateString("en-PH", {
+        year: "numeric",
+        month: "long"
+      });
+    }
+
+    function getSavingsMonthLabel(monthValue) {
+      if (!monthValue) return "No month";
+      const [year, month] = monthValue.split("-");
+      const date = new Date(Number(year), Number(month) - 1, 1);
+      if (Number.isNaN(date.getTime())) return monthValue;
+      return date.toLocaleDateString("en-PH", {
+        year: "numeric",
+        month: "long"
+      });
     }
 
     function getCategoryName(categoryId) {
       if (!categoryId) return "Uncategorized";
-      const found = state.categories.find(function (cat) {
-        return cat.id === categoryId;
-      });
+      const found = state.categories.find(cat => cat.id === categoryId);
       return found ? found.name : "Uncategorized";
     }
 
@@ -852,37 +1349,78 @@
       return "";
     }
 
+    function getBankIcon(name) {
+      const value = String(name || "").toLowerCase();
+      if (value.includes("gcash")) return "₲";
+      if (value.includes("maya")) return "M";
+      if (value.includes("bpi")) return "B";
+      if (value.includes("union")) return "U";
+      if (value.includes("bdo")) return "D";
+      if (value.includes("metro")) return "₱";
+      if (value.includes("landbank")) return "L";
+      if (value.includes("security")) return "S";
+      if (value.includes("chinabank")) return "C";
+      if (value.includes("paypal")) return "P";
+      if (value.includes("gotyme")) return "G";
+      if (value.includes("tonik")) return "T";
+      if (value.includes("seabank")) return "◈";
+      return String(name || "?").trim().charAt(0).toUpperCase() || "?";
+    }
+
+    function getSavingsIcon(name) {
+      const value = String(name || "").toLowerCase();
+      if (value.includes("emergency")) return "E";
+      if (value.includes("insurance")) return "I";
+      if (value.includes("christmas")) return "C";
+      if (value.includes("gadget")) return "G";
+      if (value.includes("travel")) return "T";
+      if (value.includes("rent")) return "R";
+      if (value.includes("car")) return "A";
+      if (value.includes("house")) return "H";
+      return String(name || "?").trim().charAt(0).toUpperCase() || "S";
+    }
+
     function getSummary() {
-      const income = state.transactions
-        .filter(function (t) { return t.type === "income"; })
-        .reduce(function (sum, t) { return sum + Number(t.amount); }, 0);
+      const transactionIncome = state.transactions
+        .filter(t => t.type === "income")
+        .reduce((sum, t) => sum + Number(t.amount), 0);
 
-      const expenses = state.transactions
-        .filter(function (t) { return t.type === "expense"; })
-        .reduce(function (sum, t) { return sum + Number(t.amount); }, 0);
+      const transactionExpenses = state.transactions
+        .filter(t => t.type === "expense")
+        .reduce((sum, t) => sum + Number(t.amount), 0);
 
-      const balance = income - expenses;
+      const transactionBalance = transactionIncome - transactionExpenses;
+
+      const bankTotal = state.bankAccounts.reduce((sum, account) => sum + Number(account.amount || 0), 0);
+      const mainBalance = bankTotal + transactionBalance;
 
       const debtBills = state.bills
-        .filter(function (b) { return !b.paid; })
-        .reduce(function (sum, b) { return sum + Number(b.amount); }, 0);
+        .filter(b => !b.paid)
+        .reduce((sum, b) => sum + Number(b.amount), 0);
 
       const debtSubs = state.subscriptions
-        .filter(function (s) { return !s.paid; })
-        .reduce(function (sum, s) { return sum + Number(s.amount); }, 0);
+        .filter(s => !s.paid)
+        .reduce((sum, s) => sum + Number(s.amount), 0);
+
+      const savingsTotal = state.savings.reduce((sum, s) => sum + Number(s.currentAmount || 0), 0);
+      const savedThisMonthTotal = state.savings.reduce((sum, s) => sum + Number(s.savedThisMonth || 0), 0);
 
       return {
-        income: income,
-        expenses: expenses,
-        balance: balance,
+        bankTotal,
+        transactionIncome,
+        transactionExpenses,
+        transactionBalance,
+        balance: mainBalance,
         debt: debtBills + debtSubs,
-        extraMoney: balance - (debtBills + debtSubs)
+        extraMoney: mainBalance - (debtBills + debtSubs),
+        savingsTotal,
+        savedThisMonthTotal
       };
     }
 
-    function setView(view, categoryId) {
+    function setView(view, categoryId = null) {
       state.currentView = view;
-      state.selectedCategoryId = categoryId || null;
+      state.selectedCategoryId = categoryId;
       saveState();
       renderApp();
       closeMobileMenu();
@@ -917,29 +1455,207 @@
     }
 
     function removeTransactionById(transactionId) {
-      state.transactions = state.transactions.filter(function (t) {
-        return t.id !== transactionId;
-      });
+      state.transactions = state.transactions.filter(t => t.id !== transactionId);
       saveState();
     }
 
-    function categoryOptionsHtml(selectedId) {
-      let html = '<option value="">Uncategorized</option>';
-      state.categories.forEach(function (category) {
-        const selected = selectedId === category.id ? ' selected' : '';
-        html += '<option value="' + category.id + '"' + selected + '>' + escapeHtml(category.name) + '</option>';
+    function categoryOptionsHtml(selectedId = "") {
+      let html = `<option value="">Uncategorized</option>`;
+      state.categories.forEach(category => {
+        const selected = selectedId === category.id ? "selected" : "";
+        html += `<option value="${category.id}" ${selected}>${escapeHtml(category.name)}</option>`;
       });
       return html;
     }
 
     function applicationStatusOptionsHtml() {
-      return (
-        '<option value="1st Phase">1st Phase</option>' +
-        '<option value="Follow Up">Follow Up</option>' +
-        '<option value="Rejected">Rejected</option>' +
-        '<option value="Hired">Hired</option>' +
-        '<option value="Custom">Custom</option>'
-      );
+      return `
+        <option value="1st Phase">1st Phase</option>
+        <option value="Follow Up">Follow Up</option>
+        <option value="Rejected">Rejected</option>
+        <option value="Hired">Hired</option>
+        <option value="Custom">Custom</option>
+      `;
+    }
+
+    function addBankAccount(event) {
+      event.preventDefault();
+      const bankName = document.getElementById("bankName").value.trim();
+      const amount = toNumberInput(document.getElementById("bankAmount").value);
+
+      if (!bankName) {
+        alert("Please enter a bank name.");
+        return;
+      }
+
+      if (Number.isNaN(amount) || amount < 0) {
+        alert("Please enter a valid bank amount.");
+        return;
+      }
+
+      state.bankAccounts.push({
+        id: makeId(),
+        bankName,
+        amount
+      });
+
+      saveState();
+      renderApp();
+      showToast("Bank account added.");
+    }
+
+    function saveBankAmount(bankId) {
+      const bank = state.bankAccounts.find(item => item.id === bankId);
+      if (!bank) {
+        alert("Bank account not found.");
+        return;
+      }
+
+      const nameInput = document.getElementById(`bankName_${bankId}`);
+      const amountInput = document.getElementById(`bankAmount_${bankId}`);
+
+      if (!nameInput || !amountInput) {
+        alert("Unable to read this bank account row.");
+        return;
+      }
+
+      const newName = nameInput.value.trim();
+      const newAmount = toNumberInput(amountInput.value);
+
+      if (!newName) {
+        alert("Please enter a bank name.");
+        return;
+      }
+
+      if (Number.isNaN(newAmount) || newAmount < 0) {
+        alert("Please enter a valid bank amount.");
+        return;
+      }
+
+      bank.bankName = newName;
+      bank.amount = newAmount;
+      saveState();
+      renderApp();
+      showToast("Bank balance saved.");
+    }
+
+    function deleteBankAccount(bankId) {
+      state.bankAccounts = state.bankAccounts.filter(item => item.id !== bankId);
+      saveState();
+      renderApp();
+      showToast("Bank account deleted.");
+    }
+
+    function addSavings(event) {
+      event.preventDefault();
+
+      const name = document.getElementById("savingsName").value.trim();
+      const bankName = document.getElementById("savingsBank").value.trim();
+      const currentAmount = toNumberInput(document.getElementById("savingsCurrentAmount").value);
+      const savedThisMonth = toNumberInput(document.getElementById("savingsSavedThisMonth").value || 0);
+      const targetMonth = document.getElementById("savingsTargetMonth").value;
+      const targetAmount = toNumberInput(document.getElementById("savingsTargetAmount").value || 0);
+      const notes = document.getElementById("savingsNotes").value.trim();
+
+      if (!name) {
+        alert("Please enter a savings name.");
+        return;
+      }
+
+      if (!bankName) {
+        alert("Please enter a bank name for this savings.");
+        return;
+      }
+
+      if (Number.isNaN(currentAmount) || currentAmount < 0) {
+        alert("Please enter a valid current savings amount.");
+        return;
+      }
+
+      if (Number.isNaN(savedThisMonth) || savedThisMonth < 0) {
+        alert("Please enter a valid saved this month amount.");
+        return;
+      }
+
+      if (Number.isNaN(targetAmount) || targetAmount < 0) {
+        alert("Please enter a valid target amount.");
+        return;
+      }
+
+      state.savings.push({
+        id: makeId(),
+        name,
+        bankName,
+        currentAmount,
+        savedThisMonth,
+        targetMonth,
+        targetAmount,
+        notes
+      });
+
+      saveState();
+      renderApp();
+      showToast("Savings item added.");
+    }
+
+    function saveSavings(savingsId) {
+      const item = state.savings.find(s => s.id === savingsId);
+      if (!item) {
+        alert("Savings item not found.");
+        return;
+      }
+
+      const name = document.getElementById(`saveName_${savingsId}`).value.trim();
+      const bankName = document.getElementById(`saveBank_${savingsId}`).value.trim();
+      const currentAmount = toNumberInput(document.getElementById(`saveCurrent_${savingsId}`).value);
+      const savedThisMonth = toNumberInput(document.getElementById(`saveMonth_${savingsId}`).value || 0);
+      const targetMonth = document.getElementById(`saveTargetMonth_${savingsId}`).value;
+      const targetAmount = toNumberInput(document.getElementById(`saveTargetAmount_${savingsId}`).value || 0);
+      const notes = document.getElementById(`saveNotes_${savingsId}`).value.trim();
+
+      if (!name) {
+        alert("Please enter a savings name.");
+        return;
+      }
+
+      if (!bankName) {
+        alert("Please enter a bank name.");
+        return;
+      }
+
+      if (Number.isNaN(currentAmount) || currentAmount < 0) {
+        alert("Please enter a valid current amount.");
+        return;
+      }
+
+      if (Number.isNaN(savedThisMonth) || savedThisMonth < 0) {
+        alert("Please enter a valid monthly saved amount.");
+        return;
+      }
+
+      if (Number.isNaN(targetAmount) || targetAmount < 0) {
+        alert("Please enter a valid target amount.");
+        return;
+      }
+
+      item.name = name;
+      item.bankName = bankName;
+      item.currentAmount = currentAmount;
+      item.savedThisMonth = savedThisMonth;
+      item.targetMonth = targetMonth;
+      item.targetAmount = targetAmount;
+      item.notes = notes;
+
+      saveState();
+      renderApp();
+      showToast("Savings item saved.");
+    }
+
+    function deleteSavings(savingsId) {
+      state.savings = state.savings.filter(s => s.id !== savingsId);
+      saveState();
+      renderApp();
+      showToast("Savings item deleted.");
     }
 
     function addCategory(event) {
@@ -952,115 +1668,210 @@
         return;
       }
 
-      const exists = state.categories.some(function (cat) {
-        return cat.name.toLowerCase() === name.toLowerCase();
-      });
-
+      const exists = state.categories.some(cat => cat.name.toLowerCase() === name.toLowerCase());
       if (exists) {
         alert("That category already exists.");
         return;
       }
 
-      state.categories.push({
-        id: makeId(),
-        name: name
-      });
-
+      state.categories.push({ id: makeId(), name });
       saveState();
       renderApp();
+      showToast("Category added.");
     }
 
     function deleteCategory(categoryId) {
-      const hasTransactions = state.transactions.some(function (t) { return t.categoryId === categoryId; });
-      const hasBills = state.bills.some(function (b) { return b.categoryId === categoryId; });
-      const hasSubs = state.subscriptions.some(function (s) { return s.categoryId === categoryId; });
+      const hasTransactions = state.transactions.some(t => t.categoryId === categoryId);
+      const hasBills = state.bills.some(b => b.categoryId === categoryId);
+      const hasSubs = state.subscriptions.some(s => s.categoryId === categoryId);
 
       if (hasTransactions || hasBills || hasSubs) {
         alert("This category is still being used. Remove or reassign linked items first.");
         return;
       }
 
-      state.categories = state.categories.filter(function (cat) {
-        return cat.id !== categoryId;
-      });
-
+      state.categories = state.categories.filter(cat => cat.id !== categoryId);
       saveState();
       renderApp();
+      showToast("Category deleted.");
+    }
+
+    function daysInMonth(year, monthIndex) {
+      return new Date(year, monthIndex + 1, 0).getDate();
+    }
+
+    function buildClientSchedules(nextPaymentDate, expectedAmount) {
+      const anchor = new Date(nextPaymentDate + "T12:00:00");
+      if (Number.isNaN(anchor.getTime())) return [];
+
+      const year = anchor.getFullYear();
+      const day = anchor.getDate();
+      const startMonth = anchor.getMonth();
+      const schedules = [];
+
+      for (let month = startMonth; month <= 11; month++) {
+        const safeDay = Math.min(day, daysInMonth(year, month));
+        const due = new Date(year, month, safeDay, 12, 0, 0);
+        const dueDate = due.toISOString().slice(0, 10);
+
+        schedules.push({
+          id: makeId(),
+          dueDate,
+          yearMonth: dueDate.slice(0, 7),
+          expectedAmount: Number(expectedAmount),
+          status: "pending",
+          transactionId: null
+        });
+      }
+
+      return schedules;
+    }
+
+    function handleClientRateTypeChange() {
+      const select = document.getElementById("clientRateType");
+      const hourlyField = document.getElementById("clientHoursField");
+      if (!select || !hourlyField) return;
+
+      if (select.value === "hourly") {
+        hourlyField.classList.remove("hidden");
+      } else {
+        hourlyField.classList.add("hidden");
+        const hoursInput = document.getElementById("clientExpectedHours");
+        if (hoursInput) hoursInput.value = "";
+      }
     }
 
     function addClient(event) {
       event.preventDefault();
 
       const name = document.getElementById("clientName").value.trim();
-      const role = document.getElementById("clientRole").value.trim();
-      const salary = Number(document.getElementById("clientSalary").value);
-      const startDate = document.getElementById("clientStartDate").value;
+      const rateType = document.getElementById("clientRateType").value;
+      const currency = document.getElementById("clientCurrency").value;
+      const rateAmount = toNumberInput(document.getElementById("clientRateAmount").value);
+      const nextPaymentDate = document.getElementById("clientNextPaymentDate").value;
+      const hoursEl = document.getElementById("clientExpectedHours");
+      const expectedHours = hoursEl ? toNumberInput(hoursEl.value) : NaN;
 
-      if (!name || salary <= 0) {
-        alert("Please enter a client name and valid salary.");
+      if (!name) {
+        alert("Please enter a client name.");
+        return;
+      }
+
+      if (Number.isNaN(rateAmount) || rateAmount <= 0) {
+        alert("Please enter a valid rate amount.");
+        return;
+      }
+
+      if (!nextPaymentDate) {
+        alert("Please enter the next expected payment date.");
+        return;
+      }
+
+      const date = new Date(nextPaymentDate + "T12:00:00");
+      if (Number.isNaN(date.getTime())) {
+        alert("Please enter a valid payment date.");
+        return;
+      }
+
+      let expectedMonthlyAmount = rateAmount;
+      let storedHours = null;
+
+      if (rateType === "hourly") {
+        if (Number.isNaN(expectedHours) || expectedHours <= 0) {
+          alert("Please enter expected monthly hours for hourly clients.");
+          return;
+        }
+        storedHours = expectedHours;
+        expectedMonthlyAmount = rateAmount * expectedHours;
+      }
+
+      const schedules = buildClientSchedules(nextPaymentDate, expectedMonthlyAmount);
+
+      if (!schedules.length) {
+        alert("Could not generate payment schedules.");
         return;
       }
 
       state.clients.push({
         id: makeId(),
-        name: name,
-        role: role,
-        salary: salary,
-        startDate: startDate,
-        paid: false,
-        transactionId: null
+        name,
+        rateType,
+        currency,
+        rateAmount,
+        expectedHours: storedHours,
+        expectedMonthlyAmount,
+        nextPaymentDate,
+        paymentDay: date.getDate(),
+        schedules
       });
 
       saveState();
       renderApp();
+      showToast("Client with payment schedule added.");
     }
 
-    function toggleClientPaid(clientId) {
-      const client = state.clients.find(function (item) {
-        return item.id === clientId;
-      });
+    function getClientById(clientId) {
+      return state.clients.find(item => item.id === clientId);
+    }
 
-      if (!client) return;
+    function getClientScheduleById(client, scheduleId) {
+      if (!client || !Array.isArray(client.schedules)) return null;
+      return client.schedules.find(s => s.id === scheduleId);
+    }
 
-      if (!client.paid) {
-        const txId = createTransaction({
-          title: client.name + " payment",
-          amount: client.salary,
-          type: "income",
-          sourceType: "client",
-          sourceId: client.id
-        });
-        client.paid = true;
-        client.transactionId = txId;
-      } else {
-        if (client.transactionId) {
-          removeTransactionById(client.transactionId);
-        }
-        client.paid = false;
-        client.transactionId = null;
+    function setClientScheduleStatus(clientId, scheduleId, nextStatus) {
+      const client = getClientById(clientId);
+      const schedule = getClientScheduleById(client, scheduleId);
+
+      if (!client || !schedule) {
+        alert("Could not find this client payment row.");
+        return;
       }
 
+      if (schedule.transactionId) {
+        removeTransactionById(schedule.transactionId);
+        schedule.transactionId = null;
+      }
+
+      if (nextStatus === "paid") {
+        const txId = createTransaction({
+          title: `${client.name} payment - ${getMonthLabelFromDate(schedule.dueDate)}`,
+          amount: schedule.expectedAmount,
+          type: "income",
+          sourceType: "clientSchedule",
+          sourceId: schedule.id
+        });
+        schedule.transactionId = txId;
+      }
+
+      schedule.status = nextStatus;
       saveState();
       renderApp();
+      showToast("Client payment status updated.");
+    }
+
+    function getClientScheduleCounts(client) {
+      const counts = { pending: 0, paid: 0, delayed: 0 };
+      (client.schedules || []).forEach(s => {
+        if (s.status === "paid") counts.paid += 1;
+        else if (s.status === "delayed") counts.delayed += 1;
+        else counts.pending += 1;
+      });
+      return counts;
     }
 
     function deleteClient(clientId) {
-      const client = state.clients.find(function (item) {
-        return item.id === clientId;
-      });
-
+      const client = getClientById(clientId);
       if (!client) return;
 
-      if (client.transactionId) {
-        removeTransactionById(client.transactionId);
-      }
-
-      state.clients = state.clients.filter(function (item) {
-        return item.id !== clientId;
+      (client.schedules || []).forEach(schedule => {
+        if (schedule.transactionId) removeTransactionById(schedule.transactionId);
       });
 
+      state.clients = state.clients.filter(item => item.id !== clientId);
       saveState();
       renderApp();
+      showToast("Client deleted.");
     }
 
     function addApplication(event) {
@@ -1074,9 +1885,7 @@
       const customStatus = document.getElementById("applicationCustomStatus").value.trim();
 
       let finalStatus = statusSelect;
-      if (statusSelect === "Custom") {
-        finalStatus = customStatus;
-      }
+      if (statusSelect === "Custom") finalStatus = customStatus;
 
       if (!clientName || !position) {
         alert("Please enter a client name and position.");
@@ -1090,15 +1899,16 @@
 
       state.applications.push({
         id: makeId(),
-        clientName: clientName,
-        position: position,
-        salary: salary,
-        dateApplied: dateApplied,
+        clientName,
+        position,
+        salary,
+        dateApplied,
         status: finalStatus
       });
 
       saveState();
       renderApp();
+      showToast("Application added.");
     }
 
     function handleApplicationStatusSelectChange() {
@@ -1115,17 +1925,19 @@
     }
 
     function saveApplicationStatus(applicationId) {
-      const application = state.applications.find(function (item) {
-        return item.id === applicationId;
-      });
+      const application = state.applications.find(item => item.id === applicationId);
+      if (!application) {
+        alert("Application not found.");
+        return;
+      }
 
-      if (!application) return;
-
-      const input = document.getElementById("appStatus_" + applicationId);
-      if (!input) return;
+      const input = document.getElementById(`appStatus_${applicationId}`);
+      if (!input) {
+        alert("Unable to read this application row.");
+        return;
+      }
 
       const newStatus = input.value.trim();
-
       if (!newStatus) {
         alert("Please enter a valid status.");
         return;
@@ -1134,54 +1946,51 @@
       application.status = newStatus;
       saveState();
       renderApp();
+      showToast("Application status saved.");
     }
 
     function deleteApplication(applicationId) {
-      state.applications = state.applications.filter(function (item) {
-        return item.id !== applicationId;
-      });
-
+      state.applications = state.applications.filter(item => item.id !== applicationId);
       saveState();
       renderApp();
+      showToast("Application deleted.");
     }
 
     function addBill(event) {
       event.preventDefault();
 
       const name = document.getElementById("billName").value.trim();
-      const amount = Number(document.getElementById("billAmount").value);
+      const amount = toNumberInput(document.getElementById("billAmount").value);
       const dueDate = document.getElementById("billDueDate").value;
       const categoryId = document.getElementById("billCategory").value || null;
 
-      if (!name || amount <= 0) {
+      if (!name || Number.isNaN(amount) || amount <= 0) {
         alert("Please enter a bill name and valid amount.");
         return;
       }
 
       state.bills.push({
         id: makeId(),
-        name: name,
-        amount: amount,
-        dueDate: dueDate,
-        categoryId: categoryId,
+        name,
+        amount,
+        dueDate,
+        categoryId,
         paid: false,
         transactionId: null
       });
 
       saveState();
       renderApp();
+      showToast("Bill added.");
     }
 
     function toggleBillPaid(billId) {
-      const bill = state.bills.find(function (item) {
-        return item.id === billId;
-      });
-
+      const bill = state.bills.find(item => item.id === billId);
       if (!bill) return;
 
       if (!bill.paid) {
         const txId = createTransaction({
-          title: bill.name + " bill paid",
+          title: `${bill.name} bill paid`,
           amount: bill.amount,
           type: "expense",
           categoryId: bill.categoryId,
@@ -1191,73 +2000,62 @@
         bill.paid = true;
         bill.transactionId = txId;
       } else {
-        if (bill.transactionId) {
-          removeTransactionById(bill.transactionId);
-        }
+        if (bill.transactionId) removeTransactionById(bill.transactionId);
         bill.paid = false;
         bill.transactionId = null;
       }
 
       saveState();
       renderApp();
+      showToast("Bill payment updated.");
     }
 
     function deleteBill(billId) {
-      const bill = state.bills.find(function (item) {
-        return item.id === billId;
-      });
-
+      const bill = state.bills.find(item => item.id === billId);
       if (!bill) return;
 
-      if (bill.transactionId) {
-        removeTransactionById(bill.transactionId);
-      }
-
-      state.bills = state.bills.filter(function (item) {
-        return item.id !== billId;
-      });
-
+      if (bill.transactionId) removeTransactionById(bill.transactionId);
+      state.bills = state.bills.filter(item => item.id !== billId);
       saveState();
       renderApp();
+      showToast("Bill deleted.");
     }
 
     function addSubscription(event) {
       event.preventDefault();
 
       const name = document.getElementById("subscriptionName").value.trim();
-      const amount = Number(document.getElementById("subscriptionAmount").value);
+      const amount = toNumberInput(document.getElementById("subscriptionAmount").value);
       const renewal = document.getElementById("subscriptionRenewal").value.trim();
       const categoryId = document.getElementById("subscriptionCategory").value || null;
 
-      if (!name || amount <= 0) {
+      if (!name || Number.isNaN(amount) || amount <= 0) {
         alert("Please enter a subscription name and valid amount.");
         return;
       }
 
       state.subscriptions.push({
         id: makeId(),
-        name: name,
-        amount: amount,
-        renewal: renewal,
-        categoryId: categoryId,
+        name,
+        amount,
+        renewal,
+        categoryId,
         paid: false,
         transactionId: null
       });
 
       saveState();
       renderApp();
+      showToast("Subscription added.");
     }
 
     function toggleSubscriptionPaid(subscriptionId) {
-      const sub = state.subscriptions.find(function (item) {
-        return item.id === subscriptionId;
-      });
-
+      const sub = state.subscriptions.find(item => item.id === subscriptionId);
       if (!sub) return;
 
       if (!sub.paid) {
         const txId = createTransaction({
-          title: sub.name + " subscription paid",
+          title: `${sub.name} subscription paid`,
           amount: sub.amount,
           type: "expense",
           categoryId: sub.categoryId,
@@ -1267,78 +2065,65 @@
         sub.paid = true;
         sub.transactionId = txId;
       } else {
-        if (sub.transactionId) {
-          removeTransactionById(sub.transactionId);
-        }
+        if (sub.transactionId) removeTransactionById(sub.transactionId);
         sub.paid = false;
         sub.transactionId = null;
       }
 
       saveState();
       renderApp();
+      showToast("Subscription payment updated.");
     }
 
     function deleteSubscription(subscriptionId) {
-      const sub = state.subscriptions.find(function (item) {
-        return item.id === subscriptionId;
-      });
-
+      const sub = state.subscriptions.find(item => item.id === subscriptionId);
       if (!sub) return;
 
-      if (sub.transactionId) {
-        removeTransactionById(sub.transactionId);
-      }
-
-      state.subscriptions = state.subscriptions.filter(function (item) {
-        return item.id !== subscriptionId;
-      });
-
+      if (sub.transactionId) removeTransactionById(sub.transactionId);
+      state.subscriptions = state.subscriptions.filter(item => item.id !== subscriptionId);
       saveState();
       renderApp();
+      showToast("Subscription deleted.");
     }
 
     function addManualTransaction(event) {
       event.preventDefault();
 
       const title = document.getElementById("manualTitle").value.trim();
-      const amount = Number(document.getElementById("manualAmount").value);
+      const amount = toNumberInput(document.getElementById("manualAmount").value);
       const type = document.getElementById("manualType").value;
       const categoryId = document.getElementById("manualCategory").value || null;
 
-      if (!title || amount <= 0) {
+      if (!title || Number.isNaN(amount) || amount <= 0) {
         alert("Please enter a valid title and amount.");
         return;
       }
 
       createTransaction({
-        title: title,
-        amount: amount,
-        type: type,
-        categoryId: categoryId,
+        title,
+        amount,
+        type,
+        categoryId,
         sourceType: "manual"
       });
 
       renderApp();
+      showToast("Transaction added.");
     }
 
     function deleteTransaction(transactionId) {
-      const txn = state.transactions.find(function (t) {
-        return t.id === transactionId;
-      });
-
+      const txn = state.transactions.find(t => t.id === transactionId);
       if (!txn) return;
 
       if (txn.sourceType !== "manual") {
-        alert("This transaction is linked to a client, bill, or subscription. Manage it from that section.");
+        alert("This transaction is linked to another section. Manage it from there.");
         return;
       }
 
-      state.transactions = state.transactions.filter(function (t) {
-        return t.id !== transactionId;
-      });
-
+      state.transactions = state.transactions.filter(t => t.id !== transactionId);
       saveState();
       renderApp();
+      showToast("Transaction deleted.");
     }
 
     function resetAllData() {
@@ -1349,39 +2134,22 @@
       saveState();
       renderApp();
       closeMobileMenu();
+      showToast("All data reset.");
     }
 
     function getPageMeta() {
-      if (state.currentView === "clients") {
-        return { title: "Clients", subtitle: "Track salaries and post them only when paid.", back: true };
-      }
-      if (state.currentView === "applications") {
-        return { title: "Applications", subtitle: "Track every client application and its latest status.", back: true };
-      }
-      if (state.currentView === "bills") {
-        return { title: "Bills", subtitle: "Track unpaid bills and subtract them when paid.", back: true };
-      }
-      if (state.currentView === "subscriptions") {
-        return { title: "Subscriptions", subtitle: "Track recurring costs and mark them paid when needed.", back: true };
-      }
-      if (state.currentView === "categories") {
-        return { title: "Categories", subtitle: "Build your own custom structure.", back: true };
-      }
-      if (state.currentView === "transactions") {
-        return { title: "Transactions", subtitle: "Your full posted money history.", back: true };
-      }
-      if (state.currentView === "balanceDetail") {
-        return { title: "Main Balance", subtitle: "Everything that affects your current balance.", back: true };
-      }
-      if (state.currentView === "debtDetail") {
-        return { title: "Debt Dashboard", subtitle: "All unpaid bills and subscriptions.", back: true };
-      }
-      if (state.currentView === "extraDetail") {
-        return { title: "Extra Money", subtitle: "Your balance minus unpaid debt.", back: true };
-      }
-      if (state.currentView === "categoryDetail") {
-        return { title: getCategoryName(state.selectedCategoryId), subtitle: "This category's own dashboard.", back: true };
-      }
+      if (state.currentView === "bankBalances") return { title: "Bank Balance", subtitle: "Track all your bank accounts and let them update your main balance automatically.", back: true };
+      if (state.currentView === "savings") return { title: "Savings", subtitle: "Track your allocated savings by purpose, bank, monthly saved amount, and target month without double counting your total money.", back: true };
+      if (state.currentView === "clients") return { title: "Clients", subtitle: "List each client once, auto-generate the rest of their 2026 payment schedule, then mark each month as paid, delayed, or pending.", back: true };
+      if (state.currentView === "applications") return { title: "Applications", subtitle: "Track every client application and its latest status.", back: true };
+      if (state.currentView === "bills") return { title: "Bills", subtitle: "Track unpaid bills and subtract them when paid.", back: true };
+      if (state.currentView === "subscriptions") return { title: "Subscriptions", subtitle: "Track recurring costs and mark them paid when needed.", back: true };
+      if (state.currentView === "categories") return { title: "Categories", subtitle: "Build your own custom structure.", back: true };
+      if (state.currentView === "transactions") return { title: "Transactions", subtitle: "Your full posted money history.", back: true };
+      if (state.currentView === "balanceDetail") return { title: "Main Balance", subtitle: "Bank balances plus posted transaction balance.", back: true };
+      if (state.currentView === "debtDetail") return { title: "Debt Dashboard", subtitle: "All unpaid bills and subscriptions.", back: true };
+      if (state.currentView === "extraDetail") return { title: "Extra Money", subtitle: "Your balance minus unpaid debt.", back: true };
+      if (state.currentView === "categoryDetail") return { title: getCategoryName(state.selectedCategoryId), subtitle: "This category's own dashboard.", back: true };
       return { title: "Dashboard", subtitle: "Your complete money overview.", back: false };
     }
 
@@ -1389,674 +2157,895 @@
       const desktopNav = document.getElementById("desktopNav");
       const mobileSidebarNav = document.getElementById("mobileSidebarNav");
 
-      let desktopHtml = "";
-      let mobileHtml = "";
+      const buildButtons = () => NAV_ITEMS.map(item => `
+        <button type="button" class="${state.currentView === item.key ? "active" : ""}" onclick="setView('${item.key}')">
+          <span>${item.label}</span>
+        </button>
+      `).join("");
 
-      NAV_ITEMS.forEach(function (item) {
-        const buttonHtml = '<button type="button" class="' + (state.currentView === item.key ? 'active' : '') + '" onclick="setView(\'' + item.key + '\')">' + item.label + '</button>';
-        desktopHtml += buttonHtml;
-        mobileHtml += buttonHtml;
-      });
-
-      desktopNav.innerHTML = desktopHtml;
-      mobileSidebarNav.innerHTML = mobileHtml;
+      desktopNav.innerHTML = buildButtons();
+      mobileSidebarNav.innerHTML = buildButtons();
     }
 
     function renderDashboardView() {
       const summary = getSummary();
-      const recentTransactions = clone(state.transactions).sort(function (a, b) {
-        return new Date(b.createdAt) - new Date(a.createdAt);
-      }).slice(0, 6);
+      const recentTransactions = clone(state.transactions)
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+        .slice(0, 6);
 
-      let categoryCards = "";
-      state.categories.forEach(function (category) {
-        const items = state.transactions.filter(function (t) {
-          return t.categoryId === category.id;
-        });
-        const total = items.reduce(function (sum, t) {
-          return sum + (t.type === "income" ? Number(t.amount) : -Number(t.amount));
-        }, 0);
+      const categoryCards = state.categories.map(category => {
+        const items = state.transactions.filter(t => t.categoryId === category.id);
+        const total = items.reduce((sum, t) => sum + (t.type === "income" ? Number(t.amount) : -Number(t.amount)), 0);
 
-        categoryCards +=
-          '<div class="category-card" onclick="setView(\'categoryDetail\', \'' + category.id + '\')">' +
-            '<div class="item-title" style="font-size:18px;">' + escapeHtml(category.name) + '</div>' +
-            '<div class="meta"><span>' + items.length + ' entries</span></div>' +
-            '<div style="margin-top:12px;font-size:22px;font-weight:700;">' + formatMoney(total) + '</div>' +
-          '</div>';
-      });
+        return `
+          <div class="category-card glass-soft" onclick="setView('categoryDetail', '${category.id}')">
+            <div class="item-title" style="font-size:18px;">${escapeHtml(category.name)}</div>
+            <div class="meta"><span>${items.length} entries</span></div>
+            <div style="margin-top:14px;font-size:24px;font-weight:850;">${formatMoney(total)}</div>
+          </div>
+        `;
+      }).join("");
 
-      let recentHtml = "";
-      if (recentTransactions.length) {
-        recentTransactions.forEach(function (txn) {
-          recentHtml +=
-            '<div class="ledger-row">' +
-              '<div>' +
-                '<div style="font-weight:700;">' + escapeHtml(txn.title) + '</div>' +
-                '<div class="meta">' +
-                  '<span>' + escapeHtml(txn.sourceType) + '</span>' +
-                  '<span>' + formatDate(txn.createdAt) + '</span>' +
-                  '<span>' + escapeHtml(getCategoryName(txn.categoryId)) + '</span>' +
-                '</div>' +
-              '</div>' +
-              '<div class="amount ' + txn.type + '">' +
-                (txn.type === "income" ? "+" : "-") + " " + formatMoney(txn.amount) +
-              '</div>' +
-            '</div>';
-        });
-      } else {
-        recentHtml = '<div class="empty">No transactions yet. Start with a client payment, bill, subscription, or manual transaction.</div>';
-      }
+      const recentHtml = recentTransactions.length ? recentTransactions.map(txn => `
+        <div class="ledger-row">
+          <div>
+            <div style="font-weight:850;">${escapeHtml(txn.title)}</div>
+            <div class="meta">
+              <span>${escapeHtml(txn.sourceType)}</span>
+              <span>${formatDate(txn.createdAt.slice(0, 10))}</span>
+              <span>${escapeHtml(getCategoryName(txn.categoryId))}</span>
+            </div>
+          </div>
+          <div class="amount ${txn.type}">
+            ${txn.type === "income" ? "+" : "-"} ${formatMoney(txn.amount)}
+          </div>
+        </div>
+      `).join("") : `<div class="empty">No transactions yet. Start with a client payment, bill, subscription, or manual transaction.</div>`;
 
-      return (
-        '<div>' +
-          '<div class="stats">' +
-            '<div class="card clickable" onclick="setView(\'balanceDetail\')">' +
-              '<div class="stat-label">Main Balance</div>' +
-              '<div class="stat-value">' + formatMoney(summary.balance) + '</div>' +
-              '<div class="stat-sub">Posted income minus posted expenses</div>' +
-            '</div>' +
-            '<div class="card clickable" onclick="setView(\'debtDetail\')">' +
-              '<div class="stat-label">Debt</div>' +
-              '<div class="stat-value">' + formatMoney(summary.debt) + '</div>' +
-              '<div class="stat-sub">All unpaid bills and subscriptions</div>' +
-            '</div>' +
-            '<div class="card clickable" onclick="setView(\'extraDetail\')">' +
-              '<div class="stat-label">Extra Money</div>' +
-              '<div class="stat-value">' + formatMoney(summary.extraMoney) + '</div>' +
-              '<div class="stat-sub">Balance minus unpaid debt</div>' +
-            '</div>' +
-            '<div class="card clickable" onclick="setView(\'categories\')">' +
-              '<div class="stat-label">Categories</div>' +
-              '<div class="stat-value">' + state.categories.length + '</div>' +
-              '<div class="stat-sub">Open and manage custom categories</div>' +
-            '</div>' +
-          '</div>' +
+      return `
+        <div>
+          <div class="stats">
+            <div class="card glass clickable" onclick="setView('balanceDetail')">
+              <div class="stat-label">Main Balance</div>
+              <div class="stat-value">${formatMoney(summary.balance)}</div>
+              <div class="stat-sub">Bank total plus posted transaction balance</div>
+            </div>
+            <div class="card glass clickable" onclick="setView('bankBalances')">
+              <div class="stat-label">Bank Total</div>
+              <div class="stat-value">${formatMoney(summary.bankTotal)}</div>
+              <div class="stat-sub">${state.bankAccounts.length} bank account(s)</div>
+            </div>
+            <div class="card glass clickable" onclick="setView('savings')">
+              <div class="stat-label">Savings Total</div>
+              <div class="stat-value">${formatMoney(summary.savingsTotal)}</div>
+              <div class="stat-sub">Allocated inside your total money</div>
+            </div>
+            <div class="card glass clickable" onclick="setView('debtDetail')">
+              <div class="stat-label">Debt</div>
+              <div class="stat-value">${formatMoney(summary.debt)}</div>
+              <div class="stat-sub">All unpaid bills and subscriptions</div>
+            </div>
+            <div class="card glass clickable" onclick="setView('extraDetail')">
+              <div class="stat-label">Extra Money</div>
+              <div class="stat-value">${formatMoney(summary.extraMoney)}</div>
+              <div class="stat-sub">Balance minus unpaid debt</div>
+            </div>
+            <div class="card glass clickable" onclick="setView('categories')">
+              <div class="stat-label">Categories</div>
+              <div class="stat-value">${state.categories.length}</div>
+              <div class="stat-sub">Open and manage custom categories</div>
+            </div>
+          </div>
 
-          '<div class="content-grid">' +
-            '<div class="card">' +
-              '<div class="section-title">' +
-                '<div>' +
-                  '<h3>Recent Transactions</h3>' +
-                  '<p>Your latest posted activity.</p>' +
-                '</div>' +
-                '<button class="btn" type="button" onclick="setView(\'transactions\')">Open full history</button>' +
-              '</div>' +
-              recentHtml +
-            '</div>' +
+          <div class="content-grid">
+            <div class="card glass">
+              <div class="section-title">
+                <div>
+                  <h3>Recent Transactions</h3>
+                  <p>Your latest posted activity.</p>
+                </div>
+                <button class="btn" type="button" onclick="setView('transactions')">Open full history</button>
+              </div>
+              ${recentHtml}
+            </div>
 
-            '<div class="stack">' +
-              '<div class="card">' +
-                '<div class="section-title">' +
-                  '<div>' +
-                    '<h3>Quick Numbers</h3>' +
-                    '<p>Your money at a glance.</p>' +
-                  '</div>' +
-                '</div>' +
-                '<div class="mini-grid">' +
-                  '<div class="mini-card"><div class="label">Income Posted</div><div class="value">' + formatMoney(summary.income) + '</div></div>' +
-                  '<div class="mini-card"><div class="label">Expenses Posted</div><div class="value">' + formatMoney(summary.expenses) + '</div></div>' +
-                  '<div class="mini-card"><div class="label">Clients</div><div class="value">' + state.clients.length + '</div></div>' +
-                  '<div class="mini-card"><div class="label">Applications</div><div class="value">' + state.applications.length + '</div></div>' +
-                '</div>' +
-              '</div>' +
+            <div class="stack">
+              <div class="card glass">
+                <div class="section-title">
+                  <div>
+                    <h3>Quick Numbers</h3>
+                    <p>Your money at a glance.</p>
+                  </div>
+                </div>
+                <div class="mini-grid">
+                  <div class="mini-card glass-soft"><div class="label">Savings Total</div><div class="value">${formatMoney(summary.savingsTotal)}</div></div>
+                  <div class="mini-card glass-soft"><div class="label">Saved This Month</div><div class="value">${formatMoney(summary.savedThisMonthTotal)}</div></div>
+                  <div class="mini-card glass-soft"><div class="label">Clients</div><div class="value">${state.clients.length}</div></div>
+                  <div class="mini-card glass-soft"><div class="label">Applications</div><div class="value">${state.applications.length}</div></div>
+                </div>
+              </div>
 
-              '<div class="card">' +
-                '<div class="section-title">' +
-                  '<div>' +
-                    '<h3>Category Overview</h3>' +
-                    '<p>Open any category dashboard.</p>' +
-                  '</div>' +
-                '</div>' +
-                '<div class="categories-grid">' +
-                  (categoryCards || '<div class="empty">No categories yet.</div>') +
-                '</div>' +
-              '</div>' +
-            '</div>' +
-          '</div>' +
-        '</div>'
-      );
+              <div class="card glass">
+                <div class="section-title">
+                  <div>
+                    <h3>Category Overview</h3>
+                    <p>Open any category dashboard.</p>
+                  </div>
+                </div>
+                <div class="categories-grid">
+                  ${categoryCards || `<div class="empty">No categories yet.</div>`}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderBankBalancesView() {
+      const summary = getSummary();
+
+      const listHtml = state.bankAccounts.length ? state.bankAccounts.map(account => `
+        <div class="item glass">
+          <div class="bank-card">
+            <div class="bank-icon">${escapeHtml(getBankIcon(account.bankName))}</div>
+            <div class="bank-card-content">
+              <div class="bank-card-top">
+                <div>
+                  <div class="item-title" style="font-size:20px;">${escapeHtml(account.bankName)}</div>
+                  <div class="bank-subline">Current Balance: ${formatMoney(account.amount)}</div>
+                </div>
+              </div>
+              <div class="bank-actions">
+                <input id="bankName_${account.id}" type="text" value="${escapeHtml(account.bankName)}" placeholder="Bank name" />
+                <input id="bankAmount_${account.id}" type="number" min="0" step="0.01" value="${String(account.amount)}" placeholder="Bank amount" />
+                <button class="btn" type="button" onclick="saveBankAmount('${account.id}')">Save</button>
+                <button class="btn danger" type="button" onclick="deleteBankAccount('${account.id}')">Delete</button>
+              </div>
+            </div>
+            <div class="bank-balance-glow">${formatMoney(account.amount)}</div>
+          </div>
+        </div>
+      `).join("") : `<div class="empty">No bank accounts yet.</div>`;
+
+      return `
+        <div class="list">
+          <div class="stats">
+            <div class="card glass">
+              <div class="stat-label">Bank Total</div>
+              <div class="stat-value">${formatMoney(summary.bankTotal)}</div>
+              <div class="stat-sub">Sum of all bank accounts</div>
+            </div>
+            <div class="card glass">
+              <div class="stat-label">Main Balance</div>
+              <div class="stat-value">${formatMoney(summary.balance)}</div>
+              <div class="stat-sub">Bank total plus posted transaction balance</div>
+            </div>
+          </div>
+
+          <div class="card glass">
+            <div class="section-title">
+              <div>
+                <h3>Add Bank Account</h3>
+                <p>Add a bank and amount. Updating it later will automatically update your main balance too.</p>
+              </div>
+            </div>
+            <form class="form-grid" onsubmit="addBankAccount(event)">
+              <div class="field"><label>Bank Name</label><input id="bankName" placeholder="BPI / UnionBank / Maya" /></div>
+              <div class="field"><label>Amount</label><input id="bankAmount" type="number" min="0" step="0.01" placeholder="15000" /></div>
+              <div class="field" style="grid-column: span 2;"><label>&nbsp;</label><button class="btn primary" type="submit">Add bank account</button></div>
+            </form>
+          </div>
+
+          <div class="card glass">
+            <div class="section-title">
+              <div>
+                <h3>Bank Accounts</h3>
+                <p>Update the amount anytime when the balance changes. Main balance updates automatically.</p>
+              </div>
+            </div>
+            <div class="list">${listHtml}</div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderSavingsView() {
+      const summary = getSummary();
+
+      const savingsHtml = state.savings.length ? state.savings.map(item => {
+        const progress = item.targetAmount > 0 ? Math.min((Number(item.currentAmount) / Number(item.targetAmount)) * 100, 100) : 0;
+
+        return `
+          <div class="item glass">
+            <div class="bank-card">
+              <div class="savings-icon">${escapeHtml(getSavingsIcon(item.name))}</div>
+              <div class="bank-card-content">
+                <div class="bank-card-top">
+                  <div>
+                    <div class="item-title" style="font-size:20px;">${escapeHtml(item.name)}</div>
+                    <div class="bank-subline">
+                      Bank: ${escapeHtml(item.bankName)} • Target Month: ${escapeHtml(getSavingsMonthLabel(item.targetMonth))} • Saved This Month: ${formatMoney(item.savedThisMonth || 0)}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="progress-wrap">
+                  <div class="meta" style="margin:0 0 8px 0;">
+                    <span>Target: ${item.targetAmount > 0 ? formatMoney(item.targetAmount) : "Not set"}</span>
+                    <span>Progress: ${item.targetAmount > 0 ? progress.toFixed(0) + "%" : "No target"}</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress-fill" style="width:${progress}%;"></div>
+                  </div>
+                </div>
+
+                <div class="row-actions">
+                  <input id="saveName_${item.id}" type="text" value="${escapeHtml(item.name)}" placeholder="Savings name" style="max-width:220px;" />
+                  <input id="saveBank_${item.id}" type="text" value="${escapeHtml(item.bankName)}" placeholder="Bank name" style="max-width:220px;" />
+                  <input id="saveCurrent_${item.id}" type="number" min="0" step="0.01" value="${String(item.currentAmount || 0)}" placeholder="Current amount" style="max-width:190px;" />
+                  <input id="saveMonth_${item.id}" type="number" min="0" step="0.01" value="${String(item.savedThisMonth || 0)}" placeholder="Saved this month" style="max-width:190px;" />
+                </div>
+
+                <div class="row-actions">
+                  <input id="saveTargetMonth_${item.id}" type="month" value="${escapeHtml(item.targetMonth || "")}" style="max-width:190px;" />
+                  <input id="saveTargetAmount_${item.id}" type="number" min="0" step="0.01" value="${String(item.targetAmount || 0)}" placeholder="Target amount" style="max-width:190px;" />
+                  <button class="btn" type="button" onclick="saveSavings('${item.id}')">Save</button>
+                  <button class="btn danger" type="button" onclick="deleteSavings('${item.id}')">Delete</button>
+                </div>
+
+                <div class="row-actions">
+                  <textarea id="saveNotes_${item.id}" placeholder="Notes">${escapeHtml(item.notes || "")}</textarea>
+                </div>
+              </div>
+              <div class="savings-balance-glow">${formatMoney(item.currentAmount || 0)}</div>
+            </div>
+          </div>
+        `;
+      }).join("") : `<div class="empty">No savings yet.</div>`;
+
+      return `
+        <div class="list">
+          <div class="stats">
+            <div class="card glass">
+              <div class="stat-label">Savings Total</div>
+              <div class="stat-value">${formatMoney(summary.savingsTotal)}</div>
+              <div class="stat-sub">Allocated savings across all goals</div>
+            </div>
+            <div class="card glass">
+              <div class="stat-label">Saved This Month</div>
+              <div class="stat-value">${formatMoney(summary.savedThisMonthTotal)}</div>
+              <div class="stat-sub">Tracked monthly savings amount</div>
+            </div>
+            <div class="card glass">
+              <div class="stat-label">Savings Items</div>
+              <div class="stat-value">${state.savings.length}</div>
+              <div class="stat-sub">Emergency fund, insurance, christmas, gadgets, and more</div>
+            </div>
+          </div>
+
+          <div class="card glass">
+            <div class="section-title">
+              <div>
+                <h3>Add Savings</h3>
+                <p>This tracks allocated money already inside your total funds, so it does not double count your main balance.</p>
+              </div>
+            </div>
+
+            <form class="form-grid" onsubmit="addSavings(event)">
+              <div class="field">
+                <label>Savings Name</label>
+                <input id="savingsName" placeholder="Emergency Fund / Christmas / Gadgets" />
+              </div>
+              <div class="field">
+                <label>Bank Name</label>
+                <input id="savingsBank" placeholder="BPI / GCash / Maya" />
+              </div>
+              <div class="field">
+                <label>Current Amount</label>
+                <input id="savingsCurrentAmount" type="number" min="0" step="0.01" placeholder="10000" />
+              </div>
+              <div class="field">
+                <label>Saved This Month</label>
+                <input id="savingsSavedThisMonth" type="number" min="0" step="0.01" placeholder="2000" />
+              </div>
+              <div class="field">
+                <label>Target Month</label>
+                <input id="savingsTargetMonth" type="month" />
+              </div>
+              <div class="field">
+                <label>Target Amount</label>
+                <input id="savingsTargetAmount" type="number" min="0" step="0.01" placeholder="30000" />
+              </div>
+              <div class="field" style="grid-column:1/-1;">
+                <label>Notes</label>
+                <textarea id="savingsNotes" placeholder="Anything important about this savings"></textarea>
+              </div>
+              <div class="field" style="grid-column:1/-1;">
+                <button class="btn primary" type="submit">Add savings item</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="card glass">
+            <div class="section-title">
+              <div>
+                <h3>Savings List</h3>
+                <p>Edit everything anytime. This is built for flexible tracking, not locked categories.</p>
+              </div>
+            </div>
+            <div class="list">${savingsHtml}</div>
+          </div>
+        </div>
+      `;
     }
 
     function renderClientsView() {
-      let listHtml = "";
-      if (state.clients.length) {
-        state.clients.forEach(function (client) {
-          listHtml +=
-            '<div class="item">' +
-              '<div class="item-head">' +
-                '<div>' +
-                  '<div class="item-title">' + escapeHtml(client.name) + '</div>' +
-                  '<div class="meta">' +
-                    '<span>' + escapeHtml(client.role || "No role") + '</span>' +
-                    '<span>Start: ' + formatDate(client.startDate) + '</span>' +
-                    '<span>Salary: ' + formatMoney(client.salary) + '</span>' +
-                  '</div>' +
-                '</div>' +
-                '<div class="pill-row">' +
-                  '<span class="pill ' + (client.paid ? 'green' : 'yellow') + '">' + (client.paid ? 'Paid' : 'Waiting payment') + '</span>' +
-                '</div>' +
-              '</div>' +
-              '<div class="row-actions">' +
-                '<button class="toggle-btn ' + (client.paid ? 'paid' : 'unpaid') + '" type="button" onclick="toggleClientPaid(\'' + client.id + '\')">' + (client.paid ? 'Mark unpaid' : 'Mark paid') + '</button>' +
-                '<button class="btn danger" type="button" onclick="deleteClient(\'' + client.id + '\')">Delete</button>' +
-              '</div>' +
-            '</div>';
-        });
-      } else {
-        listHtml = '<div class="empty">No clients yet.</div>';
-      }
+      const clientListHtml = state.clients.length ? state.clients.map(client => {
+        const counts = getClientScheduleCounts(client);
+        const scheduleHtml = (client.schedules || []).map(schedule => {
+          let statusClass = "blue";
+          let label = "Pending";
+          if (schedule.status === "paid") {
+            statusClass = "green";
+            label = "Paid";
+          } else if (schedule.status === "delayed") {
+            statusClass = "yellow";
+            label = "Delayed";
+          }
 
-      return (
-        '<div class="list">' +
-          '<div class="card">' +
-            '<div class="section-title">' +
-              '<div>' +
-                '<h3>Add Client</h3>' +
-                '<p>When marked paid, salary is added to your balance automatically.</p>' +
-              '</div>' +
-            '</div>' +
-            '<form class="form-grid" onsubmit="addClient(event)">' +
-              '<div class="field"><label>Client Name</label><input id="clientName" placeholder="Example: Olga" /></div>' +
-              '<div class="field"><label>Role / Job</label><input id="clientRole" placeholder="Video Editing" /></div>' +
-              '<div class="field"><label>Salary</label><input id="clientSalary" type="number" min="0" step="0.01" placeholder="15000" /></div>' +
-              '<div class="field"><label>Start Date</label><input id="clientStartDate" type="date" /></div>' +
-              '<div class="field" style="grid-column:1/-1;"><button class="btn primary" type="submit">Add client</button></div>' +
-            '</form>' +
-          '</div>' +
+          return `
+            <div class="schedule-row">
+              <div>
+                <div class="schedule-title">${escapeHtml(getMonthLabelFromDate(schedule.dueDate))}</div>
+                <div class="schedule-sub">Expected date: ${formatDate(schedule.dueDate)}</div>
+              </div>
+              <div class="schedule-amount">${formatCurrency(schedule.expectedAmount, client.currency)}</div>
+              <div>
+                <div class="pill ${statusClass}" style="margin-bottom:8px;">${label}</div>
+                <div class="schedule-actions">
+                  <button class="schedule-btn paid" type="button" onclick="setClientScheduleStatus('${client.id}', '${schedule.id}', 'paid')">Paid</button>
+                  <button class="schedule-btn delayed" type="button" onclick="setClientScheduleStatus('${client.id}', '${schedule.id}', 'delayed')">Delayed</button>
+                  <button class="schedule-btn pending" type="button" onclick="setClientScheduleStatus('${client.id}', '${schedule.id}', 'pending')">Pending</button>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join("");
 
-          '<div class="card">' +
-            '<div class="section-title">' +
-              '<div>' +
-                '<h3>Client List</h3>' +
-                '<p>Toggle paid to post or reverse the salary transaction.</p>' +
-              '</div>' +
-            '</div>' +
-            '<div class="list">' + listHtml + '</div>' +
-          '</div>' +
-        '</div>'
-      );
+        return `
+          <div class="item glass">
+            <div class="client-header-grid">
+              <div>
+                <div class="item-title" style="font-size:22px;">${escapeHtml(client.name)}</div>
+                <div class="meta">
+                  <span>${client.rateType === "hourly" ? "Hourly" : "Fixed Monthly"}</span>
+                  <span>Rate: ${formatCurrency(client.rateAmount, client.currency)}</span>
+                  ${client.rateType === "hourly" ? `<span>Expected Hours: ${escapeHtml(client.expectedHours)}</span>` : ""}
+                  <span>Expected Monthly: ${formatCurrency(client.expectedMonthlyAmount, client.currency)}</span>
+                  <span>Next Date Anchor: ${formatDate(client.nextPaymentDate)}</span>
+                </div>
+                <div class="client-summary-badges">
+                  <span class="pill blue">Pending: ${counts.pending}</span>
+                  <span class="pill green">Paid: ${counts.paid}</span>
+                  <span class="pill yellow">Delayed: ${counts.delayed}</span>
+                </div>
+              </div>
+              <div class="pill-row">
+                <button class="btn danger" type="button" onclick="deleteClient('${client.id}')">Delete client</button>
+              </div>
+            </div>
+            <div class="schedule-list">
+              ${scheduleHtml}
+            </div>
+          </div>
+        `;
+      }).join("") : `<div class="empty">No clients yet.</div>`;
+
+      return `
+        <div class="list">
+          <div class="card glass">
+            <div class="section-title">
+              <div>
+                <h3>Add Client</h3>
+                <p>Add the client once. The app auto-builds the expected payment schedule for the rest of 2026. Then you only mark each month as paid, delayed, or pending.</p>
+              </div>
+            </div>
+            <form class="form-grid" onsubmit="addClient(event)">
+              <div class="field">
+                <label>Client Name</label>
+                <input id="clientName" placeholder="Example: TSM" />
+              </div>
+              <div class="field">
+                <label>Rate Type</label>
+                <select id="clientRateType" onchange="handleClientRateTypeChange()">
+                  <option value="fixed">Fixed Monthly</option>
+                  <option value="hourly">Hourly</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Currency</label>
+                <select id="clientCurrency">
+                  <option value="PHP">PHP</option>
+                  <option value="USD">USD</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Rate Amount</label>
+                <input id="clientRateAmount" type="number" min="0" step="0.01" placeholder="60000 or 20" />
+              </div>
+              <div class="field hidden" id="clientHoursField">
+                <label>Expected Hours / Month</label>
+                <input id="clientExpectedHours" type="number" min="0" step="0.01" placeholder="160" />
+              </div>
+              <div class="field">
+                <label>Next Expected Payment Date</label>
+                <input id="clientNextPaymentDate" type="date" />
+              </div>
+              <div class="field" style="grid-column:1/-1;">
+                <button class="btn primary" type="submit">Add client and generate 2026 schedule</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="card glass">
+            <div class="section-title">
+              <div>
+                <h3>Client Payment Schedule</h3>
+                <p>Each client is listed once. Every expected month is already there, so you only update the payment status.</p>
+              </div>
+            </div>
+            <div class="list">${clientListHtml}</div>
+          </div>
+        </div>
+      `;
     }
 
     function renderApplicationsView() {
-      let listHtml = "";
-      if (state.applications.length) {
-        state.applications.forEach(function (application) {
-          const pillClass = getApplicationStatusClass(application.status);
+      const listHtml = state.applications.length ? state.applications.map(application => {
+        const pillClass = getApplicationStatusClass(application.status);
 
-          listHtml +=
-            '<div class="item">' +
-              '<div class="item-head">' +
-                '<div>' +
-                  '<div class="item-title">' + escapeHtml(application.clientName) + '</div>' +
-                  '<div class="meta">' +
-                    '<span>Position: ' + escapeHtml(application.position) + '</span>' +
-                    '<span>Salary: ' + escapeHtml(application.salary ? formatMoney(application.salary) : "Not set") + '</span>' +
-                    '<span>Date Applied: ' + formatDate(application.dateApplied) + '</span>' +
-                  '</div>' +
-                '</div>' +
-                '<div class="pill-row">' +
-                  '<span class="pill ' + pillClass + '">' + escapeHtml(application.status) + '</span>' +
-                '</div>' +
-              '</div>' +
-              '<div class="row-actions">' +
-                '<input id="appStatus_' + application.id + '" type="text" value="' + escapeHtml(application.status) + '" placeholder="Update status" style="max-width:220px;" />' +
-                '<button class="btn" type="button" onclick="saveApplicationStatus(\'' + application.id + '\')">Save status</button>' +
-                '<button class="btn danger" type="button" onclick="deleteApplication(\'' + application.id + '\')">Delete</button>' +
-              '</div>' +
-            '</div>';
-        });
-      } else {
-        listHtml = '<div class="empty">No applications yet.</div>';
-      }
+        return `
+          <div class="item glass">
+            <div class="item-head">
+              <div>
+                <div class="item-title">${escapeHtml(application.clientName)}</div>
+                <div class="meta">
+                  <span>Position: ${escapeHtml(application.position)}</span>
+                  <span>Salary: ${escapeHtml(application.salary || "Not set")}</span>
+                  <span>Date Applied: ${formatDate(application.dateApplied)}</span>
+                </div>
+              </div>
+              <div class="pill-row">
+                <span class="pill ${pillClass}">${escapeHtml(application.status)}</span>
+              </div>
+            </div>
+            <div class="row-actions">
+              <input id="appStatus_${application.id}" type="text" value="${escapeHtml(application.status)}" placeholder="Update status" style="max-width:220px;" />
+              <button class="btn" type="button" onclick="saveApplicationStatus('${application.id}')">Save status</button>
+              <button class="btn danger" type="button" onclick="deleteApplication('${application.id}')">Delete</button>
+            </div>
+          </div>
+        `;
+      }).join("") : `<div class="empty">No applications yet.</div>`;
 
-      return (
-        '<div class="list">' +
-          '<div class="card">' +
-            '<div class="section-title">' +
-              '<div>' +
-                '<h3>Add Application</h3>' +
-                '<p>Track the clients you applied to, their position, salary, applied date, and current status.</p>' +
-              '</div>' +
-            '</div>' +
-            '<form class="form-grid" onsubmit="addApplication(event)">' +
-              '<div class="field"><label>Client Name</label><input id="applicationClientName" placeholder="Company or Client Name" /></div>' +
-              '<div class="field"><label>Position</label><input id="applicationPosition" placeholder="Video Editor" /></div>' +
-              '<div class="field"><label>Salary</label><input id="applicationSalary" placeholder="25000 or Negotiable" /></div>' +
-              '<div class="field"><label>Date Applied</label><input id="applicationDateApplied" type="date" /></div>' +
-              '<div class="field"><label>Status</label><select id="applicationStatusSelect" onchange="handleApplicationStatusSelectChange()">' + applicationStatusOptionsHtml() + '</select></div>' +
-              '<div class="field"><label>Custom Status</label><input id="applicationCustomStatus" class="hidden" placeholder="Type your custom status" /></div>' +
-              '<div class="field" style="grid-column:1/-1;"><button class="btn primary" type="submit">Add application</button></div>' +
-            '</form>' +
-          '</div>' +
+      return `
+        <div class="list">
+          <div class="card glass">
+            <div class="section-title">
+              <div>
+                <h3>Add Application</h3>
+                <p>Track the clients you applied to, their position, salary, applied date, and current status.</p>
+              </div>
+            </div>
+            <form class="form-grid" onsubmit="addApplication(event)">
+              <div class="field"><label>Client Name</label><input id="applicationClientName" placeholder="Company or Client Name" /></div>
+              <div class="field"><label>Position</label><input id="applicationPosition" placeholder="Video Editor" /></div>
+              <div class="field"><label>Salary</label><input id="applicationSalary" placeholder="25000 or Negotiable" /></div>
+              <div class="field"><label>Date Applied</label><input id="applicationDateApplied" type="date" /></div>
+              <div class="field"><label>Status</label><select id="applicationStatusSelect" onchange="handleApplicationStatusSelectChange()">${applicationStatusOptionsHtml()}</select></div>
+              <div class="field"><label>Custom Status</label><input id="applicationCustomStatus" class="hidden" placeholder="Type your custom status" /></div>
+              <div class="field" style="grid-column:1/-1;"><button class="btn primary" type="submit">Add application</button></div>
+            </form>
+          </div>
 
-          '<div class="card">' +
-            '<div class="section-title">' +
-              '<div>' +
-                '<h3>Application List</h3>' +
-                '<p>Update each application status anytime. You can use 1st Phase, Follow Up, Rejected, Hired, or your own custom label.</p>' +
-              '</div>' +
-            '</div>' +
-            '<div class="list">' + listHtml + '</div>' +
-          '</div>' +
-        '</div>'
-      );
+          <div class="card glass">
+            <div class="section-title">
+              <div>
+                <h3>Application List</h3>
+                <p>Update each application status anytime. You can use 1st Phase, Follow Up, Rejected, Hired, or your own custom label.</p>
+              </div>
+            </div>
+            <div class="list">${listHtml}</div>
+          </div>
+        </div>
+      `;
     }
 
     function renderBillsView() {
-      let listHtml = "";
-      if (state.bills.length) {
-        state.bills.forEach(function (bill) {
-          listHtml +=
-            '<div class="item">' +
-              '<div class="item-head">' +
-                '<div>' +
-                  '<div class="item-title">' + escapeHtml(bill.name) + '</div>' +
-                  '<div class="meta">' +
-                    '<span>Due: ' + formatDate(bill.dueDate) + '</span>' +
-                    '<span>Category: ' + escapeHtml(getCategoryName(bill.categoryId)) + '</span>' +
-                    '<span>Amount: ' + formatMoney(bill.amount) + '</span>' +
-                  '</div>' +
-                '</div>' +
-                '<div class="pill-row">' +
-                  '<span class="pill ' + (bill.paid ? 'green' : 'red') + '">' + (bill.paid ? 'Paid' : 'Unpaid') + '</span>' +
-                '</div>' +
-              '</div>' +
-              '<div class="row-actions">' +
-                '<button class="toggle-btn ' + (bill.paid ? 'paid' : 'unpaid') + '" type="button" onclick="toggleBillPaid(\'' + bill.id + '\')">' + (bill.paid ? 'Mark unpaid' : 'Mark paid') + '</button>' +
-                '<button class="btn danger" type="button" onclick="deleteBill(\'' + bill.id + '\')">Delete</button>' +
-              '</div>' +
-            '</div>';
-        });
-      } else {
-        listHtml = '<div class="empty">No bills yet.</div>';
-      }
+      const listHtml = state.bills.length ? state.bills.map(bill => `
+        <div class="item glass">
+          <div class="item-head">
+            <div>
+              <div class="item-title">${escapeHtml(bill.name)}</div>
+              <div class="meta">
+                <span>Due: ${formatDate(bill.dueDate)}</span>
+                <span>Category: ${escapeHtml(getCategoryName(bill.categoryId))}</span>
+                <span>Amount: ${formatMoney(bill.amount)}</span>
+              </div>
+            </div>
+            <div class="pill-row">
+              <span class="pill ${bill.paid ? "green" : "red"}">${bill.paid ? "Paid" : "Unpaid"}</span>
+            </div>
+          </div>
+          <div class="row-actions">
+            <button class="toggle-btn ${bill.paid ? "paid" : "unpaid"}" type="button" onclick="toggleBillPaid('${bill.id}')">${bill.paid ? "Mark unpaid" : "Mark paid"}</button>
+            <button class="btn danger" type="button" onclick="deleteBill('${bill.id}')">Delete</button>
+          </div>
+        </div>
+      `).join("") : `<div class="empty">No bills yet.</div>`;
 
-      return (
-        '<div class="list">' +
-          '<div class="card">' +
-            '<div class="section-title">' +
-              '<div>' +
-                '<h3>Add Bill</h3>' +
-                '<p>When marked paid, it subtracts from your balance automatically.</p>' +
-              '</div>' +
-            '</div>' +
-            '<form class="form-grid" onsubmit="addBill(event)">' +
-              '<div class="field"><label>Bill Name</label><input id="billName" placeholder="Internet" /></div>' +
-              '<div class="field"><label>Amount</label><input id="billAmount" type="number" min="0" step="0.01" placeholder="1699" /></div>' +
-              '<div class="field"><label>Due Date</label><input id="billDueDate" type="date" /></div>' +
-              '<div class="field"><label>Category</label><select id="billCategory">' + categoryOptionsHtml() + '</select></div>' +
-              '<div class="field" style="grid-column:1/-1;"><button class="btn primary" type="submit">Add bill</button></div>' +
-            '</form>' +
-          '</div>' +
+      return `
+        <div class="list">
+          <div class="card glass">
+            <div class="section-title">
+              <div>
+                <h3>Add Bill</h3>
+                <p>When marked paid, it subtracts from your main balance automatically through posted transaction balance.</p>
+              </div>
+            </div>
+            <form class="form-grid" onsubmit="addBill(event)">
+              <div class="field"><label>Bill Name</label><input id="billName" placeholder="Internet" /></div>
+              <div class="field"><label>Amount</label><input id="billAmount" type="number" min="0" step="0.01" placeholder="1699" /></div>
+              <div class="field"><label>Due Date</label><input id="billDueDate" type="date" /></div>
+              <div class="field"><label>Category</label><select id="billCategory">${categoryOptionsHtml()}</select></div>
+              <div class="field" style="grid-column:1/-1;"><button class="btn primary" type="submit">Add bill</button></div>
+            </form>
+          </div>
 
-          '<div class="card">' +
-            '<div class="section-title">' +
-              '<div>' +
-                '<h3>Bill List</h3>' +
-                '<p>Unpaid bills count as debt. Paid bills become transactions.</p>' +
-              '</div>' +
-            '</div>' +
-            '<div class="list">' + listHtml + '</div>' +
-          '</div>' +
-        '</div>'
-      );
+          <div class="card glass">
+            <div class="section-title">
+              <div>
+                <h3>Bill List</h3>
+                <p>Unpaid bills count as debt. Paid bills become transactions.</p>
+              </div>
+            </div>
+            <div class="list">${listHtml}</div>
+          </div>
+        </div>
+      `;
     }
 
     function renderSubscriptionsView() {
-      let listHtml = "";
-      if (state.subscriptions.length) {
-        state.subscriptions.forEach(function (sub) {
-          listHtml +=
-            '<div class="item">' +
-              '<div class="item-head">' +
-                '<div>' +
-                  '<div class="item-title">' + escapeHtml(sub.name) + '</div>' +
-                  '<div class="meta">' +
-                    '<span>Renewal: ' + escapeHtml(sub.renewal || "Not set") + '</span>' +
-                    '<span>Category: ' + escapeHtml(getCategoryName(sub.categoryId)) + '</span>' +
-                    '<span>Amount: ' + formatMoney(sub.amount) + '</span>' +
-                  '</div>' +
-                '</div>' +
-                '<div class="pill-row">' +
-                  '<span class="pill ' + (sub.paid ? 'green' : 'red') + '">' + (sub.paid ? 'Paid' : 'Unpaid') + '</span>' +
-                '</div>' +
-              '</div>' +
-              '<div class="row-actions">' +
-                '<button class="toggle-btn ' + (sub.paid ? 'paid' : 'unpaid') + '" type="button" onclick="toggleSubscriptionPaid(\'' + sub.id + '\')">' + (sub.paid ? 'Mark unpaid' : 'Mark paid') + '</button>' +
-                '<button class="btn danger" type="button" onclick="deleteSubscription(\'' + sub.id + '\')">Delete</button>' +
-              '</div>' +
-            '</div>';
-        });
-      } else {
-        listHtml = '<div class="empty">No subscriptions yet.</div>';
-      }
+      const listHtml = state.subscriptions.length ? state.subscriptions.map(sub => `
+        <div class="item glass">
+          <div class="item-head">
+            <div>
+              <div class="item-title">${escapeHtml(sub.name)}</div>
+              <div class="meta">
+                <span>Renewal: ${escapeHtml(sub.renewal || "Not set")}</span>
+                <span>Category: ${escapeHtml(getCategoryName(sub.categoryId))}</span>
+                <span>Amount: ${formatMoney(sub.amount)}</span>
+              </div>
+            </div>
+            <div class="pill-row">
+              <span class="pill ${sub.paid ? "green" : "red"}">${sub.paid ? "Paid" : "Unpaid"}</span>
+            </div>
+          </div>
+          <div class="row-actions">
+            <button class="toggle-btn ${sub.paid ? "paid" : "unpaid"}" type="button" onclick="toggleSubscriptionPaid('${sub.id}')">${sub.paid ? "Mark unpaid" : "Mark paid"}</button>
+            <button class="btn danger" type="button" onclick="deleteSubscription('${sub.id}')">Delete</button>
+          </div>
+        </div>
+      `).join("") : `<div class="empty">No subscriptions yet.</div>`;
 
-      return (
-        '<div class="list">' +
-          '<div class="card">' +
-            '<div class="section-title">' +
-              '<div>' +
-                '<h3>Add Subscription</h3>' +
-                '<p>Track anything you subscribe to and post it only when paid.</p>' +
-              '</div>' +
-            '</div>' +
-            '<form class="form-grid" onsubmit="addSubscription(event)">' +
-              '<div class="field"><label>Name</label><input id="subscriptionName" placeholder="ChatGPT" /></div>' +
-              '<div class="field"><label>Amount</label><input id="subscriptionAmount" type="number" min="0" step="0.01" placeholder="1200" /></div>' +
-              '<div class="field"><label>Renewal</label><input id="subscriptionRenewal" placeholder="Monthly / Mar 12" /></div>' +
-              '<div class="field"><label>Category</label><select id="subscriptionCategory">' + categoryOptionsHtml() + '</select></div>' +
-              '<div class="field" style="grid-column:1/-1;"><button class="btn primary" type="submit">Add subscription</button></div>' +
-            '</form>' +
-          '</div>' +
+      return `
+        <div class="list">
+          <div class="card glass">
+            <div class="section-title">
+              <div>
+                <h3>Add Subscription</h3>
+                <p>Track anything you subscribe to and post it only when paid.</p>
+              </div>
+            </div>
+            <form class="form-grid" onsubmit="addSubscription(event)">
+              <div class="field"><label>Name</label><input id="subscriptionName" placeholder="ChatGPT" /></div>
+              <div class="field"><label>Amount</label><input id="subscriptionAmount" type="number" min="0" step="0.01" placeholder="1200" /></div>
+              <div class="field"><label>Renewal</label><input id="subscriptionRenewal" placeholder="Monthly / Mar 12" /></div>
+              <div class="field"><label>Category</label><select id="subscriptionCategory">${categoryOptionsHtml()}</select></div>
+              <div class="field" style="grid-column:1/-1;"><button class="btn primary" type="submit">Add subscription</button></div>
+            </form>
+          </div>
 
-          '<div class="card">' +
-            '<div class="section-title">' +
-              '<div>' +
-                '<h3>Subscriptions</h3>' +
-                '<p>Unpaid subscriptions stay in debt until you mark them paid.</p>' +
-              '</div>' +
-            '</div>' +
-            '<div class="list">' + listHtml + '</div>' +
-          '</div>' +
-        '</div>'
-      );
+          <div class="card glass">
+            <div class="section-title">
+              <div>
+                <h3>Subscriptions</h3>
+                <p>Unpaid subscriptions stay in debt until you mark them paid.</p>
+              </div>
+            </div>
+            <div class="list">${listHtml}</div>
+          </div>
+        </div>
+      `;
     }
 
     function renderCategoriesView() {
-      let cardsHtml = "";
-      if (state.categories.length) {
-        state.categories.forEach(function (category) {
-          const items = state.transactions.filter(function (t) { return t.categoryId === category.id; });
-          const income = items.filter(function (t) { return t.type === "income"; }).reduce(function (sum, t) { return sum + Number(t.amount); }, 0);
-          const expense = items.filter(function (t) { return t.type === "expense"; }).reduce(function (sum, t) { return sum + Number(t.amount); }, 0);
-          const net = income - expense;
+      const cardsHtml = state.categories.length ? state.categories.map(category => {
+        const items = state.transactions.filter(t => t.categoryId === category.id);
+        const income = items.filter(t => t.type === "income").reduce((sum, t) => sum + Number(t.amount), 0);
+        const expense = items.filter(t => t.type === "expense").reduce((sum, t) => sum + Number(t.amount), 0);
+        const net = income - expense;
 
-          cardsHtml +=
-            '<div class="item">' +
-              '<div class="item-head">' +
-                '<div>' +
-                  '<div class="item-title">' + escapeHtml(category.name) + '</div>' +
-                  '<div class="meta">' +
-                    '<span>' + items.length + ' transactions</span>' +
-                    '<span>Income: ' + formatMoney(income) + '</span>' +
-                    '<span>Expense: ' + formatMoney(expense) + '</span>' +
-                  '</div>' +
-                '</div>' +
-                '<div class="pill-row"><span class="pill">' + formatMoney(net) + '</span></div>' +
-              '</div>' +
-              '<div class="row-actions">' +
-                '<button class="btn" type="button" onclick="setView(\'categoryDetail\', \'' + category.id + '\')">Open category</button>' +
-                '<button class="btn danger" type="button" onclick="deleteCategory(\'' + category.id + '\')">Delete</button>' +
-              '</div>' +
-            '</div>';
-        });
-      } else {
-        cardsHtml = '<div class="empty">No custom categories yet.</div>';
-      }
+        return `
+          <div class="item glass">
+            <div class="item-head">
+              <div>
+                <div class="item-title">${escapeHtml(category.name)}</div>
+                <div class="meta">
+                  <span>${items.length} transactions</span>
+                  <span>Income: ${formatMoney(income)}</span>
+                  <span>Expense: ${formatMoney(expense)}</span>
+                </div>
+              </div>
+              <div class="pill-row"><span class="pill">${formatMoney(net)}</span></div>
+            </div>
+            <div class="row-actions">
+              <button class="btn" type="button" onclick="setView('categoryDetail', '${category.id}')">Open category</button>
+              <button class="btn danger" type="button" onclick="deleteCategory('${category.id}')">Delete</button>
+            </div>
+          </div>
+        `;
+      }).join("") : `<div class="empty">No custom categories yet.</div>`;
 
-      return (
-        '<div class="list">' +
-          '<div class="card">' +
-            '<div class="section-title">' +
-              '<div>' +
-                '<h3>Create Category</h3>' +
-                '<p>Build your own system. Wants, software, savings, business, anything.</p>' +
-              '</div>' +
-            '</div>' +
-            '<form class="form-grid" onsubmit="addCategory(event)">' +
-              '<div class="field"><label>Category Name</label><input id="newCategoryName" placeholder="Example: Wants" /></div>' +
-              '<div class="field"><label>&nbsp;</label><button class="btn primary" type="submit">Add category</button></div>' +
-            '</form>' +
-          '</div>' +
+      return `
+        <div class="list">
+          <div class="card glass">
+            <div class="section-title">
+              <div>
+                <h3>Create Category</h3>
+                <p>Build your own system. Wants, software, savings, business, anything.</p>
+              </div>
+            </div>
+            <form class="form-grid" onsubmit="addCategory(event)">
+              <div class="field"><label>Category Name</label><input id="newCategoryName" placeholder="Example: Wants" /></div>
+              <div class="field"><label>&nbsp;</label><button class="btn primary" type="submit">Add category</button></div>
+            </form>
+          </div>
 
-          '<div class="card">' +
-            '<div class="section-title">' +
-              '<div>' +
-                '<h3>Your Categories</h3>' +
-                '<p>Open one to see its own dashboard.</p>' +
-              '</div>' +
-            '</div>' +
-            '<div class="list">' + cardsHtml + '</div>' +
-          '</div>' +
-        '</div>'
-      );
+          <div class="card glass">
+            <div class="section-title">
+              <div>
+                <h3>Your Categories</h3>
+                <p>Open one to see its own dashboard.</p>
+              </div>
+            </div>
+            <div class="list">${cardsHtml}</div>
+          </div>
+        </div>
+      `;
     }
 
     function renderTransactionsView() {
-      const sorted = clone(state.transactions).sort(function (a, b) {
-        return new Date(b.createdAt) - new Date(a.createdAt);
-      });
+      const sorted = clone(state.transactions).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-      let listHtml = "";
-      if (sorted.length) {
-        sorted.forEach(function (txn) {
-          listHtml +=
-            '<div class="item">' +
-              '<div class="item-head">' +
-                '<div>' +
-                  '<div class="item-title">' + escapeHtml(txn.title) + '</div>' +
-                  '<div class="meta">' +
-                    '<span>Source: ' + escapeHtml(txn.sourceType) + '</span>' +
-                    '<span>Category: ' + escapeHtml(getCategoryName(txn.categoryId)) + '</span>' +
-                    '<span>' + formatDate(txn.createdAt) + '</span>' +
-                  '</div>' +
-                '</div>' +
-                '<div class="pill-row">' +
-                  '<span class="pill ' + (txn.type === "income" ? 'green' : 'red') + '">' +
-                    (txn.type === "income" ? '+' : '-') + ' ' + formatMoney(txn.amount) +
-                  '</span>' +
-                '</div>' +
-              '</div>' +
-              '<div class="row-actions">' +
-                (txn.sourceType === "manual"
-                  ? '<button class="btn danger" type="button" onclick="deleteTransaction(\'' + txn.id + '\')">Delete</button>'
-                  : '<button class="btn" type="button">Managed in ' + escapeHtml(txn.sourceType) + '</button>') +
-              '</div>' +
-            '</div>';
-        });
-      } else {
-        listHtml = '<div class="empty">No transactions yet.</div>';
-      }
+      const listHtml = sorted.length ? sorted.map(txn => `
+        <div class="item glass">
+          <div class="item-head">
+            <div>
+              <div class="item-title">${escapeHtml(txn.title)}</div>
+              <div class="meta">
+                <span>Source: ${escapeHtml(txn.sourceType)}</span>
+                <span>Category: ${escapeHtml(getCategoryName(txn.categoryId))}</span>
+                <span>${formatDate(txn.createdAt.slice(0, 10))}</span>
+              </div>
+            </div>
+            <div class="pill-row">
+              <span class="pill ${txn.type === "income" ? "green" : "red"}">
+                ${txn.type === "income" ? "+" : "-"} ${formatMoney(txn.amount)}
+              </span>
+            </div>
+          </div>
+          <div class="row-actions">
+            ${txn.sourceType === "manual"
+              ? `<button class="btn danger" type="button" onclick="deleteTransaction('${txn.id}')">Delete</button>`
+              : `<button class="btn" type="button">Managed in ${escapeHtml(txn.sourceType)}</button>`}
+          </div>
+        </div>
+      `).join("") : `<div class="empty">No transactions yet.</div>`;
 
-      return (
-        '<div class="list">' +
-          '<div class="card">' +
-            '<div class="section-title">' +
-              '<div>' +
-                '<h3>Add Manual Transaction</h3>' +
-                '<p>Use this for anything outside clients, bills, and subscriptions.</p>' +
-              '</div>' +
-            '</div>' +
-            '<form class="form-grid" onsubmit="addManualTransaction(event)">' +
-              '<div class="field"><label>Title</label><input id="manualTitle" placeholder="Groceries run" /></div>' +
-              '<div class="field"><label>Amount</label><input id="manualAmount" type="number" min="0" step="0.01" placeholder="500" /></div>' +
-              '<div class="field"><label>Type</label><select id="manualType"><option value="expense">Expense</option><option value="income">Income</option></select></div>' +
-              '<div class="field"><label>Category</label><select id="manualCategory">' + categoryOptionsHtml() + '</select></div>' +
-              '<div class="field" style="grid-column:1/-1;"><button class="btn primary" type="submit">Add transaction</button></div>' +
-            '</form>' +
-          '</div>' +
+      return `
+        <div class="list">
+          <div class="card glass">
+            <div class="section-title">
+              <div>
+                <h3>Add Manual Transaction</h3>
+                <p>Use this for anything outside clients, bills, subscriptions, and scheduled client payments.</p>
+              </div>
+            </div>
+            <form class="form-grid" onsubmit="addManualTransaction(event)">
+              <div class="field"><label>Title</label><input id="manualTitle" placeholder="Groceries run" /></div>
+              <div class="field"><label>Amount</label><input id="manualAmount" type="number" min="0" step="0.01" placeholder="500" /></div>
+              <div class="field"><label>Type</label><select id="manualType"><option value="expense">Expense</option><option value="income">Income</option></select></div>
+              <div class="field"><label>Category</label><select id="manualCategory">${categoryOptionsHtml()}</select></div>
+              <div class="field" style="grid-column:1/-1;"><button class="btn primary" type="submit">Add transaction</button></div>
+            </form>
+          </div>
 
-          '<div class="card">' +
-            '<div class="section-title">' +
-              '<div>' +
-                '<h3>Full Transaction History</h3>' +
-                '<p>Only manual entries can be deleted here.</p>' +
-              '</div>' +
-            '</div>' +
-            '<div class="list">' + listHtml + '</div>' +
-          '</div>' +
-        '</div>'
-      );
+          <div class="card glass">
+            <div class="section-title">
+              <div>
+                <h3>Full Transaction History</h3>
+                <p>Only manual entries can be deleted here.</p>
+              </div>
+            </div>
+            <div class="list">${listHtml}</div>
+          </div>
+        </div>
+      `;
     }
 
     function renderBalanceDetailView() {
       const summary = getSummary();
-      const incomeCount = state.transactions.filter(function (t) { return t.type === "income"; }).length;
-      const expenseCount = state.transactions.filter(function (t) { return t.type === "expense"; }).length;
+      const incomeCount = state.transactions.filter(t => t.type === "income").length;
+      const expenseCount = state.transactions.filter(t => t.type === "expense").length;
 
-      return (
-        '<div class="list">' +
-          '<div class="stats">' +
-            '<div class="card"><div class="stat-label">Main Balance</div><div class="stat-value">' + formatMoney(summary.balance) + '</div><div class="stat-sub">Current posted total</div></div>' +
-            '<div class="card"><div class="stat-label">Income</div><div class="stat-value">' + formatMoney(summary.income) + '</div><div class="stat-sub">' + incomeCount + ' income entries</div></div>' +
-            '<div class="card"><div class="stat-label">Expenses</div><div class="stat-value">' + formatMoney(summary.expenses) + '</div><div class="stat-sub">' + expenseCount + ' expense entries</div></div>' +
-            '<div class="card"><div class="stat-label">Net Posted</div><div class="stat-value">' + formatMoney(summary.balance) + '</div><div class="stat-sub">Income minus expenses</div></div>' +
-          '</div>' +
+      return `
+        <div class="list">
+          <div class="stats">
+            <div class="card glass"><div class="stat-label">Main Balance</div><div class="stat-value">${formatMoney(summary.balance)}</div><div class="stat-sub">Bank total plus posted transaction balance</div></div>
+            <div class="card glass"><div class="stat-label">Bank Total</div><div class="stat-value">${formatMoney(summary.bankTotal)}</div><div class="stat-sub">${state.bankAccounts.length} bank account(s)</div></div>
+            <div class="card glass"><div class="stat-label">Savings Total</div><div class="stat-value">${formatMoney(summary.savingsTotal)}</div><div class="stat-sub">Allocated savings inside your total money</div></div>
+            <div class="card glass"><div class="stat-label">Posted Income</div><div class="stat-value">${formatMoney(summary.transactionIncome)}</div><div class="stat-sub">${incomeCount} income entries</div></div>
+            <div class="card glass"><div class="stat-label">Posted Expenses</div><div class="stat-value">${formatMoney(summary.transactionExpenses)}</div><div class="stat-sub">${expenseCount} expense entries</div></div>
+          </div>
 
-          '<div class="card">' +
-            '<div class="section-title"><div><h3>What affects your balance</h3><p>Only posted items count here.</p></div></div>' +
-            '<div class="list">' +
-              '<div class="item"><div class="item-title">Client payments marked paid</div><div class="meta">These are added to balance.</div></div>' +
-              '<div class="item"><div class="item-title">Bills marked paid</div><div class="meta">These subtract from balance.</div></div>' +
-              '<div class="item"><div class="item-title">Subscriptions marked paid</div><div class="meta">These subtract from balance.</div></div>' +
-              '<div class="item"><div class="item-title">Manual transactions</div><div class="meta">Use these for any custom money movement.</div></div>' +
-            '</div>' +
-          '</div>' +
-        '</div>'
-      );
+          <div class="card glass">
+            <div class="section-title"><div><h3>How main balance works</h3><p>This is now your source view.</p></div></div>
+            <div class="list">
+              <div class="item glass-soft"><div class="item-title">Bank balances</div><div class="meta">Every bank amount you enter adds directly to your main balance.</div></div>
+              <div class="item glass-soft"><div class="item-title">Savings</div><div class="meta">Savings is tracking allocated money already inside your balance, so it is shown separately and not added again.</div></div>
+              <div class="item glass-soft"><div class="item-title">Posted transaction balance</div><div class="meta">Client payments marked paid add to it. Bills and subscriptions marked paid subtract from it.</div></div>
+              <div class="item glass-soft"><div class="item-title">Formula</div><div class="meta">Main Balance = Bank Total + Posted Transaction Balance</div></div>
+            </div>
+          </div>
+        </div>
+      `;
     }
 
     function renderDebtDetailView() {
-      const unpaidBills = state.bills.filter(function (b) { return !b.paid; });
-      const unpaidSubs = state.subscriptions.filter(function (s) { return !s.paid; });
+      const unpaidBills = state.bills.filter(b => !b.paid);
+      const unpaidSubs = state.subscriptions.filter(s => !s.paid);
 
       let itemsHtml = "";
-      unpaidBills.forEach(function (bill) {
-        itemsHtml +=
-          '<div class="item">' +
-            '<div class="item-head">' +
-              '<div>' +
-                '<div class="item-title">' + escapeHtml(bill.name) + '</div>' +
-                '<div class="meta"><span>Bill</span><span>Due: ' + formatDate(bill.dueDate) + '</span><span>' + escapeHtml(getCategoryName(bill.categoryId)) + '</span></div>' +
-              '</div>' +
-              '<div class="pill-row"><span class="pill red">' + formatMoney(bill.amount) + '</span></div>' +
-            '</div>' +
-          '</div>';
+
+      unpaidBills.forEach(bill => {
+        itemsHtml += `
+          <div class="item glass">
+            <div class="item-head">
+              <div>
+                <div class="item-title">${escapeHtml(bill.name)}</div>
+                <div class="meta"><span>Bill</span><span>Due: ${formatDate(bill.dueDate)}</span><span>${escapeHtml(getCategoryName(bill.categoryId))}</span></div>
+              </div>
+              <div class="pill-row"><span class="pill red">${formatMoney(bill.amount)}</span></div>
+            </div>
+          </div>
+        `;
       });
 
-      unpaidSubs.forEach(function (sub) {
-        itemsHtml +=
-          '<div class="item">' +
-            '<div class="item-head">' +
-              '<div>' +
-                '<div class="item-title">' + escapeHtml(sub.name) + '</div>' +
-                '<div class="meta"><span>Subscription</span><span>Renewal: ' + escapeHtml(sub.renewal || "Not set") + '</span><span>' + escapeHtml(getCategoryName(sub.categoryId)) + '</span></div>' +
-              '</div>' +
-              '<div class="pill-row"><span class="pill red">' + formatMoney(sub.amount) + '</span></div>' +
-            '</div>' +
-          '</div>';
+      unpaidSubs.forEach(sub => {
+        itemsHtml += `
+          <div class="item glass">
+            <div class="item-head">
+              <div>
+                <div class="item-title">${escapeHtml(sub.name)}</div>
+                <div class="meta"><span>Subscription</span><span>Renewal: ${escapeHtml(sub.renewal || "Not set")}</span><span>${escapeHtml(getCategoryName(sub.categoryId))}</span></div>
+              </div>
+              <div class="pill-row"><span class="pill red">${formatMoney(sub.amount)}</span></div>
+            </div>
+          </div>
+        `;
       });
 
-      if (!itemsHtml) {
-        itemsHtml = '<div class="empty">No unpaid bills or subscriptions.</div>';
-      }
+      if (!itemsHtml) itemsHtml = `<div class="empty">No unpaid bills or subscriptions.</div>`;
 
-      return (
-        '<div class="list">' +
-          '<div class="card">' +
-            '<div class="section-title"><div><h3>Debt Dashboard</h3><p>Debt here means unpaid bills and subscriptions.</p></div></div>' +
-            '<div class="mini-grid">' +
-              '<div class="mini-card"><div class="label">Unpaid Bills</div><div class="value">' + formatMoney(unpaidBills.reduce(function (sum, item) { return sum + Number(item.amount); }, 0)) + '</div></div>' +
-              '<div class="mini-card"><div class="label">Unpaid Subscriptions</div><div class="value">' + formatMoney(unpaidSubs.reduce(function (sum, item) { return sum + Number(item.amount); }, 0)) + '</div></div>' +
-            '</div>' +
-          '</div>' +
+      return `
+        <div class="list">
+          <div class="card glass">
+            <div class="section-title"><div><h3>Debt Dashboard</h3><p>Debt here means unpaid bills and subscriptions.</p></div></div>
+            <div class="mini-grid">
+              <div class="mini-card glass-soft"><div class="label">Unpaid Bills</div><div class="value">${formatMoney(unpaidBills.reduce((sum, item) => sum + Number(item.amount), 0))}</div></div>
+              <div class="mini-card glass-soft"><div class="label">Unpaid Subscriptions</div><div class="value">${formatMoney(unpaidSubs.reduce((sum, item) => sum + Number(item.amount), 0))}</div></div>
+            </div>
+          </div>
 
-          '<div class="card">' +
-            '<div class="section-title"><div><h3>Open Debt Items</h3><p>Mark them paid in their own section to reduce debt.</p></div></div>' +
-            '<div class="list">' + itemsHtml + '</div>' +
-          '</div>' +
-        '</div>'
-      );
+          <div class="card glass">
+            <div class="section-title"><div><h3>Open Debt Items</h3><p>Mark them paid in their own section to reduce debt.</p></div></div>
+            <div class="list">${itemsHtml}</div>
+          </div>
+        </div>
+      `;
     }
 
     function renderExtraDetailView() {
       const summary = getSummary();
-      return (
-        '<div class="list">' +
-          '<div class="stats">' +
-            '<div class="card"><div class="stat-label">Balance</div><div class="stat-value">' + formatMoney(summary.balance) + '</div><div class="stat-sub">Posted money</div></div>' +
-            '<div class="card"><div class="stat-label">Debt</div><div class="stat-value">' + formatMoney(summary.debt) + '</div><div class="stat-sub">Still unpaid</div></div>' +
-            '<div class="card"><div class="stat-label">Extra Money</div><div class="stat-value">' + formatMoney(summary.extraMoney) + '</div><div class="stat-sub">Free amount after debt</div></div>' +
-            '<div class="card"><div class="stat-label">Status</div><div class="stat-value">' + (summary.extraMoney >= 0 ? 'Healthy' : 'Tight') + '</div><div class="stat-sub">Based on current numbers</div></div>' +
-          '</div>' +
+      return `
+        <div class="list">
+          <div class="stats">
+            <div class="card glass"><div class="stat-label">Main Balance</div><div class="stat-value">${formatMoney(summary.balance)}</div><div class="stat-sub">Bank total plus posted transaction balance</div></div>
+            <div class="card glass"><div class="stat-label">Debt</div><div class="stat-value">${formatMoney(summary.debt)}</div><div class="stat-sub">Still unpaid</div></div>
+            <div class="card glass"><div class="stat-label">Savings Total</div><div class="stat-value">${formatMoney(summary.savingsTotal)}</div><div class="stat-sub">Protected allocation</div></div>
+            <div class="card glass"><div class="stat-label">Extra Money</div><div class="stat-value">${formatMoney(summary.extraMoney)}</div><div class="stat-sub">Balance minus unpaid debt</div></div>
+          </div>
 
-          '<div class="card">' +
-            '<div class="section-title"><div><h3>How extra money works</h3><p>This is automatic.</p></div></div>' +
-            '<div class="list">' +
-              '<div class="item"><div class="item-title">Formula</div><div class="meta">Extra Money = Balance - Debt</div></div>' +
-              '<div class="item"><div class="item-title">Why this matters</div><div class="meta">It shows a more honest free amount than raw balance alone.</div></div>' +
-            '</div>' +
-          '</div>' +
-        '</div>'
-      );
+          <div class="card glass">
+            <div class="section-title"><div><h3>How extra money works</h3><p>This is automatic.</p></div></div>
+            <div class="list">
+              <div class="item glass-soft"><div class="item-title">Formula</div><div class="meta">Extra Money = Main Balance - Debt</div></div>
+              <div class="item glass-soft"><div class="item-title">Savings note</div><div class="meta">Savings is shown separately so you can still see your allocated money clearly without double counting your total funds.</div></div>
+            </div>
+          </div>
+        </div>
+      `;
     }
 
     function renderCategoryDetailView() {
-      const category = state.categories.find(function (cat) {
-        return cat.id === state.selectedCategoryId;
-      });
+      const category = state.categories.find(cat => cat.id === state.selectedCategoryId);
+      if (!category) return `<div class="card glass"><div class="empty">Category not found.</div></div>`;
 
-      if (!category) {
-        return '<div class="card"><div class="empty">Category not found.</div></div>';
-      }
+      const txns = state.transactions
+        .filter(t => t.categoryId === category.id)
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-      const txns = state.transactions.filter(function (t) {
-        return t.categoryId === category.id;
-      }).sort(function (a, b) {
-        return new Date(b.createdAt) - new Date(a.createdAt);
-      });
-
-      const income = txns.filter(function (t) { return t.type === "income"; }).reduce(function (sum, t) { return sum + Number(t.amount); }, 0);
-      const expense = txns.filter(function (t) { return t.type === "expense"; }).reduce(function (sum, t) { return sum + Number(t.amount); }, 0);
+      const income = txns.filter(t => t.type === "income").reduce((sum, t) => sum + Number(t.amount), 0);
+      const expense = txns.filter(t => t.type === "expense").reduce((sum, t) => sum + Number(t.amount), 0);
       const net = income - expense;
 
-      let listHtml = "";
-      if (txns.length) {
-        txns.forEach(function (txn) {
-          listHtml +=
-            '<div class="item">' +
-              '<div class="item-head">' +
-                '<div>' +
-                  '<div class="item-title">' + escapeHtml(txn.title) + '</div>' +
-                  '<div class="meta"><span>' + escapeHtml(txn.sourceType) + '</span><span>' + formatDate(txn.createdAt) + '</span></div>' +
-                '</div>' +
-                '<div class="pill-row"><span class="pill ' + (txn.type === "income" ? 'green' : 'red') + '">' + (txn.type === "income" ? '+' : '-') + ' ' + formatMoney(txn.amount) + '</span></div>' +
-              '</div>' +
-            '</div>';
-        });
-      } else {
-        listHtml = '<div class="empty">No transactions yet in this category.</div>';
-      }
+      const listHtml = txns.length ? txns.map(txn => `
+        <div class="item glass">
+          <div class="item-head">
+            <div>
+              <div class="item-title">${escapeHtml(txn.title)}</div>
+              <div class="meta"><span>${escapeHtml(txn.sourceType)}</span><span>${formatDate(txn.createdAt.slice(0, 10))}</span></div>
+            </div>
+            <div class="pill-row"><span class="pill ${txn.type === "income" ? "green" : "red"}">${txn.type === "income" ? "+" : "-"} ${formatMoney(txn.amount)}</span></div>
+          </div>
+        </div>
+      `).join("") : `<div class="empty">No transactions yet in this category.</div>`;
 
-      return (
-        '<div class="list">' +
-          '<div class="stats">' +
-            '<div class="card"><div class="stat-label">Category</div><div class="stat-value">' + escapeHtml(category.name) + '</div><div class="stat-sub">Custom dashboard</div></div>' +
-            '<div class="card"><div class="stat-label">Income</div><div class="stat-value">' + formatMoney(income) + '</div><div class="stat-sub">Income inside this category</div></div>' +
-            '<div class="card"><div class="stat-label">Expense</div><div class="stat-value">' + formatMoney(expense) + '</div><div class="stat-sub">Expense inside this category</div></div>' +
-            '<div class="card"><div class="stat-label">Net</div><div class="stat-value">' + formatMoney(net) + '</div><div class="stat-sub">' + txns.length + ' transactions</div></div>' +
-          '</div>' +
+      return `
+        <div class="list">
+          <div class="stats">
+            <div class="card glass"><div class="stat-label">Category</div><div class="stat-value">${escapeHtml(category.name)}</div><div class="stat-sub">Custom dashboard</div></div>
+            <div class="card glass"><div class="stat-label">Income</div><div class="stat-value">${formatMoney(income)}</div><div class="stat-sub">Income inside this category</div></div>
+            <div class="card glass"><div class="stat-label">Expense</div><div class="stat-value">${formatMoney(expense)}</div><div class="stat-sub">Expense inside this category</div></div>
+            <div class="card glass"><div class="stat-label">Net</div><div class="stat-value">${formatMoney(net)}</div><div class="stat-sub">${txns.length} transactions</div></div>
+          </div>
 
-          '<div class="card">' +
-            '<div class="section-title"><div><h3>' + escapeHtml(category.name) + ' Transactions</h3><p>This dashboard only shows this category.</p></div></div>' +
-            '<div class="list">' + listHtml + '</div>' +
-          '</div>' +
-        '</div>'
-      );
+          <div class="card glass">
+            <div class="section-title"><div><h3>${escapeHtml(category.name)} Transactions</h3><p>This dashboard only shows this category.</p></div></div>
+            <div class="list">${listHtml}</div>
+          </div>
+        </div>
+      `;
     }
 
     function renderView() {
-      if (state.currentView === "clients") return renderClientsView();
-      if (state.currentView === "applications") return renderApplicationsView();
-      if (state.currentView === "bills") return renderBillsView();
-      if (state.currentView === "subscriptions") return renderSubscriptionsView();
-      if (state.currentView === "categories") return renderCategoriesView();
-      if (state.currentView === "transactions") return renderTransactionsView();
-      if (state.currentView === "balanceDetail") return renderBalanceDetailView();
-      if (state.currentView === "debtDetail") return renderDebtDetailView();
-      if (state.currentView === "extraDetail") return renderExtraDetailView();
-      if (state.currentView === "categoryDetail") return renderCategoryDetailView();
-      return renderDashboardView();
+      switch (state.currentView) {
+        case "bankBalances": return renderBankBalancesView();
+        case "savings": return renderSavingsView();
+        case "clients": return renderClientsView();
+        case "applications": return renderApplicationsView();
+        case "bills": return renderBillsView();
+        case "subscriptions": return renderSubscriptionsView();
+        case "categories": return renderCategoriesView();
+        case "transactions": return renderTransactionsView();
+        case "balanceDetail": return renderBalanceDetailView();
+        case "debtDetail": return renderDebtDetailView();
+        case "extraDetail": return renderExtraDetailView();
+        case "categoryDetail": return renderCategoryDetailView();
+        default: return renderDashboardView();
+      }
     }
 
     function renderApp() {
@@ -2068,28 +3057,49 @@
       document.getElementById("pageSubtitle").textContent = meta.subtitle;
 
       const backBtn = document.getElementById("backBtn");
-      if (meta.back) {
-        backBtn.classList.remove("hidden");
-      } else {
-        backBtn.classList.add("hidden");
-      }
+      if (meta.back) backBtn.classList.remove("hidden");
+      else backBtn.classList.add("hidden");
 
       document.getElementById("appView").innerHTML = renderView();
 
-      if (state.currentView === "applications") {
-        handleApplicationStatusSelectChange();
-      }
+      if (state.currentView === "applications") handleApplicationStatusSelectChange();
+      if (state.currentView === "clients") handleClientRateTypeChange();
     }
 
     document.getElementById("themeSwitchSide").addEventListener("click", toggleTheme);
     document.getElementById("themeSwitchTop").addEventListener("click", toggleTheme);
     document.getElementById("themeSwitchMobile").addEventListener("click", toggleTheme);
-
     document.getElementById("backBtn").addEventListener("click", goHome);
     document.getElementById("resetBtn").addEventListener("click", resetAllData);
     document.getElementById("resetBtnMobile").addEventListener("click", resetAllData);
-
     document.getElementById("hamburgerBtn").addEventListener("click", openMobileMenu);
+
+    window.setView = setView;
+    window.closeMobileMenu = closeMobileMenu;
+    window.saveBankAmount = saveBankAmount;
+    window.deleteBankAccount = deleteBankAccount;
+    window.addSavings = addSavings;
+    window.saveSavings = saveSavings;
+    window.deleteSavings = deleteSavings;
+    window.handleClientRateTypeChange = handleClientRateTypeChange;
+    window.setClientScheduleStatus = setClientScheduleStatus;
+    window.deleteClient = deleteClient;
+    window.handleApplicationStatusSelectChange = handleApplicationStatusSelectChange;
+    window.saveApplicationStatus = saveApplicationStatus;
+    window.deleteApplication = deleteApplication;
+    window.toggleBillPaid = toggleBillPaid;
+    window.deleteBill = deleteBill;
+    window.toggleSubscriptionPaid = toggleSubscriptionPaid;
+    window.deleteSubscription = deleteSubscription;
+    window.deleteCategory = deleteCategory;
+    window.deleteTransaction = deleteTransaction;
+    window.addBankAccount = addBankAccount;
+    window.addClient = addClient;
+    window.addApplication = addApplication;
+    window.addBill = addBill;
+    window.addSubscription = addSubscription;
+    window.addCategory = addCategory;
+    window.addManualTransaction = addManualTransaction;
 
     renderApp();
   </script>
