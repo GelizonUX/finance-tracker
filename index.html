@@ -12,7 +12,6 @@
       --text: #f8fbff;
       --muted: #a2b1cb;
       --glass: rgba(255, 255, 255, 0.08);
-      --glass-strong: rgba(255, 255, 255, 0.12);
       --glass-soft: rgba(255, 255, 255, 0.05);
       --border: rgba(255, 255, 255, 0.16);
       --border-soft: rgba(255, 255, 255, 0.10);
@@ -42,7 +41,6 @@
       --text: #0b1328;
       --muted: #61708c;
       --glass: rgba(255, 255, 255, 0.55);
-      --glass-strong: rgba(255, 255, 255, 0.72);
       --glass-soft: rgba(255, 255, 255, 0.40);
       --border: rgba(255, 255, 255, 0.72);
       --border-soft: rgba(30, 41, 59, 0.08);
@@ -94,7 +92,9 @@
       z-index: 0;
     }
 
-    button, input, select, textarea { font: inherit; }
+    button, input, select, textarea {
+      font: inherit;
+    }
 
     .glass {
       background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
@@ -250,6 +250,7 @@
 
     .main {
       padding: 26px;
+      min-width: 0;
     }
 
     .topbar {
@@ -269,12 +270,21 @@
       min-width: 0;
     }
 
+    .topbar-text {
+      min-width: 0;
+    }
+
+    .mobile-top-controls {
+      display: none;
+    }
+
     .topbar h2 {
       margin: 0;
       font-size: 36px;
       line-height: 1;
       font-weight: 850;
       letter-spacing: -0.03em;
+      word-break: break-word;
     }
 
     .topbar p {
@@ -283,6 +293,7 @@
       font-size: 15px;
       line-height: 1.6;
       max-width: 840px;
+      word-break: break-word;
     }
 
     .quick-actions {
@@ -391,6 +402,7 @@
       cursor: pointer;
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
+      flex-shrink: 0;
     }
 
     .theme-switch::after {
@@ -482,6 +494,7 @@
       font-size: 24px;
       font-weight: 850;
       letter-spacing: -0.02em;
+      word-break: break-word;
     }
 
     .section-title p {
@@ -489,6 +502,7 @@
       color: var(--muted);
       font-size: 14px;
       line-height: 1.6;
+      word-break: break-word;
     }
 
     .list {
@@ -517,6 +531,7 @@
       font-size: 18px;
       font-weight: 850;
       letter-spacing: -0.02em;
+      word-break: break-word;
     }
 
     .meta {
@@ -529,6 +544,7 @@
       gap: 10px;
       margin-top: 8px;
       line-height: 1.55;
+      word-break: break-word;
     }
 
     .row-actions {
@@ -616,6 +632,7 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
+      min-width: 0;
     }
 
     .field label {
@@ -630,6 +647,8 @@
     select,
     textarea {
       width: 100%;
+      min-width: 0;
+      max-width: 100%;
       min-height: 58px;
       padding: 15px 16px;
       border-radius: 22px;
@@ -641,6 +660,14 @@
       backdrop-filter: blur(16px) saturate(160%);
       -webkit-backdrop-filter: blur(16px) saturate(160%);
       transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    input[type="date"],
+    input[type="month"] {
+      padding-right: 14px;
+      overflow: hidden;
     }
 
     textarea {
@@ -749,6 +776,7 @@
       align-items: center;
       justify-content: center;
       padding: 0;
+      flex-shrink: 0;
     }
 
     .hamburger-lines {
@@ -805,6 +833,7 @@
       height: 44px;
       border-radius: 16px;
       padding: 0;
+      flex-shrink: 0;
     }
 
     .mobile-open .mobile-overlay {
@@ -903,6 +932,7 @@
       color: var(--green);
       box-shadow: 0 0 24px rgba(41,211,145,0.08);
       white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .bank-subline {
@@ -910,6 +940,7 @@
       font-size: 13px;
       margin-top: 6px;
       line-height: 1.55;
+      word-break: break-word;
     }
 
     .bank-actions {
@@ -949,11 +980,13 @@
       background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
       border: 1px solid rgba(255,255,255,0.10);
       box-shadow: var(--shadow-md);
+      min-width: 0;
     }
 
     .schedule-title {
       font-weight: 800;
       font-size: 15px;
+      word-break: break-word;
     }
 
     .schedule-sub {
@@ -961,12 +994,14 @@
       color: var(--muted);
       font-size: 12px;
       line-height: 1.5;
+      word-break: break-word;
     }
 
     .schedule-amount {
       font-size: 18px;
       font-weight: 850;
       text-align: left;
+      word-break: break-word;
     }
 
     .schedule-actions {
@@ -998,16 +1033,8 @@
       box-shadow: 0 0 20px rgba(127,99,255,0.25);
     }
 
-    .two-col {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 12px;
-      align-items: start;
-    }
-
     @media (max-width: 1100px) {
-      .content-grid,
-      .two-col {
+      .content-grid {
         grid-template-columns: 1fr;
       }
 
@@ -1029,8 +1056,30 @@
         padding: 18px;
       }
 
+      .topbar {
+        display: block;
+      }
+
+      .topbar-left {
+        display: block;
+        width: 100%;
+      }
+
+      .mobile-top-controls {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        width: 100%;
+        margin-bottom: 16px;
+      }
+
       .hamburger-btn {
         display: inline-flex;
+      }
+
+      .quick-actions {
+        display: none;
       }
 
       #backBtn {
@@ -1039,6 +1088,13 @@
 
       .topbar h2 {
         font-size: 30px;
+        line-height: 1.05;
+        margin-top: 0;
+      }
+
+      .topbar p {
+        margin-top: 10px;
+        max-width: 100%;
       }
     }
 
@@ -1047,8 +1103,11 @@
       .mini-grid,
       .categories-grid,
       .bank-actions,
-      .schedule-row,
-      .two-col {
+      .schedule-row {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
         grid-template-columns: 1fr;
       }
 
@@ -1091,6 +1150,37 @@
 
       .client-header-grid {
         grid-template-columns: 1fr;
+      }
+
+      input[type="date"],
+      input[type="month"] {
+        width: 100%;
+        min-width: 0;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .main {
+        padding: 14px;
+      }
+
+      .card,
+      .item {
+        padding: 16px;
+      }
+
+      .topbar h2 {
+        font-size: 27px;
+      }
+
+      .section-title h3 {
+        font-size: 22px;
+      }
+
+      input,
+      select,
+      textarea {
+        font-size: 16px;
       }
     }
   </style>
@@ -1141,15 +1231,22 @@
     <main class="main">
       <div class="topbar">
         <div class="topbar-left">
-          <button class="hamburger-btn glass-soft" id="hamburgerBtn" type="button" aria-label="Open menu">
-            <span class="hamburger-lines">
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
-          </button>
+          <div class="mobile-top-controls">
+            <button class="hamburger-btn glass-soft" id="hamburgerBtn" type="button" aria-label="Open menu">
+              <span class="hamburger-lines">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+            </button>
 
-          <div>
+            <div class="switch-wrap">
+              <span class="switch-label">Theme</span>
+              <button class="theme-switch" id="themeSwitchTop" type="button" aria-label="Toggle theme"></button>
+            </div>
+          </div>
+
+          <div class="topbar-text">
             <h2 id="pageTitle">Dashboard</h2>
             <p id="pageSubtitle">Your complete money overview.</p>
           </div>
@@ -1159,7 +1256,7 @@
           <button class="btn hidden" id="backBtn" type="button">Back to home</button>
           <div class="switch-wrap">
             <span class="switch-label">Theme</span>
-            <button class="theme-switch" id="themeSwitchTop" type="button" aria-label="Toggle theme"></button>
+            <button class="theme-switch" id="themeSwitchDesktopTop" type="button" aria-label="Toggle theme"></button>
           </div>
         </div>
       </div>
@@ -1171,7 +1268,7 @@
   <div class="toast" id="toast"></div>
 
   <script>
-    const STORAGE_KEY = "financeTrackerStableV9";
+    const STORAGE_KEY = "financeTrackerStableV11";
 
     function makeId() {
       return Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
@@ -3068,6 +3165,7 @@
 
     document.getElementById("themeSwitchSide").addEventListener("click", toggleTheme);
     document.getElementById("themeSwitchTop").addEventListener("click", toggleTheme);
+    document.getElementById("themeSwitchDesktopTop").addEventListener("click", toggleTheme);
     document.getElementById("themeSwitchMobile").addEventListener("click", toggleTheme);
     document.getElementById("backBtn").addEventListener("click", goHome);
     document.getElementById("resetBtn").addEventListener("click", resetAllData);
