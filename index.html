@@ -20,7 +20,6 @@
       --accent-3: #ff5fd2;
       --green: #29d391;
       --red: #ff6b86;
-      --red-dark: #7f1d1d;
       --yellow: #ffbd59;
       --blue: #74b7ff;
       --shadow-xl: 0 30px 80px rgba(0, 0, 0, 0.35);
@@ -49,7 +48,6 @@
       --accent-3: #ff58bd;
       --green: #19a765;
       --red: #dc365f;
-      --red-dark: #7f1d1d;
       --yellow: #bd6a00;
       --blue: #2563eb;
       --shadow-xl: 0 24px 60px rgba(25, 40, 90, 0.14);
@@ -151,7 +149,7 @@
 
     .brand {
       overflow: hidden;
-      border-radius: 34px;
+      border-radius: 30px;
       padding: 22px;
       margin-bottom: 20px;
     }
@@ -197,7 +195,8 @@
     .toggle-btn,
     .hamburger-btn,
     .mobile-close,
-    .schedule-btn {
+    .schedule-btn,
+    .icon-btn {
       transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
     }
 
@@ -205,8 +204,8 @@
       position: relative;
       overflow: hidden;
       border: 1px solid transparent;
-      border-radius: 20px;
-      padding: 15px 16px;
+      border-radius: 18px;
+      padding: 14px 16px;
       background: transparent;
       color: var(--text);
       text-align: left;
@@ -249,7 +248,7 @@
     }
 
     .main {
-      padding: 26px;
+      padding: 24px;
       min-width: 0;
     }
 
@@ -259,7 +258,7 @@
       align-items: flex-start;
       gap: 18px;
       flex-wrap: wrap;
-      margin-bottom: 22px;
+      margin-bottom: 16px;
     }
 
     .topbar-left {
@@ -280,7 +279,7 @@
 
     .topbar h2 {
       margin: 0;
-      font-size: 36px;
+      font-size: 34px;
       line-height: 1;
       font-weight: 850;
       letter-spacing: -0.03em;
@@ -291,7 +290,7 @@
       margin: 10px 0 0;
       color: var(--muted);
       font-size: 15px;
-      line-height: 1.6;
+      line-height: 1.55;
       max-width: 840px;
       word-break: break-word;
     }
@@ -307,11 +306,12 @@
     .toggle-btn,
     .hamburger-btn,
     .mobile-close,
-    .schedule-btn {
+    .schedule-btn,
+    .icon-btn {
       border: 1px solid var(--border);
       background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
       color: var(--text);
-      border-radius: 20px;
+      border-radius: 18px;
       box-shadow: var(--shadow-md);
       cursor: pointer;
       backdrop-filter: blur(18px) saturate(160%);
@@ -319,7 +319,7 @@
     }
 
     .btn {
-      padding: 13px 16px;
+      padding: 11px 14px;
       font-weight: 700;
     }
 
@@ -329,7 +329,6 @@
         radial-gradient(circle at top left, rgba(255,255,255,0.22), transparent 30%),
         linear-gradient(135deg, rgba(114,230,255,0.88), rgba(127,99,255,0.88) 56%, rgba(255,95,210,0.82));
       color: white;
-      box-shadow: 0 18px 40px rgba(114,230,255,0.20), 0 12px 28px rgba(127,99,255,0.20);
     }
 
     .btn.danger {
@@ -339,14 +338,14 @@
     }
 
     body.light .btn.danger {
-      color: var(--red-dark);
+      color: #7f1d1d;
     }
 
     .schedule-btn {
-      padding: 10px 12px;
+      padding: 9px 11px;
       font-weight: 800;
-      border-radius: 16px;
-      font-size: 13px;
+      border-radius: 14px;
+      font-size: 12px;
     }
 
     .schedule-btn.paid {
@@ -367,13 +366,39 @@
       background: linear-gradient(180deg, rgba(116,183,255,0.14), rgba(116,183,255,0.08));
     }
 
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .icon-btn.edit {
+      color: var(--blue);
+    }
+
+    .icon-btn.save {
+      color: var(--green);
+    }
+
+    .icon-btn.delete {
+      color: var(--red);
+    }
+
     .btn:hover,
     .toggle-btn:hover,
     .hamburger-btn:hover,
     .mobile-close:hover,
     .card.clickable:hover,
     .category-card:hover,
-    .schedule-btn:hover {
+    .schedule-btn:hover,
+    .icon-btn:hover {
       transform: translateY(-2px);
     }
 
@@ -425,14 +450,14 @@
     .stats {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 16px;
-      margin-bottom: 18px;
+      gap: 12px;
+      margin-bottom: 12px;
     }
 
     .card {
       overflow: hidden;
-      border-radius: 32px;
-      padding: 22px;
+      border-radius: 24px;
+      padding: 18px;
     }
 
     .card.clickable {
@@ -443,77 +468,77 @@
       position: relative;
       z-index: 2;
       color: var(--muted);
-      font-size: 12px;
+      font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
       font-weight: 800;
     }
 
     .stat-value {
       position: relative;
       z-index: 2;
-      font-size: 30px;
+      font-size: 26px;
       line-height: 1;
       font-weight: 850;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .stat-sub {
       position: relative;
       z-index: 2;
       color: var(--muted);
-      font-size: 13px;
-      line-height: 1.5;
+      font-size: 12px;
+      line-height: 1.45;
     }
 
     .content-grid {
       display: grid;
-      grid-template-columns: 1.22fr 0.78fr;
-      gap: 16px;
+      grid-template-columns: 1.18fr 0.82fr;
+      gap: 12px;
     }
 
     .stack {
       display: grid;
-      gap: 16px;
+      gap: 12px;
     }
 
     .section-title {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      gap: 12px;
+      gap: 10px;
       flex-wrap: wrap;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
       position: relative;
       z-index: 2;
     }
 
     .section-title h3 {
       margin: 0;
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 850;
       letter-spacing: -0.02em;
       word-break: break-word;
     }
 
     .section-title p {
-      margin: 8px 0 0;
+      margin: 6px 0 0;
       color: var(--muted);
-      font-size: 14px;
-      line-height: 1.6;
+      font-size: 13px;
+      line-height: 1.5;
       word-break: break-word;
     }
 
     .list {
       display: grid;
-      gap: 12px;
+      gap: 10px;
     }
 
     .item {
       overflow: hidden;
-      border-radius: 26px;
-      padding: 18px;
+      border-radius: 20px;
+      padding: 14px;
     }
 
     .item-head {
@@ -521,14 +546,14 @@
       z-index: 2;
       display: flex;
       justify-content: space-between;
-      gap: 12px;
+      gap: 10px;
       flex-wrap: wrap;
       align-items: flex-start;
     }
 
     .item-title {
       margin: 0;
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 850;
       letter-spacing: -0.02em;
       word-break: break-word;
@@ -538,12 +563,12 @@
       position: relative;
       z-index: 2;
       color: var(--muted);
-      font-size: 13px;
+      font-size: 12px;
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 8px;
-      line-height: 1.55;
+      gap: 8px;
+      margin-top: 7px;
+      line-height: 1.45;
       word-break: break-word;
     }
 
@@ -553,7 +578,7 @@
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
-      margin-top: 14px;
+      margin-top: 10px;
       align-items: center;
     }
 
@@ -563,19 +588,18 @@
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
+      align-items: center;
     }
 
     .pill {
       display: inline-flex;
       align-items: center;
       border-radius: 999px;
-      padding: 9px 13px;
+      padding: 7px 11px;
       font-size: 12px;
       font-weight: 800;
-      letter-spacing: 0.01em;
       background: rgba(255,255,255,0.10);
       border: 1px solid rgba(255,255,255,0.14);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.15);
     }
 
     .pill.green {
@@ -603,9 +627,10 @@
     }
 
     .toggle-btn {
-      padding: 11px 14px;
+      padding: 10px 12px;
       font-weight: 800;
-      border-radius: 18px;
+      border-radius: 14px;
+      font-size: 12px;
     }
 
     .toggle-btn.paid {
@@ -625,19 +650,19 @@
       z-index: 2;
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
+      gap: 10px;
     }
 
     .field {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
       min-width: 0;
     }
 
     .field label {
       color: var(--muted);
-      font-size: 12px;
+      font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       font-weight: 800;
@@ -649,9 +674,9 @@
       width: 100%;
       min-width: 0;
       max-width: 100%;
-      min-height: 58px;
-      padding: 15px 16px;
-      border-radius: 22px;
+      min-height: 50px;
+      padding: 13px 14px;
+      border-radius: 16px;
       border: 1px solid var(--border);
       color: var(--text);
       background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
@@ -671,7 +696,7 @@
     }
 
     textarea {
-      min-height: 110px;
+      min-height: 84px;
       resize: vertical;
     }
 
@@ -690,9 +715,9 @@
     .empty {
       text-align: center;
       color: var(--muted);
-      border-radius: 24px;
-      padding: 34px 12px;
-      line-height: 1.65;
+      border-radius: 18px;
+      padding: 22px 10px;
+      line-height: 1.6;
       background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
       border: 1px dashed rgba(255,255,255,0.18);
     }
@@ -702,9 +727,9 @@
       z-index: 2;
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: 12px;
+      gap: 10px;
       align-items: center;
-      padding: 16px 0;
+      padding: 10px 0;
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
@@ -727,18 +752,18 @@
       z-index: 2;
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
+      gap: 10px;
     }
 
     .mini-card {
-      border-radius: 24px;
-      padding: 18px;
+      border-radius: 18px;
+      padding: 14px;
     }
 
     .mini-card .label {
       color: var(--muted);
-      font-size: 12px;
-      margin-bottom: 10px;
+      font-size: 10px;
+      margin-bottom: 7px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       font-weight: 800;
@@ -749,7 +774,7 @@
     .mini-card .value {
       position: relative;
       z-index: 2;
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 850;
       line-height: 1;
     }
@@ -759,12 +784,12 @@
       z-index: 2;
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
+      gap: 10px;
     }
 
     .category-card {
-      border-radius: 24px;
-      padding: 18px;
+      border-radius: 18px;
+      padding: 14px;
       cursor: pointer;
     }
 
@@ -811,7 +836,7 @@
       width: min(84vw, 340px);
       height: 100vh;
       z-index: 1000;
-      padding: 20px 16px;
+      padding: 18px 14px;
       border-right: 1px solid var(--border);
       box-shadow: var(--shadow-xl);
       overflow-y: auto;
@@ -863,7 +888,7 @@
       z-index: 1200;
       max-width: 320px;
       padding: 14px 16px;
-      border-radius: 20px;
+      border-radius: 16px;
       border: 1px solid var(--border);
       background: linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.06));
       color: var(--text);
@@ -882,23 +907,25 @@
       transform: translateY(0);
     }
 
-    .bank-card {
+    .bank-card,
+    .savings-card,
+    .compact-edit-card {
       display: grid;
       grid-template-columns: auto 1fr auto;
-      gap: 16px;
+      gap: 12px;
       align-items: start;
     }
 
     .bank-icon,
     .savings-icon {
-      width: 62px;
-      height: 62px;
-      border-radius: 20px;
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       font-weight: 900;
-      font-size: 24px;
+      font-size: 22px;
       color: white;
       background:
         radial-gradient(circle at 30% 20%, rgba(255,255,255,0.35), transparent 28%),
@@ -910,50 +937,61 @@
       flex-shrink: 0;
     }
 
-    .bank-card-content {
+    .bank-card-content,
+    .savings-card-content {
       min-width: 0;
     }
 
-    .bank-card-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: flex-start;
+    .inline-balance {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
     }
 
     .bank-balance-glow,
     .savings-balance-glow {
-      padding: 10px 14px;
+      padding: 8px 12px;
       border-radius: 999px;
       font-weight: 800;
       background: linear-gradient(180deg, rgba(41,211,145,0.14), rgba(41,211,145,0.08));
       border: 1px solid rgba(41,211,145,0.22);
       color: var(--green);
-      box-shadow: 0 0 24px rgba(41,211,145,0.08);
       white-space: nowrap;
-      flex-shrink: 0;
-    }
-
-    .bank-subline {
-      color: var(--muted);
       font-size: 13px;
-      margin-top: 6px;
-      line-height: 1.55;
-      word-break: break-word;
+      align-self: end;
     }
 
-    .bank-actions {
+    .edit-panel {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.10);
+      display: none;
+    }
+
+    .edit-panel.open {
+      display: block;
+    }
+
+    .edit-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr auto auto;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
-      margin-top: 14px;
+    }
+
+    .edit-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 10px;
     }
 
     .client-header-grid {
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: 14px;
+      gap: 12px;
       align-items: start;
     }
 
@@ -961,22 +999,22 @@
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
-      margin-top: 12px;
+      margin-top: 10px;
     }
 
     .schedule-list {
       display: grid;
-      gap: 10px;
-      margin-top: 14px;
+      gap: 8px;
+      margin-top: 12px;
     }
 
     .schedule-row {
       display: grid;
       grid-template-columns: 1.15fr 1fr auto;
-      gap: 12px;
+      gap: 10px;
       align-items: center;
-      padding: 14px;
-      border-radius: 20px;
+      padding: 12px;
+      border-radius: 16px;
       background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
       border: 1px solid rgba(255,255,255,0.10);
       box-shadow: var(--shadow-md);
@@ -985,7 +1023,7 @@
 
     .schedule-title {
       font-weight: 800;
-      font-size: 15px;
+      font-size: 14px;
       word-break: break-word;
     }
 
@@ -993,12 +1031,12 @@
       margin-top: 4px;
       color: var(--muted);
       font-size: 12px;
-      line-height: 1.5;
+      line-height: 1.45;
       word-break: break-word;
     }
 
     .schedule-amount {
-      font-size: 18px;
+      font-size: 15px;
       font-weight: 850;
       text-align: left;
       word-break: break-word;
@@ -1014,12 +1052,12 @@
     .progress-wrap {
       position: relative;
       z-index: 2;
-      margin-top: 14px;
+      margin-top: 10px;
     }
 
     .progress-bar {
       width: 100%;
-      height: 12px;
+      height: 10px;
       border-radius: 999px;
       background: rgba(255,255,255,0.10);
       overflow: hidden;
@@ -1030,7 +1068,6 @@
       height: 100%;
       border-radius: inherit;
       background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
-      box-shadow: 0 0 20px rgba(127,99,255,0.25);
     }
 
     @media (max-width: 1100px) {
@@ -1053,11 +1090,12 @@
       }
 
       .main {
-        padding: 18px;
+        padding: 12px;
       }
 
       .topbar {
         display: block;
+        margin-bottom: 12px;
       }
 
       .topbar-left {
@@ -1071,7 +1109,7 @@
         justify-content: space-between;
         gap: 12px;
         width: 100%;
-        margin-bottom: 16px;
+        margin-bottom: 10px;
       }
 
       .hamburger-btn {
@@ -1087,14 +1125,109 @@
       }
 
       .topbar h2 {
-        font-size: 30px;
+        font-size: 24px;
         line-height: 1.05;
-        margin-top: 0;
       }
 
       .topbar p {
-        margin-top: 10px;
-        max-width: 100%;
+        font-size: 13px;
+        line-height: 1.45;
+        margin-top: 8px;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px;
+      }
+
+      .card {
+        padding: 14px;
+        border-radius: 20px;
+      }
+
+      .item {
+        padding: 12px;
+        border-radius: 16px;
+      }
+
+      .section-title {
+        margin-bottom: 10px;
+      }
+
+      .section-title h3 {
+        font-size: 18px;
+      }
+
+      .section-title p {
+        font-size: 12px;
+      }
+
+      .stat-value {
+        font-size: 20px;
+      }
+
+      .stat-sub {
+        font-size: 11px;
+      }
+
+      .mini-card {
+        padding: 12px;
+      }
+
+      .mini-card .value {
+        font-size: 18px;
+      }
+
+      .category-card {
+        padding: 12px;
+      }
+
+      .item-title {
+        font-size: 16px;
+      }
+
+      .meta {
+        font-size: 12px;
+      }
+
+      .bank-card,
+      .savings-card {
+        grid-template-columns: auto 1fr auto;
+      }
+
+      .client-header-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .schedule-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        align-items: start;
+      }
+
+      .schedule-actions {
+        justify-content: stretch;
+      }
+
+      .schedule-actions .schedule-btn {
+        width: 100%;
+      }
+
+      .content-grid,
+      .stack,
+      .list,
+      .schedule-list {
+        gap: 9px;
+      }
+
+      .row-actions {
+        gap: 8px;
+      }
+
+      .btn,
+      .toggle-btn,
+      .schedule-btn {
+        font-size: 12px;
       }
     }
 
@@ -1102,12 +1235,7 @@
       .form-grid,
       .mini-grid,
       .categories-grid,
-      .bank-actions,
-      .schedule-row {
-        grid-template-columns: 1fr;
-      }
-
-      .stats {
+      .edit-grid {
         grid-template-columns: 1fr;
       }
 
@@ -1125,31 +1253,23 @@
         max-width: none !important;
       }
 
-      .bank-card {
+      .bank-card,
+      .savings-card {
         grid-template-columns: 1fr;
       }
 
-      .bank-icon,
-      .savings-icon {
-        width: 56px;
-        height: 56px;
-        font-size: 22px;
+      .ledger-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
       }
 
-      .stat-value {
-        font-size: 25px;
-      }
-
-      .schedule-actions {
+      .edit-actions {
         justify-content: stretch;
       }
 
-      .schedule-actions .schedule-btn {
-        width: 100%;
-      }
-
-      .client-header-grid {
-        grid-template-columns: 1fr;
+      .edit-actions .icon-btn {
+        width: 44px;
+        height: 44px;
       }
 
       input[type="date"],
@@ -1159,28 +1279,27 @@
       }
     }
 
-    @media (max-width: 430px) {
-      .main {
-        padding: 14px;
-      }
-
-      .card,
-      .item {
-        padding: 16px;
+    @media (max-width: 520px) {
+      .stats {
+        grid-template-columns: 1fr 1fr;
       }
 
       .topbar h2 {
-        font-size: 27px;
+        font-size: 22px;
       }
 
-      .section-title h3 {
-        font-size: 22px;
+      .topbar p {
+        font-size: 12px;
       }
 
       input,
       select,
       textarea {
         font-size: 16px;
+      }
+
+      .mobile-sidebar {
+        width: min(88vw, 320px);
       }
     }
   </style>
@@ -1214,7 +1333,7 @@
       <div class="brand glass">
         <div class="brand-badge">Private tracker</div>
         <h1>Finance Tracker</h1>
-        <p>Your private finance software with bank balances, savings, clients, applications, bills, subscriptions, categories, and automated balance tracking.</p>
+        <p>Your private finance software with bank balances, savings, clients, job applications, bills, subscriptions, categories, and automated balance tracking.</p>
       </div>
 
       <div class="nav" id="desktopNav"></div>
@@ -1268,7 +1387,7 @@
   <div class="toast" id="toast"></div>
 
   <script>
-    const STORAGE_KEY = "financeTrackerStableV11";
+    const STORAGE_KEY = "financeTrackerStableV14";
 
     function makeId() {
       return Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
@@ -1286,7 +1405,7 @@
       bankAccounts: [],
       savings: [],
       clients: [],
-      applications: [],
+      jobApplications: [],
       bills: [],
       subscriptions: [],
       transactions: []
@@ -1310,7 +1429,7 @@
           bankAccounts: Array.isArray(parsed.bankAccounts) ? parsed.bankAccounts : [],
           savings: Array.isArray(parsed.savings) ? parsed.savings : [],
           clients: Array.isArray(parsed.clients) ? parsed.clients : [],
-          applications: Array.isArray(parsed.applications) ? parsed.applications : [],
+          jobApplications: Array.isArray(parsed.jobApplications || parsed.applications) ? (parsed.jobApplications || parsed.applications) : [],
           bills: Array.isArray(parsed.bills) ? parsed.bills : [],
           subscriptions: Array.isArray(parsed.subscriptions) ? parsed.subscriptions : [],
           transactions: Array.isArray(parsed.transactions) ? parsed.transactions : []
@@ -1328,7 +1447,7 @@
       { key: "bankBalances", label: "Bank Balance" },
       { key: "savings", label: "Savings" },
       { key: "clients", label: "Clients" },
-      { key: "applications", label: "Applications" },
+      { key: "jobApplications", label: "Job Applications" },
       { key: "bills", label: "Bills" },
       { key: "subscriptions", label: "Subscriptions" },
       { key: "categories", label: "Categories" },
@@ -1477,6 +1596,10 @@
       return String(name || "?").trim().charAt(0).toUpperCase() || "S";
     }
 
+    function iconPencil() { return "✎"; }
+    function iconSave() { return "✓"; }
+    function iconTrash() { return "🗑"; }
+
     function getSummary() {
       const transactionIncome = state.transactions
         .filter(t => t.type === "income")
@@ -1487,7 +1610,6 @@
         .reduce((sum, t) => sum + Number(t.amount), 0);
 
       const transactionBalance = transactionIncome - transactionExpenses;
-
       const bankTotal = state.bankAccounts.reduce((sum, account) => sum + Number(account.amount || 0), 0);
       const mainBalance = bankTotal + transactionBalance;
 
@@ -1535,6 +1657,12 @@
       document.body.classList.remove("mobile-open");
     }
 
+    function toggleEditPanel(id) {
+      const panel = document.getElementById(id);
+      if (!panel) return;
+      panel.classList.toggle("open");
+    }
+
     function createTransaction(data) {
       const transaction = {
         id: makeId(),
@@ -1565,14 +1693,9 @@
       return html;
     }
 
-    function applicationStatusOptionsHtml() {
-      return `
-        <option value="1st Phase">1st Phase</option>
-        <option value="Follow Up">Follow Up</option>
-        <option value="Rejected">Rejected</option>
-        <option value="Hired">Hired</option>
-        <option value="Custom">Custom</option>
-      `;
+    function applicationStatusOptionsHtml(selected = "") {
+      const options = ["1st Phase", "Follow Up", "Rejected", "Hired", "Custom"];
+      return options.map(opt => `<option value="${opt}" ${selected === opt ? "selected" : ""}>${opt}</option>`).join("");
     }
 
     function addBankAccount(event) {
@@ -1603,31 +1726,13 @@
 
     function saveBankAmount(bankId) {
       const bank = state.bankAccounts.find(item => item.id === bankId);
-      if (!bank) {
-        alert("Bank account not found.");
-        return;
-      }
+      if (!bank) return alert("Bank account not found.");
 
-      const nameInput = document.getElementById(`bankName_${bankId}`);
-      const amountInput = document.getElementById(`bankAmount_${bankId}`);
+      const newName = document.getElementById(`bankName_${bankId}`).value.trim();
+      const newAmount = toNumberInput(document.getElementById(`bankAmount_${bankId}`).value);
 
-      if (!nameInput || !amountInput) {
-        alert("Unable to read this bank account row.");
-        return;
-      }
-
-      const newName = nameInput.value.trim();
-      const newAmount = toNumberInput(amountInput.value);
-
-      if (!newName) {
-        alert("Please enter a bank name.");
-        return;
-      }
-
-      if (Number.isNaN(newAmount) || newAmount < 0) {
-        alert("Please enter a valid bank amount.");
-        return;
-      }
+      if (!newName) return alert("Please enter a bank name.");
+      if (Number.isNaN(newAmount) || newAmount < 0) return alert("Please enter a valid bank amount.");
 
       bank.bankName = newName;
       bank.amount = newAmount;
@@ -1654,30 +1759,11 @@
       const targetAmount = toNumberInput(document.getElementById("savingsTargetAmount").value || 0);
       const notes = document.getElementById("savingsNotes").value.trim();
 
-      if (!name) {
-        alert("Please enter a savings name.");
-        return;
-      }
-
-      if (!bankName) {
-        alert("Please enter a bank name for this savings.");
-        return;
-      }
-
-      if (Number.isNaN(currentAmount) || currentAmount < 0) {
-        alert("Please enter a valid current savings amount.");
-        return;
-      }
-
-      if (Number.isNaN(savedThisMonth) || savedThisMonth < 0) {
-        alert("Please enter a valid saved this month amount.");
-        return;
-      }
-
-      if (Number.isNaN(targetAmount) || targetAmount < 0) {
-        alert("Please enter a valid target amount.");
-        return;
-      }
+      if (!name) return alert("Please enter a savings name.");
+      if (!bankName) return alert("Please enter a bank name for this savings.");
+      if (Number.isNaN(currentAmount) || currentAmount < 0) return alert("Please enter a valid current savings amount.");
+      if (Number.isNaN(savedThisMonth) || savedThisMonth < 0) return alert("Please enter a valid saved this month amount.");
+      if (Number.isNaN(targetAmount) || targetAmount < 0) return alert("Please enter a valid target amount.");
 
       state.savings.push({
         id: makeId(),
@@ -1697,10 +1783,7 @@
 
     function saveSavings(savingsId) {
       const item = state.savings.find(s => s.id === savingsId);
-      if (!item) {
-        alert("Savings item not found.");
-        return;
-      }
+      if (!item) return alert("Savings item not found.");
 
       const name = document.getElementById(`saveName_${savingsId}`).value.trim();
       const bankName = document.getElementById(`saveBank_${savingsId}`).value.trim();
@@ -1710,30 +1793,11 @@
       const targetAmount = toNumberInput(document.getElementById(`saveTargetAmount_${savingsId}`).value || 0);
       const notes = document.getElementById(`saveNotes_${savingsId}`).value.trim();
 
-      if (!name) {
-        alert("Please enter a savings name.");
-        return;
-      }
-
-      if (!bankName) {
-        alert("Please enter a bank name.");
-        return;
-      }
-
-      if (Number.isNaN(currentAmount) || currentAmount < 0) {
-        alert("Please enter a valid current amount.");
-        return;
-      }
-
-      if (Number.isNaN(savedThisMonth) || savedThisMonth < 0) {
-        alert("Please enter a valid monthly saved amount.");
-        return;
-      }
-
-      if (Number.isNaN(targetAmount) || targetAmount < 0) {
-        alert("Please enter a valid target amount.");
-        return;
-      }
+      if (!name) return alert("Please enter a savings name.");
+      if (!bankName) return alert("Please enter a bank name.");
+      if (Number.isNaN(currentAmount) || currentAmount < 0) return alert("Please enter a valid current amount.");
+      if (Number.isNaN(savedThisMonth) || savedThisMonth < 0) return alert("Please enter a valid monthly saved amount.");
+      if (Number.isNaN(targetAmount) || targetAmount < 0) return alert("Please enter a valid target amount.");
 
       item.name = name;
       item.bankName = bankName;
@@ -1760,16 +1824,10 @@
       const input = document.getElementById("newCategoryName");
       const name = input.value.trim();
 
-      if (!name) {
-        alert("Enter a category name first.");
-        return;
-      }
+      if (!name) return alert("Enter a category name first.");
 
       const exists = state.categories.some(cat => cat.name.toLowerCase() === name.toLowerCase());
-      if (exists) {
-        alert("That category already exists.");
-        return;
-      }
+      if (exists) return alert("That category already exists.");
 
       state.categories.push({ id: makeId(), name });
       saveState();
@@ -1783,8 +1841,7 @@
       const hasSubs = state.subscriptions.some(s => s.categoryId === categoryId);
 
       if (hasTransactions || hasBills || hasSubs) {
-        alert("This category is still being used. Remove or reassign linked items first.");
-        return;
+        return alert("This category is still being used. Remove or reassign linked items first.");
       }
 
       state.categories = state.categories.filter(cat => cat.id !== categoryId);
@@ -1829,9 +1886,8 @@
       const hourlyField = document.getElementById("clientHoursField");
       if (!select || !hourlyField) return;
 
-      if (select.value === "hourly") {
-        hourlyField.classList.remove("hidden");
-      } else {
+      if (select.value === "hourly") hourlyField.classList.remove("hidden");
+      else {
         hourlyField.classList.add("hidden");
         const hoursInput = document.getElementById("clientExpectedHours");
         if (hoursInput) hoursInput.value = "";
@@ -1849,45 +1905,24 @@
       const hoursEl = document.getElementById("clientExpectedHours");
       const expectedHours = hoursEl ? toNumberInput(hoursEl.value) : NaN;
 
-      if (!name) {
-        alert("Please enter a client name.");
-        return;
-      }
-
-      if (Number.isNaN(rateAmount) || rateAmount <= 0) {
-        alert("Please enter a valid rate amount.");
-        return;
-      }
-
-      if (!nextPaymentDate) {
-        alert("Please enter the next expected payment date.");
-        return;
-      }
+      if (!name) return alert("Please enter a client name.");
+      if (Number.isNaN(rateAmount) || rateAmount <= 0) return alert("Please enter a valid rate amount.");
+      if (!nextPaymentDate) return alert("Please enter the next expected payment date.");
 
       const date = new Date(nextPaymentDate + "T12:00:00");
-      if (Number.isNaN(date.getTime())) {
-        alert("Please enter a valid payment date.");
-        return;
-      }
+      if (Number.isNaN(date.getTime())) return alert("Please enter a valid payment date.");
 
       let expectedMonthlyAmount = rateAmount;
       let storedHours = null;
 
       if (rateType === "hourly") {
-        if (Number.isNaN(expectedHours) || expectedHours <= 0) {
-          alert("Please enter expected monthly hours for hourly clients.");
-          return;
-        }
+        if (Number.isNaN(expectedHours) || expectedHours <= 0) return alert("Please enter expected monthly hours for hourly clients.");
         storedHours = expectedHours;
         expectedMonthlyAmount = rateAmount * expectedHours;
       }
 
       const schedules = buildClientSchedules(nextPaymentDate, expectedMonthlyAmount);
-
-      if (!schedules.length) {
-        alert("Could not generate payment schedules.");
-        return;
-      }
+      if (!schedules.length) return alert("Could not generate payment schedules.");
 
       state.clients.push({
         id: makeId(),
@@ -1920,10 +1955,7 @@
       const client = getClientById(clientId);
       const schedule = getClientScheduleById(client, scheduleId);
 
-      if (!client || !schedule) {
-        alert("Could not find this client payment row.");
-        return;
-      }
+      if (!client || !schedule) return alert("Could not find this client payment row.");
 
       if (schedule.transactionId) {
         removeTransactionById(schedule.transactionId);
@@ -1971,30 +2003,23 @@
       showToast("Client deleted.");
     }
 
-    function addApplication(event) {
+    function addJobApplication(event) {
       event.preventDefault();
 
-      const clientName = document.getElementById("applicationClientName").value.trim();
-      const position = document.getElementById("applicationPosition").value.trim();
-      const salary = document.getElementById("applicationSalary").value.trim();
-      const dateApplied = document.getElementById("applicationDateApplied").value;
-      const statusSelect = document.getElementById("applicationStatusSelect").value;
-      const customStatus = document.getElementById("applicationCustomStatus").value.trim();
+      const clientName = document.getElementById("jobApplicationClientName").value.trim();
+      const position = document.getElementById("jobApplicationPosition").value.trim();
+      const salary = document.getElementById("jobApplicationSalary").value.trim();
+      const dateApplied = document.getElementById("jobApplicationDateApplied").value;
+      const statusSelect = document.getElementById("jobApplicationStatusSelect").value;
+      const customStatus = document.getElementById("jobApplicationCustomStatus").value.trim();
 
       let finalStatus = statusSelect;
       if (statusSelect === "Custom") finalStatus = customStatus;
 
-      if (!clientName || !position) {
-        alert("Please enter a client name and position.");
-        return;
-      }
+      if (!clientName || !position) return alert("Please enter a client name and position.");
+      if (!finalStatus) return alert("Please choose or enter a status.");
 
-      if (!finalStatus) {
-        alert("Please choose or enter a status.");
-        return;
-      }
-
-      state.applications.push({
+      state.jobApplications.push({
         id: makeId(),
         clientName,
         position,
@@ -2005,52 +2030,50 @@
 
       saveState();
       renderApp();
-      showToast("Application added.");
+      showToast("Job application added.");
     }
 
-    function handleApplicationStatusSelectChange() {
-      const select = document.getElementById("applicationStatusSelect");
-      const customInput = document.getElementById("applicationCustomStatus");
+    function handleJobApplicationStatusSelectChange() {
+      const select = document.getElementById("jobApplicationStatusSelect");
+      const customInput = document.getElementById("jobApplicationCustomStatus");
       if (!select || !customInput) return;
 
-      if (select.value === "Custom") {
-        customInput.classList.remove("hidden");
-      } else {
+      if (select.value === "Custom") customInput.classList.remove("hidden");
+      else {
         customInput.classList.add("hidden");
         customInput.value = "";
       }
     }
 
-    function saveApplicationStatus(applicationId) {
-      const application = state.applications.find(item => item.id === applicationId);
-      if (!application) {
-        alert("Application not found.");
-        return;
-      }
+    function saveJobApplication(applicationId) {
+      const application = state.jobApplications.find(item => item.id === applicationId);
+      if (!application) return alert("Job application not found.");
 
-      const input = document.getElementById(`appStatus_${applicationId}`);
-      if (!input) {
-        alert("Unable to read this application row.");
-        return;
-      }
+      const clientName = document.getElementById(`jobClient_${applicationId}`).value.trim();
+      const position = document.getElementById(`jobPosition_${applicationId}`).value.trim();
+      const salary = document.getElementById(`jobSalary_${applicationId}`).value.trim();
+      const dateApplied = document.getElementById(`jobDate_${applicationId}`).value;
+      const status = document.getElementById(`jobStatus_${applicationId}`).value.trim();
 
-      const newStatus = input.value.trim();
-      if (!newStatus) {
-        alert("Please enter a valid status.");
-        return;
-      }
+      if (!clientName || !position) return alert("Please enter a client name and position.");
+      if (!status) return alert("Please enter a valid status.");
 
-      application.status = newStatus;
+      application.clientName = clientName;
+      application.position = position;
+      application.salary = salary;
+      application.dateApplied = dateApplied;
+      application.status = status;
+
       saveState();
       renderApp();
-      showToast("Application status saved.");
+      showToast("Job application saved.");
     }
 
-    function deleteApplication(applicationId) {
-      state.applications = state.applications.filter(item => item.id !== applicationId);
+    function deleteJobApplication(applicationId) {
+      state.jobApplications = state.jobApplications.filter(item => item.id !== applicationId);
       saveState();
       renderApp();
-      showToast("Application deleted.");
+      showToast("Job application deleted.");
     }
 
     function addBill(event) {
@@ -2061,10 +2084,7 @@
       const dueDate = document.getElementById("billDueDate").value;
       const categoryId = document.getElementById("billCategory").value || null;
 
-      if (!name || Number.isNaN(amount) || amount <= 0) {
-        alert("Please enter a bill name and valid amount.");
-        return;
-      }
+      if (!name || Number.isNaN(amount) || amount <= 0) return alert("Please enter a bill name and valid amount.");
 
       state.bills.push({
         id: makeId(),
@@ -2126,10 +2146,7 @@
       const renewal = document.getElementById("subscriptionRenewal").value.trim();
       const categoryId = document.getElementById("subscriptionCategory").value || null;
 
-      if (!name || Number.isNaN(amount) || amount <= 0) {
-        alert("Please enter a subscription name and valid amount.");
-        return;
-      }
+      if (!name || Number.isNaN(amount) || amount <= 0) return alert("Please enter a subscription name and valid amount.");
 
       state.subscriptions.push({
         id: makeId(),
@@ -2191,10 +2208,7 @@
       const type = document.getElementById("manualType").value;
       const categoryId = document.getElementById("manualCategory").value || null;
 
-      if (!title || Number.isNaN(amount) || amount <= 0) {
-        alert("Please enter a valid title and amount.");
-        return;
-      }
+      if (!title || Number.isNaN(amount) || amount <= 0) return alert("Please enter a valid title and amount.");
 
       createTransaction({
         title,
@@ -2212,10 +2226,7 @@
       const txn = state.transactions.find(t => t.id === transactionId);
       if (!txn) return;
 
-      if (txn.sourceType !== "manual") {
-        alert("This transaction is linked to another section. Manage it from there.");
-        return;
-      }
+      if (txn.sourceType !== "manual") return alert("This transaction is linked to another section. Manage it from there.");
 
       state.transactions = state.transactions.filter(t => t.id !== transactionId);
       saveState();
@@ -2238,7 +2249,7 @@
       if (state.currentView === "bankBalances") return { title: "Bank Balance", subtitle: "Track all your bank accounts and let them update your main balance automatically.", back: true };
       if (state.currentView === "savings") return { title: "Savings", subtitle: "Track your allocated savings by purpose, bank, monthly saved amount, and target month without double counting your total money.", back: true };
       if (state.currentView === "clients") return { title: "Clients", subtitle: "List each client once, auto-generate the rest of their 2026 payment schedule, then mark each month as paid, delayed, or pending.", back: true };
-      if (state.currentView === "applications") return { title: "Applications", subtitle: "Track every client application and its latest status.", back: true };
+      if (state.currentView === "jobApplications") return { title: "Job Applications", subtitle: "Track every job application and its latest status.", back: true };
       if (state.currentView === "bills") return { title: "Bills", subtitle: "Track unpaid bills and subtract them when paid.", back: true };
       if (state.currentView === "subscriptions") return { title: "Subscriptions", subtitle: "Track recurring costs and mark them paid when needed.", back: true };
       if (state.currentView === "categories") return { title: "Categories", subtitle: "Build your own custom structure.", back: true };
@@ -2268,7 +2279,7 @@
       const summary = getSummary();
       const recentTransactions = clone(state.transactions)
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-        .slice(0, 6);
+        .slice(0, 5);
 
       const categoryCards = state.categories.map(category => {
         const items = state.transactions.filter(t => t.categoryId === category.id);
@@ -2276,9 +2287,9 @@
 
         return `
           <div class="category-card glass-soft" onclick="setView('categoryDetail', '${category.id}')">
-            <div class="item-title" style="font-size:18px;">${escapeHtml(category.name)}</div>
+            <div class="item-title">${escapeHtml(category.name)}</div>
             <div class="meta"><span>${items.length} entries</span></div>
-            <div style="margin-top:14px;font-size:24px;font-weight:850;">${formatMoney(total)}</div>
+            <div style="margin-top:10px;font-size:18px;font-weight:850;">${formatMoney(total)}</div>
           </div>
         `;
       }).join("");
@@ -2286,7 +2297,7 @@
       const recentHtml = recentTransactions.length ? recentTransactions.map(txn => `
         <div class="ledger-row">
           <div>
-            <div style="font-weight:850;">${escapeHtml(txn.title)}</div>
+            <div style="font-weight:850;font-size:14px;">${escapeHtml(txn.title)}</div>
             <div class="meta">
               <span>${escapeHtml(txn.sourceType)}</span>
               <span>${formatDate(txn.createdAt.slice(0, 10))}</span>
@@ -2355,10 +2366,22 @@
                   </div>
                 </div>
                 <div class="mini-grid">
-                  <div class="mini-card glass-soft"><div class="label">Savings Total</div><div class="value">${formatMoney(summary.savingsTotal)}</div></div>
-                  <div class="mini-card glass-soft"><div class="label">Saved This Month</div><div class="value">${formatMoney(summary.savedThisMonthTotal)}</div></div>
-                  <div class="mini-card glass-soft"><div class="label">Clients</div><div class="value">${state.clients.length}</div></div>
-                  <div class="mini-card glass-soft"><div class="label">Applications</div><div class="value">${state.applications.length}</div></div>
+                  <div class="mini-card glass-soft">
+                    <div class="label">Savings Total</div>
+                    <div class="value">${formatMoney(summary.savingsTotal)}</div>
+                  </div>
+                  <div class="mini-card glass-soft">
+                    <div class="label">Saved This Month</div>
+                    <div class="value">${formatMoney(summary.savedThisMonthTotal)}</div>
+                  </div>
+                  <div class="mini-card glass-soft">
+                    <div class="label">Clients</div>
+                    <div class="value">${state.clients.length}</div>
+                  </div>
+                  <div class="mini-card glass-soft">
+                    <div class="label">Job Applications</div>
+                    <div class="value">${state.jobApplications.length}</div>
+                  </div>
                 </div>
               </div>
 
@@ -2386,21 +2409,32 @@
         <div class="item glass">
           <div class="bank-card">
             <div class="bank-icon">${escapeHtml(getBankIcon(account.bankName))}</div>
+
             <div class="bank-card-content">
-              <div class="bank-card-top">
-                <div>
-                  <div class="item-title" style="font-size:20px;">${escapeHtml(account.bankName)}</div>
-                  <div class="bank-subline">Current Balance: ${formatMoney(account.amount)}</div>
-                </div>
+              <div class="item-title">${escapeHtml(account.bankName)}</div>
+              <div class="inline-balance">Balance: ${formatMoney(account.amount)}</div>
+            </div>
+
+            <div class="pill-row">
+              <button class="icon-btn edit" type="button" onclick="toggleEditPanel('bankPanel_${account.id}')" title="Edit">${iconPencil()}</button>
+              <button class="icon-btn delete" type="button" onclick="deleteBankAccount('${account.id}')" title="Delete">${iconTrash()}</button>
+            </div>
+          </div>
+
+          <div class="edit-panel" id="bankPanel_${account.id}">
+            <div class="edit-grid">
+              <div class="field">
+                <label>Bank Name</label>
+                <input id="bankName_${account.id}" type="text" value="${escapeHtml(account.bankName)}" />
               </div>
-              <div class="bank-actions">
-                <input id="bankName_${account.id}" type="text" value="${escapeHtml(account.bankName)}" placeholder="Bank name" />
-                <input id="bankAmount_${account.id}" type="number" min="0" step="0.01" value="${String(account.amount)}" placeholder="Bank amount" />
-                <button class="btn" type="button" onclick="saveBankAmount('${account.id}')">Save</button>
-                <button class="btn danger" type="button" onclick="deleteBankAccount('${account.id}')">Delete</button>
+              <div class="field">
+                <label>Amount</label>
+                <input id="bankAmount_${account.id}" type="number" min="0" step="0.01" value="${String(account.amount)}" />
               </div>
             </div>
-            <div class="bank-balance-glow">${formatMoney(account.amount)}</div>
+            <div class="edit-actions">
+              <button class="icon-btn save" type="button" onclick="saveBankAmount('${account.id}')" title="Save">${iconSave()}</button>
+            </div>
           </div>
         </div>
       `).join("") : `<div class="empty">No bank accounts yet.</div>`;
@@ -2428,9 +2462,18 @@
               </div>
             </div>
             <form class="form-grid" onsubmit="addBankAccount(event)">
-              <div class="field"><label>Bank Name</label><input id="bankName" placeholder="BPI / UnionBank / Maya" /></div>
-              <div class="field"><label>Amount</label><input id="bankAmount" type="number" min="0" step="0.01" placeholder="15000" /></div>
-              <div class="field" style="grid-column: span 2;"><label>&nbsp;</label><button class="btn primary" type="submit">Add bank account</button></div>
+              <div class="field">
+                <label>Bank Name</label>
+                <input id="bankName" placeholder="BPI / UnionBank / Maya" />
+              </div>
+              <div class="field">
+                <label>Amount</label>
+                <input id="bankAmount" type="number" min="0" step="0.01" placeholder="15000" />
+              </div>
+              <div class="field" style="grid-column: span 2;">
+                <label>&nbsp;</label>
+                <button class="btn primary" type="submit">Add bank account</button>
+              </div>
             </form>
           </div>
 
@@ -2438,7 +2481,7 @@
             <div class="section-title">
               <div>
                 <h3>Bank Accounts</h3>
-                <p>Update the amount anytime when the balance changes. Main balance updates automatically.</p>
+                <p>Tap the pencil icon to edit. Tap the trash icon to remove.</p>
               </div>
             </div>
             <div class="list">${listHtml}</div>
@@ -2455,16 +2498,15 @@
 
         return `
           <div class="item glass">
-            <div class="bank-card">
+            <div class="savings-card">
               <div class="savings-icon">${escapeHtml(getSavingsIcon(item.name))}</div>
-              <div class="bank-card-content">
-                <div class="bank-card-top">
-                  <div>
-                    <div class="item-title" style="font-size:20px;">${escapeHtml(item.name)}</div>
-                    <div class="bank-subline">
-                      Bank: ${escapeHtml(item.bankName)} • Target Month: ${escapeHtml(getSavingsMonthLabel(item.targetMonth))} • Saved This Month: ${formatMoney(item.savedThisMonth || 0)}
-                    </div>
-                  </div>
+
+              <div class="savings-card-content">
+                <div class="item-title">${escapeHtml(item.name)}</div>
+                <div class="meta">
+                  <span>Bank: ${escapeHtml(item.bankName)}</span>
+                  <span>Target Month: ${escapeHtml(getSavingsMonthLabel(item.targetMonth))}</span>
+                  <span>Saved This Month: ${formatMoney(item.savedThisMonth || 0)}</span>
                 </div>
 
                 <div class="progress-wrap">
@@ -2476,27 +2518,51 @@
                     <div class="progress-fill" style="width:${progress}%;"></div>
                   </div>
                 </div>
+              </div>
 
-                <div class="row-actions">
-                  <input id="saveName_${item.id}" type="text" value="${escapeHtml(item.name)}" placeholder="Savings name" style="max-width:220px;" />
-                  <input id="saveBank_${item.id}" type="text" value="${escapeHtml(item.bankName)}" placeholder="Bank name" style="max-width:220px;" />
-                  <input id="saveCurrent_${item.id}" type="number" min="0" step="0.01" value="${String(item.currentAmount || 0)}" placeholder="Current amount" style="max-width:190px;" />
-                  <input id="saveMonth_${item.id}" type="number" min="0" step="0.01" value="${String(item.savedThisMonth || 0)}" placeholder="Saved this month" style="max-width:190px;" />
+              <div class="pill-row">
+                <button class="icon-btn edit" type="button" onclick="toggleEditPanel('savePanel_${item.id}')" title="Edit">${iconPencil()}</button>
+                <button class="icon-btn delete" type="button" onclick="deleteSavings('${item.id}')" title="Delete">${iconTrash()}</button>
+              </div>
+            </div>
+
+            <div class="edit-panel" id="savePanel_${item.id}">
+              <div class="edit-grid">
+                <div class="field">
+                  <label>Savings Name</label>
+                  <input id="saveName_${item.id}" type="text" value="${escapeHtml(item.name)}" />
                 </div>
-
-                <div class="row-actions">
-                  <input id="saveTargetMonth_${item.id}" type="month" value="${escapeHtml(item.targetMonth || "")}" style="max-width:190px;" />
-                  <input id="saveTargetAmount_${item.id}" type="number" min="0" step="0.01" value="${String(item.targetAmount || 0)}" placeholder="Target amount" style="max-width:190px;" />
-                  <button class="btn" type="button" onclick="saveSavings('${item.id}')">Save</button>
-                  <button class="btn danger" type="button" onclick="deleteSavings('${item.id}')">Delete</button>
+                <div class="field">
+                  <label>Bank Name</label>
+                  <input id="saveBank_${item.id}" type="text" value="${escapeHtml(item.bankName)}" />
                 </div>
-
-                <div class="row-actions">
-                  <textarea id="saveNotes_${item.id}" placeholder="Notes">${escapeHtml(item.notes || "")}</textarea>
+                <div class="field">
+                  <label>Current Amount</label>
+                  <input id="saveCurrent_${item.id}" type="number" min="0" step="0.01" value="${String(item.currentAmount || 0)}" />
+                </div>
+                <div class="field">
+                  <label>Saved This Month</label>
+                  <input id="saveMonth_${item.id}" type="number" min="0" step="0.01" value="${String(item.savedThisMonth || 0)}" />
+                </div>
+                <div class="field">
+                  <label>Target Month</label>
+                  <input id="saveTargetMonth_${item.id}" type="month" value="${escapeHtml(item.targetMonth || "")}" />
+                </div>
+                <div class="field">
+                  <label>Target Amount</label>
+                  <input id="saveTargetAmount_${item.id}" type="number" min="0" step="0.01" value="${String(item.targetAmount || 0)}" />
+                </div>
+                <div class="field" style="grid-column:1/-1;">
+                  <label>Notes</label>
+                  <textarea id="saveNotes_${item.id}">${escapeHtml(item.notes || "")}</textarea>
                 </div>
               </div>
-              <div class="savings-balance-glow">${formatMoney(item.currentAmount || 0)}</div>
+              <div class="edit-actions">
+                <button class="icon-btn save" type="button" onclick="saveSavings('${item.id}')" title="Save">${iconSave()}</button>
+              </div>
             </div>
+
+            <div class="savings-balance-glow" style="margin-top:10px;">${formatMoney(item.currentAmount || 0)}</div>
           </div>
         `;
       }).join("") : `<div class="empty">No savings yet.</div>`;
@@ -2568,7 +2634,7 @@
             <div class="section-title">
               <div>
                 <h3>Savings List</h3>
-                <p>Edit everything anytime. This is built for flexible tracking, not locked categories.</p>
+                <p>Tap pencil to edit. Tap trash to remove.</p>
               </div>
             </div>
             <div class="list">${savingsHtml}</div>
@@ -2614,7 +2680,7 @@
           <div class="item glass">
             <div class="client-header-grid">
               <div>
-                <div class="item-title" style="font-size:22px;">${escapeHtml(client.name)}</div>
+                <div class="item-title" style="font-size:18px;">${escapeHtml(client.name)}</div>
                 <div class="meta">
                   <span>${client.rateType === "hourly" ? "Hourly" : "Fixed Monthly"}</span>
                   <span>Rate: ${formatCurrency(client.rateAmount, client.currency)}</span>
@@ -2629,7 +2695,7 @@
                 </div>
               </div>
               <div class="pill-row">
-                <button class="btn danger" type="button" onclick="deleteClient('${client.id}')">Delete client</button>
+                <button class="icon-btn delete" type="button" onclick="deleteClient('${client.id}')" title="Delete">${iconTrash()}</button>
               </div>
             </div>
             <div class="schedule-list">
@@ -2689,7 +2755,7 @@
             <div class="section-title">
               <div>
                 <h3>Client Payment Schedule</h3>
-                <p>Each client is listed once. Every expected month is already there, so you only update the payment status.</p>
+                <p>Status buttons stay visible here to make tracking faster.</p>
               </div>
             </div>
             <div class="list">${clientListHtml}</div>
@@ -2698,8 +2764,8 @@
       `;
     }
 
-    function renderApplicationsView() {
-      const listHtml = state.applications.length ? state.applications.map(application => {
+    function renderJobApplicationsView() {
+      const listHtml = state.jobApplications.length ? state.jobApplications.map(application => {
         const pillClass = getApplicationStatusClass(application.status);
 
         return `
@@ -2715,42 +2781,67 @@
               </div>
               <div class="pill-row">
                 <span class="pill ${pillClass}">${escapeHtml(application.status)}</span>
+                <button class="icon-btn edit" type="button" onclick="toggleEditPanel('jobPanel_${application.id}')" title="Edit">${iconPencil()}</button>
+                <button class="icon-btn delete" type="button" onclick="deleteJobApplication('${application.id}')" title="Delete">${iconTrash()}</button>
               </div>
             </div>
-            <div class="row-actions">
-              <input id="appStatus_${application.id}" type="text" value="${escapeHtml(application.status)}" placeholder="Update status" style="max-width:220px;" />
-              <button class="btn" type="button" onclick="saveApplicationStatus('${application.id}')">Save status</button>
-              <button class="btn danger" type="button" onclick="deleteApplication('${application.id}')">Delete</button>
+
+            <div class="edit-panel" id="jobPanel_${application.id}">
+              <div class="edit-grid">
+                <div class="field">
+                  <label>Client Name</label>
+                  <input id="jobClient_${application.id}" value="${escapeHtml(application.clientName)}" />
+                </div>
+                <div class="field">
+                  <label>Position</label>
+                  <input id="jobPosition_${application.id}" value="${escapeHtml(application.position)}" />
+                </div>
+                <div class="field">
+                  <label>Salary</label>
+                  <input id="jobSalary_${application.id}" value="${escapeHtml(application.salary || "")}" />
+                </div>
+                <div class="field">
+                  <label>Date Applied</label>
+                  <input id="jobDate_${application.id}" type="date" value="${escapeHtml(application.dateApplied || "")}" />
+                </div>
+                <div class="field" style="grid-column:1/-1;">
+                  <label>Status</label>
+                  <input id="jobStatus_${application.id}" value="${escapeHtml(application.status)}" />
+                </div>
+              </div>
+              <div class="edit-actions">
+                <button class="icon-btn save" type="button" onclick="saveJobApplication('${application.id}')" title="Save">${iconSave()}</button>
+              </div>
             </div>
           </div>
         `;
-      }).join("") : `<div class="empty">No applications yet.</div>`;
+      }).join("") : `<div class="empty">No job applications yet.</div>`;
 
       return `
         <div class="list">
           <div class="card glass">
             <div class="section-title">
               <div>
-                <h3>Add Application</h3>
-                <p>Track the clients you applied to, their position, salary, applied date, and current status.</p>
+                <h3>Add Job Application</h3>
+                <p>Track the clients you applied to, the role, salary, applied date, and current status.</p>
               </div>
             </div>
-            <form class="form-grid" onsubmit="addApplication(event)">
-              <div class="field"><label>Client Name</label><input id="applicationClientName" placeholder="Company or Client Name" /></div>
-              <div class="field"><label>Position</label><input id="applicationPosition" placeholder="Video Editor" /></div>
-              <div class="field"><label>Salary</label><input id="applicationSalary" placeholder="25000 or Negotiable" /></div>
-              <div class="field"><label>Date Applied</label><input id="applicationDateApplied" type="date" /></div>
-              <div class="field"><label>Status</label><select id="applicationStatusSelect" onchange="handleApplicationStatusSelectChange()">${applicationStatusOptionsHtml()}</select></div>
-              <div class="field"><label>Custom Status</label><input id="applicationCustomStatus" class="hidden" placeholder="Type your custom status" /></div>
-              <div class="field" style="grid-column:1/-1;"><button class="btn primary" type="submit">Add application</button></div>
+            <form class="form-grid" onsubmit="addJobApplication(event)">
+              <div class="field"><label>Client Name</label><input id="jobApplicationClientName" placeholder="Company or Client Name" /></div>
+              <div class="field"><label>Position</label><input id="jobApplicationPosition" placeholder="Video Editor" /></div>
+              <div class="field"><label>Salary</label><input id="jobApplicationSalary" placeholder="25000 or Negotiable" /></div>
+              <div class="field"><label>Date Applied</label><input id="jobApplicationDateApplied" type="date" /></div>
+              <div class="field"><label>Status</label><select id="jobApplicationStatusSelect" onchange="handleJobApplicationStatusSelectChange()">${applicationStatusOptionsHtml()}</select></div>
+              <div class="field"><label>Custom Status</label><input id="jobApplicationCustomStatus" class="hidden" placeholder="Type your custom status" /></div>
+              <div class="field" style="grid-column:1/-1;"><button class="btn primary" type="submit">Add job application</button></div>
             </form>
           </div>
 
           <div class="card glass">
             <div class="section-title">
               <div>
-                <h3>Application List</h3>
-                <p>Update each application status anytime. You can use 1st Phase, Follow Up, Rejected, Hired, or your own custom label.</p>
+                <h3>Job Application List</h3>
+                <p>Pencil to edit, check to save, trash to delete.</p>
               </div>
             </div>
             <div class="list">${listHtml}</div>
@@ -2773,11 +2864,11 @@
             </div>
             <div class="pill-row">
               <span class="pill ${bill.paid ? "green" : "red"}">${bill.paid ? "Paid" : "Unpaid"}</span>
+              <button class="icon-btn delete" type="button" onclick="deleteBill('${bill.id}')" title="Delete">${iconTrash()}</button>
             </div>
           </div>
           <div class="row-actions">
             <button class="toggle-btn ${bill.paid ? "paid" : "unpaid"}" type="button" onclick="toggleBillPaid('${bill.id}')">${bill.paid ? "Mark unpaid" : "Mark paid"}</button>
-            <button class="btn danger" type="button" onclick="deleteBill('${bill.id}')">Delete</button>
           </div>
         </div>
       `).join("") : `<div class="empty">No bills yet.</div>`;
@@ -2804,7 +2895,7 @@
             <div class="section-title">
               <div>
                 <h3>Bill List</h3>
-                <p>Unpaid bills count as debt. Paid bills become transactions.</p>
+                <p>Trash icon deletes. Status button posts or reverses payment.</p>
               </div>
             </div>
             <div class="list">${listHtml}</div>
@@ -2827,11 +2918,11 @@
             </div>
             <div class="pill-row">
               <span class="pill ${sub.paid ? "green" : "red"}">${sub.paid ? "Paid" : "Unpaid"}</span>
+              <button class="icon-btn delete" type="button" onclick="deleteSubscription('${sub.id}')" title="Delete">${iconTrash()}</button>
             </div>
           </div>
           <div class="row-actions">
             <button class="toggle-btn ${sub.paid ? "paid" : "unpaid"}" type="button" onclick="toggleSubscriptionPaid('${sub.id}')">${sub.paid ? "Mark unpaid" : "Mark paid"}</button>
-            <button class="btn danger" type="button" onclick="deleteSubscription('${sub.id}')">Delete</button>
           </div>
         </div>
       `).join("") : `<div class="empty">No subscriptions yet.</div>`;
@@ -2858,7 +2949,7 @@
             <div class="section-title">
               <div>
                 <h3>Subscriptions</h3>
-                <p>Unpaid subscriptions stay in debt until you mark them paid.</p>
+                <p>Trash icon deletes. Status button posts or reverses payment.</p>
               </div>
             </div>
             <div class="list">${listHtml}</div>
@@ -2885,11 +2976,13 @@
                   <span>Expense: ${formatMoney(expense)}</span>
                 </div>
               </div>
-              <div class="pill-row"><span class="pill">${formatMoney(net)}</span></div>
+              <div class="pill-row">
+                <span class="pill">${formatMoney(net)}</span>
+                <button class="icon-btn delete" type="button" onclick="deleteCategory('${category.id}')" title="Delete">${iconTrash()}</button>
+              </div>
             </div>
             <div class="row-actions">
               <button class="btn" type="button" onclick="setView('categoryDetail', '${category.id}')">Open category</button>
-              <button class="btn danger" type="button" onclick="deleteCategory('${category.id}')">Delete</button>
             </div>
           </div>
         `;
@@ -2914,7 +3007,7 @@
             <div class="section-title">
               <div>
                 <h3>Your Categories</h3>
-                <p>Open one to see its own dashboard.</p>
+                <p>Trash icon deletes. Open button goes to the category dashboard.</p>
               </div>
             </div>
             <div class="list">${cardsHtml}</div>
@@ -2941,12 +3034,10 @@
               <span class="pill ${txn.type === "income" ? "green" : "red"}">
                 ${txn.type === "income" ? "+" : "-"} ${formatMoney(txn.amount)}
               </span>
+              ${txn.sourceType === "manual"
+                ? `<button class="icon-btn delete" type="button" onclick="deleteTransaction('${txn.id}')" title="Delete">${iconTrash()}</button>`
+                : ``}
             </div>
-          </div>
-          <div class="row-actions">
-            ${txn.sourceType === "manual"
-              ? `<button class="btn danger" type="button" onclick="deleteTransaction('${txn.id}')">Delete</button>`
-              : `<button class="btn" type="button">Managed in ${escapeHtml(txn.sourceType)}</button>`}
           </div>
         </div>
       `).join("") : `<div class="empty">No transactions yet.</div>`;
@@ -2973,7 +3064,7 @@
             <div class="section-title">
               <div>
                 <h3>Full Transaction History</h3>
-                <p>Only manual entries can be deleted here.</p>
+                <p>Manual entries can be deleted with the trash icon.</p>
               </div>
             </div>
             <div class="list">${listHtml}</div>
@@ -3132,7 +3223,7 @@
         case "bankBalances": return renderBankBalancesView();
         case "savings": return renderSavingsView();
         case "clients": return renderClientsView();
-        case "applications": return renderApplicationsView();
+        case "jobApplications": return renderJobApplicationsView();
         case "bills": return renderBillsView();
         case "subscriptions": return renderSubscriptionsView();
         case "categories": return renderCategoriesView();
@@ -3159,7 +3250,7 @@
 
       document.getElementById("appView").innerHTML = renderView();
 
-      if (state.currentView === "applications") handleApplicationStatusSelectChange();
+      if (state.currentView === "jobApplications") handleJobApplicationStatusSelectChange();
       if (state.currentView === "clients") handleClientRateTypeChange();
     }
 
@@ -3174,6 +3265,7 @@
 
     window.setView = setView;
     window.closeMobileMenu = closeMobileMenu;
+    window.toggleEditPanel = toggleEditPanel;
     window.saveBankAmount = saveBankAmount;
     window.deleteBankAccount = deleteBankAccount;
     window.addSavings = addSavings;
@@ -3182,9 +3274,9 @@
     window.handleClientRateTypeChange = handleClientRateTypeChange;
     window.setClientScheduleStatus = setClientScheduleStatus;
     window.deleteClient = deleteClient;
-    window.handleApplicationStatusSelectChange = handleApplicationStatusSelectChange;
-    window.saveApplicationStatus = saveApplicationStatus;
-    window.deleteApplication = deleteApplication;
+    window.handleJobApplicationStatusSelectChange = handleJobApplicationStatusSelectChange;
+    window.saveJobApplication = saveJobApplication;
+    window.deleteJobApplication = deleteJobApplication;
     window.toggleBillPaid = toggleBillPaid;
     window.deleteBill = deleteBill;
     window.toggleSubscriptionPaid = toggleSubscriptionPaid;
@@ -3193,7 +3285,7 @@
     window.deleteTransaction = deleteTransaction;
     window.addBankAccount = addBankAccount;
     window.addClient = addClient;
-    window.addApplication = addApplication;
+    window.addJobApplication = addJobApplication;
     window.addBill = addBill;
     window.addSubscription = addSubscription;
     window.addCategory = addCategory;
