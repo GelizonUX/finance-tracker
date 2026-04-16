@@ -15,15 +15,15 @@
     }
 
     :root {
-      --pink-1: #fff7fb;
-      --pink-2: #ffe1ef;
-      --pink-3: #ffc7df;
-      --pink-4: #ff9cc8;
-      --pink-5: #ff4fa0;
-      --pink-6: #ff2e8a;
-      --text-main: #8f4468;
-      --text-soft: #9f6a83;
-      --white: #ffffff;
+      --pink-1: #fff9fc;
+      --pink-2: #ffeaf4;
+      --pink-3: #ffd6e9;
+      --pink-4: #ffc0de;
+      --pink-5: #ff8fc2;
+      --pink-6: #ff5ca9;
+      --pink-7: #ff2f8d;
+      --pink-8: #e91e79;
+      --text-main: #8f4f6d;
     }
 
     html, body {
@@ -36,88 +36,133 @@
       font-family: "Inter", sans-serif;
       position: relative;
       background:
-        radial-gradient(circle at 15% 20%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 28%),
-        radial-gradient(circle at 85% 18%, rgba(255,202,227,0.6) 0%, rgba(255,202,227,0) 25%),
-        radial-gradient(circle at 50% 85%, rgba(255,165,210,0.35) 0%, rgba(255,165,210,0) 28%),
-        linear-gradient(135deg, var(--pink-1), var(--pink-2), var(--pink-3), #fff4f8, var(--pink-2));
+        radial-gradient(circle at 18% 18%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.15) 20%, transparent 38%),
+        radial-gradient(circle at 82% 14%, rgba(255,194,224,0.85) 0%, rgba(255,194,224,0.16) 18%, transparent 36%),
+        radial-gradient(circle at 50% 88%, rgba(255,143,194,0.45) 0%, rgba(255,143,194,0.10) 20%, transparent 42%),
+        linear-gradient(135deg, #fffafc 0%, #ffeef6 22%, #ffdceb 48%, #fff2f8 70%, #ffd2e6 100%);
       background-size: 180% 180%;
-      animation: backgroundFlow 14s ease-in-out infinite;
+      animation: backgroundFlow 16s ease-in-out infinite;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: -20%;
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(60px);
+      opacity: 0.8;
+    }
+
+    body::before {
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.9) 0%, transparent 24%),
+        radial-gradient(circle at 78% 26%, rgba(255,151,204,0.35) 0%, transparent 22%),
+        radial-gradient(circle at 50% 74%, rgba(255,112,181,0.22) 0%, transparent 28%);
+      animation: auraMove 14s ease-in-out infinite;
+    }
+
+    body::after {
+      background:
+        radial-gradient(circle at 72% 70%, rgba(255,255,255,0.45) 0%, transparent 18%),
+        radial-gradient(circle at 28% 78%, rgba(255,123,191,0.22) 0%, transparent 20%);
+      animation: auraMoveReverse 18s ease-in-out infinite;
     }
 
     @keyframes backgroundFlow {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
-    .ambient-glow {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      background:
-        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.45), transparent 24%),
-        radial-gradient(circle at 80% 25%, rgba(255,122,185,0.18), transparent 22%),
-        radial-gradient(circle at 50% 80%, rgba(255,92,169,0.12), transparent 26%);
-      filter: blur(18px);
+    @keyframes auraMove {
+      0% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(1.5%, -1.5%, 0) scale(1.03); }
+      100% { transform: translate3d(0, 0, 0) scale(1); }
+    }
+
+    @keyframes auraMoveReverse {
+      0% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(-1.5%, 1.5%, 0) scale(1.04); }
+      100% { transform: translate3d(0, 0, 0) scale(1); }
     }
 
     .container {
       position: relative;
-      z-index: 5;
-      width: min(92vw, 920px);
-      height: min(88vh, 760px);
+      z-index: 10;
+      width: min(92vw, 980px);
+      height: 100%;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 50px 28px;
+      padding: 42px 28px;
       text-align: center;
     }
 
-    .glass-panel {
-      position: absolute;
-      inset: 20px 0 20px 0;
-      border-radius: 34px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.34), rgba(255,255,255,0.18));
-      border: 1px solid rgba(255,255,255,0.42);
-      box-shadow:
-        0 25px 80px rgba(255, 94, 166, 0.10),
-        inset 0 1px 0 rgba(255,255,255,0.55);
-      backdrop-filter: blur(10px);
-      z-index: -1;
+    .title {
+      position: relative;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(50px, 7vw, 86px);
+      line-height: 0.95;
+      color: var(--pink-7);
+      margin-bottom: 18px;
+      text-shadow:
+        0 10px 26px rgba(255, 67, 152, 0.14),
+        0 0 16px rgba(255,255,255,0.55);
+      animation: titleFloat 4.6s ease-in-out infinite;
     }
 
-    .title {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(44px, 7vw, 76px);
-      line-height: 0.95;
-      color: var(--pink-6);
-      text-shadow: 0 10px 30px rgba(255, 79, 160, 0.12);
-      margin-bottom: 18px;
+    .title::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -35%;
+      width: 34%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.55) 50%,
+        rgba(255,255,255,0) 100%
+      );
+      transform: skewX(-18deg);
+      animation: titleShine 4.2s ease-in-out infinite;
+      pointer-events: none;
+      filter: blur(0.6px);
+    }
+
+    @keyframes titleFloat {
+      0% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-4px) scale(1.01); }
+      100% { transform: translateY(0px) scale(1); }
+    }
+
+    @keyframes titleShine {
+      0% { left: -40%; opacity: 0; }
+      12% { opacity: 1; }
+      32% { left: 115%; opacity: 0; }
+      100% { left: 115%; opacity: 0; }
     }
 
     .subtitle {
-      max-width: 560px;
-      font-size: clamp(15px, 2.1vw, 18px);
+      max-width: 630px;
+      font-size: clamp(15px, 1.8vw, 19px);
       line-height: 1.8;
       color: var(--text-main);
-      margin-bottom: 38px;
+      margin-bottom: 36px;
       font-weight: 400;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.18);
     }
 
     .button-wrap {
       position: relative;
       display: flex;
       justify-content: center;
-      margin-bottom: 52px;
+      margin-bottom: 44px;
+      z-index: 12;
     }
 
     .kiss-button {
@@ -125,17 +170,18 @@
       border: none;
       outline: none;
       cursor: pointer;
-      padding: 20px 52px;
+      padding: 18px 48px;
       border-radius: 999px;
-      font-size: clamp(20px, 2.4vw, 28px);
+      font-size: clamp(16px, 1.7vw, 20px);
       font-weight: 500;
       color: white;
       font-family: "Inter", sans-serif;
-      background: linear-gradient(135deg, #ff5caf 0%, #ff2a8b 52%, #ff0f7b 100%);
+      background: linear-gradient(135deg, #ff6ab5 0%, #ff3897 45%, #ff137d 100%);
       box-shadow:
-        0 18px 40px rgba(255, 44, 132, 0.28),
+        0 18px 38px rgba(255, 41, 133, 0.22),
+        0 0 24px rgba(255, 131, 194, 0.12),
         inset 0 1px 0 rgba(255,255,255,0.25),
-        inset 0 -8px 18px rgba(185, 0, 90, 0.18);
+        inset 0 -10px 18px rgba(179, 0, 86, 0.15);
       transition: transform 0.24s ease, box-shadow 0.24s ease, filter 0.24s ease;
       overflow: hidden;
       isolation: isolate;
@@ -146,23 +192,24 @@
       position: absolute;
       inset: 0;
       border-radius: inherit;
-      background: linear-gradient(120deg, transparent 15%, rgba(255,255,255,0.55) 50%, transparent 85%);
-      transform: translateX(-130%);
-      transition: transform 0.8s ease;
+      background: linear-gradient(120deg, transparent 15%, rgba(255,255,255,0.52) 50%, transparent 85%);
+      transform: translateX(-140%);
+      transition: transform 0.9s ease;
       z-index: -1;
     }
 
     .kiss-button:hover {
-      transform: translateY(-3px) scale(1.03);
+      transform: translateY(-4px) scale(1.02);
       box-shadow:
-        0 24px 50px rgba(255, 44, 132, 0.34),
+        0 24px 48px rgba(255, 41, 133, 0.26),
+        0 0 30px rgba(255, 131, 194, 0.15),
         inset 0 1px 0 rgba(255,255,255,0.28),
-        inset 0 -8px 18px rgba(185, 0, 90, 0.2);
-      filter: saturate(1.06);
+        inset 0 -10px 18px rgba(179, 0, 86, 0.17);
+      filter: saturate(1.05);
     }
 
     .kiss-button:hover::before {
-      transform: translateX(130%);
+      transform: translateX(140%);
     }
 
     .kiss-button:active {
@@ -173,72 +220,76 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-top: 6px;
+      margin-top: 2px;
+      z-index: 12;
     }
 
     .envelope {
       position: relative;
-      width: min(280px, 72vw);
-      height: 190px;
+      width: min(280px, 74vw);
+      height: 185px;
       cursor: pointer;
-      transition: transform 0.28s ease, filter 0.28s ease;
-      filter: drop-shadow(0 18px 35px rgba(255, 66, 150, 0.22));
+      transition: transform 0.3s ease, filter 0.3s ease;
+      filter:
+        drop-shadow(0 20px 36px rgba(255, 71, 159, 0.18))
+        drop-shadow(0 0 22px rgba(255, 173, 213, 0.10));
     }
 
     .envelope:hover {
-      transform: translateY(-8px) scale(1.025);
+      transform: translateY(-8px) scale(1.02);
     }
 
     .envelope-shell {
       position: absolute;
       inset: 0;
-      border-radius: 18px;
+      border-radius: 22px;
       overflow: hidden;
-      background: linear-gradient(180deg, #ff4ea2 0%, #ff2f8d 100%);
+      background: linear-gradient(180deg, #ff5dae 0%, #ff2f8d 100%);
       box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.22),
-        inset 0 -12px 20px rgba(185, 8, 95, 0.12);
+        inset 0 1px 0 rgba(255,255,255,0.24),
+        inset 0 -14px 22px rgba(190, 10, 101, 0.12);
     }
 
     .envelope-shine {
       position: absolute;
       inset: 0;
-      border-radius: 18px;
+      border-radius: 22px;
       overflow: hidden;
       pointer-events: none;
+      z-index: 3;
     }
 
     .envelope-shine::after {
       content: "";
       position: absolute;
-      top: -10%;
-      left: -140%;
-      width: 70%;
-      height: 130%;
+      top: -14%;
+      left: -145%;
+      width: 68%;
+      height: 140%;
       transform: rotate(18deg);
       background: linear-gradient(
         90deg,
         rgba(255,255,255,0) 0%,
-        rgba(255,255,255,0.12) 20%,
-        rgba(255,255,255,0.55) 48%,
-        rgba(255,255,255,0.12) 76%,
+        rgba(255,255,255,0.12) 22%,
+        rgba(255,255,255,0.58) 50%,
+        rgba(255,255,255,0.12) 78%,
         rgba(255,255,255,0) 100%
       );
-      transition: left 0.85s ease;
+      transition: left 0.9s ease;
       filter: blur(1px);
     }
 
     .envelope:hover .envelope-shine::after {
-      left: 155%;
+      left: 160%;
     }
 
     .envelope-back {
       position: absolute;
       inset: 0;
-      border-radius: 18px;
+      border-radius: 22px;
       background:
         linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0)),
-        linear-gradient(180deg, #ff56aa 0%, #ff2f8d 100%);
+        linear-gradient(180deg, #ff67b3 0%, #ff2f8d 100%);
     }
 
     .envelope-left-fold,
@@ -254,9 +305,9 @@
       bottom: 0;
       width: 50%;
       height: 72%;
-      background: linear-gradient(135deg, #ff77bc, #ff489d);
+      background: linear-gradient(135deg, #ff83c1, #ff4ba0);
       clip-path: polygon(0 100%, 0 0, 100% 100%);
-      opacity: 0.92;
+      opacity: 0.95;
     }
 
     .envelope-right-fold {
@@ -264,9 +315,9 @@
       bottom: 0;
       width: 50%;
       height: 72%;
-      background: linear-gradient(225deg, #ff77bc, #ff489d);
+      background: linear-gradient(225deg, #ff83c1, #ff4ba0);
       clip-path: polygon(100% 100%, 0 100%, 100% 0);
-      opacity: 0.92;
+      opacity: 0.95;
     }
 
     .envelope-bottom-fold {
@@ -276,16 +327,16 @@
       margin: auto;
       width: 100%;
       height: 56%;
-      background: linear-gradient(180deg, #ff3d95, #ff1f82);
-      clip-path: polygon(0 100%, 50% 18%, 100% 100%);
+      background: linear-gradient(180deg, #ff3f98, #ff1c81);
+      clip-path: polygon(0 100%, 50% 20%, 100% 100%);
     }
 
     .envelope-top-flap {
       left: 0;
       top: 0;
       width: 100%;
-      height: 55%;
-      background: linear-gradient(180deg, #ff7cbc 0%, #ff58a9 100%);
+      height: 56%;
+      background: linear-gradient(180deg, #ff8dca 0%, #ff62b0 100%);
       clip-path: polygon(0 0, 50% 100%, 100% 0);
       transform-origin: top center;
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.22);
@@ -300,8 +351,9 @@
       padding: 42px 24px 0;
       text-align: center;
       font-family: "Playfair Display", serif;
-      font-size: clamp(18px, 2.2vw, 24px);
-      letter-spacing: 0.5px;
+      font-size: clamp(18px, 2vw, 24px);
+      line-height: 1.2;
+      letter-spacing: 0.3px;
       color: rgba(255,255,255,0.98);
       text-shadow: 0 4px 18px rgba(145, 9, 77, 0.22);
       z-index: 2;
@@ -313,27 +365,38 @@
       user-select: none;
       z-index: 1;
       will-change: transform, opacity;
-      opacity: 0.35;
-      animation-name: floatUp;
-      animation-timing-function: linear;
-      animation-fill-mode: forwards;
+      filter: drop-shadow(0 4px 12px rgba(255,255,255,0.14));
     }
 
-    @keyframes floatUp {
-      0% {
-        transform: translate3d(0, 110vh, 0) scale(0.85) rotate(0deg);
-        opacity: 0;
-      }
-      8% {
-        opacity: 0.4;
-      }
-      50% {
-        opacity: 0.38;
-      }
-      100% {
-        transform: translate3d(var(--drift, 0px), -18vh, 0) scale(1.15) rotate(12deg);
-        opacity: 0;
-      }
+    .floating-emoji.rose {
+      opacity: 1;
+      filter:
+        drop-shadow(0 5px 12px rgba(255,255,255,0.20))
+        drop-shadow(0 0 8px rgba(255, 182, 218, 0.20));
+    }
+
+    .floating-emoji.soft {
+      opacity: 0.55;
+    }
+
+    @keyframes driftUp {
+      0% { transform: translate3d(0, 0, 0) scale(0.92) rotate(0deg); }
+      100% { transform: translate3d(var(--dx), calc(-1 * var(--dy)), 0) scale(1.12) rotate(var(--rot)); }
+    }
+
+    @keyframes driftDown {
+      0% { transform: translate3d(0, 0, 0) scale(0.92) rotate(0deg); }
+      100% { transform: translate3d(var(--dx), var(--dy), 0) scale(1.08) rotate(var(--rot)); }
+    }
+
+    @keyframes driftLeft {
+      0% { transform: translate3d(0, 0, 0) scale(0.92) rotate(0deg); }
+      100% { transform: translate3d(calc(-1 * var(--dx)), var(--dy), 0) scale(1.1) rotate(var(--rot)); }
+    }
+
+    @keyframes driftRight {
+      0% { transform: translate3d(0, 0, 0) scale(0.92) rotate(0deg); }
+      100% { transform: translate3d(var(--dx), var(--dy), 0) scale(1.1) rotate(var(--rot)); }
     }
 
     .cursor-heart {
@@ -343,15 +406,17 @@
       z-index: 20;
       transform: translate(-50%, -50%);
       will-change: transform, opacity;
+      filter: drop-shadow(0 2px 10px rgba(255,255,255,0.18));
     }
 
     .click-burst-emoji {
       position: fixed;
       pointer-events: none;
       user-select: none;
-      z-index: 30;
+      z-index: 20;
       transform: translate(-50%, -50%);
       will-change: transform, opacity;
+      filter: drop-shadow(0 4px 12px rgba(255,255,255,0.12));
     }
 
     .click-message {
@@ -360,13 +425,13 @@
       top: 0;
       transform: translate(-50%, -50%);
       font-family: "Playfair Display", serif;
-      font-size: clamp(30px, 4vw, 52px);
-      color: var(--pink-6);
+      font-size: clamp(28px, 3.6vw, 46px);
+      color: var(--pink-8);
       text-shadow:
-        0 10px 28px rgba(255, 52, 142, 0.24),
-        0 0 16px rgba(255,255,255,0.55);
+        0 12px 30px rgba(255, 45, 143, 0.20),
+        0 0 22px rgba(255,255,255,0.62);
       pointer-events: none;
-      z-index: 35;
+      z-index: 25;
       white-space: nowrap;
       opacity: 0;
     }
@@ -378,28 +443,27 @@
       justify-content: center;
       align-items: center;
       padding: 24px;
-      background: rgba(255, 249, 252, 0.45);
+      background: rgba(255, 248, 252, 0.52);
       backdrop-filter: blur(16px);
       z-index: 9999;
     }
 
     .letter-card {
       position: relative;
-      width: min(92vw, 700px);
-      max-height: min(84vh, 760px);
+      width: min(82vw, 460px);
+      max-height: min(70vh, 420px);
       overflow: auto;
-      border-radius: 28px;
-      padding: 42px 34px 34px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,247,251,0.95));
+      border-radius: 24px;
+      padding: 24px 22px 22px 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.97), rgba(255,245,250,0.96));
       box-shadow:
-        0 30px 90px rgba(255, 87, 165, 0.16),
-        inset 0 1px 0 rgba(255,255,255,0.7);
-      border: 1px solid rgba(255,255,255,0.7);
+        0 28px 75px rgba(255, 87, 165, 0.14),
+        inset 0 1px 0 rgba(255,255,255,0.75);
+      border: 1px solid rgba(255,255,255,0.74);
     }
 
     .letter-card::-webkit-scrollbar {
-      width: 8px;
+      width: 7px;
     }
 
     .letter-card::-webkit-scrollbar-thumb {
@@ -409,18 +473,20 @@
 
     .close-btn {
       position: absolute;
-      top: 16px;
-      right: 18px;
-      width: 42px;
-      height: 42px;
+      top: 10px;
+      right: 10px;
+      width: 34px;
+      height: 34px;
       border: none;
       border-radius: 999px;
       cursor: pointer;
-      font-size: 22px;
-      color: var(--pink-6);
-      background: rgba(255, 236, 245, 0.95);
+      font-size: 17px;
+      line-height: 1;
+      color: var(--pink-7);
+      background: rgba(255, 236, 245, 0.98);
       box-shadow: 0 8px 20px rgba(255, 80, 158, 0.12);
       transition: transform 0.2s ease, background 0.2s ease;
+      z-index: 3;
     }
 
     .close-btn:hover {
@@ -428,31 +494,20 @@
       background: rgba(255, 227, 240, 1);
     }
 
-    .letter-heading {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(34px, 5vw, 56px);
-      color: var(--pink-6);
-      text-align: center;
-      margin-bottom: 18px;
-    }
-
     .letter-body {
-      font-size: clamp(16px, 2.1vw, 18px);
-      line-height: 1.95;
-      color: #6f4c5d;
+      font-size: 14px;
+      line-height: 1.8;
+      color: #704b5d;
       text-align: left;
       white-space: pre-line;
+      padding-top: 6px;
+      padding-right: 16px;
     }
 
     @media (max-width: 680px) {
       .container {
         width: 94vw;
-        padding: 34px 18px;
-      }
-
-      .glass-panel {
-        inset: 10px 0;
-        border-radius: 26px;
+        padding: 30px 18px;
       }
 
       .subtitle {
@@ -460,33 +515,38 @@
       }
 
       .button-wrap {
-        margin-bottom: 40px;
+        margin-bottom: 36px;
       }
 
       .kiss-button {
-        padding: 18px 34px;
+        padding: 16px 30px;
+        font-size: 16px;
       }
 
       .envelope {
-        height: 170px;
+        height: 172px;
+      }
+
+      .envelope-text {
+        font-size: 18px;
       }
 
       .letter-card {
-        padding: 34px 22px 24px;
+        width: min(90vw, 420px);
+        max-height: min(68vh, 400px);
+        padding: 24px 18px 18px 18px;
       }
 
       .letter-body {
-        line-height: 1.8;
+        font-size: 13px;
+        line-height: 1.72;
+        padding-right: 12px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="ambient-glow"></div>
-
   <main class="container">
-    <div class="glass-panel"></div>
-
     <h1 class="title">Hi baby 💋</h1>
 
     <p class="subtitle">
@@ -516,25 +576,21 @@
   <div class="letter-overlay" id="letterOverlay">
     <div class="letter-card">
       <button class="close-btn" id="closeLetterBtn" aria-label="Close">✕</button>
-      <div class="letter-heading">for my baby ❤️</div>
       <div class="letter-body">baby,
 
-i just want you to know how much i appreciate you.
+i just wanted to leave this here for you.
 
-you make everything feel lighter, calmer, and easier in a way that means so much to me. even on ordinary days, you make life feel softer and more beautiful just by being in it.
+thank you for being so sweet, so lovely, and so special to me.
 
-i notice your effort. i notice your heart. i notice the way you keep going, the way you care, the way you make things better without even trying to make it a big deal.
+you make my days feel lighter, calmer, and a lot more beautiful just by being in them.
 
-you are one of the most special parts of my life. you bring comfort, peace, warmth, and love into my world. and honestly, you make everything feel more worth it.
+i notice you.
+i appreciate you.
+i’m proud of you.
 
-thank you for being you.
-thank you for being so lovely.
-thank you for being my safe place.
-thank you for making my days sweeter.
+and i really love the way you make everything feel a little softer.
 
-i am so proud of you, and i hope you never forget how amazing you are.
-
-you are my baby, and i love you more than i could ever fully put into words. 💗🌹</div>
+you mean so much to me, baby. 💗🌹</div>
     </div>
   </div>
 
@@ -544,7 +600,11 @@ you are my baby, and i love you more than i could ever fully put into words. �
     const letterOverlay = document.getElementById("letterOverlay");
     const closeLetterBtn = document.getElementById("closeLetterBtn");
 
-    const floatEmojis = ["💋", "💕", "💗", "💖", "🌹", "🌸"];
+    const floatEmojis = [
+      "🌹","🌹","🌹",
+      "💋","💕","💗","💖","🌸"
+    ];
+
     const burstEmojis = ["💋", "❤️", "💕", "💖", "🌹"];
     const clickMessages = [
       "mwah 💋",
@@ -555,22 +615,56 @@ you are my baby, and i love you more than i could ever fully put into words. �
       "my baby 🌹"
     ];
 
+    const directions = ["up", "down", "left", "right"];
+
+    function randomBetween(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
     function createFloatingEmoji() {
       const el = document.createElement("div");
-      el.className = "floating-emoji";
-      el.textContent = floatEmojis[Math.floor(Math.random() * floatEmojis.length)];
+      const emoji = floatEmojis[Math.floor(Math.random() * floatEmojis.length)];
+      const isRose = emoji === "🌹";
+      const dir = directions[Math.floor(Math.random() * directions.length)];
 
-      const startLeft = Math.random() * window.innerWidth;
-      const size = Math.random() * 18 + 16;
-      const duration = Math.random() * 10 + 9;
-      const drift = (Math.random() - 0.5) * 140;
+      el.className = "floating-emoji " + (isRose ? "rose" : "soft");
+      el.textContent = emoji;
 
-      el.style.left = startLeft + "px";
-      el.style.bottom = "-40px";
+      let startX, startY;
+
+      if (dir === "up") {
+        startX = randomBetween(0, window.innerWidth);
+        startY = window.innerHeight + 40;
+        el.style.animationName = "driftUp";
+      } else if (dir === "down") {
+        startX = randomBetween(0, window.innerWidth);
+        startY = -40;
+        el.style.animationName = "driftDown";
+      } else if (dir === "left") {
+        startX = window.innerWidth + 40;
+        startY = randomBetween(0, window.innerHeight);
+        el.style.animationName = "driftLeft";
+      } else {
+        startX = -40;
+        startY = randomBetween(0, window.innerHeight);
+        el.style.animationName = "driftRight";
+      }
+
+      const size = isRose ? randomBetween(24, 34) : randomBetween(16, 24);
+      const duration = randomBetween(11, 18);
+      const dx = randomBetween(120, 240) + "px";
+      const dy = randomBetween(120, 260) + "px";
+      const rot = randomBetween(-24, 24) + "deg";
+
+      el.style.left = startX + "px";
+      el.style.top = startY + "px";
       el.style.fontSize = size + "px";
       el.style.animationDuration = duration + "s";
-      el.style.setProperty("--drift", drift + "px");
-      el.style.opacity = Math.random() * 0.18 + 0.24;
+      el.style.animationTimingFunction = "linear";
+      el.style.animationFillMode = "forwards";
+      el.style.setProperty("--dx", dx);
+      el.style.setProperty("--dy", dy);
+      el.style.setProperty("--rot", rot);
 
       document.body.appendChild(el);
 
@@ -579,36 +673,38 @@ you are my baby, and i love you more than i could ever fully put into words. �
       }, duration * 1000);
     }
 
-    for (let i = 0; i < 42; i++) {
-      setTimeout(createFloatingEmoji, i * 170);
+    /* reduced floating emojis only */
+    for (let i = 0; i < 18; i++) {
+      setTimeout(createFloatingEmoji, i * 220);
     }
-    setInterval(createFloatingEmoji, 280);
+
+    setInterval(createFloatingEmoji, 520);
 
     let lastTrailTime = 0;
     document.addEventListener("mousemove", (e) => {
       const now = Date.now();
-      if (now - lastTrailTime < 42) return;
+      if (now - lastTrailTime < 40) return;
       lastTrailTime = now;
 
       const trail = document.createElement("div");
       trail.className = "cursor-heart";
-      trail.textContent = Math.random() > 0.35 ? "💕" : "🌹";
+      trail.textContent = Math.random() > 0.4 ? "💕" : "🌹";
       trail.style.left = e.clientX + "px";
       trail.style.top = e.clientY + "px";
-      trail.style.fontSize = (Math.random() * 6 + 12) + "px";
-      trail.style.opacity = "0.92";
+      trail.style.fontSize = (Math.random() * 6 + 11) + "px";
+      trail.style.opacity = "0.94";
       document.body.appendChild(trail);
 
       let x = e.clientX;
       let y = e.clientY;
-      let opacity = 0.92;
+      let opacity = 0.94;
       let scale = 1;
 
       function animateTrail() {
-        y -= 1.3;
-        x += (Math.random() - 0.5) * 0.5;
-        opacity -= 0.045;
-        scale += 0.008;
+        y -= 1.1;
+        x += (Math.random() - 0.5) * 0.4;
+        opacity -= 0.032;
+        scale += 0.006;
 
         trail.style.top = y + "px";
         trail.style.left = x + "px";
@@ -631,28 +727,31 @@ you are my baby, and i love you more than i could ever fully put into words. �
       message.className = "click-message";
       message.textContent = text;
       message.style.left = (rect.left + rect.width / 2) + "px";
-      message.style.top = (rect.top - 22) + "px";
+      message.style.top = (rect.top - 24) + "px";
       document.body.appendChild(message);
 
-      let y = rect.top - 22;
+      let y = rect.top - 24;
       let opacity = 0;
-      let scale = 0.86;
+      let scale = 0.88;
       let frame = 0;
 
       function animateMessage() {
         frame += 1;
 
-        if (frame < 8) {
-          opacity += 0.12;
-          scale += 0.035;
+        if (frame < 12) {
+          opacity += 0.10;
+          scale += 0.024;
+        } else if (frame < 75) { /* reduced text duration only */
+          opacity = Math.min(opacity + 0.004, 1);
+          y -= 0.08;
         } else {
-          opacity -= 0.022;
-          y -= 1.1;
+          opacity -= 0.018;
+          y -= 0.40;
         }
 
         message.style.top = y + "px";
         message.style.opacity = Math.max(opacity, 0);
-        message.style.transform = `translate(-50%, -50%) scale(${Math.min(scale, 1.05)})`;
+        message.style.transform = `translate(-50%, -50%) scale(${Math.min(scale, 1.03)})`;
 
         if (opacity <= 0) {
           message.remove();
@@ -665,7 +764,7 @@ you are my baby, and i love you more than i could ever fully put into words. �
     }
 
     function createBurst(x, y) {
-      const count = 54;
+      const count = 56;
 
       for (let i = 0; i < count; i++) {
         const particle = document.createElement("div");
@@ -673,7 +772,7 @@ you are my baby, and i love you more than i could ever fully put into words. �
         particle.textContent = burstEmojis[Math.floor(Math.random() * burstEmojis.length)];
         particle.style.left = x + "px";
         particle.style.top = y + "px";
-        particle.style.fontSize = (Math.random() * 16 + 22) + "px";
+        particle.style.fontSize = (Math.random() * 14 + 18) + "px";
         particle.style.opacity = "1";
         document.body.appendChild(particle);
 
@@ -684,7 +783,7 @@ you are my baby, and i love you more than i could ever fully put into words. �
         let px = x;
         let py = y;
         let vx = Math.cos(angle) * speed;
-        let vy = Math.sin(angle) * speed - 1.6;
+        let vy = Math.sin(angle) * speed - 1.4;
         let opacity = 1;
         let scale = 1;
 
@@ -692,7 +791,7 @@ you are my baby, and i love you more than i could ever fully put into words. �
           px += vx;
           py += vy;
           vy += 0.12;
-          opacity -= 0.021;
+          opacity -= 0.017;
           scale += 0.004;
 
           particle.style.left = px + "px";
