@@ -30,7 +30,81 @@
       --vince-blue-text: #3f6582;
     }
 
-    html, body {
+    html, body 
+    <!-- INTRO OVERLAY (ALL-IN-ONE) -->
+<div id="introOverlay" style="
+position:fixed;
+inset:0;
+z-index:99999;
+display:flex;
+align-items:center;
+justify-content:center;
+backdrop-filter:blur(18px);
+background:rgba(255,240,248,0.55);
+transition:opacity .6s ease;
+">
+
+  <div style="
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:18px;
+  ">
+
+    <div id="introHeart" style="
+    font-size:clamp(60px,10vw,90px);
+    cursor:pointer;
+    user-select:none;
+    animation:introFloat 3s ease-in-out infinite;
+    filter:
+      drop-shadow(0 10px 25px rgba(255,45,143,.25))
+      drop-shadow(0 0 18px rgba(255,140,200,.25));
+    ">
+      💗
+    </div>
+
+    <div style="
+    font-family:'Playfair Display',serif;
+    font-size:20px;
+    color:#ff2f8d;
+    opacity:.9;
+    ">
+    </div>
+
+  </div>
+</div>
+
+<style>
+@keyframes introFloat{
+  0%{transform:translateY(0) scale(1)}
+  50%{transform:translateY(-10px) scale(1.05)}
+  100%{transform:translateY(0) scale(1)}
+}
+
+@keyframes introClick{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.25)}
+  100%{transform:scale(.9);opacity:0}
+}
+</style>
+
+<script>
+const introOverlay = document.getElementById("introOverlay");
+const introHeart = document.getElementById("introHeart");
+
+introHeart.onclick = () => {
+  introHeart.style.animation = "introClick .6s ease forwards";
+
+  setTimeout(()=>{
+    introOverlay.style.opacity = "0";
+  },300);
+
+  setTimeout(()=>{
+    introOverlay.style.display = "none";
+  },900);
+};
+</script>
+    {
       width: 100%;
       height: 100%;
     }
