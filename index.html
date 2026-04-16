@@ -26,6 +26,7 @@
       --text-main: #8f4f6d;
       --text-soft: #704b5d;
       --white: #ffffff;
+      --vince-blue: #dff1ff;
       --vince-blue-text: #3f6582;
     }
 
@@ -89,53 +90,6 @@
       0% { transform: translate3d(0, 0, 0) scale(1); }
       50% { transform: translate3d(-1.5%, 1.5%, 0) scale(1.04); }
       100% { transform: translate3d(0, 0, 0) scale(1); }
-    }
-
-    /* INTRO */
-    .intro-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 100000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background:
-        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.65) 0%, transparent 35%),
-        radial-gradient(circle at 70% 80%, rgba(255,214,234,0.8) 0%, transparent 32%),
-        linear-gradient(135deg, #fff5fa 0%, #ffe3f0 35%, #ffd2e8 65%, #ffeaf5 100%);
-      opacity: 1;
-      transition: opacity 0.7s ease;
-    }
-
-    .intro-overlay.hide {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .intro-heart {
-      font-size: clamp(72px, 12vw, 110px);
-      cursor: pointer;
-      user-select: none;
-      animation: introHeartFloat 3s ease-in-out infinite;
-      filter:
-        drop-shadow(0 12px 26px rgba(255, 45, 143, 0.20))
-        drop-shadow(0 0 18px rgba(255, 140, 200, 0.22));
-    }
-
-    .intro-heart.clicked {
-      animation: introHeartClick 0.75s ease forwards;
-    }
-
-    @keyframes introHeartFloat {
-      0% { transform: translateY(0px) scale(1); }
-      50% { transform: translateY(-12px) scale(1.05); }
-      100% { transform: translateY(0px) scale(1); }
-    }
-
-    @keyframes introHeartClick {
-      0% { transform: scale(1); opacity: 1; }
-      45% { transform: scale(1.28); opacity: 1; }
-      100% { transform: scale(0.9); opacity: 0; }
     }
 
     .container {
@@ -486,6 +440,83 @@
       opacity: 0;
     }
 
+    .letter-overlay {
+      position: fixed;
+      inset: 0;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      background: rgba(255, 248, 252, 0.52);
+      backdrop-filter: blur(16px);
+      z-index: 9999;
+    }
+
+    .letter-card {
+      position: relative;
+      width: min(92vw, 560px);
+      max-height: min(86vh, 680px);
+      overflow: auto;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.97), rgba(255,245,250,0.96));
+      box-shadow:
+        0 28px 75px rgba(255, 87, 165, 0.14),
+        inset 0 1px 0 rgba(255,255,255,0.75);
+      border: 1px solid rgba(255,255,255,0.74);
+      padding: 24px 22px 22px 22px;
+    }
+
+    .letter-card::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    .letter-card::-webkit-scrollbar-thumb {
+      background: rgba(255, 110, 178, 0.35);
+      border-radius: 999px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 34px;
+      height: 34px;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 17px;
+      line-height: 1;
+      color: var(--pink-7);
+      background: rgba(255, 236, 245, 0.98);
+      box-shadow: 0 8px 20px rgba(255, 80, 158, 0.12);
+      transition: transform 0.2s ease, background 0.2s ease;
+      z-index: 4;
+    }
+
+    .close-btn:hover {
+      transform: scale(1.06);
+      background: rgba(255, 227, 240, 1);
+    }
+
+    .love-note-title {
+      font-family: "Playfair Display", serif;
+      color: var(--pink-7);
+      font-size: 24px;
+      margin-bottom: 10px;
+      text-align: left;
+      padding-right: 36px;
+    }
+
+    .love-note-body {
+      font-size: 14px;
+      line-height: 1.72;
+      color: var(--text-soft);
+      text-align: left;
+      white-space: pre-line;
+      padding-top: 6px;
+      padding-right: 8px;
+    }
+
     /* CHAT PANEL */
     .chat-fab {
       position: fixed;
@@ -761,11 +792,6 @@
   </style>
 </head>
 <body>
-
-  <div class="intro-overlay" id="introOverlay">
-    <div class="intro-heart" id="introHeart">💗</div>
-  </div>
-
   <main class="container">
     <h1 class="title">Hi baby 💋</h1>
 
@@ -861,9 +887,6 @@ you mean so much to me, baby. 💗🌹</div>
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
 
-    const introOverlay = document.getElementById("introOverlay");
-    const introHeart = document.getElementById("introHeart");
-
     const kissButton = document.getElementById("kissButton");
     const openLetterBtn = document.getElementById("openLetterBtn");
     const letterOverlay = document.getElementById("letterOverlay");
@@ -893,18 +916,6 @@ you mean so much to me, baby. 💗🌹</div>
     ];
 
     const directions = ["up", "down", "left", "right"];
-
-    introHeart.addEventListener("click", () => {
-      introHeart.classList.add("clicked");
-
-      setTimeout(() => {
-        introOverlay.classList.add("hide");
-      }, 300);
-
-      setTimeout(() => {
-        introOverlay.style.display = "none";
-      }, 900);
-    });
 
     function randomBetween(min, max) {
       return Math.random() * (max - min) + min;
