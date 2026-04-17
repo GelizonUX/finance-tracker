@@ -1672,7 +1672,7 @@
       }
     });
 
-    const messagesQuery = query(ref(db, "messages"), limitToLast(30));
+    const messagesQuery = query(ref(db, "messages"), limitToLast(200));
 
     onChildAdded(messagesQuery, (snapshot) => {
       const data = snapshot.val();
