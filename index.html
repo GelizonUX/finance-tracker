@@ -705,6 +705,56 @@
         inset 0 1px 0 rgba(255,255,255,0.24);
     }
 
+    /* AUDIO FEATURE ADDED */
+    .music-fab {
+      position: fixed;
+      right: 92px;
+      bottom: 18px;
+      height: 58px;
+      min-width: 178px;
+      padding: 0 18px;
+      border: none;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #ff6ab5 0%, #ff137d 100%);
+      box-shadow:
+        0 16px 34px rgba(255, 41, 133, 0.24),
+        inset 0 1px 0 rgba(255,255,255,0.24);
+      cursor: pointer;
+      z-index: 40;
+      user-select: none;
+      color: white;
+      font-family: "Inter", sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      transition: transform 0.24s ease, box-shadow 0.24s ease, filter 0.24s ease;
+    }
+
+    .music-fab:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow:
+        0 22px 40px rgba(255, 41, 133, 0.28),
+        inset 0 1px 0 rgba(255,255,255,0.24);
+      filter: saturate(1.03);
+    }
+
+    .music-fab:active {
+      transform: translateY(0) scale(0.99);
+    }
+
+    .music-fab-icon {
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .music-fab-label {
+      white-space: nowrap;
+      line-height: 1;
+    }
+
     /* INTRO */
     .intro-overlay {
       position: fixed;
@@ -942,6 +992,20 @@
         font-size: 22px;
       }
 
+      .music-fab {
+        right: 76px;
+        bottom: 14px;
+        min-width: 154px;
+        height: 54px;
+        padding: 0 14px;
+        font-size: 12.5px;
+        gap: 8px;
+      }
+
+      .music-fab-icon {
+        font-size: 16px;
+      }
+
       .chat-panel {
         right: 10px;
         left: 10px;
@@ -1034,6 +1098,15 @@
     </div>
   </div>
 
+  <button class="music-fab" id="playSongBtn" aria-label="Play song">
+    <span class="music-fab-label">play this song</span>
+    <span class="music-fab-icon">🎧</span>
+  </button>
+
+  <audio id="bgMusic">
+    <source src="lovesong.mp3" type="audio/mpeg">
+  </audio>
+
   <div class="chat-fab" id="chatFab" aria-label="Open chat">💬</div>
 
   <div class="chat-panel" id="chatPanel">
@@ -1097,6 +1170,13 @@
     const chatSenderSelect = document.getElementById("chatSenderSelect");
     const chatMessageInput = document.getElementById("chatMessageInput");
     const chatSendBtn = document.getElementById("chatSendBtn");
+
+    const playSongBtn = document.getElementById("playSongBtn");
+    const bgMusic = document.getElementById("bgMusic");
+    const musicFabLabel = playSongBtn.querySelector(".music-fab-label");
+    const musicFabIcon = playSongBtn.querySelector(".music-fab-icon");
+
+    let isSongPlaying = false;
 
     const floatEmojis = [
       "🌹","🌹","🌹",
@@ -1455,6 +1535,30 @@
       const data = snapshot.val();
       const chatBubble = buildChatBubble(data);
       chatFeed.prepend(chatBubble);
+    });
+
+    playSongBtn.addEventListener("click", async () => {
+      try {
+        if (!isSongPlaying) {
+          await bgMusic.play();
+          isSongPlaying = true;
+          musicFabLabel.textContent = "pause song";
+          musicFabIcon.textContent = "⏸️";
+        } else {
+          bgMusic.pause();
+          isSongPlaying = false;
+          musicFabLabel.textContent = "play this song";
+          musicFabIcon.textContent = "🎧";
+        }
+      } catch (error) {
+        console.error("Audio play failed:", error);
+      }
+    });
+
+    bgMusic.addEventListener("ended", () => {
+      isSongPlaying = false;
+      musicFabLabel.textContent = "play this song";
+      musicFabIcon.textContent = "🎧";
     });
   </script>
 </body>
