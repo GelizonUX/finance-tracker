@@ -1674,10 +1674,11 @@
 
     const messagesQuery = query(ref(db, "messages"), limitToLast(200));
 
-    onChildAdded(messagesQuery, (snapshot) => {
-      const data = snapshot.val();
-      const chatBubble = buildChatBubble(data);
-      chatFeed.prepend(chatBubble);
+onChildAdded(messagesQuery, (snapshot) => {
+  const data = snapshot.val();
+  const chatBubble = buildChatBubble(data);
+  chatFeed.appendChild(chatBubble);
+  chatFeed.scrollTop = chatFeed.scrollHeight;
     });
 
     playSongBtn.addEventListener("click", async () => {
