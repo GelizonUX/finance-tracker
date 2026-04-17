@@ -1625,8 +1625,15 @@
     });
 
 chatFab.addEventListener("click", () => {
+  const isOpening = !chatPanel.classList.contains("open");
   chatPanel.classList.toggle("open");
-    });
+
+  if (isOpening) {
+    setTimeout(() => {
+      chatFeed.scrollTop = chatFeed.scrollHeight;
+    }, 100);
+  }
+});
 
     chatCloseBtn.addEventListener("click", () => {
       chatPanel.classList.remove("open");
