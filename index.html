@@ -1080,29 +1080,34 @@
       }
 
       .music-fab-wrap {
-        right: 76px;
+        right: 70px;
         bottom: 14px;
         gap: 6px;
+        max-width: calc(100vw - 84px);
       }
 
       .music-fab {
-        min-width: 280px;
+        min-width: 0;
+        width: calc(100vw - 140px);
+        max-width: 260px;
         height: 54px;
-        padding: 0 12px;
-        gap: 8px;
+        padding: 0 10px;
+        gap: 6px;
       }
 
       .music-main-btn {
         font-size: 12px;
-        gap: 6px;
+        gap: 4px;
+        min-width: 52px;
       }
 
       .music-fab-icon {
-        font-size: 16px;
+        font-size: 15px;
       }
 
       .music-seek-bar {
-        width: 80px;
+        width: 72px;
+        min-width: 72px;
       }
 
       .music-fab-time {
@@ -1210,7 +1215,7 @@
   <div class="music-fab-wrap">
     <div class="music-fab">
       <button class="music-main-btn" id="playSongBtn" aria-label="Play song">
-        <span class="music-fab-label" id="musicFabLabel">Play</span>
+        <span class="music-fab-label" id="musicFabLabel">play</span>
         <span class="music-fab-icon" id="musicFabIcon">🎧</span>
       </button>
 
