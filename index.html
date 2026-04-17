@@ -1677,9 +1677,10 @@ chatFab.addEventListener("click", () => {
 onChildAdded(messagesQuery, (snapshot) => {
   const data = snapshot.val();
   const chatBubble = buildChatBubble(data);
+
   chatFeed.appendChild(chatBubble);
   chatFeed.scrollTop = chatFeed.scrollHeight;
-    });
+});
 
     playSongBtn.addEventListener("click", async () => {
       try {
