@@ -1672,14 +1672,12 @@
       }
     });
 
-    const messagesQuery = query(ref(db, "messages"), limitToLast(200));
+    const messagesQuery = query(ref(db, "messages"), limitToLast(30));
 
-   onChildAdded(messagesQuery, (snapshot) => {
-  const data = snapshot.val();
-  const chatBubble = buildChatBubble(data);
-  chatFeed.prepend(chatBubble);
-});
-});
+    onChildAdded(messagesQuery, (snapshot) => {
+      const data = snapshot.val();
+      const chatBubble = buildChatBubble(data);
+      chatFeed.prepend(chatBubble);
     });
 
     playSongBtn.addEventListener("click", async () => {
