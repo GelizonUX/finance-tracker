@@ -1624,14 +1624,8 @@
       }
     });
 
-    chatFab.addEventListener("click", () => {
+chatFab.addEventListener("click", () => {
   chatPanel.classList.toggle("open");
-
-  if (chatPanel.classList.contains("open")) {
-    requestAnimationFrame(() => {
-      chatFeed.scrollTop = chatFeed.scrollHeight;
-    });
-  }
     });
 
     chatCloseBtn.addEventListener("click", () => {
