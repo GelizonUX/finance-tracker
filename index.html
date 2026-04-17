@@ -1297,7 +1297,7 @@
     const closeLetterBtn = document.getElementById("closeLetterBtn");
 
     const chatFab = document.getElementById("chatFab");
-    const chatPanel = document.getElementById("chatPanel");
+    const  = document.getElementById("chatPanel");
     const chatCloseBtn = document.getElementById("chatCloseBtn");
     const chatFeed = document.getElementById("chatFeed");
     const chatSenderSelect = document.getElementById("chatSenderSelect");
@@ -1625,7 +1625,13 @@
     });
 
     chatFab.addEventListener("click", () => {
-      chatPanel.classList.toggle("open");
+  chatPanel.classList.toggle("open");
+
+  if (chatPanel.classList.contains("open")) {
+    requestAnimationFrame(() => {
+      chatFeed.scrollTop = chatFeed.scrollHeight;
+    });
+  }
     });
 
     chatCloseBtn.addEventListener("click", () => {
