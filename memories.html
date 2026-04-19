@@ -33,6 +33,7 @@
     html, body {
       width: 100%;
       min-height: 100%;
+      overflow-x: hidden;
     }
 
     body {
@@ -407,6 +408,7 @@
       align-items: center;
       justify-content: center;
       padding: 18px;
+      overflow-x: hidden;
       background: rgba(255, 232, 242, 0.22);
       backdrop-filter: blur(0px);
       z-index: 80;
@@ -426,9 +428,14 @@
 
     .upload-card {
       width: min(92vw, 760px);
+      max-width: min(92vw, 760px);
       max-height: min(88vh, calc(100dvh - 48px));
-      overflow: auto;
-      overscroll-behavior: contain;
+      overflow-y: auto;
+      overflow-x: hidden;
+      overscroll-behavior-y: contain;
+      overscroll-behavior-x: none;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-y;
       margin-top: 0;
       padding-bottom: 104px;
       transform: translateY(18px) scale(0.96);
@@ -436,6 +443,29 @@
       transition: transform 0.36s cubic-bezier(.22,1,.36,1), opacity 0.36s ease;
       scrollbar-width: thin;
       scrollbar-color: rgba(255, 47, 141, 0.82) rgba(255,255,255,0.18);
+    }
+
+    .upload-card *,
+    .modal-card * {
+      max-width: 100%;
+    }
+
+    .form-grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    .form-grid > div,
+    .form-full,
+    .photo-picker,
+    .upload-preview,
+    .selected-file,
+    .status-text {
+      min-width: 0;
+    }
+
+    .text-input,
+    .textarea-input {
+      max-width: 100%;
     }
 
     .upload-card::-webkit-scrollbar {
@@ -683,8 +713,10 @@
       position: relative;
       width: min(94vw, 980px);
       max-height: min(90vh, calc(100dvh - 32px));
-      overflow: auto;
-      overscroll-behavior: contain;
+      overflow-y: auto;
+      overflow-x: hidden;
+      overscroll-behavior-y: contain;
+      overscroll-behavior-x: none;
       border-radius: 30px;
       background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,246,250,0.96));
       border: 1px solid rgba(255,255,255,0.82);
@@ -1417,7 +1449,10 @@
 
       .upload-card {
         width: 100%;
+        max-width: calc(100vw - 20px);
         max-height: calc(100dvh - 20px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+        overflow-y: auto;
+        overflow-x: hidden;
         margin-top: 0;
         padding: 16px 16px calc(132px + env(safe-area-inset-bottom, 0px));
         border-radius: 22px;
