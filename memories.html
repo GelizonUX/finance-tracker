@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Our Core Memories 💗</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
   <style>
     * {
       margin: 0;
@@ -24,6 +25,8 @@
       --text-main: #8f4f6d;
       --text-soft: #704b5d;
       --white: #ffffff;
+      --vince-blue: #dff1ff;
+      --vince-blue-text: #3f6582;
       --snell-font: "Snell Roundhand", "Snell Roundhand Bold", "Apple Chancery", "URW Chancery L", cursive;
     }
 
@@ -98,9 +101,9 @@
     .page {
       position: relative;
       z-index: 2;
-      width: min(94vw, 1120px);
+      width: min(94vw, 1180px);
       margin: 0 auto;
-      padding: 28px 0 54px;
+      padding: 28px 0 120px;
     }
 
     .topbar {
@@ -145,7 +148,7 @@
     .hero-title {
       font-family: var(--snell-font);
       font-size: clamp(42px, 6vw, 78px);
-      line-height: 0.95;
+      line-height: 0.92;
       color: var(--pink-7);
       margin-bottom: 14px;
     }
@@ -169,7 +172,7 @@
     .upload-title {
       font-family: var(--snell-font);
       font-size: clamp(34px, 5vw, 58px);
-      line-height: 0.95;
+      line-height: 0.92;
       color: var(--pink-7);
       margin-bottom: 10px;
     }
@@ -183,18 +186,23 @@
 
     .primary-btn,
     .secondary-btn,
-    .danger-btn {
+    .danger-btn,
+    .music-icon-btn,
+    .music-play-btn,
+    .music-mini-btn {
       border: none;
       outline: none;
       cursor: pointer;
       font-family: "Inter", sans-serif;
-      border-radius: 999px;
       transition: transform 0.22s ease, box-shadow 0.22s ease, opacity 0.22s ease;
     }
 
     .primary-btn:hover,
     .secondary-btn:hover,
-    .danger-btn:hover {
+    .danger-btn:hover,
+    .music-icon-btn:hover,
+    .music-play-btn:hover,
+    .music-mini-btn:hover {
       transform: translateY(-2px);
     }
 
@@ -203,6 +211,7 @@
       font-size: 15px;
       font-weight: 700;
       color: white;
+      border-radius: 999px;
       background: linear-gradient(135deg, #ff6ab5 0%, #ff137d 100%);
       box-shadow: 0 14px 30px rgba(255, 41, 133, 0.20), inset 0 1px 0 rgba(255,255,255,0.26);
     }
@@ -212,6 +221,7 @@
       font-size: 14px;
       font-weight: 600;
       color: var(--text-main);
+      border-radius: 999px;
       background: rgba(255,255,255,0.84);
       box-shadow: 0 10px 20px rgba(255, 87, 165, 0.08);
     }
@@ -221,6 +231,7 @@
       font-size: 14px;
       font-weight: 700;
       color: white;
+      border-radius: 999px;
       background: linear-gradient(135deg, #ff6a96 0%, #ff416f 100%);
       box-shadow: 0 12px 24px rgba(255, 82, 122, 0.16);
     }
@@ -245,7 +256,10 @@
     }
 
     .text-input,
-    .textarea-input {
+    .textarea-input,
+    .chat-message-input,
+    .chat-sender-select,
+    .music-select {
       width: 100%;
       border: none;
       outline: none;
@@ -335,7 +349,7 @@
     .gallery-title {
       font-family: var(--snell-font);
       font-size: clamp(34px, 4vw, 56px);
-      line-height: 0.95;
+      line-height: 0.92;
       color: var(--pink-7);
     }
 
@@ -346,38 +360,75 @@
     }
 
     .scrapbook {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 24px;
+      padding-top: 14px;
+      min-height: 260px;
     }
 
     .memory-card {
       position: relative;
-      overflow: hidden;
-      border-radius: 28px;
-      padding: 12px;
-      background: rgba(255,255,255,0.82);
-      border: 1px solid rgba(255,255,255,0.84);
-      box-shadow: 0 18px 46px rgba(255, 103, 173, 0.12);
-      transition: transform 0.28s ease, box-shadow 0.28s ease;
+      width: 220px;
+      flex: 0 0 220px;
+      transform: rotate(var(--rotate, -2deg));
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
+      animation: floaty 6s ease-in-out infinite;
     }
 
+    .memory-card:nth-child(2n) { --rotate: 2deg; }
+    .memory-card:nth-child(3n) { --rotate: -4deg; }
+    .memory-card:nth-child(4n) { --rotate: 1.2deg; }
+
     .memory-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 28px 70px rgba(255, 80, 150, 0.18);
+      transform: scale(1.05) rotate(0deg);
+      z-index: 3;
+    }
+
+    @keyframes floaty {
+      0% { transform: translateY(0px) rotate(var(--rotate)); }
+      50% { transform: translateY(-6px) rotate(var(--rotate)); }
+      100% { transform: translateY(0px) rotate(var(--rotate)); }
     }
 
     .memory-inner {
       position: relative;
       width: 100%;
-      aspect-ratio: 4 / 5;
+      background: rgba(255,255,255,0.9);
+      border: 1px solid rgba(255,255,255,0.95);
       border-radius: 22px;
+      padding: 12px;
+      box-shadow: 0 18px 46px rgba(255, 103, 173, 0.12);
+    }
+
+    .memory-inner::before {
+      content: "";
+      width: 12px;
+      height: 12px;
+      background: #ff7aa2;
+      border-radius: 50%;
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      z-index: 4;
+    }
+
+    .memory-photo {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      border-radius: 16px;
       overflow: hidden;
       background: #fff3f8;
     }
 
-    .memory-inner img {
+    .memory-photo img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -385,7 +436,7 @@
       transition: transform 0.45s ease;
     }
 
-    .memory-card:hover .memory-inner img {
+    .memory-card:hover .memory-photo img {
       transform: scale(1.05);
     }
 
@@ -395,7 +446,7 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 16px;
+      padding: 14px;
       background: linear-gradient(180deg, rgba(86, 44, 63, 0.06) 22%, rgba(86, 44, 63, 0.82) 100%);
       color: white;
     }
@@ -410,18 +461,19 @@
 
     .memory-title {
       font-family: var(--snell-font);
-      font-size: 42px;
+      font-size: 34px;
       line-height: 0.92;
       margin-bottom: 8px;
       text-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      word-break: break-word;
     }
 
     .memory-note {
       font-size: 14px;
-      line-height: 1.65;
+      line-height: 1.6;
       color: rgba(255,255,255,0.94);
       display: -webkit-box;
-      -webkit-line-clamp: 4;
+      -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
@@ -508,6 +560,7 @@
       line-height: 0.92;
       color: var(--pink-7);
       margin-bottom: 12px;
+      word-break: break-word;
     }
 
     .modal-date-view {
@@ -559,6 +612,448 @@
       z-index: 4;
     }
 
+    .chat-fab {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: 58px;
+      height: 58px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #ff6ab5 0%, #ff137d 100%);
+      box-shadow:
+        0 16px 34px rgba(255, 41, 133, 0.24),
+        inset 0 1px 0 rgba(255,255,255,0.24);
+      cursor: pointer;
+      z-index: 60;
+      font-size: 24px;
+      user-select: none;
+    }
+
+    .chat-panel {
+      position: fixed;
+      right: 18px;
+      bottom: 88px;
+      width: 340px;
+      height: 470px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.97), rgba(255,245,250,0.96));
+      border: 1px solid rgba(255,255,255,0.74);
+      box-shadow:
+        0 28px 75px rgba(255, 87, 165, 0.14),
+        inset 0 1px 0 rgba(255,255,255,0.75);
+      overflow: hidden;
+      display: none;
+      flex-direction: column;
+      z-index: 59;
+    }
+
+    .chat-panel.open {
+      display: flex;
+    }
+
+    .chat-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 14px 12px;
+      background: linear-gradient(135deg, rgba(255,106,181,0.16), rgba(255,19,125,0.08));
+      border-bottom: 1px solid rgba(255, 183, 214, 0.35);
+      flex-shrink: 0;
+    }
+
+    .chat-header-title {
+      font-family: var(--snell-font);
+      color: var(--pink-7);
+      font-size: 28px;
+      line-height: 0.95;
+    }
+
+    .chat-close {
+      width: 34px;
+      height: 34px;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 16px;
+      color: var(--pink-7);
+      background: rgba(255, 236, 245, 0.98);
+      box-shadow: 0 8px 20px rgba(255, 80, 158, 0.10);
+    }
+
+    .chat-feed {
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background:
+        linear-gradient(180deg, rgba(255,251,253,0.8), rgba(255,245,250,0.5));
+    }
+
+    .chat-feed::-webkit-scrollbar,
+    .modal-card::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .chat-feed::-webkit-scrollbar-thumb,
+    .modal-card::-webkit-scrollbar-thumb {
+      background: rgba(255, 110, 178, 0.30);
+      border-radius: 999px;
+    }
+
+    .chat-bubble {
+      max-width: 78%;
+      padding: 10px 12px;
+      border-radius: 16px;
+      font-size: 13px;
+      line-height: 1.5;
+      word-break: break-word;
+      box-shadow: 0 10px 24px rgba(255, 87, 165, 0.08);
+      border: 1px solid rgba(255,255,255,0.72);
+    }
+
+    .chat-bubble.riri {
+      align-self: flex-start;
+      background: linear-gradient(180deg, #ffd8e9, #ffc7df);
+      color: #7a3f59;
+    }
+
+    .chat-bubble.vince {
+      align-self: flex-end;
+      background: linear-gradient(180deg, #eef8ff, #dff1ff);
+      color: var(--vince-blue-text);
+      border-color: rgba(187, 224, 255, 0.8);
+    }
+
+    .chat-meta {
+      font-size: 11px;
+      opacity: 0.72;
+      margin-top: 4px;
+    }
+
+    .chat-composer {
+      flex-shrink: 0;
+      padding: 12px;
+      border-top: 1px solid rgba(255, 183, 214, 0.35);
+      background: rgba(255, 251, 253, 0.88);
+    }
+
+    .chat-sender-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .chat-sender-label {
+      font-size: 12px;
+      color: #9d6881;
+      flex-shrink: 0;
+    }
+
+    .chat-sender-select {
+      padding: 8px 12px;
+      font-size: 13px;
+      cursor: pointer;
+      border-radius: 999px;
+    }
+
+    .chat-message-input {
+      height: 74px;
+      resize: none;
+      margin-bottom: 10px;
+      border-radius: 14px;
+      background: rgba(255, 236, 245, 0.7);
+      font-size: 14px;
+    }
+
+    .chat-message-input::placeholder {
+      color: #a76888;
+    }
+
+    .chat-send-btn {
+      width: 100%;
+      border: none;
+      border-radius: 999px;
+      padding: 12px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      color: white;
+      cursor: pointer;
+      background: linear-gradient(135deg, #ff6ab5 0%, #ff137d 100%);
+      box-shadow:
+        0 12px 26px rgba(255, 41, 133, 0.18),
+        inset 0 1px 0 rgba(255,255,255,0.24);
+    }
+
+    .music-shell {
+      position: fixed;
+      right: 92px;
+      bottom: 18px;
+      z-index: 60;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+      max-width: min(430px, calc(100vw - 168px));
+    }
+
+    .music-panel {
+      width: 100%;
+      min-width: 360px;
+      max-width: 430px;
+      border-radius: 24px;
+      padding: 14px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.97), rgba(255,245,250,0.96));
+      border: 1px solid rgba(255,255,255,0.74);
+      box-shadow:
+        0 28px 75px rgba(255, 87, 165, 0.14),
+        inset 0 1px 0 rgba(255,255,255,0.75);
+      backdrop-filter: blur(14px);
+      display: none;
+      transform-origin: bottom right;
+      animation: musicPanelIn 0.28s ease;
+    }
+
+    .music-panel.open {
+      display: block;
+    }
+
+    @keyframes musicPanelIn {
+      0% {
+        opacity: 0;
+        transform: translateY(12px) scale(0.96);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .music-panel-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .music-panel-heading {
+      min-width: 0;
+    }
+
+    .music-panel-kicker {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #b5698d;
+      margin-bottom: 4px;
+    }
+
+    .music-panel-title {
+      font-family: var(--snell-font);
+      font-size: 28px;
+      line-height: 0.95;
+      color: var(--pink-7);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 240px;
+    }
+
+    .music-collapse-btn {
+      width: 40px;
+      height: 40px;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 16px;
+      color: var(--pink-7);
+      background: rgba(255, 236, 245, 0.98);
+      box-shadow: 0 8px 20px rgba(255, 80, 158, 0.10);
+      flex-shrink: 0;
+    }
+
+    .music-select-wrap {
+      margin-bottom: 12px;
+    }
+
+    .music-select {
+      cursor: pointer;
+      font-size: 14px;
+      border-radius: 16px;
+      padding: 14px 16px;
+      background: rgba(255, 236, 245, 0.72);
+    }
+
+    .music-progress-wrap {
+      margin-bottom: 12px;
+    }
+
+    .music-progress-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .music-current-time,
+    .music-total-time {
+      font-size: 12px;
+      color: #9b6680;
+      white-space: nowrap;
+    }
+
+    .music-seek-bar {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(255, 94, 171, 0.16);
+      outline: none;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .music-seek-bar::-webkit-slider-runnable-track {
+      height: 6px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(255, 64, 148, 0.95), rgba(255, 160, 208, 0.6));
+    }
+
+    .music-seek-bar::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: white;
+      margin-top: -5px;
+      box-shadow: 0 3px 10px rgba(255, 41, 133, 0.22);
+      border: 1px solid rgba(255, 131, 194, 0.35);
+    }
+
+    .music-seek-bar::-moz-range-track {
+      height: 6px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(255, 64, 148, 0.95), rgba(255, 160, 208, 0.6));
+    }
+
+    .music-seek-bar::-moz-range-thumb {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: white;
+      border: 1px solid rgba(255, 131, 194, 0.35);
+      box-shadow: 0 3px 10px rgba(255, 41, 133, 0.22);
+    }
+
+    .music-controls {
+      display: grid;
+      grid-template-columns: 48px 1fr 48px 48px;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .music-icon-btn,
+    .music-play-btn {
+      color: var(--pink-7);
+      background: rgba(255, 236, 245, 0.96);
+      box-shadow: 0 10px 20px rgba(255, 80, 158, 0.10);
+    }
+
+    .music-icon-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      font-size: 18px;
+    }
+
+    .music-play-btn {
+      height: 50px;
+      border-radius: 999px;
+      padding: 0 18px;
+      background: linear-gradient(135deg, #ff6ab5 0%, #ff137d 100%);
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow:
+        0 12px 26px rgba(255, 41, 133, 0.18),
+        inset 0 1px 0 rgba(255,255,255,0.24);
+    }
+
+    .music-mini-bar {
+      min-width: 360px;
+      max-width: 430px;
+      width: 100%;
+      min-height: 58px;
+      border: none;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px 8px 12px;
+      color: white;
+      background: linear-gradient(135deg, #ff6ab5 0%, #ff137d 100%);
+      box-shadow:
+        0 16px 34px rgba(255, 41, 133, 0.24),
+        inset 0 1px 0 rgba(255,255,255,0.24);
+      user-select: none;
+    }
+
+    .music-mini-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.16);
+      color: white;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .music-mini-info {
+      min-width: 0;
+      flex: 1;
+      cursor: pointer;
+    }
+
+    .music-mini-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.85;
+      margin-bottom: 2px;
+    }
+
+    .music-mini-title {
+      font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .music-mini-time {
+      font-size: 11px;
+      opacity: 0.92;
+      white-space: nowrap;
+      flex-shrink: 0;
+      min-width: 74px;
+      text-align: right;
+      padding-right: 2px;
+    }
+
     @media (max-width: 900px) {
       .form-grid,
       .modal-grid {
@@ -566,7 +1061,7 @@
       }
 
       .scrapbook {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
       }
     }
 
@@ -577,45 +1072,265 @@
 
       .page {
         width: 94vw;
-        padding: 18px 0 36px;
+        padding: 16px 0 110px;
+      }
+
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+
+      .top-note {
+        font-size: 12px;
+        line-height: 1.5;
       }
 
       .hero {
-        padding: 18px;
-        border-radius: 28px;
+        padding: 16px;
+        border-radius: 24px;
+        margin-bottom: 14px;
       }
 
       .hero-title,
       .upload-title,
       .gallery-title {
-        font-size: clamp(34px, 12vw, 54px);
+        font-size: clamp(34px, 12vw, 50px);
+        line-height: 0.92;
       }
 
       .hero-copy,
       .upload-subtitle {
         font-size: 14px;
+        line-height: 1.7;
+      }
+
+      .upload-card {
+        margin-top: 16px;
+        padding: 16px;
+        border-radius: 22px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .text-input,
+      .textarea-input {
+        font-size: 14px;
+        padding: 13px 14px;
+        border-radius: 16px;
+      }
+
+      .textarea-input {
+        min-height: 120px;
+      }
+
+      .upload-preview {
+        min-height: 200px;
+        border-radius: 18px;
+        padding: 12px;
+      }
+
+      .upload-preview img {
+        border-radius: 14px;
+      }
+
+      .gallery-header {
+        margin: 18px 0 12px;
+      }
+
+      .gallery-subtitle {
+        font-size: 13px;
+        line-height: 1.6;
       }
 
       .scrapbook {
-        grid-template-columns: 1fr;
+        justify-content: center;
+        gap: 14px;
+      }
+
+      .memory-card {
+        width: 100%;
+        max-width: 290px;
+        flex: 0 0 100%;
       }
 
       .memory-title {
-        font-size: 36px;
+        font-size: 30px;
+      }
+
+      .memory-note {
+        font-size: 13px;
+        line-height: 1.55;
+      }
+
+      .empty-gallery {
+        padding: 18px;
+        border-radius: 22px;
+      }
+
+      .empty-gallery h3 {
+        font-size: clamp(30px, 10vw, 42px);
+      }
+
+      .empty-gallery p {
+        font-size: 13px;
+        line-height: 1.7;
+      }
+
+      .modal {
+        padding: 10px;
       }
 
       .modal-card {
+        width: 100%;
+        max-height: 88vh;
         padding: 14px;
-        border-radius: 24px;
+        border-radius: 22px;
       }
 
       .modal-image {
-        min-height: 240px;
+        min-height: 220px;
+        max-height: 260px;
+        border-radius: 18px;
+      }
+
+      .modal-content {
+        padding: 2px 2px 4px;
+      }
+
+      .modal-title-view {
+        font-size: clamp(38px, 13vw, 52px);
+        line-height: 0.9;
+        margin-bottom: 10px;
+      }
+
+      .modal-date-view {
+        font-size: 11px;
+        margin-bottom: 12px;
       }
 
       .modal-note-view {
         font-size: 14px;
-        line-height: 1.8;
+        line-height: 1.7;
+        margin-bottom: 14px;
+      }
+
+      .modal-actions .secondary-btn,
+      .modal-actions .danger-btn,
+      .edit-form .primary-btn,
+      .edit-form .secondary-btn {
+        width: 100%;
+      }
+
+      .edit-form {
+        margin-top: 14px;
+        padding-top: 14px;
+      }
+
+      .close-btn {
+        top: 10px;
+        right: 10px;
+        width: 38px;
+        height: 38px;
+        font-size: 17px;
+      }
+
+      .chat-fab {
+        right: 14px;
+        bottom: 14px;
+        width: 54px;
+        height: 54px;
+        font-size: 22px;
+      }
+
+      .music-shell {
+        right: 72px;
+        bottom: 14px;
+        width: calc(100vw - 92px);
+        max-width: calc(100vw - 92px);
+      }
+
+      .music-panel,
+      .music-mini-bar {
+        min-width: 0;
+        max-width: 100%;
+        width: 100%;
+      }
+
+      .music-panel {
+        border-radius: 22px;
+        padding: 12px;
+      }
+
+      .music-panel-title {
+        max-width: 180px;
+        font-size: 24px;
+      }
+
+      .music-controls {
+        grid-template-columns: 44px 1fr 44px 44px;
+        gap: 8px;
+      }
+
+      .music-icon-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        font-size: 16px;
+      }
+
+      .music-play-btn {
+        height: 46px;
+        padding: 0 14px;
+        font-size: 13px;
+      }
+
+      .music-mini-bar {
+        min-height: 54px;
+        padding: 7px 8px 7px 10px;
+        gap: 8px;
+      }
+
+      .music-mini-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 17px;
+      }
+
+      .music-mini-title {
+        font-size: 13px;
+      }
+
+      .music-mini-time {
+        font-size: 10px;
+        min-width: 62px;
+      }
+
+      .chat-panel {
+        right: 10px;
+        left: 10px;
+        bottom: 78px;
+        width: auto;
+        height: min(62vh, 520px);
+        border-radius: 20px;
+      }
+
+      .chat-header-title {
+        font-size: 24px;
+      }
+
+      .chat-bubble {
+        max-width: 86%;
+        font-size: 12.5px;
+      }
+
+      .chat-message-input {
+        height: 68px;
+        font-size: 13px;
       }
     }
   </style>
@@ -632,7 +1347,7 @@
     <section class="hero">
       <h1 class="hero-title">our core memories together 🌹</h1>
       <p class="hero-copy">
-        let’s keep the little things here baby. one photo, one date, one note at a time. something simple, soft, and easy to understand.
+        let’s keep the little things here baby. one photo, one date, one note at a time. something soft, a little scrapbook-y, and full of us.
       </p>
 
       <div class="upload-card">
@@ -683,7 +1398,7 @@
     <div class="gallery-header">
       <div>
         <h2 class="gallery-title">our memories 💗</h2>
-        <div class="gallery-subtitle">every picture keeps a little part of us.</div>
+        <div class="gallery-subtitle">these are our little moments 🥹 tap one and relive it again</div>
       </div>
     </div>
 
@@ -691,15 +1406,14 @@
 
     <section class="empty-gallery" id="emptyGallery">
       <h3>no memories here yet 🌸</h3>
-      <p>
-        upload the first one and it will appear here right away.
-      </p>
+      <p>upload the first one and it will appear here right away.</p>
     </section>
   </div>
 
   <div class="modal" id="memoryModal">
     <div class="modal-card">
       <button class="close-btn" id="closeModalBtn" aria-label="Close">✕</button>
+
       <div class="modal-grid">
         <div class="modal-image">
           <img id="modalImage" src="" alt="Memory image" />
@@ -743,6 +1457,94 @@
     </div>
   </div>
 
+  <div class="music-shell">
+    <div class="music-panel" id="musicPanel">
+      <div class="music-panel-top">
+        <div class="music-panel-heading">
+          <div class="music-panel-kicker">our songs</div>
+          <div class="music-panel-title" id="musicPanelTitle">Inner child</div>
+        </div>
+        <button class="music-collapse-btn" id="musicCollapseBtn" aria-label="Close music panel">✕</button>
+      </div>
+
+      <div class="music-select-wrap">
+        <select id="musicSelect" class="music-select" aria-label="Choose song">
+          <option value="0">Inner child</option>
+          <option value="1">Tenerifea sea</option>
+          <option value="2">Be with you</option>
+          <option value="3">Last night on earth</option>
+          <option value="4">Hele</option>
+          <option value="5">Wish list</option>
+        </select>
+      </div>
+
+      <div class="music-progress-wrap">
+        <input
+          type="range"
+          id="musicSeekBar"
+          class="music-seek-bar"
+          min="0"
+          max="100"
+          value="0"
+          step="0.1"
+          aria-label="Song progress"
+        />
+        <div class="music-progress-row">
+          <span class="music-current-time" id="musicCurrentTime">0:00</span>
+          <span class="music-total-time" id="musicTotalTime">0:00</span>
+        </div>
+      </div>
+
+      <div class="music-controls">
+        <button class="music-icon-btn" id="prevSongBtn" aria-label="Previous song">⏮</button>
+        <button class="music-play-btn" id="playSongBtn" aria-label="Play or pause song">
+          <span id="musicPlayIcon">▶</span>
+          <span id="musicPlayText">Play now</span>
+        </button>
+        <button class="music-icon-btn" id="nextSongBtn" aria-label="Next song">⏭</button>
+        <button class="music-icon-btn" id="restartSongBtn" aria-label="Restart song">↺</button>
+      </div>
+    </div>
+
+    <div class="music-mini-bar">
+      <button class="music-mini-btn" id="musicToggleBtn" aria-label="Open music panel">🎵</button>
+      <button class="music-mini-btn" id="musicMiniPlayBtn" aria-label="Play or pause song">▶</button>
+
+      <div class="music-mini-info" id="musicMiniInfo" role="button" tabindex="0" aria-label="Open music panel">
+        <div class="music-mini-label">Now playing</div>
+        <div class="music-mini-title" id="musicMiniTitle">Inner child</div>
+      </div>
+
+      <div class="music-mini-time" id="musicMiniTime">0:00</div>
+    </div>
+  </div>
+
+  <div class="chat-fab" id="chatFab" aria-label="Open chat">💬</div>
+
+  <div class="chat-panel" id="chatPanel">
+    <div class="chat-header">
+      <div class="chat-header-title">Riri & Vince</div>
+      <button class="chat-close" id="chatCloseBtn" aria-label="Close chat">✕</button>
+    </div>
+
+    <div id="chatFeed" class="chat-feed"></div>
+
+    <div class="chat-composer">
+      <div class="chat-sender-row">
+        <div class="chat-sender-label">sending as</div>
+        <select id="chatSenderSelect" class="chat-sender-select">
+          <option value="riri">Riri</option>
+          <option value="vince">Vince</option>
+        </select>
+      </div>
+
+      <textarea id="chatMessageInput" class="chat-message-input" placeholder="type a message..."></textarea>
+      <button id="chatSendBtn" class="chat-send-btn">send 💕</button>
+    </div>
+  </div>
+
+  <audio id="bgMusic" preload="metadata"></audio>
+
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import {
@@ -753,7 +1555,8 @@
       query,
       orderByChild,
       update,
-      remove
+      remove,
+      limitToLast
     } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
     import {
       getStorage,
@@ -805,6 +1608,46 @@
     const editNoteInput = document.getElementById("editNoteInput");
     const saveEditBtn = document.getElementById("saveEditBtn");
     const cancelEditBtn = document.getElementById("cancelEditBtn");
+
+    const chatFab = document.getElementById("chatFab");
+    const chatPanel = document.getElementById("chatPanel");
+    const chatCloseBtn = document.getElementById("chatCloseBtn");
+    const chatFeed = document.getElementById("chatFeed");
+    const chatSenderSelect = document.getElementById("chatSenderSelect");
+    const chatMessageInput = document.getElementById("chatMessageInput");
+    const chatSendBtn = document.getElementById("chatSendBtn");
+
+    const bgMusic = document.getElementById("bgMusic");
+    const musicPanel = document.getElementById("musicPanel");
+    const musicToggleBtn = document.getElementById("musicToggleBtn");
+    const musicCollapseBtn = document.getElementById("musicCollapseBtn");
+    const musicMiniInfo = document.getElementById("musicMiniInfo");
+    const musicMiniPlayBtn = document.getElementById("musicMiniPlayBtn");
+    const musicMiniTitle = document.getElementById("musicMiniTitle");
+    const musicMiniTime = document.getElementById("musicMiniTime");
+    const musicSelect = document.getElementById("musicSelect");
+    const musicPanelTitle = document.getElementById("musicPanelTitle");
+    const playSongBtn = document.getElementById("playSongBtn");
+    const prevSongBtn = document.getElementById("prevSongBtn");
+    const nextSongBtn = document.getElementById("nextSongBtn");
+    const restartSongBtn = document.getElementById("restartSongBtn");
+    const musicSeekBar = document.getElementById("musicSeekBar");
+    const musicCurrentTime = document.getElementById("musicCurrentTime");
+    const musicTotalTime = document.getElementById("musicTotalTime");
+    const musicPlayIcon = document.getElementById("musicPlayIcon");
+    const musicPlayText = document.getElementById("musicPlayText");
+
+    const playlist = [
+      { title: "Inner child", file: "lovesong.mp3" },
+      { title: "Tenerifea sea", file: "songthree.mp3" },
+      { title: "Be with you", file: "songtwo.mp3" },
+      { title: "Last night on earth", file: "Songfour.mp3" },
+      { title: "Hele", file: "songfive.mp3" },
+      { title: "Wish list", file: "songsix.mp3" }
+    ];
+
+    let currentSongIndex = 0;
+    let isDraggingSeek = false;
 
     let previewObjectUrl = null;
     let hasAnyMemory = false;
@@ -899,11 +1742,13 @@
 
       article.innerHTML = `
         <div class="memory-inner">
-          <img src="${memory.imageUrl}" alt="${memory.title || "Memory"}" />
-          <div class="memory-overlay">
-            <div class="memory-date">${memory.displayDate || ""}</div>
-            <div class="memory-title">${memory.title || "A little memory 💗"}</div>
-            <div class="memory-note">${memory.note || ""}</div>
+          <div class="memory-photo">
+            <img src="${memory.imageUrl}" alt="${memory.title || "Memory"}" />
+            <div class="memory-overlay">
+              <div class="memory-date">${memory.displayDate || ""}</div>
+              <div class="memory-title">${memory.title || "A little memory 💗"}</div>
+              <div class="memory-note">${memory.note || ""}</div>
+            </div>
           </div>
         </div>
       `;
@@ -923,11 +1768,13 @@
 
       card.innerHTML = `
         <div class="memory-inner">
-          <img src="${memory.imageUrl}" alt="${memory.title || "Memory"}" />
-          <div class="memory-overlay">
-            <div class="memory-date">${memory.displayDate || ""}</div>
-            <div class="memory-title">${memory.title || "A little memory 💗"}</div>
-            <div class="memory-note">${memory.note || ""}</div>
+          <div class="memory-photo">
+            <img src="${memory.imageUrl}" alt="${memory.title || "Memory"}" />
+            <div class="memory-overlay">
+              <div class="memory-date">${memory.displayDate || ""}</div>
+              <div class="memory-title">${memory.title || "A little memory 💗"}</div>
+              <div class="memory-note">${memory.note || ""}</div>
+            </div>
           </div>
         </div>
       `;
@@ -1201,10 +2048,251 @@
     });
 
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeMemoryModal();
+      if (e.key === "Escape") {
+        closeMemoryModal();
+        closeMusicPanel();
+      }
+    });
+
+    function buildChatBubble(data) {
+      const item = document.createElement("div");
+      item.className = `chat-bubble ${data.sender === "vince" ? "vince" : "riri"}`;
+
+      const text = document.createElement("div");
+      text.textContent = data.text;
+
+      const meta = document.createElement("div");
+      meta.className = "chat-meta";
+      meta.textContent = data.sender === "vince" ? "Vince" : "Riri";
+
+      item.appendChild(text);
+      item.appendChild(meta);
+
+      return item;
+    }
+
+    async function sendChatMessage() {
+      const text = chatMessageInput.value.trim();
+      const sender = chatSenderSelect.value;
+
+      if (!text) return;
+
+      await push(ref(db, "messages"), {
+        text,
+        sender,
+        createdAt: Date.now()
+      });
+
+      chatMessageInput.value = "";
+    }
+
+    chatFab.addEventListener("click", () => {
+      chatPanel.classList.toggle("open");
+      if (chatPanel.classList.contains("open")) {
+        chatFeed.scrollTop = chatFeed.scrollHeight;
+      }
+    });
+
+    chatCloseBtn.addEventListener("click", () => {
+      chatPanel.classList.remove("open");
+    });
+
+    chatSendBtn.addEventListener("click", sendChatMessage);
+
+    chatMessageInput.addEventListener("keydown", (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "Enter") {
+        sendChatMessage();
+      }
+    });
+
+    const messagesQuery = query(ref(db, "messages"), limitToLast(200));
+
+    onChildAdded(messagesQuery, (snapshot) => {
+      const data = snapshot.val();
+      const chatBubble = buildChatBubble(data);
+      chatFeed.appendChild(chatBubble);
+      chatFeed.scrollTop = chatFeed.scrollHeight;
+    });
+
+    function formatTime(seconds) {
+      if (!Number.isFinite(seconds) || seconds < 0) return "0:00";
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${mins}:${secs.toString().padStart(2, "0")}`;
+    }
+
+    function openMusicPanel() {
+      musicPanel.classList.add("open");
+    }
+
+    function closeMusicPanel() {
+      musicPanel.classList.remove("open");
+    }
+
+    function updateMusicTitles() {
+      const currentSong = playlist[currentSongIndex];
+      musicPanelTitle.textContent = currentSong.title;
+      musicMiniTitle.textContent = currentSong.title;
+      musicSelect.value = String(currentSongIndex);
+    }
+
+    function updateMusicButtons() {
+      const isPlaying = !bgMusic.paused && !bgMusic.ended;
+
+      if (isPlaying) {
+        musicPlayIcon.textContent = "⏸";
+        musicPlayText.textContent = "Pause";
+        musicMiniPlayBtn.textContent = "⏸";
+      } else {
+        musicPlayIcon.textContent = "▶";
+        musicPlayText.textContent = "Play now";
+        musicMiniPlayBtn.textContent = "▶";
+      }
+    }
+
+    function updateProgressUI() {
+      const current = Number.isFinite(bgMusic.currentTime) ? bgMusic.currentTime : 0;
+      const duration = Number.isFinite(bgMusic.duration) ? bgMusic.duration : 0;
+
+      if (!isDraggingSeek) {
+        const percentage = duration > 0 ? (current / duration) * 100 : 0;
+        musicSeekBar.value = percentage;
+      }
+
+      musicCurrentTime.textContent = formatTime(current);
+      musicTotalTime.textContent = formatTime(duration);
+      musicMiniTime.textContent = formatTime(current);
+    }
+
+    function loadSong(index) {
+      currentSongIndex = (index + playlist.length) % playlist.length;
+      bgMusic.src = playlist[currentSongIndex].file;
+      bgMusic.load();
+
+      updateMusicTitles();
+      musicSeekBar.value = 0;
+      musicCurrentTime.textContent = "0:00";
+      musicTotalTime.textContent = "0:00";
+      musicMiniTime.textContent = "0:00";
+      updateMusicButtons();
+    }
+
+    async function playCurrentSong() {
+      try {
+        await bgMusic.play();
+      } catch (error) {
+        console.error("Audio play failed:", error);
+      }
+    }
+
+    async function togglePlayPause() {
+      if (!bgMusic.src) {
+        loadSong(currentSongIndex);
+      }
+
+      if (bgMusic.paused || bgMusic.ended) {
+        await playCurrentSong();
+      } else {
+        bgMusic.pause();
+      }
+
+      updateMusicButtons();
+    }
+
+    async function playSongAtIndex(index) {
+      currentSongIndex = (index + playlist.length) % playlist.length;
+      bgMusic.src = playlist[currentSongIndex].file;
+      bgMusic.load();
+
+      updateMusicTitles();
+      updateProgressUI();
+
+      await playCurrentSong();
+      updateMusicButtons();
+    }
+
+    async function playNextSong() {
+      await playSongAtIndex(currentSongIndex + 1);
+    }
+
+    async function playPrevSong() {
+      await playSongAtIndex(currentSongIndex - 1);
+    }
+
+    musicToggleBtn.addEventListener("click", openMusicPanel);
+    musicCollapseBtn.addEventListener("click", closeMusicPanel);
+
+    musicMiniInfo.addEventListener("click", openMusicPanel);
+    musicMiniInfo.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openMusicPanel();
+      }
+    });
+
+    playSongBtn.addEventListener("click", togglePlayPause);
+    musicMiniPlayBtn.addEventListener("click", togglePlayPause);
+
+    prevSongBtn.addEventListener("click", playPrevSong);
+    nextSongBtn.addEventListener("click", playNextSong);
+
+    restartSongBtn.addEventListener("click", () => {
+      bgMusic.currentTime = 0;
+      updateProgressUI();
+    });
+
+    musicSelect.addEventListener("change", async (e) => {
+      const selectedIndex = Number(e.target.value);
+      await playSongAtIndex(selectedIndex);
+    });
+
+    musicSeekBar.addEventListener("mousedown", () => {
+      isDraggingSeek = true;
+    });
+
+    musicSeekBar.addEventListener("touchstart", () => {
+      isDraggingSeek = true;
+    });
+
+    musicSeekBar.addEventListener("input", () => {
+      if (Number.isFinite(bgMusic.duration) && bgMusic.duration > 0) {
+        const seekTo = (Number(musicSeekBar.value) / 100) * bgMusic.duration;
+        bgMusic.currentTime = seekTo;
+        updateProgressUI();
+      }
+    });
+
+    musicSeekBar.addEventListener("change", () => {
+      isDraggingSeek = false;
+    });
+
+    bgMusic.addEventListener("loadedmetadata", updateProgressUI);
+    bgMusic.addEventListener("durationchange", updateProgressUI);
+    bgMusic.addEventListener("loadeddata", updateProgressUI);
+    bgMusic.addEventListener("canplay", updateProgressUI);
+    bgMusic.addEventListener("timeupdate", updateProgressUI);
+    bgMusic.addEventListener("play", updateMusicButtons);
+    bgMusic.addEventListener("pause", updateMusicButtons);
+    bgMusic.addEventListener("ended", async () => {
+      await playNextSong();
+    });
+
+    bgMusic.addEventListener("error", () => {
+      console.error("Audio failed to load:", bgMusic.currentSrc);
+    });
+
+    document.addEventListener("click", (e) => {
+      const clickedInsideMusic = e.target.closest(".music-shell");
+      if (!clickedInsideMusic && musicPanel.classList.contains("open")) {
+        closeMusicPanel();
+      }
     });
 
     updateEmptyState();
+    loadSong(0);
+    updateMusicTitles();
+    updateMusicButtons();
+    updateProgressUI();
   </script>
 </body>
 </html>
