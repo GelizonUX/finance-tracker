@@ -155,18 +155,41 @@
 
     .hero-copy {
       max-width: 760px;
-      line-height: 1.8;
-      font-size: 16px;
+      line-height: 1.7;
+      font-size: 15px;
       color: var(--text-main);
+      margin-bottom: 14px;
+    }
+
+    .form-toggle-btn {
+      margin-top: 4px;
+      margin-bottom: 8px;
     }
 
     .upload-card {
-      margin-top: 20px;
+      margin-top: 14px;
       border-radius: 28px;
       padding: 20px;
       background: linear-gradient(180deg, rgba(255,247,251,0.94), rgba(255,255,255,0.88));
       border: 1px solid rgba(255,255,255,0.84);
       box-shadow: 0 16px 34px rgba(255, 87, 165, 0.09);
+      display: none;
+    }
+
+    .upload-card.open {
+      display: block;
+      animation: fadeDropIn 0.28s ease;
+    }
+
+    @keyframes fadeDropIn {
+      0% {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .upload-title {
@@ -178,8 +201,8 @@
     }
 
     .upload-subtitle {
-      font-size: 15px;
-      line-height: 1.8;
+      font-size: 14px;
+      line-height: 1.7;
       color: var(--text-soft);
       margin-bottom: 18px;
     }
@@ -303,12 +326,14 @@
       color: #b86b8f;
     }
 
-    .upload-preview img {
+    .upload-preview img,
+    .upload-preview video {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       border-radius: 18px;
       display: block;
+      background: rgba(255,255,255,0.5);
     }
 
     .upload-preview-text strong {
@@ -425,19 +450,25 @@
       aspect-ratio: 4 / 5;
       border-radius: 16px;
       overflow: hidden;
-      background: #fff3f8;
+      background: linear-gradient(180deg, rgba(255,248,252,0.95), rgba(255,237,245,0.92));
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .memory-photo img {
+    .memory-photo img,
+    .memory-photo video {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       display: block;
       transition: transform 0.45s ease;
+      background: rgba(255,255,255,0.45);
     }
 
-    .memory-card:hover .memory-photo img {
-      transform: scale(1.05);
+    .memory-card:hover .memory-photo img,
+    .memory-card:hover .memory-photo video {
+      transform: scale(1.02);
     }
 
     .memory-overlay {
@@ -479,25 +510,34 @@
     }
 
     .empty-gallery {
-      border-radius: 28px;
-      padding: 24px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 16px 20px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(10px);
+      border: 1px dashed rgba(240, 191, 214, 0.6);
+      box-shadow: 0 10px 30px rgba(255, 87, 165, 0.08);
       text-align: center;
-      border: 1.5px dashed rgba(240, 191, 214, 0.8);
-      background: rgba(255,255,255,0.58);
-      box-shadow: 0 12px 24px rgba(255, 87, 165, 0.06);
+      max-width: 260px;
+      width: calc(100% - 32px);
+      z-index: 2;
+      pointer-events: none;
     }
 
     .empty-gallery h3 {
       font-family: var(--snell-font);
-      font-size: clamp(32px, 5vw, 50px);
-      line-height: 0.95;
+      font-size: 26px;
+      line-height: 1;
       color: var(--pink-7);
-      margin-bottom: 10px;
+      margin-bottom: 6px;
     }
 
     .empty-gallery p {
-      font-size: 14px;
-      line-height: 1.8;
+      font-size: 12px;
+      line-height: 1.6;
       color: var(--text-soft);
     }
 
@@ -540,14 +580,21 @@
       border-radius: 24px;
       overflow: hidden;
       min-height: 320px;
-      background: #fff3f8;
+      max-height: 72vh;
+      background: linear-gradient(180deg, rgba(255,248,252,0.98), rgba(255,237,245,0.92));
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .modal-image img {
+    .modal-image img,
+    .modal-image video {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      max-height: 72vh;
+      object-fit: contain;
       display: block;
+      background: rgba(255,255,255,0.45);
     }
 
     .modal-content {
@@ -597,19 +644,19 @@
     }
 
     .close-btn {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      width: 40px;
-      height: 40px;
+      position: fixed;
+      top: max(14px, env(safe-area-inset-top, 0px) + 10px);
+      right: max(14px, env(safe-area-inset-right, 0px) + 10px);
+      width: 44px;
+      height: 44px;
       border: none;
       border-radius: 999px;
       cursor: pointer;
-      color: var(--pink-7);
-      background: rgba(255, 236, 245, 0.98);
-      box-shadow: 0 8px 20px rgba(255, 80, 158, 0.12);
+      color: #ffffff;
+      background: rgba(255, 47, 141, 0.94);
+      box-shadow: 0 12px 28px rgba(255, 80, 158, 0.25);
       font-size: 18px;
-      z-index: 4;
+      z-index: 120;
     }
 
     .chat-fab {
@@ -1102,14 +1149,18 @@
 
       .hero-copy,
       .upload-subtitle {
-        font-size: 14px;
-        line-height: 1.7;
+        font-size: 13px;
+        line-height: 1.65;
       }
 
       .upload-card {
-        margin-top: 16px;
+        margin-top: 14px;
         padding: 16px;
         border-radius: 22px;
+      }
+
+      .form-toggle-btn {
+        width: 100%;
       }
 
       .form-grid {
@@ -1134,7 +1185,8 @@
         padding: 12px;
       }
 
-      .upload-preview img {
+      .upload-preview img,
+      .upload-preview video {
         border-radius: 14px;
       }
 
@@ -1168,17 +1220,20 @@
       }
 
       .empty-gallery {
-        padding: 18px;
-        border-radius: 22px;
+        top: 50%;
+        padding: 14px 16px;
+        border-radius: 18px;
+        max-width: 220px;
+        width: calc(100% - 28px);
       }
 
       .empty-gallery h3 {
-        font-size: clamp(30px, 10vw, 42px);
+        font-size: 22px;
       }
 
       .empty-gallery p {
-        font-size: 13px;
-        line-height: 1.7;
+        font-size: 11px;
+        line-height: 1.5;
       }
 
       .modal {
@@ -1194,7 +1249,7 @@
 
       .modal-image {
         min-height: 220px;
-        max-height: 260px;
+        max-height: 56vh;
         border-radius: 18px;
       }
 
@@ -1232,10 +1287,10 @@
       }
 
       .close-btn {
-        top: 10px;
-        right: 10px;
-        width: 38px;
-        height: 38px;
+        top: max(12px, env(safe-area-inset-top, 0px) + 8px);
+        right: max(12px, env(safe-area-inset-right, 0px) + 8px);
+        width: 42px;
+        height: 42px;
         font-size: 17px;
       }
 
@@ -1341,30 +1396,46 @@
   <div class="page">
     <div class="topbar">
       <a class="back-link" href="index.html">← back home</a>
-      <div class="top-note">our flowers, gifts, and little things that stayed with us 💗</div>
+      <div class="top-note">our little keepsakes 💗</div>
     </div>
 
+    <div class="gallery-header">
+      <div>
+        <h2 class="gallery-title">our memories 💗</h2>
+        <div class="gallery-subtitle">tap one and relive it again 🥹</div>
+      </div>
+    </div>
+
+    <section class="scrapbook" id="scrapbookGrid">
+      <section class="empty-gallery" id="emptyGallery">
+        <h3>no memories here yet 🌸</h3>
+        <p>add the first one when you're ready</p>
+      </section>
+    </section>
+
     <section class="hero">
-      <h1 class="hero-title">our core memories together 🌹</h1>
+      <h1 class="hero-title">our core memories 🌹</h1>
       <p class="hero-copy">
-        let’s keep the little things here baby. one photo, one date, one note at a time. something soft, a little scrapbook-y, and full of us.
+        little photos, notes, and soft moments kept here with us.
       </p>
 
-      <div class="upload-card">
-        <h2 class="upload-title">add a new memory ✨</h2>
+      <button class="primary-btn form-toggle-btn" id="toggleUploadBtn" type="button">add photos here baby 💗</button>
+
+      <div class="upload-card" id="uploadCard">
+        <h2 class="upload-title">add a memory ✨</h2>
         <p class="upload-subtitle">
-          choose one photo, add the title, date, and your message, then save it here with us 💗
+          choose a photo or video, add a few details, then save it here 💗
         </p>
 
         <div class="photo-picker">
-          <button class="primary-btn" id="choosePhotoBtn">choose photo 🌸</button>
-          <input type="file" id="memoryFileInput" accept="image/*" style="display:none;" />
-          <div class="selected-file" id="selectedFileText">no photo selected yet</div>
+          <button class="primary-btn" id="choosePhotoBtn">choose file 🌸</button>
+          <input type="file" id="memoryFileInput" accept="image/*,video/*,.heic,.heif,.mov,.mp4,.m4v,.webm,.avi,.mkv" style="display:none;" />
+          <div class="selected-file" id="selectedFileText">no file selected yet</div>
 
           <div class="upload-preview empty" id="uploadPreview">
             <div class="upload-preview-text">
-              <strong>your photo will preview here 💗</strong>
-              <span>tap the button above and choose one memory from the gallery</span>
+              <strong>preview will show here 💗</strong>
+              <span>tap above and pick a sweet little memory</span>
             </div>
           </div>
         </div>
@@ -1394,20 +1465,6 @@
         <div class="status-text" id="statusText"></div>
       </div>
     </section>
-
-    <div class="gallery-header">
-      <div>
-        <h2 class="gallery-title">our memories 💗</h2>
-        <div class="gallery-subtitle">these are our little moments 🥹 tap one and relive it again</div>
-      </div>
-    </div>
-
-    <section class="scrapbook" id="scrapbookGrid"></section>
-
-    <section class="empty-gallery" id="emptyGallery">
-      <h3>no memories here yet 🌸</h3>
-      <p>upload the first one and it will appear here right away.</p>
-    </section>
   </div>
 
   <div class="modal" id="memoryModal">
@@ -1415,8 +1472,9 @@
       <button class="close-btn" id="closeModalBtn" aria-label="Close">✕</button>
 
       <div class="modal-grid">
-        <div class="modal-image">
+        <div class="modal-image" id="modalImageWrap">
           <img id="modalImage" src="" alt="Memory image" />
+          <video id="modalVideo" playsinline controls preload="metadata" style="display:none;"></video>
         </div>
 
         <div class="modal-content">
@@ -1580,6 +1638,8 @@
     const db = getDatabase(app);
     const storage = getStorage(app);
 
+    const toggleUploadBtn = document.getElementById("toggleUploadBtn");
+    const uploadCard = document.getElementById("uploadCard");
     const choosePhotoBtn = document.getElementById("choosePhotoBtn");
     const memoryFileInput = document.getElementById("memoryFileInput");
     const selectedFileText = document.getElementById("selectedFileText");
@@ -1595,7 +1655,9 @@
 
     const memoryModal = document.getElementById("memoryModal");
     const closeModalBtn = document.getElementById("closeModalBtn");
+    const modalImageWrap = document.getElementById("modalImageWrap");
     const modalImage = document.getElementById("modalImage");
+    const modalVideo = document.getElementById("modalVideo");
     const modalTitleView = document.getElementById("modalTitleView");
     const modalDateView = document.getElementById("modalDateView");
     const modalNoteView = document.getElementById("modalNoteView");
@@ -1656,6 +1718,46 @@
     const memoryMap = new Map();
     const cardMap = new Map();
 
+    function isVideoFile(file) {
+      return !!file && typeof file.type === "string" && file.type.startsWith("video/");
+    }
+
+    function isHeicLikeFile(file) {
+      if (!file) return false;
+      const name = (file.name || "").toLowerCase();
+      const type = (file.type || "").toLowerCase();
+      return type.includes("heic") || type.includes("heif") || name.endsWith(".heic") || name.endsWith(".heif");
+    }
+
+    function getMemoryMediaType(memory) {
+      return memory.mediaType === "video" ? "video" : "image";
+    }
+
+    function getPreviewMarkup(src, mediaType, altText = "Selected preview") {
+      if (mediaType === "video") {
+        return `<video src="${src}" controls playsinline preload="metadata"></video>`;
+      }
+
+      return `<img src="${src}" alt="${altText}" />`;
+    }
+
+    function getCardMediaMarkup(memory) {
+      const mediaType = getMemoryMediaType(memory);
+
+      if (mediaType === "video") {
+        return `<video src="${memory.imageUrl}" playsinline muted preload="metadata"></video>`;
+      }
+
+      return `<img src="${memory.imageUrl}" alt="${memory.title || "Memory"}" />`;
+    }
+
+    function toggleUploadCard(forceOpen = null) {
+      const shouldOpen = forceOpen === null ? !uploadCard.classList.contains("open") : forceOpen;
+      uploadCard.classList.toggle("open", shouldOpen);
+      toggleUploadBtn.textContent = shouldOpen ? "hide form 💗" : "add photos here baby 💗";
+      updateEmptyState();
+    }
+
     function formatDisplayDate(dateValue) {
       if (!dateValue) return "";
       const date = new Date(dateValue + "T00:00:00");
@@ -1672,7 +1774,8 @@
     }
 
     function updateEmptyState() {
-      emptyGallery.style.display = hasAnyMemory ? "none" : "block";
+      const shouldShowEmpty = !hasAnyMemory && !uploadCard.classList.contains("open");
+      emptyGallery.style.display = shouldShowEmpty ? "block" : "none";
     }
 
     function clearPreview() {
@@ -1684,11 +1787,11 @@
       uploadPreview.classList.add("empty");
       uploadPreview.innerHTML = `
         <div class="upload-preview-text">
-          <strong>your photo will preview here 💗</strong>
-          <span>tap the button above and choose one memory from the gallery</span>
+          <strong>preview will show here 💗</strong>
+          <span>tap above and pick a sweet little memory</span>
         </div>
       `;
-      selectedFileText.textContent = "no photo selected yet";
+      selectedFileText.textContent = "no file selected yet";
     }
 
     function clearForm() {
@@ -1712,8 +1815,24 @@
     }
 
     function renderModal(memory) {
-      modalImage.src = memory.imageUrl;
-      modalImage.alt = memory.title || "Memory";
+      const mediaType = getMemoryMediaType(memory);
+
+      modalImage.pause?.();
+      modalVideo.pause();
+      modalVideo.removeAttribute("src");
+      modalVideo.load();
+
+      if (mediaType === "video") {
+        modalImage.style.display = "none";
+        modalVideo.style.display = "block";
+        modalVideo.src = memory.imageUrl;
+      } else {
+        modalVideo.style.display = "none";
+        modalImage.style.display = "block";
+        modalImage.src = memory.imageUrl;
+        modalImage.alt = memory.title || "Memory";
+      }
+
       modalTitleView.textContent = memory.title || "A little memory 💗";
       modalDateView.textContent = memory.displayDate || "";
       modalNoteView.textContent = memory.note || "";
@@ -1727,6 +1846,7 @@
     }
 
     function closeMemoryModal() {
+      modalVideo.pause();
       memoryModal.classList.remove("open");
       currentModalMemory = null;
       closeEditForm();
@@ -1743,7 +1863,7 @@
       article.innerHTML = `
         <div class="memory-inner">
           <div class="memory-photo">
-            <img src="${memory.imageUrl}" alt="${memory.title || "Memory"}" />
+            ${getCardMediaMarkup(memory)}
             <div class="memory-overlay">
               <div class="memory-date">${memory.displayDate || ""}</div>
               <div class="memory-title">${memory.title || "A little memory 💗"}</div>
@@ -1769,7 +1889,7 @@
       card.innerHTML = `
         <div class="memory-inner">
           <div class="memory-photo">
-            <img src="${memory.imageUrl}" alt="${memory.title || "Memory"}" />
+            ${getCardMediaMarkup(memory)}
             <div class="memory-overlay">
               <div class="memory-date">${memory.displayDate || ""}</div>
               <div class="memory-title">${memory.title || "A little memory 💗"}</div>
@@ -1780,7 +1900,11 @@
       `;
     }
 
-    async function compressImage(file) {
+    async function prepareUploadFile(file) {
+      if (isVideoFile(file) || isHeicLikeFile(file)) {
+        return file;
+      }
+
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
 
@@ -1826,14 +1950,18 @@
             );
           };
 
-          img.onerror = () => reject(new Error("Image load failed"));
+          img.onerror = () => resolve(file);
           img.src = reader.result;
         };
 
-        reader.onerror = () => reject(new Error("File read failed"));
+        reader.onerror = () => resolve(file);
         reader.readAsDataURL(file);
       });
     }
+
+    toggleUploadBtn.addEventListener("click", () => {
+      toggleUploadCard();
+    });
 
     choosePhotoBtn.addEventListener("click", () => {
       memoryFileInput.click();
@@ -1855,9 +1983,19 @@
       selectedFileText.textContent = `selected: ${file.name}`;
 
       uploadPreview.classList.remove("empty");
-      uploadPreview.innerHTML = `<img src="${previewObjectUrl}" alt="Selected preview" />`;
 
-      setStatus("photo selected 💗");
+      if (isHeicLikeFile(file) && !isVideoFile(file)) {
+        uploadPreview.innerHTML = `
+          <div class="upload-preview-text">
+            <strong>${file.name}</strong>
+            <span>preview may not show here on some browsers, but the file can still upload 💗</span>
+          </div>
+        `;
+      } else {
+        uploadPreview.innerHTML = getPreviewMarkup(previewObjectUrl, isVideoFile(file) ? "video" : "image");
+      }
+
+      setStatus(isVideoFile(file) ? "video selected 💗" : "file selected 💗");
     });
 
     clearFormBtn.addEventListener("click", clearForm);
@@ -1869,7 +2007,7 @@
       const note = memoryNoteInput.value.trim();
 
       if (!file) {
-        setStatus("choose a photo first baby 🌸", true);
+        setStatus("choose a photo or video first baby 🌸", true);
         return;
       }
 
@@ -1891,16 +2029,22 @@
       try {
         uploadMemoryBtn.disabled = true;
         uploadMemoryBtn.textContent = "saving...";
-        setStatus("compressing photo first so the upload is faster...");
 
-        const compressedFile = await compressImage(file);
+        const mediaType = isVideoFile(file) ? "video" : "image";
+        const preparedFile = await prepareUploadFile(file);
 
-        setStatus("uploading your memory now 💗");
+        if (mediaType === "video") {
+          setStatus("uploading your video memory now 💗");
+        } else if (preparedFile === file) {
+          setStatus("uploading your memory now 💗");
+        } else {
+          setStatus("getting your photo ready first...");
+        }
 
-        const filePath = `memories/${Date.now()}-${compressedFile.name}`;
+        const filePath = `memories/${Date.now()}-${preparedFile.name}`;
         const fileRef = storageRef(storage, filePath);
 
-        await uploadBytes(fileRef, compressedFile);
+        await uploadBytes(fileRef, preparedFile);
         const imageUrl = await getDownloadURL(fileRef);
 
         const memoryData = {
@@ -1910,6 +2054,7 @@
           note,
           imageUrl,
           filePath,
+          mediaType,
           createdAt: Date.now()
         };
 
@@ -1917,6 +2062,7 @@
 
         setStatus("memory saved successfully 🌸");
         clearForm();
+        toggleUploadCard(false);
       } catch (error) {
         console.error(error);
         setStatus("upload did not work yet. check Firebase Storage rules first 💔", true);
@@ -2289,6 +2435,7 @@
     });
 
     updateEmptyState();
+    toggleUploadCard(false);
     loadSong(0);
     updateMusicTitles();
     updateMusicButtons();
