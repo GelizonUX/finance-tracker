@@ -384,6 +384,10 @@
       margin-top: 4px;
     }
 
+    .gallery-header > div {
+      width: 100%;
+    }
+
     .scrapbook {
       position: relative;
       display: flex;
@@ -393,6 +397,7 @@
       gap: 24px;
       padding-top: 14px;
       min-height: 260px;
+      margin-bottom: 42px;
     }
 
     .memory-card {
@@ -1135,22 +1140,47 @@
       }
 
       .hero {
-        padding: 16px;
+        padding: 18px 16px;
         border-radius: 24px;
         margin-bottom: 14px;
       }
 
-      .hero-title,
-      .upload-title,
       .gallery-title {
         font-size: clamp(34px, 12vw, 50px);
         line-height: 0.92;
+      }
+
+      .hero-title {
+        font-size: clamp(28px, 8.2vw, 40px);
+        line-height: 0.98;
+      }
+
+      .upload-title {
+        font-size: clamp(28px, 8.2vw, 40px);
+        line-height: 0.98;
       }
 
       .hero-copy,
       .upload-subtitle {
         font-size: 13px;
         line-height: 1.65;
+      }
+
+      .gallery-header {
+        margin: 18px 0 16px;
+      }
+
+      .gallery-header > div {
+        width: 100%;
+        text-align: center;
+      }
+
+      .gallery-subtitle {
+        margin-top: 8px;
+      }
+
+      .hero-copy {
+        max-width: none;
       }
 
       .upload-card {
@@ -1161,6 +1191,13 @@
 
       .form-toggle-btn {
         width: 100%;
+      }
+
+      .hero-title,
+      .hero-copy,
+      .upload-title,
+      .upload-subtitle {
+        text-align: center;
       }
 
       .form-grid {
@@ -1202,6 +1239,7 @@
       .scrapbook {
         justify-content: center;
         gap: 14px;
+        margin-bottom: 28px;
       }
 
       .memory-card {
