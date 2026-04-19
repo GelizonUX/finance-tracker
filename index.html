@@ -1741,6 +1741,32 @@
     }
 
   </style>
+
+<style>
+/* FIX: make envelope clickable */
+.envelope {
+  position: relative !important;
+  z-index: 10 !important;
+  cursor: pointer;
+}
+
+/* FIX: prevent overlays from blocking clicks */
+.overlay,
+.background,
+.bg-layer,
+.floating-bg {
+  pointer-events: none !important;
+}
+
+/* smooth interaction */
+.envelope {
+  transition: transform 0.35s ease;
+}
+.envelope:active {
+  transform: scale(0.96);
+}
+</style>
+
 </head>
 <body>
   <div class="site-photo-bg"></div>
