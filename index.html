@@ -1571,6 +1571,175 @@
         margin-top: 0 !important;
       }
     }
+
+    /* advanced smooth polish */
+    .site-photo-bg,
+    body::before,
+    body::after {
+      will-change: transform, opacity;
+    }
+
+    .container > *,
+    .core-memories-btn,
+    .kiss-button,
+    .envelope,
+    .music-mini-bar,
+    .music-panel,
+    .chat-fab,
+    .chat-panel,
+    .letter-card,
+    .intro-choice-wrap,
+    .intro-flower-btn,
+    .intro-flower-asset {
+      will-change: transform, opacity;
+    }
+
+    .core-memories-wrap,
+    .title,
+    .subtitle,
+    .button-wrap,
+    .envelope-wrap {
+      opacity: 0;
+      transform: translateY(18px) scale(0.985);
+      animation: pageReveal 0.9s cubic-bezier(.22,1,.36,1) forwards;
+    }
+
+    .core-memories-wrap { animation-delay: 0.06s; }
+    .title { animation-delay: 0.16s; }
+    .subtitle { animation-delay: 0.26s; }
+    .button-wrap { animation-delay: 0.36s; }
+    .envelope-wrap { animation-delay: 0.48s; }
+
+    @keyframes pageReveal {
+      0% { opacity: 0; transform: translateY(18px) scale(0.985); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .core-memories-btn,
+    .kiss-button,
+    .chat-fab,
+    .music-mini-bar,
+    .music-icon-btn,
+    .music-play-btn,
+    .music-mini-btn,
+    .chat-send-btn,
+    .close-btn,
+    .chat-close,
+    .music-collapse-btn {
+      transition:
+        transform 0.32s cubic-bezier(.22,1,.36,1),
+        box-shadow 0.32s cubic-bezier(.22,1,.36,1),
+        background 0.28s ease,
+        opacity 0.28s ease,
+        filter 0.28s ease;
+    }
+
+    .core-memories-btn:hover,
+    .kiss-button:hover,
+    .chat-fab:hover,
+    .music-mini-bar:hover {
+      filter: saturate(1.04);
+    }
+
+    .chat-panel {
+      display: flex;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(18px) scale(0.98);
+      transition:
+        opacity 0.34s ease,
+        visibility 0.34s ease,
+        transform 0.38s cubic-bezier(.22,1,.36,1);
+    }
+
+    .chat-panel.open {
+      display: flex;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+      animation: popupFloatIn 0.38s cubic-bezier(.22,1,.36,1);
+    }
+
+    .music-panel {
+      display: block;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(14px) scale(0.97);
+      transition:
+        opacity 0.32s ease,
+        visibility 0.32s ease,
+        transform 0.38s cubic-bezier(.22,1,.36,1);
+    }
+
+    .music-panel.open {
+      display: block;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+      animation: popupFloatIn 0.38s cubic-bezier(.22,1,.36,1);
+    }
+
+    .letter-overlay {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.34s ease, visibility 0.34s ease;
+    }
+
+    .letter-overlay.open {
+      display: flex;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      animation: overlayFadeIn 0.34s ease;
+    }
+
+    .letter-card {
+      transform: translateY(18px) scale(0.97);
+      opacity: 0;
+      transition: transform 0.36s cubic-bezier(.22,1,.36,1), opacity 0.36s ease;
+    }
+
+    .letter-overlay.open .letter-card {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+      animation: popupFloatIn 0.36s cubic-bezier(.22,1,.36,1);
+    }
+
+    .chat-bubble {
+      animation: bubbleRiseIn 0.4s cubic-bezier(.22,1,.36,1);
+      transform-origin: bottom center;
+    }
+
+    @keyframes bubbleRiseIn {
+      0% { opacity: 0; transform: translateY(12px) scale(0.96); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes popupFloatIn {
+      0% { opacity: 0; transform: translateY(18px) scale(0.96); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes overlayFadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .music-mini-title,
+    .music-panel-title,
+    .chat-header-title,
+    .love-note-title,
+    .intro-copy-title,
+    .title {
+      backface-visibility: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
   </style>
 </head>
 <body>
@@ -2212,10 +2381,12 @@
 
     function openLetter() {
       letterOverlay.style.display = "flex";
+      requestAnimationFrame(() => letterOverlay.classList.add("open"));
     }
 
     function closeLetter() {
-      letterOverlay.style.display = "none";
+      letterOverlay.classList.remove("open");
+      setTimeout(() => { letterOverlay.style.display = "none"; }, 320);
     }
 
     openLetterBtn.addEventListener("click", openLetter);
