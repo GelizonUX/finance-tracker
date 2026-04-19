@@ -48,6 +48,11 @@
       position: relative;
     }
 
+
+    body.upload-open {
+      overflow: hidden;
+    }
+
     .page-photo-bg {
       position: fixed;
       inset: 0;
@@ -103,15 +108,20 @@
       z-index: 2;
       width: min(94vw, 1180px);
       margin: 0 auto;
-      padding: 28px 0 120px;
+      padding: 118px 0 120px;
     }
 
     .topbar {
+      position: fixed;
+      top: max(14px, env(safe-area-inset-top, 0px) + 10px);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 75;
+      width: min(94vw, 1180px);
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 16px;
-      margin-bottom: 24px;
       flex-wrap: wrap;
     }
 
@@ -119,6 +129,7 @@
       display: flex;
       align-items: center;
       gap: 12px;
+      pointer-events: auto;
     }
 
     .back-link {
@@ -166,28 +177,7 @@
     .top-note {
       font-size: 13px;
       color: #b86b8f;
-    }
-
-    .gallery-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      margin: 18px 0 18px;
-      flex-wrap: wrap;
-    }
-
-    .gallery-title {
-      font-family: var(--snell-font);
-      font-size: clamp(34px, 4vw, 56px);
-      line-height: 0.92;
-      color: var(--pink-7);
-    }
-
-    .gallery-subtitle {
-      font-size: 14px;
-      color: var(--text-soft);
-      margin-top: 4px;
+      pointer-events: none;
     }
 
     .scrapbook {
@@ -386,7 +376,60 @@
 
     .upload-card.open {
       display: block;
-      animation: fadeDropIn 0.28s ease;
+      transform: translateY(0) scale(1);
+      opacity: 1;
+      animation: popupFloatIn 0.36s cubic-bezier(.22,1,.36,1);
+    }
+
+
+    .upload-overlay {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(255, 248, 252, 0.54);
+      backdrop-filter: blur(0px);
+      z-index: 80;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.36s ease, visibility 0.36s ease, backdrop-filter 0.36s ease;
+    }
+
+    .upload-overlay.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      backdrop-filter: blur(16px);
+      animation: overlayFadeIn 0.36s ease;
+    }
+
+    .upload-card {
+      width: min(92vw, 760px);
+      max-height: 88vh;
+      overflow: auto;
+      margin-top: 0;
+      transform: translateY(18px) scale(0.96);
+      opacity: 0;
+      transition: transform 0.36s cubic-bezier(.22,1,.36,1), opacity 0.36s ease;
+    }
+
+    .upload-card-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 40px;
+      height: 40px;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      color: var(--pink-7);
+      background: rgba(255, 236, 245, 0.98);
+      box-shadow: 0 8px 20px rgba(255, 80, 158, 0.10);
+      font-size: 18px;
+      z-index: 2;
     }
 
     @keyframes fadeDropIn {
@@ -573,17 +616,25 @@
     .modal {
       position: fixed;
       inset: 0;
-      display: none;
+      display: flex;
       align-items: center;
       justify-content: center;
       padding: 16px;
       background: rgba(255, 248, 252, 0.54);
-      backdrop-filter: blur(16px);
+      backdrop-filter: blur(0px);
       z-index: 50;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.34s ease, visibility 0.34s ease, backdrop-filter 0.34s ease;
     }
 
     .modal.open {
-      display: flex;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      backdrop-filter: blur(16px);
+      animation: overlayFadeIn 0.34s ease;
     }
 
     .modal-card {
@@ -596,6 +647,15 @@
       border: 1px solid rgba(255,255,255,0.82);
       box-shadow: 0 32px 80px rgba(255, 87, 165, 0.16);
       padding: 18px;
+      transform: translateY(18px) scale(0.97);
+      opacity: 0;
+      transition: transform 0.34s cubic-bezier(.22,1,.36,1), opacity 0.34s ease;
+    }
+
+    .modal.open .modal-card {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+      animation: popupFloatIn 0.34s cubic-bezier(.22,1,.36,1);
     }
 
     .modal-grid {
@@ -721,13 +781,22 @@
         0 28px 75px rgba(255, 87, 165, 0.14),
         inset 0 1px 0 rgba(255,255,255,0.75);
       overflow: hidden;
-      display: none;
+      display: flex;
       flex-direction: column;
       z-index: 59;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(18px) scale(0.98);
+      transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.34s cubic-bezier(.22,1,.36,1);
     }
 
     .chat-panel.open {
-      display: flex;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+      animation: popupFloatIn 0.34s cubic-bezier(.22,1,.36,1);
     }
 
     .chat-header {
@@ -891,19 +960,27 @@
         0 28px 75px rgba(255, 87, 165, 0.14),
         inset 0 1px 0 rgba(255,255,255,0.75);
       backdrop-filter: blur(14px);
-      display: none;
+      display: block;
       transform-origin: bottom right;
-      animation: musicPanelIn 0.28s ease;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(14px) scale(0.97);
+      transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.34s cubic-bezier(.22,1,.36,1);
     }
 
     .music-panel.open {
-      display: block;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+      animation: musicPanelIn 0.34s cubic-bezier(.22,1,.36,1);
     }
 
     @keyframes musicPanelIn {
       0% {
         opacity: 0;
-        transform: translateY(12px) scale(0.96);
+        transform: translateY(16px) scale(0.96);
       }
       100% {
         opacity: 1;
@@ -1130,6 +1207,59 @@
       padding-right: 2px;
     }
 
+
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .page,
+    .hero,
+    .memory-inner,
+    .back-link,
+    .top-note,
+    .gallery-title,
+    .gallery-subtitle,
+    .plus-toggle-btn,
+    .primary-btn,
+    .secondary-btn,
+    .danger-btn,
+    .music-mini-bar,
+    .music-mini-btn,
+    .chat-fab {
+      transition: transform 0.32s cubic-bezier(.22,1,.36,1), box-shadow 0.32s cubic-bezier(.22,1,.36,1), opacity 0.32s ease, background 0.32s ease, color 0.32s ease;
+      will-change: transform, opacity;
+    }
+
+    .hero {
+      animation: softLiftIn 0.7s cubic-bezier(.22,1,.36,1);
+    }
+
+    .memory-card {
+      animation: cardFloat 6s ease-in-out infinite, cardReveal 0.7s cubic-bezier(.22,1,.36,1);
+      transform-origin: center center;
+    }
+
+    @keyframes softLiftIn {
+      0% { opacity: 0; transform: translateY(18px) scale(0.985); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes cardReveal {
+      0% { opacity: 0; transform: translateY(22px) scale(0.94) rotate(var(--rotate, -2deg)); }
+      100% { opacity: 1; transform: translateY(0) scale(1) rotate(var(--rotate, -2deg)); }
+    }
+
+    @keyframes overlayFadeIn {
+      0% { opacity: 0; backdrop-filter: blur(0px); }
+      100% { opacity: 1; backdrop-filter: blur(16px); }
+    }
+
+    @keyframes popupFloatIn {
+      0% { opacity: 0; transform: translateY(18px) scale(0.96); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
     @media (max-width: 900px) {
       .form-grid,
       .modal-grid {
@@ -1148,13 +1278,14 @@
 
       .page {
         width: 94vw;
-        padding: 16px 0 110px;
+        padding: 104px 0 110px;
       }
 
       .topbar {
+        top: max(10px, env(safe-area-inset-top, 0px) + 8px);
+        width: 94vw;
         align-items: flex-start;
         gap: 10px;
-        margin-bottom: 16px;
       }
 
       .topbar-left {
@@ -1167,23 +1298,6 @@
         text-align: center;
         font-size: 12px;
         line-height: 1.5;
-      }
-
-      .gallery-header {
-        margin: 16px 0 10px;
-        justify-content: center;
-        text-align: center;
-      }
-
-      .gallery-title {
-        width: 100%;
-        font-size: clamp(34px, 12vw, 48px);
-        line-height: 0.92;
-      }
-
-      .gallery-subtitle {
-        font-size: 13px;
-        line-height: 1.6;
       }
 
       .scrapbook {
@@ -1246,8 +1360,14 @@
         margin-right: auto;
       }
 
+      .upload-overlay {
+        padding: 12px;
+      }
+
       .upload-card {
-        margin-top: 16px;
+        width: 100%;
+        max-height: 86vh;
+        margin-top: 0;
         padding: 16px;
         border-radius: 22px;
       }
@@ -1451,13 +1571,6 @@
       <div class="top-note">our little keepsakes 💗</div>
     </div>
 
-    <div class="gallery-header">
-      <div>
-        <h2 class="gallery-title">our memories 💗</h2>
-        <div class="gallery-subtitle">tap one and relive it again 🥹</div>
-      </div>
-    </div>
-
     <section class="scrapbook" id="scrapbookGrid">
       <section class="empty-gallery" id="emptyGallery">
         <h3>no memories here yet 🌸</h3>
@@ -1470,8 +1583,11 @@
       <p class="hero-copy">
         little photos, notes, and soft moments kept here with us.
       </p>
+    </section>
 
+    <div class="upload-overlay" id="uploadOverlay">
       <div class="upload-card" id="uploadCard">
+        <button class="upload-card-close" id="uploadCloseBtn" type="button" aria-label="Close add memory form">✕</button>
         <h2 class="upload-title">add a memory ✨</h2>
         <p class="upload-subtitle">
           choose a photo or video, add a few details, then save it here 💗
@@ -1514,7 +1630,7 @@
 
         <div class="status-text" id="statusText"></div>
       </div>
-    </section>
+    </div>
   </div>
 
   <div class="modal" id="memoryModal">
@@ -1689,7 +1805,9 @@
     const storage = getStorage(app);
 
     const toggleUploadBtn = document.getElementById("toggleUploadBtn");
+    const uploadOverlay = document.getElementById("uploadOverlay");
     const uploadCard = document.getElementById("uploadCard");
+    const uploadCloseBtn = document.getElementById("uploadCloseBtn");
     const choosePhotoBtn = document.getElementById("choosePhotoBtn");
     const memoryFileInput = document.getElementById("memoryFileInput");
     const selectedFileText = document.getElementById("selectedFileText");
@@ -1798,10 +1916,15 @@
     }
 
     function toggleUploadCard(forceOpen = null) {
-      const shouldOpen = forceOpen === null ? !uploadCard.classList.contains("open") : forceOpen;
+      const shouldOpen = forceOpen === null ? !uploadOverlay.classList.contains("open") : forceOpen;
+      uploadOverlay.classList.toggle("open", shouldOpen);
       uploadCard.classList.toggle("open", shouldOpen);
+      document.body.classList.toggle("upload-open", shouldOpen);
       toggleUploadBtn.classList.toggle("active", shouldOpen);
       toggleUploadBtn.setAttribute("aria-label", shouldOpen ? "Close add memory form" : "Open add memory form");
+      if (shouldOpen) {
+        setTimeout(() => memoryTitleInput.focus(), 60);
+      }
       updateEmptyState();
     }
 
@@ -1821,7 +1944,7 @@
     }
 
     function updateEmptyState() {
-      const shouldShowEmpty = !hasAnyMemory && !uploadCard.classList.contains("open");
+      const shouldShowEmpty = !hasAnyMemory && !uploadOverlay.classList.contains("open");
       emptyGallery.style.display = shouldShowEmpty ? "block" : "none";
     }
 
@@ -2007,6 +2130,16 @@
 
     toggleUploadBtn.addEventListener("click", () => {
       toggleUploadCard();
+    });
+
+    uploadCloseBtn.addEventListener("click", () => {
+      toggleUploadCard(false);
+    });
+
+    uploadOverlay.addEventListener("click", (e) => {
+      if (e.target === uploadOverlay) {
+        toggleUploadCard(false);
+      }
     });
 
     choosePhotoBtn.addEventListener("click", () => {
@@ -2243,6 +2376,7 @@
       if (e.key === "Escape") {
         closeMemoryModal();
         closeMusicPanel();
+        toggleUploadCard(false);
       }
     });
 
