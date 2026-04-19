@@ -1740,33 +1740,20 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    /* mobile click fix for envelope */
+    .envelope-wrap,
+    .envelope,
+    .envelope-shell {
+      pointer-events: auto;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .envelope {
+      z-index: 14;
+    }
+
   </style>
-
-<style>
-/* FIX: make envelope clickable */
-.envelope {
-  position: relative !important;
-  z-index: 10 !important;
-  cursor: pointer;
-}
-
-/* FIX: prevent overlays from blocking clicks */
-.overlay,
-.background,
-.bg-layer,
-.floating-bg {
-  pointer-events: none !important;
-}
-
-/* smooth interaction */
-.envelope {
-  transition: transform 0.35s ease;
-}
-.envelope:active {
-  transform: scale(0.96);
-}
-</style>
-
 </head>
 <body>
   <div class="site-photo-bg"></div>
@@ -1821,7 +1808,7 @@
     </div>
 
     <div class="envelope-wrap">
-      <div class="envelope" id="openLetterBtn" aria-label="Open my message">
+      <div class="envelope" id="openLetterBtn" aria-label="Open my message" role="button" tabindex="0">
         <div class="envelope-shell">
           <div class="envelope-back"></div>
           <div class="envelope-left-fold"></div>
@@ -2415,8 +2402,32 @@
       setTimeout(() => { letterOverlay.style.display = "none"; }, 320);
     }
 
-    openLetterBtn.addEventListener("click", openLetter);
+
+    let letterTouchHandled = false;
+
+    function handleLetterTap(e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      openLetter();
+    }
+
+    openLetterBtn.addEventListener("click", handleLetterTap);
+    openLetterBtn.addEventListener("touchend", (e) => {
+      letterTouchHandled = true;
+      handleLetterTap(e);
+      setTimeout(() => { letterTouchHandled = false; }, 350);
+    }, { passive: false });
+
+    openLetterBtn.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        handleLetterTap(e);
+      }
+    });
+
     closeLetterBtn.addEventListener("click", closeLetter);
+
 
     letterOverlay.addEventListener("click", (e) => {
       if (e.target === letterOverlay) {
