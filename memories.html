@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Our Little Keepsakes 💗</title>
+  <title>Our Core Memories 💗</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     * {
@@ -24,7 +24,6 @@
       --text-main: #8f4f6d;
       --text-soft: #704b5d;
       --white: #ffffff;
-      --card-shadow: 0 24px 60px rgba(255, 87, 165, 0.12);
       --snell-font: "Snell Roundhand", "Snell Roundhand Bold", "Apple Chancery", "URW Chancery L", cursive;
     }
 
@@ -86,7 +85,7 @@
     .page {
       position: relative;
       z-index: 2;
-      width: min(94vw, 1180px);
+      width: min(94vw, 1120px);
       margin: 0 auto;
       padding: 28px 0 54px;
     }
@@ -97,6 +96,7 @@
       align-items: center;
       gap: 16px;
       margin-bottom: 20px;
+      flex-wrap: wrap;
     }
 
     .back-link {
@@ -108,279 +108,247 @@
       font-weight: 600;
       padding: 12px 16px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.72);
-      border: 1px solid rgba(255,255,255,0.74);
-      box-shadow: 0 12px 26px rgba(255, 87, 165, 0.08);
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(255,255,255,0.8);
+      box-shadow: 0 12px 24px rgba(255, 87, 165, 0.08);
       backdrop-filter: blur(10px);
     }
 
     .top-note {
       font-size: 13px;
       color: #b86b8f;
-      text-align: right;
     }
 
     .hero {
-      position: relative;
-      overflow: hidden;
-      border-radius: 34px;
-      padding: 26px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.86), rgba(255,247,251,0.78));
-      border: 1px solid rgba(255,255,255,0.82);
-      box-shadow: var(--card-shadow);
+      border-radius: 32px;
+      padding: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.88), rgba(255,247,251,0.82));
+      border: 1px solid rgba(255,255,255,0.84);
+      box-shadow: 0 24px 60px rgba(255, 87, 165, 0.12);
       backdrop-filter: blur(14px);
       margin-bottom: 18px;
     }
 
-    .hero::before,
-    .hero::after {
-      content: "";
-      position: absolute;
-      border-radius: 999px;
-      pointer-events: none;
-      filter: blur(18px);
-      opacity: 0.85;
-    }
-
-    .hero::before {
-      width: 180px;
-      height: 180px;
-      top: -40px;
-      right: -30px;
-      background: rgba(255, 203, 228, 0.72);
-    }
-
-    .hero::after {
-      width: 140px;
-      height: 140px;
-      bottom: -38px;
-      left: 20px;
-      background: rgba(255, 232, 242, 0.92);
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 2;
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 18px;
-      align-items: start;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #c1779b;
-      background: rgba(255,255,255,0.78);
-      box-shadow: 0 8px 16px rgba(255, 87, 165, 0.08);
-      margin-bottom: 14px;
-    }
-
     .hero-title {
       font-family: var(--snell-font);
-      font-size: clamp(42px, 6vw, 82px);
-      font-weight: 700;
+      font-size: clamp(42px, 6vw, 78px);
       line-height: 0.95;
       color: var(--pink-7);
       margin-bottom: 14px;
-      text-shadow: 0 12px 24px rgba(255, 45, 143, 0.12);
     }
 
     .hero-copy {
-      max-width: 620px;
-      line-height: 1.75;
+      max-width: 760px;
+      line-height: 1.8;
+      font-size: 16px;
       color: var(--text-main);
-      font-size: clamp(15px, 1.7vw, 18px);
     }
 
     .upload-card {
-      position: relative;
-      overflow: hidden;
+      margin-top: 20px;
       border-radius: 28px;
-      padding: 18px;
-      background: linear-gradient(180deg, rgba(255,247,251,0.92), rgba(255,255,255,0.86));
+      padding: 20px;
+      background: linear-gradient(180deg, rgba(255,247,251,0.94), rgba(255,255,255,0.88));
       border: 1px solid rgba(255,255,255,0.84);
       box-shadow: 0 16px 34px rgba(255, 87, 165, 0.09);
     }
 
-    .upload-card h2 {
+    .upload-title {
       font-family: var(--snell-font);
-      font-size: 42px;
-      font-weight: 700;
-      line-height: 1;
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 0.95;
       color: var(--pink-7);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
-    .upload-card p {
-      font-size: 14px;
-      line-height: 1.7;
+    .upload-subtitle {
+      font-size: 15px;
+      line-height: 1.8;
       color: var(--text-soft);
-      margin-bottom: 16px;
-    }
-
-    .upload-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 14px;
+      margin-bottom: 18px;
     }
 
     .primary-btn,
-    .ghost-btn,
-    .pill,
-    .tiny-btn {
+    .secondary-btn {
       border: none;
       outline: none;
       cursor: pointer;
       font-family: "Inter", sans-serif;
+      border-radius: 999px;
       transition: transform 0.22s ease, box-shadow 0.22s ease, opacity 0.22s ease;
     }
 
     .primary-btn:hover,
-    .ghost-btn:hover,
-    .pill:hover,
-    .tiny-btn:hover {
+    .secondary-btn:hover {
       transform: translateY(-2px);
     }
 
     .primary-btn {
-      padding: 13px 18px;
-      border-radius: 999px;
-      font-weight: 600;
+      padding: 14px 22px;
+      font-size: 15px;
+      font-weight: 700;
       color: white;
       background: linear-gradient(135deg, #ff6ab5 0%, #ff137d 100%);
       box-shadow: 0 14px 30px rgba(255, 41, 133, 0.20), inset 0 1px 0 rgba(255,255,255,0.26);
     }
 
-    .ghost-btn {
-      padding: 13px 18px;
-      border-radius: 999px;
+    .secondary-btn {
+      padding: 12px 18px;
+      font-size: 14px;
       font-weight: 600;
       color: var(--text-main);
-      background: rgba(255,255,255,0.82);
+      background: rgba(255,255,255,0.84);
       box-shadow: 0 10px 20px rgba(255, 87, 165, 0.08);
     }
 
-    .upload-dropzone {
-      border: 1.5px dashed rgba(255, 143, 194, 0.6);
-      border-radius: 24px;
-      padding: 18px;
-      background: rgba(255,255,255,0.68);
-      text-align: center;
-      cursor: pointer;
-    }
-
-    .upload-dropzone strong {
-      display: block;
-      font-size: 15px;
-      color: var(--pink-7);
-      margin-bottom: 6px;
-    }
-
-    .upload-dropzone span {
-      display: block;
-      font-size: 13px;
-      color: #b86b8f;
-      line-height: 1.7;
-    }
-
-    .toolbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 14px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
+      margin-top: 18px;
     }
 
-    .search-wrap {
-      flex: 1 1 320px;
-      min-width: 0;
-      border-radius: 22px;
-      padding: 12px 14px;
-      background: rgba(255,255,255,0.72);
-      border: 1px solid rgba(255,255,255,0.78);
-      box-shadow: 0 12px 24px rgba(255, 87, 165, 0.08);
-      backdrop-filter: blur(10px);
+    .form-full {
+      grid-column: 1 / -1;
     }
 
-    .search-wrap input {
+    .field-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #b86b8f;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .text-input,
+    .textarea-input {
       width: 100%;
       border: none;
       outline: none;
-      background: transparent;
+      background: rgba(255,255,255,0.82);
+      color: var(--text-soft);
       font-family: "Inter", sans-serif;
-      color: var(--text-main);
-      font-size: 14px;
+      font-size: 15px;
+      border-radius: 20px;
+      padding: 14px 16px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.45);
     }
 
-    .search-wrap input::placeholder {
-      color: #c08aa4;
+    .textarea-input {
+      min-height: 140px;
+      resize: vertical;
+      line-height: 1.7;
     }
 
-    .filter-pills {
+    .photo-picker {
       display: flex;
-      gap: 8px;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .upload-preview {
+      width: 100%;
+      min-height: 240px;
+      border-radius: 24px;
+      border: 1.5px dashed rgba(255, 143, 194, 0.65);
+      background: rgba(255,255,255,0.68);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      text-align: center;
+      padding: 16px;
+    }
+
+    .upload-preview.empty {
+      color: #b86b8f;
+    }
+
+    .upload-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 18px;
+      display: block;
+    }
+
+    .upload-preview-text strong {
+      display: block;
+      color: var(--pink-7);
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .upload-preview-text span {
+      display: block;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .selected-file {
+      font-size: 13px;
+      color: #a96d89;
+      min-height: 18px;
+    }
+
+    .status-text {
+      margin-top: 14px;
+      font-size: 14px;
+      color: #b86b8f;
+      min-height: 20px;
+    }
+
+    .gallery-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin: 24px 0 16px;
       flex-wrap: wrap;
     }
 
-    .pill {
-      padding: 11px 16px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.78);
-      color: var(--text-main);
-      font-weight: 600;
-      box-shadow: 0 10px 18px rgba(255, 87, 165, 0.08);
+    .gallery-title {
+      font-family: var(--snell-font);
+      font-size: clamp(34px, 4vw, 56px);
+      line-height: 0.95;
+      color: var(--pink-7);
+    }
+
+    .gallery-subtitle {
+      font-size: 14px;
+      color: var(--text-soft);
+      margin-top: 4px;
     }
 
     .scrapbook {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      grid-auto-rows: 240px;
       gap: 18px;
     }
 
     .memory-card {
       position: relative;
       overflow: hidden;
-      border-radius: 30px;
+      border-radius: 28px;
       padding: 12px;
-      background: rgba(255,255,255,0.80);
-      border: 1px solid rgba(255,255,255,0.82);
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(255,255,255,0.84);
       box-shadow: 0 18px 46px rgba(255, 103, 173, 0.12);
       transition: transform 0.28s ease, box-shadow 0.28s ease;
       cursor: pointer;
     }
 
     .memory-card:hover {
-      transform: translateY(-5px) rotate(0deg) !important;
+      transform: translateY(-5px);
       box-shadow: 0 28px 70px rgba(255, 80, 150, 0.18);
     }
-
-    .memory-card.large {
-      grid-column: span 2;
-    }
-
-    .memory-card.tall {
-      grid-row: span 2;
-    }
-
-    .memory-card.rot-left { transform: rotate(-1.8deg); }
-    .memory-card.rot-right { transform: rotate(1.6deg); }
-    .memory-card.rot-soft { transform: rotate(-0.8deg); }
 
     .memory-inner {
       position: relative;
       width: 100%;
-      height: 100%;
-      border-radius: 24px;
+      aspect-ratio: 4 / 5;
+      border-radius: 22px;
       overflow: hidden;
       background: #fff3f8;
     }
@@ -389,26 +357,12 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
       transition: transform 0.45s ease;
     }
 
     .memory-card:hover .memory-inner img {
-      transform: scale(1.08);
-    }
-
-    .memory-badge {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      z-index: 2;
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      color: #c1779b;
-      background: rgba(255,255,255,0.90);
-      box-shadow: 0 10px 18px rgba(255, 87, 165, 0.08);
+      transform: scale(1.05);
     }
 
     .memory-overlay {
@@ -418,7 +372,7 @@
       flex-direction: column;
       justify-content: flex-end;
       padding: 16px;
-      background: linear-gradient(180deg, rgba(86, 44, 63, 0.02) 25%, rgba(86, 44, 63, 0.78) 100%);
+      background: linear-gradient(180deg, rgba(86, 44, 63, 0.06) 22%, rgba(86, 44, 63, 0.82) 100%);
       color: white;
     }
 
@@ -426,14 +380,13 @@
       font-size: 11px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      opacity: 0.82;
+      opacity: 0.84;
       margin-bottom: 6px;
     }
 
     .memory-title {
       font-family: var(--snell-font);
-      font-size: 44px;
-      font-weight: 700;
+      font-size: 42px;
       line-height: 0.92;
       margin-bottom: 8px;
       text-shadow: 0 4px 12px rgba(0,0,0,0.12);
@@ -441,31 +394,32 @@
 
     .memory-note {
       font-size: 14px;
-      line-height: 1.6;
-      color: rgba(255,255,255,0.92);
-      max-width: 92%;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.94);
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
-    .footer-empty {
-      margin-top: 22px;
+    .empty-gallery {
       border-radius: 28px;
-      padding: 22px;
+      padding: 24px;
       text-align: center;
       border: 1.5px dashed rgba(240, 191, 214, 0.8);
       background: rgba(255,255,255,0.58);
       box-shadow: 0 12px 24px rgba(255, 87, 165, 0.06);
     }
 
-    .footer-empty h3 {
+    .empty-gallery h3 {
       font-family: var(--snell-font);
-      font-size: 52px;
-      font-weight: 700;
+      font-size: clamp(32px, 5vw, 50px);
       line-height: 0.95;
       color: var(--pink-7);
       margin-bottom: 10px;
     }
 
-    .footer-empty p {
+    .empty-gallery p {
       font-size: 14px;
       line-height: 1.8;
       color: var(--text-soft);
@@ -501,7 +455,7 @@
 
     .modal-grid {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-columns: 1.05fr 0.95fr;
       gap: 16px;
       align-items: start;
     }
@@ -521,26 +475,12 @@
     }
 
     .modal-content {
-      padding: 10px 6px 6px;
-    }
-
-    .modal-from {
-      display: inline-block;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(255,237,245,0.86);
-      color: #be6b92;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
+      padding: 8px 6px 6px;
     }
 
     .modal-title {
       font-family: var(--snell-font);
-      font-size: 68px;
-      font-weight: 700;
+      font-size: clamp(42px, 6vw, 68px);
       line-height: 0.92;
       color: var(--pink-7);
       margin-bottom: 12px;
@@ -558,21 +498,6 @@
       font-size: 15px;
       line-height: 1.9;
       color: var(--text-soft);
-      margin-bottom: 16px;
-    }
-
-    .modal-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .tiny-btn {
-      padding: 12px 16px;
-      border-radius: 999px;
-      font-weight: 600;
-      background: rgba(255,237,245,0.9);
-      color: var(--pink-7);
     }
 
     .close-btn {
@@ -592,17 +517,13 @@
     }
 
     @media (max-width: 900px) {
-      .hero-inner,
+      .form-grid,
       .modal-grid {
         grid-template-columns: 1fr;
       }
 
       .scrapbook {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .memory-card.large {
-        grid-column: span 2;
       }
     }
 
@@ -612,56 +533,28 @@
         padding: 18px 0 36px;
       }
 
-      .topbar {
-        align-items: flex-start;
-        flex-direction: column;
-        margin-bottom: 16px;
-      }
-
-      .top-note {
-        text-align: left;
-      }
-
       .hero {
         padding: 18px;
         border-radius: 28px;
       }
 
-      .upload-card h2 {
-        font-size: 34px;
+      .hero-title,
+      .upload-title,
+      .gallery-title {
+        font-size: clamp(34px, 12vw, 54px);
       }
 
-      .hero-title {
-        font-size: clamp(34px, 13vw, 58px);
-      }
-
-      .hero-copy {
+      .hero-copy,
+      .upload-subtitle {
         font-size: 14px;
-        line-height: 1.75;
-      }
-
-      .toolbar {
-        gap: 10px;
       }
 
       .scrapbook {
         grid-template-columns: 1fr;
-        grid-auto-rows: 240px;
-      }
-
-      .memory-card.large,
-      .memory-card.tall {
-        grid-column: span 1;
-        grid-row: span 1;
       }
 
       .memory-title {
-        font-size: 34px;
-      }
-
-      .memory-note {
-        font-size: 13px;
-        max-width: 100%;
+        font-size: 36px;
       }
 
       .modal-card {
@@ -673,17 +566,9 @@
         min-height: 240px;
       }
 
-      .modal-title {
-        font-size: 48px;
-      }
-
       .modal-note {
         font-size: 14px;
         line-height: 1.8;
-      }
-
-      .footer-empty h3 {
-        font-size: 38px;
       }
     }
   </style>
@@ -696,167 +581,69 @@
     </div>
 
     <section class="hero">
-      <div class="hero-inner">
-        <div>
-          <div class="eyebrow">our little keepsakes 🌹</div>
-          <h1 class="hero-title">let’s upload our memories here baby 💗</h1>
-          <p class="hero-copy">
-            flowers, little gifts, random moments, and the tiny things that meant something to us. i want this page to feel like a little box of memories we can keep opening anytime.
-          </p>
-        </div>
+      <h1 class="hero-title">our core memories together 🌹</h1>
+      <p class="hero-copy">
+        let’s keep the little things here baby. one photo, one date, one note at a time. something simple, soft, and easy to understand.
+      </p>
 
-        <div class="upload-card">
-          <h2>add a new memory ✨</h2>
-          <p>
-            choose a photo, add a little note, and keep it here with us. even the smallest one matters to me 🤍
-          </p>
+      <div class="upload-card">
+        <h2 class="upload-title">add a new memory ✨</h2>
+        <p class="upload-subtitle">
+          choose one photo, add the title, date, and your message, then save it here with us 💗
+        </p>
 
-          <div class="upload-actions">
-            <button class="primary-btn" id="choosePhotoBtn">+ add a memory</button>
-            <button class="ghost-btn" id="openTimelineBtn">open timeline</button>
-          </div>
-
+        <div class="photo-picker">
+          <button class="primary-btn" id="choosePhotoBtn">choose photo 🌸</button>
           <input type="file" id="memoryFileInput" accept="image/*" style="display:none;" />
+          <div class="selected-file" id="selectedFileText">no photo selected yet</div>
 
-          <textarea
-            id="memoryNoteInput"
-            placeholder="write a little note here baby... 💗"
-            style="width:100%; min-height:110px; resize:vertical; border:none; outline:none; padding:14px 16px; border-radius:20px; background:rgba(255,255,255,0.82); color:var(--text-soft); font-family:'Inter', sans-serif; font-size:14px; line-height:1.7; margin-bottom:12px;"
-          ></textarea>
-
-          <input
-            type="text"
-            id="memoryTitleInput"
-            placeholder="title of the memory ✨"
-            style="width:100%; border:none; outline:none; padding:14px 16px; border-radius:20px; background:rgba(255,255,255,0.82); color:var(--text-soft); font-family:'Inter', sans-serif; font-size:14px; margin-bottom:12px;"
-          />
-
-          <div class="upload-actions" style="margin-bottom:12px;">
-            <button class="primary-btn" id="uploadMemoryBtn">upload photo + note 🌸</button>
-          </div>
-
-          <div class="upload-dropzone" id="uploadDropzone">
-            <strong>drop a photo here or tap to choose one 🌸</strong>
-            <span>choose a photo, add a note, and it will appear in your album using the same Firebase project.</span>
+          <div class="upload-preview empty" id="uploadPreview">
+            <div class="upload-preview-text">
+              <strong>your photo will preview here 💗</strong>
+              <span>tap the button above and choose one memory from the gallery</span>
+            </div>
           </div>
         </div>
+
+        <div class="form-grid">
+          <div>
+            <label class="field-label" for="memoryTitleInput">title</label>
+            <input type="text" id="memoryTitleInput" class="text-input" placeholder="title of the memory ✨" />
+          </div>
+
+          <div>
+            <label class="field-label" for="memoryDateInput">date</label>
+            <input type="date" id="memoryDateInput" class="text-input" />
+          </div>
+
+          <div class="form-full">
+            <label class="field-label" for="memoryNoteInput">message</label>
+            <textarea id="memoryNoteInput" class="textarea-input" placeholder="write a little note here baby... 💗"></textarea>
+          </div>
+        </div>
+
+        <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
+          <button class="primary-btn" id="uploadMemoryBtn">save this memory 🌸</button>
+          <button class="secondary-btn" id="clearFormBtn" type="button">clear form</button>
+        </div>
+
+        <div class="status-text" id="statusText"></div>
       </div>
     </section>
 
-    <section class="toolbar">
-      <div class="search-wrap">
-        <input type="text" placeholder="search a bouquet, a gift, a date, a memory..." />
+    <div class="gallery-header">
+      <div>
+        <h2 class="gallery-title">our memories 💗</h2>
+        <div class="gallery-subtitle">every picture keeps a little part of us.</div>
       </div>
+    </div>
 
-      <div class="filter-pills">
-        <button class="pill">all</button>
-        <button class="pill">flowers</button>
-        <button class="pill">gifts</button>
-        <button class="pill">notes</button>
-      </div>
-    </section>
+    <section class="scrapbook" id="scrapbookGrid"></section>
 
-    <section class="scrapbook" id="scrapbookGrid">
-      <article
-        class="memory-card large rot-left"
-        data-title="Pink Peonies 🌸"
-        data-date="March 14, 2026"
-        data-from="from you"
-        data-note="you gave me these after a really long day. i still remember how soft everything felt that night 💗"
-        data-image="https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?auto=format&fit=crop&w=1200&q=80"
-      >
-        <div class="memory-badge">from you</div>
-        <div class="memory-inner">
-          <img src="https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?auto=format&fit=crop&w=1200&q=80" alt="Pink Peonies" />
-          <div class="memory-overlay">
-            <div class="memory-date">March 14, 2026</div>
-            <div class="memory-title">Pink Peonies 🌸</div>
-            <div class="memory-note">you gave me these after a really long day. i still remember how soft everything felt that night 💗</div>
-          </div>
-        </div>
-      </article>
-
-      <article
-        class="memory-card rot-right"
-        data-title="Little Gift 🎁"
-        data-date="February 22, 2026"
-        data-from="from me"
-        data-note="small gift, but it made me smile the whole day 🥺"
-        data-image="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?auto=format&fit=crop&w=1200&q=80"
-      >
-        <div class="memory-badge">from me</div>
-        <div class="memory-inner">
-          <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?auto=format&fit=crop&w=1200&q=80" alt="Little Gift" />
-          <div class="memory-overlay">
-            <div class="memory-date">February 22, 2026</div>
-            <div class="memory-title">Little Gift 🎁</div>
-            <div class="memory-note">small gift, but it made me smile the whole day 🥺</div>
-          </div>
-        </div>
-      </article>
-
-      <article
-        class="memory-card tall rot-soft"
-        data-title="A Note I Kept 💌"
-        data-date="December 20, 2025"
-        data-from="from me"
-        data-note="one of those little things that became a big memory for me. i still keep it because it reminds me of you 🤍"
-        data-image="https://images.unsplash.com/photo-1513885535751-8b9238bd345a?auto=format&fit=crop&w=1200&q=80"
-      >
-        <div class="memory-badge">from me</div>
-        <div class="memory-inner">
-          <img src="https://images.unsplash.com/photo-1513885535751-8b9238bd345a?auto=format&fit=crop&w=1200&q=80" alt="A Note I Kept" />
-          <div class="memory-overlay">
-            <div class="memory-date">December 20, 2025</div>
-            <div class="memory-title">A Note I Kept 💌</div>
-            <div class="memory-note">one of those little things that became a big memory for me. i still keep it because it reminds me of you 🤍</div>
-          </div>
-        </div>
-      </article>
-
-      <article
-        class="memory-card rot-left"
-        data-title="White Roses 🤍"
-        data-date="January 8, 2026"
-        data-from="from you"
-        data-note="simple, clean, and very you. i loved these so much 🌹"
-        data-image="https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?auto=format&fit=crop&w=1200&q=80"
-      >
-        <div class="memory-badge">from you</div>
-        <div class="memory-inner">
-          <img src="https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?auto=format&fit=crop&w=1200&q=80" alt="White Roses" />
-          <div class="memory-overlay">
-            <div class="memory-date">January 8, 2026</div>
-            <div class="memory-title">White Roses 🤍</div>
-            <div class="memory-note">simple, clean, and very you. i loved these so much 🌹</div>
-          </div>
-        </div>
-      </article>
-
-      <article
-        class="memory-card rot-right"
-        data-title="Dahlia Day 🌷"
-        data-date="April 6, 2026"
-        data-from="from you"
-        data-note="this bouquet was way too pretty not to save forever 💗"
-        data-image="https://images.unsplash.com/photo-1468327768560-75b778cbb551?auto=format&fit=crop&w=1200&q=80"
-      >
-        <div class="memory-badge">from you</div>
-        <div class="memory-inner">
-          <img src="https://images.unsplash.com/photo-1468327768560-75b778cbb551?auto=format&fit=crop&w=1200&q=80" alt="Dahlia Day" />
-          <div class="memory-overlay">
-            <div class="memory-date">April 6, 2026</div>
-            <div class="memory-title">Dahlia Day 🌷</div>
-            <div class="memory-note">this bouquet was way too pretty not to save forever 💗</div>
-          </div>
-        </div>
-      </article>
-    </section>
-
-    <section class="footer-empty">
-      <h3>let’s keep adding more memories here 🌸</h3>
+    <section class="empty-gallery" id="emptyGallery">
+      <h3>no memories here yet 🌸</h3>
       <p>
-        every bouquet, every gift, every tiny little thing that made us smile deserves a place here too 💗
+        upload the first one and it will appear here right away.
       </p>
     </section>
   </div>
@@ -869,14 +656,9 @@
           <img id="modalImage" src="" alt="Memory image" />
         </div>
         <div class="modal-content">
-          <div class="modal-from" id="modalFrom">from you</div>
-          <div class="modal-title" id="modalTitle">Pink Peonies 🌸</div>
-          <div class="modal-date" id="modalDate">March 14, 2026</div>
+          <div class="modal-title" id="modalTitle"></div>
+          <div class="modal-date" id="modalDate"></div>
           <div class="modal-note" id="modalNote"></div>
-          <div class="modal-actions">
-            <button class="tiny-btn">edit note</button>
-            <button class="tiny-btn">save memory</button>
-          </div>
         </div>
       </div>
     </div>
@@ -884,8 +666,20 @@
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-    import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+    import {
+      getDatabase,
+      ref,
+      push,
+      onChildAdded,
+      query,
+      orderByChild
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+    import {
+      getStorage,
+      ref as storageRef,
+      uploadBytes,
+      getDownloadURL
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyDciClPjoLNMh63Qsyb54PeVCsQkvsnpCY",
@@ -901,28 +695,79 @@
     const db = getDatabase(app);
     const storage = getStorage(app);
 
+    const choosePhotoBtn = document.getElementById("choosePhotoBtn");
+    const memoryFileInput = document.getElementById("memoryFileInput");
+    const selectedFileText = document.getElementById("selectedFileText");
+    const uploadPreview = document.getElementById("uploadPreview");
+    const memoryTitleInput = document.getElementById("memoryTitleInput");
+    const memoryDateInput = document.getElementById("memoryDateInput");
+    const memoryNoteInput = document.getElementById("memoryNoteInput");
+    const uploadMemoryBtn = document.getElementById("uploadMemoryBtn");
+    const clearFormBtn = document.getElementById("clearFormBtn");
+    const statusText = document.getElementById("statusText");
     const scrapbookGrid = document.getElementById("scrapbookGrid");
+    const emptyGallery = document.getElementById("emptyGallery");
+
     const memoryModal = document.getElementById("memoryModal");
     const closeModalBtn = document.getElementById("closeModalBtn");
     const modalImage = document.getElementById("modalImage");
-    const modalFrom = document.getElementById("modalFrom");
     const modalTitle = document.getElementById("modalTitle");
     const modalDate = document.getElementById("modalDate");
     const modalNote = document.getElementById("modalNote");
-    const choosePhotoBtn = document.getElementById("choosePhotoBtn");
-    const uploadMemoryBtn = document.getElementById("uploadMemoryBtn");
-    const memoryFileInput = document.getElementById("memoryFileInput");
-    const memoryNoteInput = document.getElementById("memoryNoteInput");
-    const memoryTitleInput = document.getElementById("memoryTitleInput");
-    const uploadDropzone = document.getElementById("uploadDropzone");
 
-    function openMemoryModal(card) {
-      modalImage.src = card.dataset.image;
-      modalImage.alt = card.dataset.title;
-      modalFrom.textContent = card.dataset.from;
-      modalTitle.textContent = card.dataset.title;
-      modalDate.textContent = card.dataset.date;
-      modalNote.textContent = card.dataset.note;
+    let previewObjectUrl = null;
+    let hasAnyMemory = false;
+
+    function formatDisplayDate(dateValue) {
+      if (!dateValue) return "";
+      const date = new Date(dateValue + "T00:00:00");
+      return date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      });
+    }
+
+    function setStatus(message, isError = false) {
+      statusText.textContent = message;
+      statusText.style.color = isError ? "#d14d7d" : "#b86b8f";
+    }
+
+    function updateEmptyState() {
+      emptyGallery.style.display = hasAnyMemory ? "none" : "block";
+    }
+
+    function clearPreview() {
+      if (previewObjectUrl) {
+        URL.revokeObjectURL(previewObjectUrl);
+        previewObjectUrl = null;
+      }
+
+      uploadPreview.classList.add("empty");
+      uploadPreview.innerHTML = `
+        <div class="upload-preview-text">
+          <strong>your photo will preview here 💗</strong>
+          <span>tap the button above and choose one memory from the gallery</span>
+        </div>
+      `;
+      selectedFileText.textContent = "no photo selected yet";
+    }
+
+    function clearForm() {
+      memoryFileInput.value = "";
+      memoryTitleInput.value = "";
+      memoryDateInput.value = "";
+      memoryNoteInput.value = "";
+      clearPreview();
+      setStatus("");
+    }
+
+    function openMemoryModal(memory) {
+      modalImage.src = memory.imageUrl;
+      modalImage.alt = memory.title || "Memory";
+      modalTitle.textContent = memory.title || "A little memory 💗";
+      modalDate.textContent = memory.displayDate || "";
+      modalNote.textContent = memory.note || "";
       memoryModal.classList.add("open");
     }
 
@@ -930,38 +775,178 @@
       memoryModal.classList.remove("open");
     }
 
-    function attachCardEvents(card) {
-      card.addEventListener("click", () => openMemoryModal(card));
-    }
-
     function createMemoryCard(memory) {
-      const article = document.createElement("article");
-      const rotations = ["rot-left", "rot-right", "rot-soft"];
-      const rotation = rotations[Math.floor(Math.random() * rotations.length)];
-      article.className = `memory-card ${rotation}`;
-      article.dataset.title = memory.title;
-      article.dataset.date = memory.date;
-      article.dataset.from = memory.from || "from us";
-      article.dataset.note = memory.note;
-      article.dataset.image = memory.imageUrl;
+      hasAnyMemory = true;
+      updateEmptyState();
 
+      const article = document.createElement("article");
+      article.className = "memory-card";
       article.innerHTML = `
-        <div class="memory-badge">${memory.from || "from us"}</div>
         <div class="memory-inner">
-          <img src="${memory.imageUrl}" alt="${memory.title}" />
+          <img src="${memory.imageUrl}" alt="${memory.title || "Memory"}" />
           <div class="memory-overlay">
-            <div class="memory-date">${memory.date}</div>
-            <div class="memory-title">${memory.title}</div>
-            <div class="memory-note">${memory.note}</div>
+            <div class="memory-date">${memory.displayDate || ""}</div>
+            <div class="memory-title">${memory.title || "A little memory 💗"}</div>
+            <div class="memory-note">${memory.note || ""}</div>
           </div>
         </div>
       `;
 
-      attachCardEvents(article);
+      article.addEventListener("click", () => openMemoryModal(memory));
       scrapbookGrid.prepend(article);
     }
 
-    document.querySelectorAll(".memory-card").forEach(attachCardEvents);
+    async function compressImage(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+
+        reader.onload = () => {
+          const img = new Image();
+
+          img.onload = () => {
+            const maxWidth = 1600;
+            const maxHeight = 1600;
+
+            let { width, height } = img;
+
+            if (width > maxWidth || height > maxHeight) {
+              const ratio = Math.min(maxWidth / width, maxHeight / height);
+              width = Math.round(width * ratio);
+              height = Math.round(height * ratio);
+            }
+
+            const canvas = document.createElement("canvas");
+            canvas.width = width;
+            canvas.height = height;
+
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, width, height);
+
+            canvas.toBlob(
+              (blob) => {
+                if (!blob) {
+                  reject(new Error("Compression failed"));
+                  return;
+                }
+
+                const compressedFile = new File(
+                  [blob],
+                  file.name.replace(/\.[^.]+$/, "") + ".jpg",
+                  { type: "image/jpeg" }
+                );
+
+                resolve(compressedFile);
+              },
+              "image/jpeg",
+              0.82
+            );
+          };
+
+          img.onerror = () => reject(new Error("Image load failed"));
+          img.src = reader.result;
+        };
+
+        reader.onerror = () => reject(new Error("File read failed"));
+        reader.readAsDataURL(file);
+      });
+    }
+
+    choosePhotoBtn.addEventListener("click", () => {
+      memoryFileInput.click();
+    });
+
+    memoryFileInput.addEventListener("change", () => {
+      const file = memoryFileInput.files[0];
+
+      if (!file) {
+        clearPreview();
+        return;
+      }
+
+      if (previewObjectUrl) {
+        URL.revokeObjectURL(previewObjectUrl);
+      }
+
+      previewObjectUrl = URL.createObjectURL(file);
+      selectedFileText.textContent = `selected: ${file.name}`;
+
+      uploadPreview.classList.remove("empty");
+      uploadPreview.innerHTML = `<img src="${previewObjectUrl}" alt="Selected preview" />`;
+
+      setStatus("photo selected 💗");
+    });
+
+    clearFormBtn.addEventListener("click", clearForm);
+
+    uploadMemoryBtn.addEventListener("click", async () => {
+      const file = memoryFileInput.files[0];
+      const title = memoryTitleInput.value.trim();
+      const dateValue = memoryDateInput.value;
+      const note = memoryNoteInput.value.trim();
+
+      if (!file) {
+        setStatus("choose a photo first baby 🌸", true);
+        return;
+      }
+
+      if (!title) {
+        setStatus("add a title first 💗", true);
+        return;
+      }
+
+      if (!dateValue) {
+        setStatus("choose the date too 🌷", true);
+        return;
+      }
+
+      if (!note) {
+        setStatus("write your message too 💗", true);
+        return;
+      }
+
+      try {
+        uploadMemoryBtn.disabled = true;
+        uploadMemoryBtn.textContent = "saving...";
+        setStatus("compressing photo first so the upload is faster...");
+
+        const compressedFile = await compressImage(file);
+
+        setStatus("uploading your memory now 💗");
+
+        const filePath = `memories/${Date.now()}-${compressedFile.name}`;
+        const fileRef = storageRef(storage, filePath);
+
+        await uploadBytes(fileRef, compressedFile);
+        const imageUrl = await getDownloadURL(fileRef);
+
+        const memoryData = {
+          title,
+          date: dateValue,
+          displayDate: formatDisplayDate(dateValue),
+          note,
+          imageUrl,
+          createdAt: Date.now()
+        };
+
+        await push(ref(db, "memories"), memoryData);
+
+        setStatus("memory saved successfully 🌸");
+        clearForm();
+      } catch (error) {
+        console.error(error);
+        setStatus("upload did not work yet. check Firebase Storage rules first 💔", true);
+      } finally {
+        uploadMemoryBtn.disabled = false;
+        uploadMemoryBtn.textContent = "save this memory 🌸";
+      }
+    });
+
+    const memoriesQuery = query(ref(db, "memories"), orderByChild("createdAt"));
+
+    onChildAdded(memoriesQuery, (snapshot) => {
+      const memory = snapshot.val();
+      createMemoryCard(memory);
+    });
 
     closeModalBtn.addEventListener("click", closeMemoryModal);
 
@@ -973,64 +958,7 @@
       if (e.key === "Escape") closeMemoryModal();
     });
 
-    choosePhotoBtn.addEventListener("click", () => memoryFileInput.click());
-    uploadDropzone.addEventListener("click", () => memoryFileInput.click());
-
-    uploadMemoryBtn.addEventListener("click", async () => {
-      const file = memoryFileInput.files[0];
-      const note = memoryNoteInput.value.trim();
-      const title = memoryTitleInput.value.trim() || "A little memory 💗";
-
-      if (!file) {
-        alert("choose a photo first baby 🌸");
-        return;
-      }
-
-      if (!note) {
-        alert("add a little note too 💗");
-        return;
-      }
-
-      try {
-        uploadMemoryBtn.textContent = "uploading...";
-        uploadMemoryBtn.disabled = true;
-
-        const filePath = `memories/${Date.now()}-${file.name}`;
-        const fileRef = storageRef(storage, filePath);
-        await uploadBytes(fileRef, file);
-        const imageUrl = await getDownloadURL(fileRef);
-
-        const memoryData = {
-          title,
-          note,
-          imageUrl,
-          from: "from us",
-          date: new Date().toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric"
-          }),
-          createdAt: Date.now()
-        };
-
-        await push(ref(db, "memories"), memoryData);
-
-        memoryFileInput.value = "";
-        memoryNoteInput.value = "";
-        memoryTitleInput.value = "";
-      } catch (error) {
-        console.error(error);
-        alert("upload did not work yet. check Firebase Storage rules first baby 💔");
-      } finally {
-        uploadMemoryBtn.textContent = "upload photo + note 🌸";
-        uploadMemoryBtn.disabled = false;
-      }
-    });
-
-    onChildAdded(ref(db, "memories"), (snapshot) => {
-      const memory = snapshot.val();
-      createMemoryCard(memory);
-    });
+    updateEmptyState();
   </script>
 </body>
 </html>
