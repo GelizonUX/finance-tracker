@@ -33,6 +33,19 @@
       --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
       --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
       --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+      /* mood theme — overridden by JS */
+      --mood-grad-a: #ffb3d9;
+      --mood-grad-b: #ff6ab5;
+      --mood-glow: rgba(255,87,165,0.24);
+      --mood-border: rgba(255,200,225,0.6);
+      --mood-title: #ff2f8d;
+      --mood-sub: #b86b8f;
+      --mood-opt-bg: rgba(255,236,245,0.7);
+      --mood-opt-hover: rgba(255,218,238,0.9);
+      --mood-opt-selected: rgba(255,200,230,0.55);
+      --mood-opt-border: #ff6ab5;
+      --mood-label: #c07090;
     }
 
     html {
@@ -65,9 +78,13 @@
     body.upload-open .music-shell,
     body.upload-open .chat-fab,
     body.upload-open .chat-panel,
+    body.upload-open .mood-cluster,
+    body.upload-open .mood-panel,
     body.memory-modal-open .music-shell,
     body.memory-modal-open .chat-fab,
-    body.memory-modal-open .chat-panel {
+    body.memory-modal-open .chat-panel,
+    body.memory-modal-open .mood-cluster,
+    body.memory-modal-open .mood-panel {
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
@@ -1092,8 +1109,17 @@
     .chat-feed::-webkit-scrollbar { width: 6px; }
     .chat-feed::-webkit-scrollbar-thumb { background: rgba(255,110,178,0.30); border-radius: 999px; }
 
-    .chat-bubble {
+    .chat-bubble-wrap {
+      display: flex;
+      flex-direction: column;
       max-width: 78%;
+      position: relative;
+    }
+
+    .chat-bubble-wrap.riri  { align-self: flex-start; }
+    .chat-bubble-wrap.vince { align-self: flex-end; }
+
+    .chat-bubble {
       padding: 10px 12px;
       border-radius: 16px;
       font-size: 13px;
@@ -1109,10 +1135,32 @@
       to   { opacity: 1; transform: scale(1) translateY(0); }
     }
 
-    .chat-bubble.riri  { align-self: flex-start; background: linear-gradient(180deg, #ffd8e9, #ffc7df); color: #7a3f59; }
-    .chat-bubble.vince { align-self: flex-end; background: linear-gradient(180deg, #eef8ff, #dff1ff); color: var(--vince-blue-text); border-color: rgba(187,224,255,0.8); }
+    .chat-bubble-wrap.riri  .chat-bubble { background: linear-gradient(180deg, #ffd8e9, #ffc7df); color: #7a3f59; }
+    .chat-bubble-wrap.vince .chat-bubble { background: linear-gradient(180deg, #eef8ff, #dff1ff); color: var(--vince-blue-text); border-color: rgba(187,224,255,0.8); }
 
-    .chat-meta { font-size: 11px; opacity: 0.72; margin-top: 4px; }
+    .chat-meta {
+      font-size: 10.5px;
+      line-height: 1.35;
+      opacity: 0.72;
+      margin-top: 6px;
+      padding: 0 6px;
+      color: #9b6881;
+      max-width: 100%;
+      white-space: normal;
+    }
+
+    .chat-bubble-wrap.riri  .chat-meta { text-align: left; }
+    .chat-bubble-wrap.vince .chat-meta { text-align: right; }
+
+    .mood-bubble-pink {
+      background: linear-gradient(135deg, rgba(255,220,240,0.95), rgba(255,200,228,0.9)) !important;
+      border-color: rgba(255,150,210,0.4) !important;
+    }
+
+    .mood-bubble-blue {
+      background: linear-gradient(135deg, rgba(210,235,255,0.95), rgba(185,220,255,0.9)) !important;
+      border-color: rgba(100,180,255,0.4) !important;
+    }
 
     .chat-composer {
       flex-shrink: 0;
@@ -1177,14 +1225,14 @@
 
     .music-shell {
       position: fixed;
-      right: 92px;
+      right: 86px;
       bottom: 18px;
       z-index: 60;
       display: flex;
       flex-direction: column;
       align-items: flex-end;
       gap: 10px;
-      max-width: min(430px, calc(100vw - 168px));
+      max-width: min(360px, calc(100vw - 184px));
       transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
     }
 
@@ -1464,6 +1512,249 @@
       padding-right: 2px;
     }
 
+    /* ── MOOD WIDGET ─────────────────────────────────────────── */
+
+    .mood-cluster {
+      position: fixed;
+      left: 18px;
+      bottom: 18px;
+      display: flex;
+      align-items: flex-start;
+      z-index: 60;
+      transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    }
+
+    .user-switcher {
+      position: absolute;
+      left: 0;
+      bottom: 70px;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      background: rgba(255,255,255,0.86);
+      border: 1px solid rgba(220,210,230,0.55);
+      border-radius: 999px;
+      box-shadow: 0 6px 20px rgba(180,100,160,0.10);
+      backdrop-filter: blur(10px);
+      overflow: hidden;
+      padding: 3px;
+      width: max-content;
+      max-width: min(280px, calc(100vw - 36px));
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(8px) scale(0.96);
+      transform-origin: bottom left;
+      transition: opacity 0.22s ease, transform 0.28s var(--ease-spring), visibility 0s linear 0.28s;
+    }
+
+    .user-switcher.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+      transition-delay: 0s;
+    }
+
+    .switcher-btn {
+      border: none;
+      cursor: pointer;
+      font-family: "Inter", sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 5px 12px;
+      border-radius: 999px;
+      transition: background 0.25s var(--ease-smooth), color 0.25s ease, transform 0.2s var(--ease-spring), box-shadow 0.25s ease;
+      background: transparent;
+      color: rgba(140,110,160,0.65);
+      white-space: nowrap;
+    }
+
+    .switcher-btn:hover { color: rgba(120,90,140,1); }
+    .switcher-btn:active { transform: scale(0.95); }
+
+    .switcher-btn.active-riri {
+      background: linear-gradient(135deg, #ff6ab5, #ff2f8d);
+      color: white;
+      box-shadow: 0 4px 14px rgba(255,41,133,0.28);
+    }
+
+    .switcher-btn.active-vince {
+      background: linear-gradient(135deg, #5bb8f5, #1a78c2);
+      color: white;
+      box-shadow: 0 4px 14px rgba(26,120,194,0.28);
+    }
+
+    .mood-fab {
+      width: 58px;
+      height: 58px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 22px;
+      border: none;
+      user-select: none;
+      transition: transform 0.35s var(--ease-spring), box-shadow 0.35s var(--ease-smooth), background 0.4s ease;
+      will-change: transform;
+      background: linear-gradient(135deg, var(--mood-grad-a), var(--mood-grad-b));
+      box-shadow: 0 16px 34px var(--mood-glow), inset 0 1px 0 rgba(255,255,255,0.3);
+      animation: moodFabPulse 3.5s ease-in-out infinite 2s;
+    }
+
+    @keyframes moodFabPulse {
+      0%, 100% { box-shadow: 0 16px 34px var(--mood-glow), inset 0 1px 0 rgba(255,255,255,0.3); }
+      50% { box-shadow: 0 20px 44px var(--mood-glow), 0 0 0 6px rgba(255,255,255,0.1), inset 0 1px 0 rgba(255,255,255,0.3); }
+    }
+
+    .mood-fab:hover { transform: scale(1.12) rotate(8deg); }
+    .mood-fab:active { transform: scale(0.94); }
+
+    .mood-panel {
+      position: fixed;
+      left: 18px;
+      bottom: 92px;
+      width: min(300px, calc(100vw - 36px));
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.97), rgba(245,250,255,0.96));
+      border: 1px solid var(--mood-border);
+      box-shadow: 0 28px 75px var(--mood-glow), inset 0 1px 0 rgba(255,255,255,0.8);
+      backdrop-filter: blur(16px);
+      padding: 18px;
+      display: none;
+      flex-direction: column;
+      gap: 14px;
+      z-index: 59;
+      transform-origin: bottom left;
+    }
+
+    .mood-panel.open {
+      display: flex;
+      animation: popupFloatIn 0.34s var(--ease-out-expo);
+    }
+
+    .mood-panel-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .mood-panel-title {
+      font-family: var(--snell-font);
+      font-size: 28px;
+      line-height: 0.95;
+      color: var(--mood-title);
+    }
+
+    .mood-panel-sub {
+      font-size: 12px;
+      color: var(--mood-sub);
+      margin-top: 4px;
+    }
+
+    .mood-close-btn {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 15px;
+      color: var(--mood-title);
+      background: rgba(255,255,255,0.9);
+      transition: transform 0.35s var(--ease-spring);
+    }
+
+    .mood-close-btn:hover { transform: scale(1.12) rotate(90deg); }
+
+    .mood-options {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+
+    .mood-opt {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      border: 1.5px solid transparent;
+      border-radius: 16px;
+      background: var(--mood-opt-bg);
+      padding: 8px 4px;
+      cursor: pointer;
+      transition: transform 0.3s var(--ease-spring), border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .mood-opt:hover {
+      transform: translateY(-4px) scale(1.08);
+      background: var(--mood-opt-hover);
+    }
+
+    .mood-opt.selected {
+      border-color: var(--mood-opt-border);
+      background: var(--mood-opt-selected);
+      transform: translateY(-4px) scale(1.1);
+    }
+
+    .mood-opt-emoji { font-size: 22px; line-height: 1; }
+
+    .mood-opt-label {
+      font-size: 9px;
+      color: var(--mood-label);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .mood-send-btn {
+      width: 100%;
+      border: none;
+      border-radius: 999px;
+      padding: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: white;
+      background: linear-gradient(135deg, var(--mood-grad-a), var(--mood-grad-b));
+      cursor: pointer;
+      opacity: 0.45;
+      pointer-events: none;
+      transition: transform 0.3s var(--ease-spring), opacity 0.3s ease, filter 0.3s ease;
+    }
+
+    .mood-send-btn.ready {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mood-send-btn.ready:hover {
+      transform: translateY(-2px) scale(1.02);
+      filter: brightness(1.06);
+    }
+
+    .mood-send-btn.ready:active { transform: scale(0.97); }
+
+    .mood-confirm {
+      display: none;
+      text-align: center;
+      padding: 4px 0;
+    }
+
+    .mood-confirm-emoji {
+      font-size: 28px;
+      margin-bottom: 6px;
+    }
+
+    .mood-confirm-text {
+      font-size: 13px;
+      color: var(--mood-sub);
+      line-height: 1.5;
+    }
+
+    .mood-confirm-text strong { color: var(--mood-title); }
+
     /* ── SHARED KEYFRAMES ────────────────────────────────────── */
 
     @keyframes overlayFadeIn {
@@ -1694,15 +1985,40 @@
       }
 
       .chat-header-title { font-size: 24px; }
-      .chat-bubble { max-width: 86%; font-size: 12.5px; }
+      .chat-bubble-wrap { max-width: 86%; }
+      .chat-bubble { font-size: 12.5px; }
       .chat-message-input { height: 68px; font-size: 13px; }
+
+      /* ── MOOD MOBILE ── */
+      .mood-cluster {
+        left: max(14px, env(safe-area-inset-left, 0px));
+        bottom: max(14px, env(safe-area-inset-bottom, 0px));
+      }
+
+      .user-switcher {
+        left: 0;
+        bottom: 66px;
+        max-width: calc(100vw - 28px);
+      }
+
+      .mood-fab { width: 54px; height: 54px; font-size: 20px; }
+      .mood-panel {
+        left: 10px;
+        right: 10px;
+        bottom: 82px;
+        width: auto;
+        border-radius: 20px;
+      }
+
+      .switcher-btn { padding: 4px 10px; font-size: 10px; }
 
       /* ── MUSIC MOBILE ── */
       .music-shell {
-        right: 72px;
+        left: 82px;
+        right: 82px;
         bottom: 14px;
-        width: calc(100vw - 92px);
-        max-width: calc(100vw - 92px);
+        width: auto;
+        max-width: none;
       }
 
       .music-panel,
@@ -1732,6 +2048,13 @@
       .music-mini-btn  { width: 40px; height: 40px; font-size: 17px; }
       .music-mini-title { font-size: 13px; }
       .music-mini-time  { font-size: 10px; min-width: 62px; }
+    }
+    @media (max-width: 400px) {
+      .music-shell {
+        left: 78px;
+        right: 78px;
+        max-width: none;
+      }
     }
   </style>
 </head>
@@ -1854,6 +2177,30 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="mood-cluster">
+    <div class="user-switcher" id="userSwitcher">
+      <button class="switcher-btn" id="btnRiri">🌸 Riri</button>
+      <button class="switcher-btn" id="btnVince">💙 Vince</button>
+    </div>
+    <button class="mood-fab" id="moodFab">🌸</button>
+  </div>
+
+  <div class="mood-panel" id="moodPanel">
+    <div class="mood-panel-header">
+      <div>
+        <div class="mood-panel-title" id="moodPanelTitle">how are you feeling? 💗</div>
+        <div class="mood-panel-sub" id="moodPanelSub">let vince know right now</div>
+      </div>
+      <button class="mood-close-btn" id="moodCloseBtn" aria-label="Close mood panel">✕</button>
+    </div>
+    <div class="mood-options" id="moodOptions"></div>
+    <button class="mood-send-btn" id="moodSendBtn">let him know 💌</button>
+    <div class="mood-confirm" id="moodConfirm">
+      <div class="mood-confirm-emoji" id="moodConfirmEmoji">💗</div>
+      <div class="mood-confirm-text">sent! <strong id="moodConfirmMsg"></strong></div>
     </div>
   </div>
 
@@ -2002,6 +2349,20 @@
     const chatSenderSelect = document.getElementById("chatSenderSelect");
     const chatMessageInput = document.getElementById("chatMessageInput");
     const chatSendBtn      = document.getElementById("chatSendBtn");
+
+    const moodFab          = document.getElementById("moodFab");
+    const moodPanel        = document.getElementById("moodPanel");
+    const moodCloseBtn     = document.getElementById("moodCloseBtn");
+    const moodOptions      = document.getElementById("moodOptions");
+    const moodSendBtn      = document.getElementById("moodSendBtn");
+    const moodConfirm      = document.getElementById("moodConfirm");
+    const moodConfirmEmoji = document.getElementById("moodConfirmEmoji");
+    const moodConfirmMsg   = document.getElementById("moodConfirmMsg");
+    const moodPanelTitle   = document.getElementById("moodPanelTitle");
+    const moodPanelSub     = document.getElementById("moodPanelSub");
+    const userSwitcher     = document.getElementById("userSwitcher");
+    const btnRiri          = document.getElementById("btnRiri");
+    const btnVince         = document.getElementById("btnVince");
 
     const bgMusic        = document.getElementById("bgMusic");
     const musicPanel     = document.getElementById("musicPanel");
@@ -2375,16 +2736,216 @@
     memoryModal.addEventListener("click", e => { if (e.target === memoryModal) closeMemoryModal(); });
 
     document.addEventListener("keydown", e => {
-      if (e.key === "Escape") { closeMemoryModal(); closeMusicPanel(); toggleUploadCard(false); }
+      if (e.key === "Escape") { closeMemoryModal(); closeMusicPanel(); closeMoodPanel(); closeUserSwitcher(); toggleUploadCard(false); }
     });
+
+    const PERSONAS = {
+      riri: {
+        fab: "🌸",
+        title: "how are you feeling? 💗",
+        sub: "let vince know right now",
+        sendLabel: "let him know",
+        bubbleClass: "mood-bubble-pink",
+        moods: [
+          { emoji: "🥰", label: "happy",  msg: "Riri is feeling happy right now 🥰" },
+          { emoji: "💗", label: "loved",  msg: "Riri is feeling so loved right now 💗" },
+          { emoji: "🥺", label: "miss u", msg: "Riri misses you so much right now 🥺" },
+          { emoji: "😴", label: "tired",  msg: "Riri is feeling tired right now 😴" },
+          { emoji: "🤒", label: "unwell", msg: "Riri is not feeling well right now 🤒" }
+        ],
+        css: {
+          "--mood-grad-a": "#ffb3d9",
+          "--mood-grad-b": "#ff6ab5",
+          "--mood-glow": "rgba(255,87,165,0.24)",
+          "--mood-border": "rgba(255,200,225,0.6)",
+          "--mood-title": "#ff2f8d",
+          "--mood-sub": "#b86b8f",
+          "--mood-opt-bg": "rgba(255,236,245,0.7)",
+          "--mood-opt-hover": "rgba(255,218,238,0.9)",
+          "--mood-opt-selected": "rgba(255,200,230,0.55)",
+          "--mood-opt-border": "#ff6ab5",
+          "--mood-label": "#c07090"
+        }
+      },
+      vince: {
+        fab: "💙",
+        title: "how are you feeling? 💙",
+        sub: "let riri know right now",
+        sendLabel: "let her know",
+        bubbleClass: "mood-bubble-blue",
+        moods: [
+          { emoji: "💙", label: "thinking", msg: "Vince is thinking of you right now 💙" },
+          { emoji: "💪", label: "grinding", msg: "Vince is working hard for us right now 💪" },
+          { emoji: "🥺", label: "miss u",   msg: "Vince misses you so much right now 🥺" },
+          { emoji: "😴", label: "tired",    msg: "Vince is tired but you keep him going 😴" },
+          { emoji: "🌹", label: "in love",  msg: "Vince is so in love with you right now 🌹" }
+        ],
+        css: {
+          "--mood-grad-a": "#90c8f8",
+          "--mood-grad-b": "#2191db",
+          "--mood-glow": "rgba(26,120,194,0.22)",
+          "--mood-border": "rgba(180,220,255,0.55)",
+          "--mood-title": "#156fbc",
+          "--mood-sub": "#4682b3",
+          "--mood-opt-bg": "rgba(235,245,255,0.78)",
+          "--mood-opt-hover": "rgba(214,234,255,0.92)",
+          "--mood-opt-selected": "rgba(193,221,255,0.7)",
+          "--mood-opt-border": "#2d8dd7",
+          "--mood-label": "#4c84af"
+        }
+      }
+    };
+
+    let currentUser = null;
+    let selectedMoodOpt = null;
+    let hasChosenPersona = false;
+
+    function applyPersona(user, skipSave = false) {
+      currentUser = user;
+      const persona = PERSONAS[user];
+      const root = document.documentElement;
+
+      Object.entries(persona.css).forEach(([key, value]) => root.style.setProperty(key, value));
+      moodFab.textContent = persona.fab;
+      moodPanelTitle.textContent = persona.title;
+      moodPanelSub.textContent = persona.sub;
+
+      moodOptions.innerHTML = "";
+      persona.moods.forEach(mood => {
+        const btn = document.createElement("button");
+        btn.className = "mood-opt";
+        btn.dataset.emoji = mood.emoji;
+        btn.dataset.msg = mood.msg;
+        btn.innerHTML = `<span class="mood-opt-emoji">${mood.emoji}</span><span class="mood-opt-label">${mood.label}</span>`;
+        btn.addEventListener("click", () => {
+          moodOptions.querySelectorAll(".mood-opt").forEach(opt => opt.classList.remove("selected"));
+          btn.classList.add("selected");
+          selectedMoodOpt = btn;
+          moodSendBtn.classList.add("ready");
+          moodSendBtn.textContent = `${persona.sendLabel} ${mood.emoji}`;
+        });
+        moodOptions.appendChild(btn);
+      });
+
+      moodSendBtn.textContent = `${persona.sendLabel} 💌`;
+      moodSendBtn.classList.remove("ready");
+      btnRiri.className = "switcher-btn" + (user === "riri" ? " active-riri" : "");
+      btnVince.className = "switcher-btn" + (user === "vince" ? " active-vince" : "");
+      chatSenderSelect.value = user;
+
+      if (!skipSave) hasChosenPersona = true;
+    }
+
+    const openUserSwitcher = () => userSwitcher.classList.add("open");
+    const closeUserSwitcher = () => userSwitcher.classList.remove("open");
+    const toggleUserSwitcher = () => userSwitcher.classList.toggle("open");
+
+    function openMoodPanel() {
+      moodPanel.classList.add("open");
+      moodOptions.querySelectorAll(".mood-opt").forEach(opt => opt.classList.remove("selected"));
+      selectedMoodOpt = null;
+      moodSendBtn.classList.remove("ready");
+      const persona = PERSONAS[currentUser || "riri"];
+      moodSendBtn.textContent = `${persona.sendLabel} 💌`;
+      moodConfirm.style.display = "none";
+      moodSendBtn.style.display = "block";
+      moodOptions.style.display = "grid";
+    }
+
+    const closeMoodPanel = () => moodPanel.classList.remove("open");
+
+    btnRiri.addEventListener("click", () => {
+      applyPersona("riri");
+      closeUserSwitcher();
+      openMoodPanel();
+    });
+
+    btnVince.addEventListener("click", () => {
+      applyPersona("vince");
+      closeUserSwitcher();
+      openMoodPanel();
+    });
+
+    hasChosenPersona = false;
+    applyPersona("riri", true);
+    closeUserSwitcher();
+
+    moodFab.addEventListener("click", event => {
+      event.stopPropagation();
+      if (hasChosenPersona) {
+        openMoodPanel();
+        return;
+      }
+      toggleUserSwitcher();
+    });
+
+    moodCloseBtn.addEventListener("click", closeMoodPanel);
+
+    moodSendBtn.addEventListener("click", async () => {
+      if (!selectedMoodOpt) return;
+      const emoji = selectedMoodOpt.dataset.emoji;
+      const msg = selectedMoodOpt.dataset.msg;
+      const persona = PERSONAS[currentUser || "riri"];
+
+      try {
+        await push(ref(db, "messages"), {
+          text: msg,
+          sender: currentUser || "riri",
+          isMoodMessage: true,
+          moodClass: persona.bubbleClass,
+          createdAt: Date.now()
+        });
+      } catch (err) {
+        console.error(err);
+      }
+
+      moodOptions.style.display = "none";
+      moodSendBtn.style.display = "none";
+      moodConfirm.style.display = "block";
+      moodConfirmEmoji.textContent = emoji;
+      moodConfirmMsg.textContent = msg;
+      setTimeout(closeMoodPanel, 3200);
+    });
+
+    document.addEventListener("click", event => {
+      if (!event.target.closest(".mood-panel") && !event.target.closest(".mood-cluster") && moodPanel.classList.contains("open")) closeMoodPanel();
+      if (!event.target.closest(".mood-cluster") && !hasChosenPersona) closeUserSwitcher();
+    });
+
+    const formatChatTimestamp = (timestamp, sender) => {
+      const safeTime = Number.isFinite(timestamp) ? timestamp : Date.now();
+      const date = new Date(safeTime);
+      const label = sender === "vince" ? "Vince" : "Riri";
+      const stamp = date.toLocaleString([], {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true
+      });
+      return `${label} • ${stamp}`;
+    };
 
     /* ── chat ─────────────────────────────────────────────── */
     function buildChatBubble(data) {
       const wrap = document.createElement("div");
-      wrap.className = `chat-bubble ${data.sender === "vince" ? "vince" : "riri"}`;
-      const t = document.createElement("div"); t.textContent = data.text;
-      const m = document.createElement("div"); m.className = "chat-meta"; m.textContent = data.sender === "vince" ? "Vince" : "Riri";
-      wrap.appendChild(t); wrap.appendChild(m);
+      wrap.className = `chat-bubble-wrap ${data.sender === "vince" ? "vince" : "riri"}`;
+
+      const bubble = document.createElement("div");
+      bubble.className = "chat-bubble";
+      if (data.isMoodMessage) {
+        bubble.classList.add(data.moodClass || (data.sender === "vince" ? "mood-bubble-blue" : "mood-bubble-pink"));
+      }
+
+      const t = document.createElement("div");
+      t.textContent = data.text;
+      const m = document.createElement("div");
+      m.className = "chat-meta";
+      m.textContent = formatChatTimestamp(data.createdAt, data.sender);
+      bubble.appendChild(t);
+      wrap.appendChild(bubble);
+      wrap.appendChild(m);
       return wrap;
     }
 
