@@ -487,6 +487,41 @@
     .lightbox-close { position:fixed; top:18px; right:18px; width:44px; height:44px; border:none; border-radius:999px; background:rgba(255,255,255,0.15); color:white; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background 0.2s ease,transform 0.3s var(--ease-spring); }
     .lightbox-close:hover { background:rgba(255,255,255,0.28); transform:scale(1.1) rotate(90deg); }
 
+    /* photo source chooser */
+    .photo-source-sheet {
+      position:fixed; inset:0; display:none; align-items:flex-end; justify-content:center;
+      padding:18px; background:rgba(23,12,18,0.28); backdrop-filter:blur(10px); z-index:99997;
+    }
+    .photo-source-sheet.open { display:flex; animation:fadeIn 0.22s ease; }
+    .photo-source-card {
+      width:min(100%,360px); border-radius:24px;
+      background:linear-gradient(180deg,rgba(255,255,255,0.97),rgba(255,245,250,0.96));
+      border:1px solid rgba(255,255,255,0.74);
+      box-shadow:0 24px 60px rgba(255,87,165,0.16), inset 0 1px 0 rgba(255,255,255,0.72);
+      padding:14px; display:flex; flex-direction:column; gap:10px;
+      animation:scaleIn 0.28s var(--ease-spring);
+    }
+    .photo-source-title {
+      font-family:"Playfair Display",serif; font-size:22px; line-height:1.1;
+      color:var(--pink-7); text-align:center; padding:8px 10px 2px;
+    }
+    .photo-source-option,
+    .photo-source-cancel {
+      width:100%; border:none; outline:none; cursor:pointer; font-family:"Inter",sans-serif;
+      border-radius:18px; padding:15px 16px; font-size:15px; font-weight:600;
+      transition:transform 0.3s var(--ease-spring),filter 0.25s ease,background 0.25s ease;
+    }
+    .photo-source-option {
+      background:rgba(255,236,245,0.82); color:var(--text-soft);
+      box-shadow:0 10px 22px rgba(255,87,165,0.08);
+    }
+    .photo-source-option:hover { transform:translateY(-2px) scale(1.01); background:rgba(255,226,240,0.96); }
+    .photo-source-cancel {
+      background:linear-gradient(135deg,#ff6ab5 0%,#ff137d 100%); color:#fff;
+      box-shadow:0 12px 24px rgba(255,41,133,0.18);
+    }
+    .photo-source-cancel:hover { transform:translateY(-2px) scale(1.01); filter:brightness(1.05); }
+
     /* ── MUSIC ─────────────────────────────────────────────── */
     .music-shell { position:fixed; right:86px; bottom:18px; z-index:40; display:flex; flex-direction:column; align-items:flex-end; gap:10px; max-width:min(360px,calc(100vw - 184px)); }
     .music-panel { width:100%; min-width:360px; max-width:430px; border-radius:24px; padding:14px; background:linear-gradient(180deg,rgba(255,255,255,0.97),rgba(255,245,250,0.96)); border:1px solid rgba(255,255,255,0.74); box-shadow:0 28px 75px rgba(255,87,165,0.14),inset 0 1px 0 rgba(255,255,255,0.75); backdrop-filter:blur(14px); display:none; transform-origin:bottom right; }
@@ -690,8 +725,8 @@
       .envelope-text { font-size:18px; }
 
       /* letter card mobile */
-      .letter-overlay { padding:10px; align-items:flex-end; }
-      .letter-card { width:100%; max-height:88vh; border-radius:22px 22px 0 0; }
+      .letter-overlay { padding:10px; align-items:center; justify-content:center; }
+      .letter-card { width:min(100%,560px); max-height:88vh; border-radius:22px; }
       .letter-card-inner { padding:20px 18px 18px; }
       .love-note-title { font-size:22px; }
       .love-note-body  { font-size:13.5px; line-height:1.75; }
@@ -740,10 +775,23 @@
       .intro-note { font-size:12px; }
       .reaction-picker { bottom:calc(100% + 8px); left:0 !important; right:auto !important; }
       .chat-bubble-wrap.vince .reaction-picker { left:auto !important; right:0 !important; }
+
+      .photo-source-sheet { padding:12px; }
+      .photo-source-card { width:100%; border-radius:22px; padding:12px; }
+      .photo-source-title { font-size:20px; }
     }
     @media (max-width:400px) {
       .music-shell { left:78px; right:78px; max-width:none; }
     }
+    /* removed letter card hearts */
+    .letter-heart-bg,
+    .letter-corner-tl,
+    .letter-corner-tr,
+    .letter-corner-bl,
+    .letter-corner-br {
+      display:none !important;
+    }
+
   </style>
 </head>
 <body>
@@ -914,7 +962,8 @@ I'll message you pag gising ko, MWA!
       <div class="chat-input-row">
         <!-- photo button -->
         <button class="chat-photo-btn" id="chatPhotoBtn" title="Send a photo">📷</button>
-        <input type="file" id="chatPhotoInput" accept="image/*" style="display:none;" />
+        <input type="file" id="chatPhotoInput" accept="image/*,.jpg,.jpeg,.png,.webp,.heic,.heif" style="display:none;" />
+        <input type="file" id="chatCameraInput" accept="image/*" capture="environment" style="display:none;" />
         <textarea id="chatMessageInput" class="chat-message-input" placeholder="type a message..."></textarea>
         <button id="chatSendBtn" class="chat-send-btn">💌</button>
       </div>
@@ -925,6 +974,15 @@ I'll message you pag gising ko, MWA!
   <div class="photo-lightbox" id="photoLightbox">
     <img id="lightboxImg" src="" alt="Photo" />
     <button class="lightbox-close" id="lightboxClose">✕</button>
+  </div>
+
+  <div class="photo-source-sheet" id="photoSourceSheet" aria-hidden="true">
+    <div class="photo-source-card">
+      <div class="photo-source-title">Send a photo</div>
+      <button class="photo-source-option" id="chooseFromGalleryBtn" type="button">Choose from gallery</button>
+      <button class="photo-source-option" id="takePhotoBtn" type="button">Take a photo</button>
+      <button class="photo-source-cancel" id="closePhotoSourceBtn" type="button">Cancel</button>
+    </div>
   </div>
 
   <!-- ══════════════════════════════════════════════════════════
@@ -1003,9 +1061,14 @@ I'll message you pag gising ko, MWA!
     const chatSendBtn         = document.getElementById("chatSendBtn");
     const chatPhotoBtn        = document.getElementById("chatPhotoBtn");
     const chatPhotoInput      = document.getElementById("chatPhotoInput");
+    const chatCameraInput     = document.getElementById("chatCameraInput");
     const photoLightbox       = document.getElementById("photoLightbox");
     const lightboxImg         = document.getElementById("lightboxImg");
     const lightboxClose       = document.getElementById("lightboxClose");
+    const photoSourceSheet    = document.getElementById("photoSourceSheet");
+    const chooseFromGalleryBtn= document.getElementById("chooseFromGalleryBtn");
+    const takePhotoBtn        = document.getElementById("takePhotoBtn");
+    const closePhotoSourceBtn = document.getElementById("closePhotoSourceBtn");
     const moodFab             = document.getElementById("moodFab");
     const moodPanel           = document.getElementById("moodPanel");
     const moodCloseBtn        = document.getElementById("moodCloseBtn");
@@ -1431,14 +1494,24 @@ I'll message you pag gising ko, MWA!
        FEATURE 2 — PHOTO SENDING IN CHAT
     ═══════════════════════════════════════════════════════════ */
 
-    chatPhotoBtn.addEventListener("click", () => chatPhotoInput.click());
+    function openPhotoSourceSheet() {
+      photoSourceSheet.classList.add("open");
+      photoSourceSheet.setAttribute("aria-hidden", "false");
+    }
 
-    chatPhotoInput.addEventListener("change", async () => {
-      const file = chatPhotoInput.files[0];
+    function closePhotoSourceSheet() {
+      photoSourceSheet.classList.remove("open");
+      photoSourceSheet.setAttribute("aria-hidden", "true");
+    }
+
+    function isMobileLikeDevice() {
+      return window.matchMedia("(max-width: 680px)").matches || /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+    }
+
+    async function handleChatPhotoFile(file, inputEl) {
       if (!file) return;
       const sender = chatSenderSelect.value;
 
-      // optimistic local preview while uploading
       const localUrl = URL.createObjectURL(file);
       const tempWrap = buildChatBubble({ sender, isPhoto:true, photoUrl:localUrl, createdAt:Date.now() }, null);
       chatFeed.appendChild(tempWrap);
@@ -1458,8 +1531,39 @@ I'll message you pag gising ko, MWA!
       } finally {
         tempWrap.remove();
         URL.revokeObjectURL(localUrl);
-        chatPhotoInput.value = "";
+        if (inputEl) inputEl.value = "";
       }
+    }
+
+    chatPhotoBtn.addEventListener("click", () => {
+      if (isMobileLikeDevice()) {
+        openPhotoSourceSheet();
+      } else {
+        chatPhotoInput.click();
+      }
+    });
+
+    chooseFromGalleryBtn.addEventListener("click", () => {
+      closePhotoSourceSheet();
+      chatPhotoInput.click();
+    });
+
+    takePhotoBtn.addEventListener("click", () => {
+      closePhotoSourceSheet();
+      chatCameraInput.click();
+    });
+
+    closePhotoSourceBtn.addEventListener("click", closePhotoSourceSheet);
+    photoSourceSheet.addEventListener("click", e => {
+      if (e.target === photoSourceSheet) closePhotoSourceSheet();
+    });
+
+    chatPhotoInput.addEventListener("change", async () => {
+      await handleChatPhotoFile(chatPhotoInput.files[0], chatPhotoInput);
+    });
+
+    chatCameraInput.addEventListener("change", async () => {
+      await handleChatPhotoFile(chatCameraInput.files[0], chatCameraInput);
     });
 
     /* ── photo lightbox ───────────────────────────────────────── */
