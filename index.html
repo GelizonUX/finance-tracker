@@ -546,30 +546,31 @@
     }
     .photo-source-cancel:hover { transform:translateY(-2px) scale(1.01); filter:brightness(1.05); }
 
+
     /* ── MUSIC / SPOTIFY ───────────────────────────────────── */
     .music-shell {
       position:fixed;
       right:86px;
       bottom:18px;
       z-index:40;
-      width:min(348px,calc(100vw - 184px));
-      max-width:min(348px,calc(100vw - 184px));
+      width:min(352px,calc(100vw - 184px));
+      max-width:min(352px,calc(100vw - 184px));
       pointer-events:none;
     }
     .music-panel {
       position:fixed;
       right:86px;
-      top:18px;
+      top:16px;
       bottom:92px;
-      width:min(348px,calc(100vw - 184px));
-      max-width:min(348px,calc(100vw - 184px));
+      width:min(352px,calc(100vw - 184px));
+      max-width:min(352px,calc(100vw - 184px));
       min-width:0;
-      max-height:calc(100vh - 110px);
-      border-radius:24px;
+      max-height:calc(100dvh - 108px);
+      border-radius:26px;
       padding:14px;
       background:linear-gradient(180deg,rgba(255,255,255,0.98),rgba(255,245,250,0.97));
       border:1px solid rgba(255,255,255,0.78);
-      box-shadow:0 24px 60px rgba(255,87,165,0.16),inset 0 1px 0 rgba(255,255,255,0.76);
+      box-shadow:0 24px 60px rgba(255,87,165,0.16), inset 0 1px 0 rgba(255,255,255,0.76);
       backdrop-filter:blur(16px);
       display:none;
       flex-direction:column;
@@ -589,7 +590,6 @@
       align-items:flex-start;
       justify-content:space-between;
       gap:10px;
-      margin-bottom:0;
       position:sticky;
       top:0;
       z-index:2;
@@ -609,7 +609,7 @@
       font-family:"Playfair Display",serif;
       font-size:20px;
       color:var(--mood-title);
-      line-height:1.12;
+      line-height:1.08;
       white-space:normal;
       overflow-wrap:anywhere;
     }
@@ -635,6 +635,7 @@
 
     .music-select {
       width:100%;
+      min-width:0;
       border:none;
       outline:none;
       border-radius:16px;
@@ -646,18 +647,14 @@
       cursor:pointer;
     }
 
-    .music-current-time,
-    .music-total-time { font-size:12px; color:#9b6680; white-space:nowrap; }
-
     .music-mini-bar {
       width:100%;
       min-height:58px;
       border:none;
       border-radius:999px;
-      display:grid;
-      grid-template-columns:40px minmax(0,1fr) 40px;
+      display:flex;
       align-items:center;
-      gap:12px;
+      gap:10px;
       padding:9px 12px;
       color:white;
       background:linear-gradient(135deg,var(--mood-grad-a) 0%,var(--mood-grad-b) 100%);
@@ -681,19 +678,26 @@
       color:white;
       font-size:18px;
       cursor:pointer;
-      flex-shrink:0;
+      flex:0 0 40px;
       transition:transform 0.3s var(--ease-spring),background 0.2s ease;
       display:flex;
       align-items:center;
       justify-content:center;
+      box-shadow:none;
+      outline:none;
     }
     .music-mini-btn:hover { transform:translateY(-2px) scale(1.06); background:rgba(255,255,255,0.26); }
     .music-mini-btn:active { transform:scale(0.94); }
+    .music-mini-btn:focus,
+    .music-mini-btn:focus-visible,
+    .music-mini-info:focus,
+    .music-mini-info:focus-visible { outline:none; box-shadow:none; }
     .music-mini-time,
     #musicPlayText { display:none !important; }
     #musicMiniPlayBtn { display:flex !important; font-size:16px; }
     .music-mini-info {
       min-width:0;
+      flex:1;
       cursor:pointer;
       transition:opacity 0.2s ease;
       display:flex;
@@ -701,6 +705,9 @@
       justify-content:center;
       gap:1px;
       overflow:hidden;
+      border:none;
+      background:none;
+      padding:0;
     }
     .music-mini-info:hover { opacity:0.9; }
     .music-mini-label {
@@ -709,6 +716,9 @@
       letter-spacing:0.14em;
       opacity:0.82;
       line-height:1.15;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
     .music-mini-title {
       font-size:14px;
@@ -762,8 +772,11 @@
     }
     .spotify-connect-btn,
     .spotify-set-btn,
-    .spotify-open-link {
-      width:100%;
+    .spotify-open-link,
+    .spotify-switch-btn,
+    .spotify-disconnect-btn,
+    .spotify-search-btn,
+    .spotify-result-open {
       border:none;
       border-radius:16px;
       padding:12px 14px;
@@ -776,26 +789,45 @@
       transition:transform 0.3s var(--ease-spring),filter 0.25s ease,background 0.25s ease,box-shadow 0.25s ease;
     }
     .spotify-connect-btn,
-    .spotify-set-btn {
+    .spotify-set-btn,
+    .spotify-switch-btn,
+    .spotify-search-btn,
+    .spotify-result-open {
       color:white;
       background:linear-gradient(135deg,var(--mood-grad-a) 0%,var(--mood-grad-b) 100%);
       box-shadow:0 10px 22px var(--mood-glow), inset 0 1px 0 rgba(255,255,255,0.22);
     }
     .spotify-connect-btn:hover,
     .spotify-set-btn:hover,
-    .spotify-open-link:hover {
+    .spotify-open-link:hover,
+    .spotify-switch-btn:hover,
+    .spotify-disconnect-btn:hover,
+    .spotify-search-btn:hover,
+    .spotify-result-open:hover {
       transform:translateY(-2px) scale(1.01);
       filter:brightness(1.04);
     }
-    .spotify-open-link {
+    .spotify-open-link,
+    .spotify-disconnect-btn {
       color:var(--text-soft);
       background:rgba(255,255,255,0.88);
       box-shadow:0 8px 18px rgba(255,87,165,0.06);
       border:1px solid rgba(255,183,214,0.24);
     }
+    .spotify-actions-row {
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:8px;
+      align-items:center;
+    }
+    .spotify-account-actions {
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
     .spotify-user {
       font-size:12px;
-      line-height:1.5;
+      line-height:1.45;
       color:#9b6680;
       min-height:0;
     }
@@ -809,6 +841,73 @@
       width:auto;
       min-width:156px;
       white-space:nowrap;
+    }
+    .spotify-search-wrap {
+      display:grid;
+      gap:8px;
+    }
+    .spotify-search-row {
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:8px;
+      align-items:center;
+    }
+    .spotify-search-input {
+      width:100%;
+      min-width:0;
+      border:none;
+      outline:none;
+      border-radius:16px;
+      padding:13px 15px;
+      background:rgba(255,236,245,0.72);
+      color:var(--text-soft);
+      font-size:14px;
+      font-family:"Inter",sans-serif;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,0.34);
+    }
+    .spotify-search-input::placeholder { color:#af7b95; }
+    .spotify-search-results {
+      display:grid;
+      gap:7px;
+      max-height:138px;
+      overflow:auto;
+      padding-right:2px;
+      scrollbar-width:thin;
+      scrollbar-color:rgba(255,110,178,0.24) transparent;
+    }
+    .spotify-search-results::-webkit-scrollbar { width:4px; }
+    .spotify-search-results::-webkit-scrollbar-thumb { background:rgba(255,110,178,0.24); border-radius:999px; }
+    .spotify-search-item {
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:8px;
+      align-items:center;
+      padding:10px 12px;
+      border-radius:16px;
+      background:rgba(255,236,245,0.52);
+      border:1px solid rgba(255,183,214,0.28);
+    }
+    .spotify-search-main { min-width:0; }
+    .spotify-search-track {
+      font-size:13px;
+      font-weight:600;
+      color:var(--text-soft);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .spotify-search-meta {
+      font-size:11px;
+      color:#9b6680;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      margin-top:2px;
+    }
+    .spotify-search-empty {
+      font-size:12px;
+      color:#9b6680;
+      padding:4px 2px 0;
     }
     .spotify-shared-wrap {
       display:grid;
@@ -835,20 +934,129 @@
     .spotify-embed-wrap {
       display:none;
       margin-top:2px;
-      border-radius:18px;
+      border-radius:22px;
       overflow:hidden;
-      border:1px solid rgba(255,183,214,0.26);
-      background:rgba(255,255,255,0.82);
+      border:1px solid rgba(255,183,214,0.24);
+      background:rgba(255,255,255,0.86);
       box-shadow:inset 0 1px 0 rgba(255,255,255,0.6);
     }
     .spotify-embed-wrap.show { display:block; }
-    .spotify-embed {
-      width:100%;
-      height:288px;
-      border:0;
-      display:block;
-      background:#121212;
+    .spotify-preview-card {
+      display:grid;
+      gap:14px;
+      padding:16px;
+      background:linear-gradient(180deg,rgba(255,252,254,0.98),rgba(255,246,250,0.95));
     }
+    .spotify-preview-top {
+      display:grid;
+      grid-template-columns:88px minmax(0,1fr);
+      gap:14px;
+      align-items:center;
+    }
+    .spotify-preview-cover {
+      width:88px;
+      height:88px;
+      border-radius:20px;
+      object-fit:cover;
+      display:block;
+      background:rgba(255,236,245,0.88);
+      box-shadow:0 10px 24px rgba(255,87,165,0.12);
+    }
+    .spotify-preview-cover.fallback {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:28px;
+      color:var(--mood-title);
+      font-weight:700;
+      background:linear-gradient(135deg,rgba(255,236,245,0.95),rgba(255,224,239,0.92));
+    }
+    .spotify-preview-main { min-width:0; display:grid; gap:6px; }
+    .spotify-preview-name {
+      font-family:"Playfair Display",serif;
+      font-size:clamp(24px,3.5vw,34px);
+      line-height:0.95;
+      color:var(--mood-title);
+      word-break:break-word;
+    }
+    .spotify-preview-meta {
+      font-size:13px;
+      color:#a86c8a;
+      line-height:1.45;
+    }
+    .spotify-preview-actions {
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+    .spotify-preview-open,
+    .spotify-preview-refresh {
+      border:none;
+      border-radius:14px;
+      padding:10px 14px;
+      font-size:13px;
+      font-weight:600;
+      font-family:"Inter",sans-serif;
+      text-decoration:none;
+      cursor:pointer;
+      transition:transform 0.3s var(--ease-spring),filter 0.25s ease;
+    }
+    .spotify-preview-open {
+      color:white;
+      background:linear-gradient(135deg,var(--mood-grad-a) 0%,var(--mood-grad-b) 100%);
+      box-shadow:0 10px 22px var(--mood-glow), inset 0 1px 0 rgba(255,255,255,0.22);
+    }
+    .spotify-preview-refresh {
+      color:var(--text-soft);
+      background:rgba(255,236,245,0.78);
+    }
+    .spotify-preview-open:hover,
+    .spotify-preview-refresh:hover { transform:translateY(-2px) scale(1.01); filter:brightness(1.04); }
+    .spotify-preview-list {
+      display:grid;
+      gap:8px;
+      padding:12px;
+      border-radius:18px;
+      background:rgba(255,236,245,0.46);
+      border:1px solid rgba(255,183,214,0.22);
+    }
+    .spotify-preview-track {
+      display:grid;
+      grid-template-columns:auto minmax(0,1fr);
+      gap:10px;
+      align-items:start;
+    }
+    .spotify-preview-index {
+      font-size:12px;
+      font-weight:700;
+      color:#b67a97;
+      padding-top:2px;
+      min-width:14px;
+      text-align:right;
+    }
+    .spotify-preview-track-main { min-width:0; }
+    .spotify-preview-track-name {
+      font-size:14px;
+      font-weight:600;
+      color:var(--text-soft);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .spotify-preview-track-meta {
+      font-size:12px;
+      color:#b07a95;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .spotify-preview-empty {
+      font-size:13px;
+      color:#a86c8a;
+      line-height:1.5;
+      padding:6px 2px;
+    }
+
 
     /* ══════════════════════════════════════════════════════════
        MOOD WIDGET + SWITCHER
@@ -1044,8 +1252,15 @@
 
       /* music mobile */
       .music-shell { left:80px; right:80px; bottom:max(14px,env(safe-area-inset-bottom)); width:auto; max-width:none; }
-      .music-mini-bar { min-width:0; max-width:100%; width:100%; min-height:52px; padding:8px 12px; gap:10px; grid-template-columns:36px minmax(0,1fr) 36px; }
-      .music-mini-btn { width:36px; height:36px; font-size:16px; }
+      .music-mini-bar {
+        min-width:0;
+        max-width:100%;
+        width:100%;
+        min-height:54px;
+        padding:8px 12px;
+        gap:10px;
+      }
+      .music-mini-btn { width:36px; height:36px; flex-basis:36px; font-size:16px; }
       .music-mini-title { font-size:12.5px; }
       .music-panel {
         left:10px;
@@ -1060,14 +1275,26 @@
       }
       .music-panel-top { align-items:flex-start; gap:8px; }
       .music-panel-title { max-width:none; font-size:18px; }
-      .spotify-card-top { flex-direction:column; align-items:flex-start; }
+      .spotify-card-top { align-items:flex-start; gap:8px; }
       .spotify-status { white-space:normal; text-align:left; }
-      .spotify-select-wrap { grid-template-columns:1fr; }
-      .spotify-set-btn { width:100%; min-width:0; }
+      .spotify-actions-row,
+      .spotify-select-wrap,
+      .spotify-search-row { grid-template-columns:1fr; }
+      .spotify-account-actions { width:100%; }
       .spotify-connect-btn,
+      .spotify-switch-btn,
+      .spotify-disconnect-btn,
       .spotify-set-btn,
-      .spotify-open-link { font-size:13px; padding:12px 14px; }
-      .spotify-embed { height:min(248px,34vh); }
+      .spotify-search-btn,
+      .spotify-open-link,
+      .spotify-result-open { width:100%; min-width:0; }
+      .spotify-search-results { max-height:116px; }
+      .spotify-search-item { grid-template-columns:1fr; }
+      .spotify-preview-top { grid-template-columns:74px minmax(0,1fr); gap:12px; }
+      .spotify-preview-cover { width:74px; height:74px; border-radius:18px; }
+      .spotify-preview-name { font-size:clamp(22px,8vw,30px); }
+      .spotify-preview-actions { grid-column:1/-1; }
+      .spotify-preview-open, .spotify-preview-refresh { width:100%; }
 
       /* intro mobile */
       .intro-choice-wrap { gap:18px; padding:16px; }
@@ -1241,26 +1468,39 @@ I'll message you pag gising ko, MWA!
           </div>
           <div class="spotify-status" id="spotifyStatus">Not connected</div>
         </div>
-        <button class="spotify-connect-btn" id="spotifyConnectBtn" type="button">Connect Spotify</button>
-        <div class="spotify-user" id="spotifyUser">Connect your Spotify account to load your playlists.</div>
+
+        <div class="spotify-actions-row">
+          <button class="spotify-connect-btn" id="spotifyConnectBtn" type="button">Connect Spotify</button>
+          <div class="spotify-account-actions">
+            <button class="spotify-switch-btn" id="spotifySwitchBtn" type="button" hidden>Change account</button>
+            <button class="spotify-disconnect-btn" id="spotifyDisconnectBtn" type="button" hidden>Disconnect</button>
+          </div>
+        </div>
+
+        <div class="spotify-user" id="spotifyUser">Connect your Spotify account to load your playlists and search tracks.</div>
+
         <div class="spotify-select-wrap" id="spotifySelectWrap" hidden>
           <select id="spotifyPlaylistSelect" class="music-select"></select>
           <button class="spotify-set-btn" id="spotifySetPlaylistBtn" type="button">Set as shared playlist</button>
         </div>
+
+        <div class="spotify-search-wrap" id="spotifySearchWrap" hidden>
+          <div class="spotify-search-row">
+            <input id="spotifySearchInput" class="spotify-search-input" type="text" placeholder="Search any song or artist" />
+            <button class="spotify-search-btn" id="spotifySearchBtn" type="button">Search</button>
+          </div>
+          <div class="spotify-search-results" id="spotifySearchResults" hidden></div>
+          <div class="spotify-search-empty" id="spotifySearchEmpty" hidden>Search results will appear here.</div>
+        </div>
+
         <div class="spotify-shared-wrap" id="spotifySharedWrap" hidden>
           <div class="spotify-shared-label">Current shared playlist</div>
           <div class="spotify-shared-name" id="spotifySharedName">No shared playlist yet.</div>
           <a class="spotify-open-link" id="spotifyOpenLink" href="#" target="_blank" rel="noopener noreferrer" hidden>Open in Spotify</a>
         </div>
+
         <div class="spotify-embed-wrap" id="spotifyEmbedWrap" hidden>
-          <iframe
-            class="spotify-embed"
-            id="spotifyEmbed"
-            loading="lazy"
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            src="about:blank"
-            title="Shared Spotify playlist">
-          </iframe>
+          <div class="spotify-preview-card" id="spotifyPreviewCard"></div>
         </div>
       </div>
     </div>
@@ -1456,15 +1696,22 @@ I'll message you pag gising ko, MWA!
 
     const spotifyStatus       = document.getElementById("spotifyStatus");
     const spotifyConnectBtn   = document.getElementById("spotifyConnectBtn");
+    const spotifySwitchBtn    = document.getElementById("spotifySwitchBtn");
+    const spotifyDisconnectBtn = document.getElementById("spotifyDisconnectBtn");
     const spotifyUser         = document.getElementById("spotifyUser");
     const spotifySelectWrap   = document.getElementById("spotifySelectWrap");
     const spotifyPlaylistSelect = document.getElementById("spotifyPlaylistSelect");
     const spotifySetPlaylistBtn = document.getElementById("spotifySetPlaylistBtn");
+    const spotifySearchWrap   = document.getElementById("spotifySearchWrap");
+    const spotifySearchInput  = document.getElementById("spotifySearchInput");
+    const spotifySearchBtn    = document.getElementById("spotifySearchBtn");
+    const spotifySearchResults = document.getElementById("spotifySearchResults");
+    const spotifySearchEmpty  = document.getElementById("spotifySearchEmpty");
     const spotifySharedWrap   = document.getElementById("spotifySharedWrap");
     const spotifySharedName   = document.getElementById("spotifySharedName");
     const spotifyOpenLink     = document.getElementById("spotifyOpenLink");
     const spotifyEmbedWrap    = document.getElementById("spotifyEmbedWrap");
-    const spotifyEmbed        = document.getElementById("spotifyEmbed");
+    const spotifyPreviewCard  = document.getElementById("spotifyPreviewCard");
 
     /* ── Playlist ─────────────────────────────────────────────── */
     const playlist = [];
@@ -1488,6 +1735,7 @@ I'll message you pag gising ko, MWA!
 
     let spotifyProfile = null;
     let spotifyPlaylists = [];
+    let spotifyTrackResults = [];
 
     function randomSpotifyString(length = 64) {
       const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -1539,6 +1787,22 @@ I'll message you pag gising ko, MWA!
       sessionStorage.removeItem(SPOTIFY_AUTH_STATE_KEY);
     }
 
+    function resetSpotifySessionState() {
+      spotifyProfile = null;
+      spotifyPlaylists = [];
+      spotifyTrackResults = [];
+      if (spotifyPlaylistSelect) spotifyPlaylistSelect.innerHTML = "";
+      if (spotifySearchInput) spotifySearchInput.value = "";
+      if (musicMiniTime) musicMiniTime.textContent = "";
+      renderSpotifySearchResults([]);
+    }
+
+    function disconnectSpotifySession() {
+      clearSpotifyTokens();
+      resetSpotifySessionState();
+      updateSpotifyUI();
+    }
+
     function getStoredSpotifyAccessToken() {
       return localStorage.getItem(SPOTIFY_ACCESS_TOKEN_KEY) || "";
     }
@@ -1566,7 +1830,7 @@ I'll message you pag gising ko, MWA!
       });
 
       if (!res.ok) {
-        clearSpotifyTokens();
+        disconnectSpotifySession();
         return null;
       }
 
@@ -1609,26 +1873,118 @@ I'll message you pag gising ko, MWA!
       return res.json();
     }
 
+    function renderSpotifySearchResults(results = []) {
+      if (!spotifySearchResults || !spotifySearchEmpty) return;
+      spotifySearchResults.innerHTML = "";
+      spotifyTrackResults = Array.isArray(results) ? results : [];
+
+      if (!spotifyTrackResults.length) {
+        spotifySearchResults.hidden = true;
+        spotifySearchEmpty.hidden = false;
+        spotifySearchEmpty.textContent = spotifySearchInput?.value?.trim() ? "No matching songs found." : "Search results will appear here.";
+        return;
+      }
+
+      spotifySearchEmpty.hidden = true;
+      spotifySearchResults.hidden = false;
+
+      spotifyTrackResults.forEach(track => {
+        const item = document.createElement("div");
+        item.className = "spotify-search-item";
+
+        const main = document.createElement("div");
+        main.className = "spotify-search-main";
+
+        const title = document.createElement("div");
+        title.className = "spotify-search-track";
+        title.textContent = track.name || "Untitled track";
+
+        const meta = document.createElement("div");
+        meta.className = "spotify-search-meta";
+        const artists = Array.isArray(track.artists) ? track.artists.map(a => a?.name).filter(Boolean).join(" • ") : "";
+        const album = track.album?.name || "";
+        meta.textContent = [artists, album].filter(Boolean).join(" • ");
+
+        main.appendChild(title);
+        main.appendChild(meta);
+
+        const open = document.createElement("a");
+        open.className = "spotify-result-open";
+        open.href = track.external_urls?.spotify || "#";
+        open.target = "_blank";
+        open.rel = "noopener noreferrer";
+        open.textContent = "Open";
+
+        item.appendChild(main);
+        item.appendChild(open);
+        spotifySearchResults.appendChild(item);
+      });
+    }
+
     function updateSpotifyUI() {
       const connected = !!getStoredSpotifyAccessToken();
-      const currentSharedId = spotifyEmbed?.dataset?.playlistId || "";
+      const currentSharedId = spotifyPreviewCard?.dataset?.playlistId || "";
       setSpotifyStatus(connected ? "Connected" : "Not connected");
+
       if (spotifyConnectBtn) spotifyConnectBtn.textContent = connected ? "Refresh playlists" : "Connect Spotify";
+      if (spotifySwitchBtn) spotifySwitchBtn.hidden = !connected;
+      if (spotifyDisconnectBtn) spotifyDisconnectBtn.hidden = !connected;
+      if (spotifySearchWrap) spotifySearchWrap.hidden = !connected;
+      if (spotifySelectWrap) spotifySelectWrap.hidden = !connected || !spotifyPlaylists.length;
 
       if (spotifyUser) {
         if (spotifyProfile) {
           const name = spotifyProfile.display_name || spotifyProfile.id || "Spotify account";
-          spotifyUser.textContent = `Connected as ${name}. Pick a playlist, then set it as the shared playlist for both of you.`;
+          spotifyUser.textContent = `Connected as ${name}. Pick a playlist, switch account, or search any song.`;
         } else if (connected) {
           spotifyUser.textContent = "Spotify connected. Refresh your playlists if they do not appear yet.";
         } else {
-          spotifyUser.textContent = "Connect your Spotify account to load your playlists.";
+          spotifyUser.textContent = "Connect your Spotify account to load your playlists and search tracks.";
         }
+      }
+
+      if (!connected) {
+        resetSpotifySessionState();
       }
 
       if (!currentSharedId) {
         setMusicSurfaceTitle(connected ? "Choose a shared playlist" : "Connect Spotify", "Spotify");
       }
+    }
+
+    function escapeSpotifyHtml(value = "") {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function buildSpotifyPreviewTracks(tracks = []) {
+      if (!Array.isArray(tracks) || !tracks.length) {
+        return '<div class="spotify-preview-empty">Open in Spotify to browse the full playlist.</div>';
+      }
+      return tracks.slice(0, 6).map((track, index) => {
+        const name = escapeSpotifyHtml(track?.name || 'Untitled track');
+        const artists = escapeSpotifyHtml(Array.isArray(track?.artists) ? track.artists.filter(Boolean).join(' • ') : 'Spotify');
+        return `
+          <div class="spotify-preview-track">
+            <div class="spotify-preview-index">${index + 1}</div>
+            <div class="spotify-preview-track-main">
+              <div class="spotify-preview-track-name">${name}</div>
+              <div class="spotify-preview-track-meta">${artists}</div>
+            </div>
+          </div>`;
+      }).join('');
+    }
+
+    async function getSpotifyPlaylistPreview(playlistId) {
+      const data = await spotifyApi(`/playlists/${playlistId}/tracks?limit=6&fields=items(track(name,artists(name)))`);
+      return (Array.isArray(data?.items) ? data.items : []).map(item => ({
+        name: item?.track?.name || '',
+        artists: Array.isArray(item?.track?.artists) ? item.track.artists.map(a => a?.name).filter(Boolean) : []
+      })).filter(item => item.name);
     }
 
     function populateSpotifyPlaylistSelect() {
@@ -1665,8 +2021,10 @@ I'll message you pag gising ko, MWA!
       if (!hasShared) {
         spotifySharedName.textContent = "No shared playlist yet.";
         spotifyOpenLink.hidden = true;
-        spotifyEmbed.dataset.playlistId = "";
-        spotifyEmbed.src = "about:blank";
+        if (spotifyPreviewCard) {
+          spotifyPreviewCard.dataset.playlistId = "";
+          spotifyPreviewCard.innerHTML = "";
+        }
         setMusicSurfaceTitle(getStoredSpotifyAccessToken() ? "Choose a shared playlist" : "Connect Spotify", "Spotify");
         if (musicMiniPlayBtn) musicMiniPlayBtn.setAttribute("aria-label", "Open Spotify panel");
         return;
@@ -1680,14 +2038,51 @@ I'll message you pag gising ko, MWA!
       } else {
         spotifyOpenLink.hidden = true;
       }
-      spotifyEmbed.dataset.playlistId = shared.id;
-      const nextSrc = `https://open.spotify.com/embed/playlist/${shared.id}?utm_source=generator`;
-      if (spotifyEmbed.src !== nextSrc) spotifyEmbed.src = nextSrc;
+      if (spotifyPreviewCard) {
+        spotifyPreviewCard.dataset.playlistId = shared.id;
+        const coverHtml = shared.cover
+          ? `<img class="spotify-preview-cover" src="${escapeSpotifyHtml(shared.cover)}" alt="${escapeSpotifyHtml(sharedName)} cover" />`
+          : `<div class="spotify-preview-cover fallback">♫</div>`;
+        const owner = escapeSpotifyHtml(shared.owner || shared.setBy || "Spotify");
+        const setBy = shared.setBy && shared.setBy !== shared.owner ? ` • set by ${escapeSpotifyHtml(shared.setBy)}` : "";
+        spotifyPreviewCard.innerHTML = `
+          <div class="spotify-preview-top">
+            ${coverHtml}
+            <div class="spotify-preview-main">
+              <div class="spotify-preview-name">${escapeSpotifyHtml(sharedName)}</div>
+              <div class="spotify-preview-meta">Shared playlist • ${owner}${setBy}</div>
+              <div class="spotify-preview-actions">
+                ${shared.externalUrl ? `<a class="spotify-preview-open" href="${escapeSpotifyHtml(shared.externalUrl)}" target="_blank" rel="noopener noreferrer">Open in Spotify</a>` : ""}
+                <button class="spotify-preview-refresh" id="spotifyPreviewRefreshBtn" type="button">Refresh preview</button>
+              </div>
+            </div>
+          </div>
+          <div class="spotify-preview-list">${buildSpotifyPreviewTracks(shared.tracksPreview || [])}</div>`;
+        const refreshBtn = document.getElementById("spotifyPreviewRefreshBtn");
+        refreshBtn?.addEventListener("click", async () => {
+          if (!getStoredSpotifyAccessToken()) {
+            setSpotifyStatus("Connect Spotify to refresh preview");
+            return;
+          }
+          try {
+            const previewTracks = await getSpotifyPlaylistPreview(shared.id);
+            await set(SPOTIFY_SHARED_REF, {
+              ...shared,
+              tracksPreview: previewTracks,
+              updatedAt: Date.now()
+            });
+            setSpotifyStatus("Preview refreshed");
+          } catch (err) {
+            setSpotifyStatus("Preview refresh failed");
+          }
+        });
+      }
       setMusicSurfaceTitle(sharedName, "Shared playlist");
       if (musicMiniPlayBtn) musicMiniPlayBtn.setAttribute("aria-label", `Open ${sharedName} in Spotify`);
     }
 
     async function fetchSpotifyProfile() {
+
       spotifyProfile = await spotifyApi("/me");
       updateSpotifyUI();
     }
@@ -1697,7 +2092,7 @@ I'll message you pag gising ko, MWA!
       let nextPath = "/me/playlists?limit=50";
       let guard = 0;
 
-      while (nextPath && guard < 4) {
+      while (nextPath && guard < 5) {
         const data = await spotifyApi(nextPath.startsWith("/") ? nextPath : nextPath.replace("https://api.spotify.com/v1", ""));
         const items = Array.isArray(data?.items) ? data.items : [];
         collected.push(...items);
@@ -1710,7 +2105,20 @@ I'll message you pag gising ko, MWA!
       updateSpotifyUI();
     }
 
-    async function beginSpotifyLogin() {
+    async function searchSpotifyTracks(query) {
+      const safeQuery = (query || "").trim();
+      if (!safeQuery) {
+        renderSpotifySearchResults([]);
+        return;
+      }
+      setSpotifyStatus("Searching");
+      const data = await spotifyApi(`/search?type=track&limit=8&q=${encodeURIComponent(safeQuery)}`);
+      const items = Array.isArray(data?.tracks?.items) ? data.tracks.items : [];
+      renderSpotifySearchResults(items);
+      setSpotifyStatus(getStoredSpotifyAccessToken() ? "Connected" : "Not connected");
+    }
+
+    async function beginSpotifyLogin(forceAccount = false) {
       const codeVerifier = randomSpotifyString(64);
       const state = randomSpotifyString(16);
       const codeChallenge = await sha256ToBase64Url(codeVerifier);
@@ -1726,6 +2134,7 @@ I'll message you pag gising ko, MWA!
         code_challenge: codeChallenge,
         state
       });
+      if (forceAccount) params.set("show_dialog", "true");
 
       window.location.href = `https://accounts.spotify.com/authorize?${params.toString()}`;
     }
@@ -1792,12 +2201,14 @@ I'll message you pag gising ko, MWA!
       const selected = spotifyPlaylists.find(item => item.id === selectedId);
       if (!selected) return;
 
+      const previewTracks = await getSpotifyPlaylistPreview(selected.id).catch(() => []);
       const payload = {
         id: selected.id,
         name: selected.name || "Spotify playlist",
         externalUrl: selected.external_urls?.spotify || "",
         owner: selected.owner?.display_name || selected.owner?.id || "Spotify",
         cover: selected.images?.[0]?.url || "",
+        tracksPreview: previewTracks,
         updatedAt: Date.now(),
         setBy: spotifyProfile?.display_name || spotifyProfile?.id || "Spotify user"
       };
@@ -1827,7 +2238,6 @@ I'll message you pag gising ko, MWA!
         }
       }
     }
-
 
     /* ── Persona data ─────────────────────────────────────────── */
     const PERSONAS = {
@@ -2075,7 +2485,7 @@ I'll message you pag gising ko, MWA!
       if (!isDraggingSeek) musicSeekBar.value = dur>0?(cur/dur)*100:0;
       musicCurrentTime.textContent = formatTime(cur);
       musicTotalTime.textContent   = formatTime(dur);
-      musicMiniTime.textContent    = formatTime(cur);
+      musicMiniTime.textContent    = playlist.length ? formatTime(cur) : "";
     }
     function loadSong(i) {
       if (!hasLocalSongs()) {
@@ -2800,7 +3210,7 @@ I'll message you pag gising ko, MWA!
         return;
       }
       try {
-        setSpotifyStatus("Refreshing playlists");
+        setSpotifyStatus("Refreshing");
         await fetchSpotifyProfile();
         await fetchSpotifyPlaylists();
         setSpotifyStatus("Connected");
@@ -2809,12 +3219,37 @@ I'll message you pag gising ko, MWA!
         if (spotifyUser) spotifyUser.textContent = err?.message || "Spotify could not refresh your playlists.";
       }
     });
+    spotifySwitchBtn?.addEventListener("click", async () => {
+      disconnectSpotifySession();
+      await beginSpotifyLogin(true);
+    });
+    spotifyDisconnectBtn?.addEventListener("click", () => {
+      disconnectSpotifySession();
+    });
     spotifySetPlaylistBtn.addEventListener("click", async () => {
       try {
         await setSharedSpotifyPlaylist();
       } catch (err) {
         setSpotifyStatus("Save failed");
         if (spotifyUser) spotifyUser.textContent = err?.message || "Spotify playlist could not be saved right now.";
+      }
+    });
+    spotifySearchBtn?.addEventListener("click", async () => {
+      try {
+        await searchSpotifyTracks(spotifySearchInput?.value || "");
+      } catch (err) {
+        setSpotifyStatus("Search failed");
+        if (spotifyUser) spotifyUser.textContent = err?.message || "Spotify search could not run right now.";
+      }
+    });
+    spotifySearchInput?.addEventListener("keydown", async e => {
+      if (e.key !== "Enter") return;
+      e.preventDefault();
+      try {
+        await searchSpotifyTracks(spotifySearchInput?.value || "");
+      } catch (err) {
+        setSpotifyStatus("Search failed");
+        if (spotifyUser) spotifyUser.textContent = err?.message || "Spotify search could not run right now.";
       }
     });
 
