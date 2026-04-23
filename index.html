@@ -1211,6 +1211,25 @@ body.music-open .music-shell { z-index:43; }
 .spotify-preview-section {
   display:none;
 }
+.spotify-library-shell-primary {
+  margin-top:0;
+}
+.spotify-library-head-actions {
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.spotify-library-head-link {
+  min-width:auto;
+  white-space:nowrap;
+}
+.spotify-library-head-link.spotify-preview-refresh,
+.spotify-library-head-link.spotify-preview-open {
+  padding:10px 14px;
+  border-radius:14px;
+}
 .spotify-preview-list {
   display:grid;
   gap:8px;
@@ -1462,7 +1481,7 @@ body.music-open .music-shell { z-index:43; }
 .spotify-library-list {
   display:grid;
   gap:2px;
-  max-height:460px;
+  max-height:520px;
   overflow:auto;
   padding-right:4px;
   scrollbar-width:thin;
@@ -1896,6 +1915,9 @@ body.music-open .music-shell { z-index:43; }
 .spotify-preview-actions { display:grid; grid-template-columns:1fr; }
 .spotify-preview-track { grid-template-columns:auto minmax(0,1fr); }
 .spotify-preview-play { grid-column:1/-1; }
+.spotify-library-head { flex-direction:column; }
+.spotify-library-head-actions { width:100%; justify-content:stretch; display:grid; grid-template-columns:1fr; }
+.spotify-library-head-link { width:100%; }
 
 .spotify-library-head,
 .spotify-library-toolbar { grid-template-columns:1fr; }
@@ -3293,29 +3315,22 @@ function renderSpotifyLibraryTracks(listEl, tracks = [], emptyMessage = "No song
 }
 
 function bindSpotifyPlaylistBrowser(playlistId, initialTracks = []) {
-  const toggleBtn = document.getElementById("spotifyLibraryToggleBtn");
-  const panel = document.getElementById("spotifyLibraryPanel");
   const searchInput = document.getElementById("spotifyLibrarySearch");
   const listEl = document.getElementById("spotifyLibraryList");
   const countEl = document.getElementById("spotifyLibraryCount");
   const statusEl = document.getElementById("spotifyLibraryStatus");
 
-  if (!toggleBtn || !panel || !searchInput || !listEl || !countEl || !statusEl) return;
+  if (!searchInput || !listEl || !countEl || !statusEl) return;
 
   let allTracks = Array.isArray(initialTracks) ? [...initialTracks] : [];
-  let hydrated = false;
-  panel.classList.add("open");
-  toggleBtn.setAttribute("aria-expanded", "true");
-  const toggleLabel = toggleBtn.querySelector(".spotify-library-toggle-label");
-  if (toggleLabel) toggleLabel.textContent = "Hide songs";
 
   const updateCount = shown => {
-  const total = allTracks.length;
-  const shownCount = Math.max(0, Number(shown) || 0);
-  const totalDurationMs = allTracks.reduce((sum, track) => sum + Number(track?.durationMs || 0), 0);
-  const durationLabel = total ? formatPlaylistDuration(totalDurationMs) : "0 min";
-  countEl.textContent = total ? `${shownCount}/${total} songs • ${durationLabel}` : "0 songs";
-};
+    const total = allTracks.length;
+    const shownCount = Math.max(0, Number(shown) || 0);
+    const totalDurationMs = allTracks.reduce((sum, track) => sum + Number(track?.durationMs || 0), 0);
+    const durationLabel = total ? formatPlaylistDuration(totalDurationMs) : "0 min";
+    countEl.textContent = total ? `${shownCount}/${total} songs • ${durationLabel}` : "0 songs";
+  };
 
   const applyFilter = (term = "") => {
     const query = String(term || "").trim().toLowerCase();
@@ -3351,9 +3366,8 @@ function bindSpotifyPlaylistBrowser(playlistId, initialTracks = []) {
 
     try {
       allTracks = await getSpotifyPlaylistTracks(playlistId, 100, forceRefresh);
-      hydrated = true;
       statusEl.textContent = allTracks.length
-        ? "Songs are loaded below. Tap any row to play it, just like browsing a playlist."
+        ? "All songs in this playlist are listed below. Tap any row to play it."
         : "This playlist has no playable songs yet.";
       applyFilter(searchInput.value);
     } catch (err) {
@@ -3364,30 +3378,17 @@ function bindSpotifyPlaylistBrowser(playlistId, initialTracks = []) {
   };
 
   statusEl.textContent = allTracks.length
-    ? "Songs are ready below. Tap any row to play it inside the site."
-    : "Loading songs from this playlist for a Spotify-style view.";
-  renderSpotifyLibraryTracks(listEl, allTracks, "Loading songs from this playlist for a Spotify-style view.");
+    ? "All songs in this playlist are listed below. Tap any row to play it."
+    : "Loading playlist songs...";
+  renderSpotifyLibraryTracks(listEl, allTracks, "Loading playlist songs...");
   updateCount(allTracks.length);
   syncPlaylistTrackHighlights();
   loadFullPlaylist(false);
 
-  toggleBtn.addEventListener("click", async () => {
-    const isOpen = panel.classList.toggle("open");
-    toggleBtn.setAttribute("aria-expanded", String(isOpen));
-    const labelEl = toggleBtn.querySelector(".spotify-library-toggle-label");
-    if (labelEl) labelEl.textContent = isOpen ? "Hide list" : "Show list";
-
-    if (isOpen && (!hydrated || !allTracks.length)) {
-      await loadFullPlaylist(false);
-    }
-  });
-
-  searchInput.addEventListener("input", () => {
-    applyFilter(searchInput.value);
-  });
+  searchInput.addEventListener("input", () => applyFilter(searchInput.value));
 
   document.getElementById("spotifyPreviewRefreshBtn")?.addEventListener("click", async () => {
-    if (!panel.classList.contains("open")) return;
+    spotifyPlaylistTracksCache.delete(playlistId);
     await loadFullPlaylist(true);
   });
 }
@@ -3518,94 +3519,33 @@ function renderSharedSpotifyPlaylist(shared) {
 
   if (spotifyPreviewCard) {
     spotifyPreviewCard.dataset.playlistId = spotifySharedPlaylist.id;
-    const coverHtml = spotifySharedPlaylist.cover
-      ? `<img class="spotify-preview-cover" src="${escapeSpotifyHtml(spotifySharedPlaylist.cover)}" alt="${escapeSpotifyHtml(sharedName)} cover" />`
-      : `<div class="spotify-preview-cover fallback">♫</div>`;
-    const owner = escapeSpotifyHtml(spotifySharedPlaylist.owner || spotifySharedPlaylist.setBy || "Spotify");
-    const setBy = spotifySharedPlaylist.setBy && spotifySharedPlaylist.setBy !== spotifySharedPlaylist.owner ? ` • set by ${escapeSpotifyHtml(spotifySharedPlaylist.setBy)}` : "";
     spotifyPreviewCard.innerHTML = `
-      <div class="spotify-preview-top">
-        ${coverHtml}
-        <div class="spotify-preview-main">
-          <div class="spotify-preview-name">${escapeSpotifyHtml(sharedName)}</div>
-          <div class="spotify-preview-meta">Shared playlist • ${owner}${setBy}</div>
-          <div class="spotify-preview-actions">
-            <button class="spotify-preview-play" id="spotifyPreviewPlayBtn" type="button">Play here</button>
-            ${spotifySharedPlaylist.externalUrl ? `<a class="spotify-preview-open" href="${escapeSpotifyHtml(spotifySharedPlaylist.externalUrl)}" target="_blank" rel="noopener noreferrer">Open in Spotify</a>` : ""}
-            <button class="spotify-preview-refresh" id="spotifyPreviewRefreshBtn" type="button">Refresh preview</button>
-          </div>
-        </div>
-      </div>
-      <div class="spotify-preview-section">
-        <div class="spotify-preview-section-head">
-          <div class="spotify-preview-section-title">Quick picks</div>
-        </div>
-        <div class="spotify-preview-list">${buildSpotifyPreviewTracks(spotifySharedPlaylist.tracksPreview || [])}</div>
-      </div>
-      <div class="spotify-library-shell">
+      <div class="spotify-library-shell spotify-library-shell-primary">
         <div class="spotify-library-head">
           <div class="spotify-library-copy">
             <div class="spotify-preview-section-title">Playlist songs</div>
             <div class="spotify-library-status" id="spotifyLibraryStatus">Loading playlist songs…</div>
           </div>
-          <button class="spotify-library-toggle" id="spotifyLibraryToggleBtn" type="button" aria-expanded="true">
-            <span class="spotify-library-toggle-label">Hide list</span>
-            <span class="spotify-library-toggle-icon">⌄</span>
-          </button>
-        </div>
-        <div class="spotify-library-panel" id="spotifyLibraryPanel">
-          <div class="spotify-library-toolbar">
-            <input class="spotify-library-search" id="spotifyLibrarySearch" type="text" placeholder="Search inside this playlist" />
-            <div class="spotify-library-count" id="spotifyLibraryCount">0 songs</div>
+          <div class="spotify-library-head-actions">
+            ${spotifySharedPlaylist.externalUrl ? `<a class="spotify-preview-open spotify-library-head-link" href="${escapeSpotifyHtml(spotifySharedPlaylist.externalUrl)}" target="_blank" rel="noopener noreferrer">Open in Spotify</a>` : ""}
+            <button class="spotify-preview-refresh spotify-library-head-link" id="spotifyPreviewRefreshBtn" type="button">Refresh songs</button>
           </div>
-          <div class="spotify-library-table-head" id="spotifyLibraryTableHead" hidden>
-            <div>#</div>
-            <div></div>
-            <div>Title</div>
-            <div>Album</div>
-            <div class="is-right">Time</div>
-            <div></div>
-          </div>
-          <div class="spotify-library-list" id="spotifyLibraryList"></div>
         </div>
+        <div class="spotify-library-toolbar">
+          <input class="spotify-library-search" id="spotifyLibrarySearch" type="text" placeholder="Search inside this playlist" />
+          <div class="spotify-library-count" id="spotifyLibraryCount">0 songs</div>
+        </div>
+        <div class="spotify-library-table-head" id="spotifyLibraryTableHead" hidden>
+          <div>#</div>
+          <div></div>
+          <div>Title</div>
+          <div>Album</div>
+          <div class="is-right">Time</div>
+          <div></div>
+        </div>
+        <div class="spotify-library-list" id="spotifyLibraryList"></div>
       </div>`;
 
-    document.getElementById("spotifyPreviewPlayBtn")?.addEventListener("click", () => {
-      playSharedSpotifyPlaylist();
-    });
-
-    document.getElementById("spotifyPreviewRefreshBtn")?.addEventListener("click", async () => {
-      if (!getStoredSpotifyAccessToken()) {
-        setSpotifyStatus("Connect Spotify to refresh preview");
-        return;
-      }
-      try {
-        spotifyPlaylistTracksCache.delete(spotifySharedPlaylist.id);
-        const previewTracks = await getSpotifyPlaylistPreview(spotifySharedPlaylist.id);
-        await set(SPOTIFY_SHARED_REF, {
-          ...spotifySharedPlaylist,
-          tracksPreview: previewTracks,
-          updatedAt: Date.now()
-        });
-        setSpotifyStatus("Preview refreshed");
-      } catch (err) {
-        setSpotifyStatus("Preview refresh failed");
-      }
-    });
-
-    spotifyPreviewCard.querySelectorAll(".spotify-preview-play[data-track-uri]").forEach(btn => {
-      btn.addEventListener("click", event => {
-        event.stopPropagation();
-        playSpotifyTrack({
-          id: btn.getAttribute("data-track-id") || "",
-          uri: btn.getAttribute("data-track-uri") || "",
-          name: btn.closest(".spotify-preview-track")?.getAttribute("data-track-name") || "",
-          artists: (btn.closest(".spotify-preview-track")?.getAttribute("data-track-artists") || "").split(" • ").filter(Boolean)
-        });
-      });
-    });
-
-    bindTrackRowInteractions(spotifyPreviewCard, ".spotify-preview-track[data-track-uri]", playSpotifyTrack);
     bindSpotifyPlaylistBrowser(spotifySharedPlaylist.id, spotifySharedPlaylist.tracksPreview || []);
     syncPlaylistTrackHighlights();
   }
@@ -3637,11 +3577,11 @@ function updateSpotifyUI() {
   if (spotifyUser) {
     if (spotifyProfile) {
       const name = spotifyProfile.display_name || spotifyProfile.id || "Spotify account";
-      spotifyUser.textContent = `Connected as ${name}. Pick a playlist or search a song.`;
+      spotifyUser.textContent = `Connected as ${name}.`;
     } else if (connected) {
-      spotifyUser.textContent = "Spotify connected. Refresh your playlists if they do not appear yet.";
+      spotifyUser.textContent = "Spotify connected.";
     } else {
-      spotifyUser.textContent = "Connect your Spotify account to load your playlists and search tracks.";
+      spotifyUser.textContent = "Connect your Spotify account.";
     }
   }
 
@@ -3790,7 +3730,7 @@ async function setSharedSpotifyPlaylist() {
   await set(SPOTIFY_SHARED_REF, payload);
   setSpotifyStatus("Shared playlist updated");
   setSpotifyHint("Shared playlist saved. You can play it inside the page now.");
-  if (spotifyUser) spotifyUser.textContent = `Shared playlist set to ${payload.name}.`;
+  if (spotifyUser) spotifyUser.textContent = `Shared playlist updated.`;
 }
 
 async function initSpotifyIntegration() {
