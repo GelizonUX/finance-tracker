@@ -1205,6 +1205,9 @@ body.music-open .music-shell { z-index:43; }
   flex-wrap:wrap;
   gap:8px;
 }
+.spotify-preview-section {
+  display:none;
+}
 .spotify-preview-list {
   display:grid;
   gap:8px;
@@ -1354,7 +1357,8 @@ body.music-open .music-shell { z-index:43; }
 .spotify-library-shell {
   display:grid;
   gap:12px;
-  padding:14px;
+  padding:16px;
+  margin-top:4px;
   border-radius:22px;
   background:linear-gradient(180deg,rgba(255,239,247,0.72),rgba(255,247,251,0.92));
   border:1px solid rgba(255,183,214,0.22);
@@ -1404,7 +1408,7 @@ body.music-open .music-shell { z-index:43; }
   transition:max-height 0.42s var(--ease-smooth), opacity 0.26s ease, transform 0.36s var(--ease-out-expo);
 }
 .spotify-library-panel.open {
-  max-height:720px;
+  max-height:860px;
   opacity:1;
   transform:translateY(0);
 }
@@ -1439,7 +1443,7 @@ body.music-open .music-shell { z-index:43; }
 }
 .spotify-library-table-head {
   display:grid;
-  grid-template-columns:54px 52px minmax(0,1.65fr) minmax(120px,1fr) 72px 90px;
+  grid-template-columns:40px 52px minmax(0,1.7fr) minmax(110px,1fr) 64px 78px;
   gap:10px;
   align-items:center;
   padding:0 12px 2px;
@@ -1454,7 +1458,7 @@ body.music-open .music-shell { z-index:43; }
 .spotify-library-list {
   display:grid;
   gap:8px;
-  max-height:336px;
+  max-height:380px;
   overflow:auto;
   padding-right:4px;
   scrollbar-width:thin;
@@ -1464,7 +1468,7 @@ body.music-open .music-shell { z-index:43; }
 .spotify-library-list::-webkit-scrollbar-thumb { background:rgba(255,110,178,0.24); border-radius:999px; }
 .spotify-library-track {
   display:grid;
-  grid-template-columns:54px 52px minmax(0,1.65fr) minmax(120px,1fr) 72px 90px;
+  grid-template-columns:40px 52px minmax(0,1.7fr) minmax(110px,1fr) 64px 78px;
   gap:10px;
   align-items:center;
   padding:11px 12px;
@@ -1573,12 +1577,12 @@ body.music-open .music-shell { z-index:43; }
   white-space:nowrap;
 }
 .spotify-library-play {
-  min-width:90px;
+  min-width:78px;
   justify-self:end;
 }
 .spotify-library-track.is-active,
 .spotify-library-track.is-paused {
-  grid-template-columns:54px 52px minmax(0,1.65fr) minmax(120px,1fr) 72px 90px;
+  grid-template-columns:40px 52px minmax(0,1.7fr) minmax(110px,1fr) 64px 78px;
 }
 .spotify-library-track.is-active .spotify-library-track-index,
 .spotify-library-track.is-paused .spotify-library-track-index {
@@ -1797,7 +1801,7 @@ body.music-open .music-shell { z-index:43; }
 
       /* chat mobile */
       .chat-fab { right:14px; bottom:14px; width:54px; height:54px; font-size:22px; z-index:52; }
-      .chat-panel { right:10px; left:10px; bottom:102px; width:auto; height:min(62vh,520px); border-radius:20px; z-index:51; }
+      .chat-panel { right:10px; left:10px; bottom:110px; width:auto; height:min(62vh,520px); border-radius:20px; z-index:51; }
       .chat-header-title { font-size:20px; }
       .chat-bubble-wrap { max-width:86%; }
       .chat-bubble { font-size:12.5px; }
@@ -1886,7 +1890,7 @@ body.music-open .music-shell { z-index:43; }
 .spotify-library-toggle { width:100%; min-width:0; }
 .spotify-library-play { width:100%; min-width:0; justify-self:stretch; }
 .spotify-library-table-head { display:none !important; }
-.spotify-library-list { max-height:240px; }
+.spotify-library-list { max-height:280px; }
 .spotify-library-count { padding:0; text-align:left; }
 .spotify-library-track {
   grid-template-columns:42px 46px minmax(0,1fr);
@@ -3280,6 +3284,10 @@ function bindSpotifyPlaylistBrowser(playlistId, initialTracks = []) {
 
   let allTracks = Array.isArray(initialTracks) ? [...initialTracks] : [];
   let hydrated = false;
+  panel.classList.add("open");
+  toggleBtn.setAttribute("aria-expanded", "true");
+  const toggleLabel = toggleBtn.querySelector(".spotify-library-toggle-label");
+  if (toggleLabel) toggleLabel.textContent = "Hide songs";
 
   const updateCount = shown => {
   const total = allTracks.length;
@@ -3325,7 +3333,7 @@ function bindSpotifyPlaylistBrowser(playlistId, initialTracks = []) {
       allTracks = await getSpotifyPlaylistTracks(playlistId, 100, forceRefresh);
       hydrated = true;
       statusEl.textContent = allTracks.length
-        ? "Choose any song below, tap the row, or hit Play. It will stay clean and smooth inside the site."
+        ? "Songs are loaded below. Tap any row to play it, just like browsing a playlist."
         : "This playlist has no playable songs yet.";
       applyFilter(searchInput.value);
     } catch (err) {
@@ -3336,16 +3344,18 @@ function bindSpotifyPlaylistBrowser(playlistId, initialTracks = []) {
   };
 
   statusEl.textContent = allTracks.length
-    ? "Quick picks are ready. Open the browser for a fuller playlist view with title, album, and duration."
-    : "Open the browser to load songs from this playlist.";
-  renderSpotifyLibraryTracks(listEl, allTracks, "Open the browser to load songs from this playlist.");
+    ? "Songs are ready below. Tap any row to play it inside the site."
+    : "Loading songs from this playlist for a Spotify-style view.";
+  renderSpotifyLibraryTracks(listEl, allTracks, "Loading songs from this playlist for a Spotify-style view.");
   updateCount(allTracks.length);
   syncPlaylistTrackHighlights();
+  loadFullPlaylist(false);
 
   toggleBtn.addEventListener("click", async () => {
     const isOpen = panel.classList.toggle("open");
     toggleBtn.setAttribute("aria-expanded", String(isOpen));
-    toggleBtn.querySelector(".spotify-library-toggle-label").textContent = isOpen ? "Hide songs" : "Browse songs";
+    const labelEl = toggleBtn.querySelector(".spotify-library-toggle-label");
+    if (labelEl) labelEl.textContent = isOpen ? "Hide songs" : "Browse songs";
 
     if (isOpen && (!hydrated || !allTracks.length)) {
       await loadFullPlaylist(false);
@@ -3515,16 +3525,16 @@ function renderSharedSpotifyPlaylist(shared) {
         <div class="spotify-library-head">
           <div class="spotify-library-copy">
             <div class="spotify-preview-section-title">Choose a song from this playlist</div>
-            <div class="spotify-library-status" id="spotifyLibraryStatus">Open the browser to load songs from this playlist.</div>
+            <div class="spotify-library-status" id="spotifyLibraryStatus">Loading songs from this playlist for a Spotify-style view.</div>
           </div>
-          <button class="spotify-library-toggle" id="spotifyLibraryToggleBtn" type="button" aria-expanded="false">
-            <span class="spotify-library-toggle-label">Browse songs</span>
+          <button class="spotify-library-toggle" id="spotifyLibraryToggleBtn" type="button" aria-expanded="true">
+            <span class="spotify-library-toggle-label">Hide songs</span>
             <span class="spotify-library-toggle-icon">⌄</span>
           </button>
         </div>
         <div class="spotify-library-panel" id="spotifyLibraryPanel">
           <div class="spotify-library-toolbar">
-            <input class="spotify-library-search" id="spotifyLibrarySearch" type="text" placeholder="Filter this playlist" />
+            <input class="spotify-library-search" id="spotifyLibrarySearch" type="text" placeholder="Search inside this playlist" />
             <div class="spotify-library-count" id="spotifyLibraryCount">0 songs</div>
           </div>
           <div class="spotify-library-table-head" id="spotifyLibraryTableHead" hidden>
