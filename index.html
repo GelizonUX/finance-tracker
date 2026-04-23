@@ -963,7 +963,9 @@
 .spotify-result-play,
 .spotify-preview-open,
 .spotify-preview-refresh,
-.spotify-preview-play {
+.spotify-preview-play,
+.spotify-library-toggle,
+.spotify-library-play {
   border:none;
   border-radius:16px;
   padding:12px 14px;
@@ -981,7 +983,9 @@
 .spotify-search-btn,
 .spotify-result-play,
 .spotify-preview-open,
-.spotify-preview-play {
+.spotify-preview-play,
+.spotify-library-toggle,
+.spotify-library-play {
   color:white;
   background:linear-gradient(135deg,var(--mood-grad-a) 0%,var(--mood-grad-b) 100%);
   box-shadow:0 10px 22px var(--mood-glow), inset 0 1px 0 rgba(255,255,255,0.22);
@@ -1005,7 +1009,9 @@
 .spotify-result-play:hover,
 .spotify-preview-open:hover,
 .spotify-preview-refresh:hover,
-.spotify-preview-play:hover {
+.spotify-preview-play:hover,
+.spotify-library-toggle:hover,
+.spotify-library-play:hover {
   transform:translateY(-2px) scale(1.01);
   filter:brightness(1.04);
 }
@@ -1021,10 +1027,15 @@
   gap:8px;
 }
 .spotify-user {
+  position:relative;
+  z-index:1;
   font-size:12px;
-  line-height:1.5;
+  line-height:1.6;
   color:#9b6680;
   min-height:0;
+  margin-top:2px;
+  padding:2px 2px 4px;
+  word-break:break-word;
 }
 .spotify-select-wrap,
 .spotify-search-row {
@@ -1234,11 +1245,253 @@
   -webkit-box-orient:vertical;
   overflow:hidden;
 }
+.spotify-preview-track-main,
+.spotify-library-track-main { min-width:0; }
 .spotify-preview-empty {
   font-size:13px;
   color:#a86c8a;
   line-height:1.5;
   padding:6px 2px;
+}
+.spotify-preview-section-title {
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:#b5698d;
+}
+.spotify-preview-track,
+.spotify-library-track {
+  position:relative;
+  cursor:pointer;
+}
+.spotify-preview-track::before,
+.spotify-library-track::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  background:linear-gradient(135deg,rgba(255,255,255,0.26),rgba(255,255,255,0));
+  opacity:0;
+  transition:opacity 0.24s ease;
+  pointer-events:none;
+}
+.spotify-preview-track:hover::before,
+.spotify-library-track:hover::before,
+.spotify-preview-track:focus-visible::before,
+.spotify-library-track:focus-visible::before {
+  opacity:1;
+}
+.spotify-preview-track:focus-visible,
+.spotify-library-track:focus-visible {
+  outline:none;
+  box-shadow:0 0 0 3px rgba(255,105,180,0.16), 0 14px 28px rgba(255,87,165,0.10);
+}
+.spotify-preview-track.is-active,
+.spotify-library-track.is-active {
+  background:linear-gradient(135deg,rgba(255,228,241,0.96),rgba(255,243,248,0.92));
+  border-color:rgba(255,123,191,0.42);
+  box-shadow:0 16px 32px rgba(255,87,165,0.14);
+  transform:translateY(-2px);
+}
+.spotify-preview-track.is-paused,
+.spotify-library-track.is-paused {
+  background:linear-gradient(135deg,rgba(255,240,247,0.92),rgba(255,248,251,0.9));
+}
+.spotify-preview-track.is-active .spotify-preview-track-name,
+.spotify-library-track.is-active .spotify-library-track-name {
+  color:var(--mood-title);
+}
+.spotify-preview-track.is-active .spotify-preview-track-meta,
+.spotify-library-track.is-active .spotify-library-track-meta {
+  color:#a45d82;
+}
+.spotify-track-active-badge {
+  display:none;
+  align-items:center;
+  gap:6px;
+  margin-top:6px;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--mood-title);
+}
+.spotify-track-active-badge::before {
+  content:"";
+  width:7px;
+  height:7px;
+  border-radius:999px;
+  background:currentColor;
+  box-shadow:0 0 0 0 rgba(255,87,165,0.28);
+  animation:spotifyPulseDot 1.7s ease-in-out infinite;
+}
+.spotify-preview-track.is-active .spotify-track-active-badge,
+.spotify-library-track.is-active .spotify-track-active-badge {
+  display:inline-flex;
+}
+.spotify-preview-track.is-paused .spotify-track-active-badge::before,
+.spotify-library-track.is-paused .spotify-track-active-badge::before {
+  animation:none;
+  opacity:0.72;
+}
+@keyframes spotifyPulseDot {
+  0%,100% { transform:scale(1); box-shadow:0 0 0 0 rgba(255,87,165,0.28); }
+  50% { transform:scale(1.12); box-shadow:0 0 0 6px rgba(255,87,165,0); }
+}
+.spotify-preview-section-head {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:10px;
+}
+.spotify-library-shell {
+  display:grid;
+  gap:10px;
+  padding:14px;
+  border-radius:20px;
+  background:rgba(255,239,247,0.6);
+  border:1px solid rgba(255,183,214,0.22);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.45);
+}
+.spotify-library-head {
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+}
+.spotify-library-copy {
+  min-width:0;
+  display:grid;
+  gap:5px;
+}
+.spotify-library-status {
+  font-size:12px;
+  color:#a86c8a;
+  line-height:1.45;
+}
+.spotify-library-toggle {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  min-width:144px;
+  white-space:nowrap;
+}
+.spotify-library-toggle-icon {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size:14px;
+  transition:transform 0.32s var(--ease-spring);
+}
+.spotify-library-toggle[aria-expanded="true"] .spotify-library-toggle-icon {
+  transform:rotate(180deg);
+}
+.spotify-library-panel {
+  display:grid;
+  gap:10px;
+  max-height:0;
+  opacity:0;
+  overflow:hidden;
+  transform:translateY(-6px);
+  transition:max-height 0.42s var(--ease-smooth), opacity 0.26s ease, transform 0.36s var(--ease-out-expo);
+}
+.spotify-library-panel.open {
+  max-height:620px;
+  opacity:1;
+  transform:translateY(0);
+}
+.spotify-library-toolbar {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:8px;
+  align-items:center;
+}
+.spotify-library-search {
+  width:100%;
+  min-width:0;
+  border:none;
+  outline:none;
+  border-radius:16px;
+  padding:12px 14px;
+  background:rgba(255,255,255,0.82);
+  color:var(--text-soft);
+  font-size:13px;
+  font-family:"Inter",sans-serif;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.44);
+}
+.spotify-library-search::placeholder { color:#b37e99; }
+.spotify-library-count {
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  color:#b5698d;
+  padding:0 2px;
+}
+.spotify-library-list {
+  display:grid;
+  gap:8px;
+  max-height:280px;
+  overflow:auto;
+  padding-right:4px;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(255,110,178,0.24) transparent;
+}
+.spotify-library-list::-webkit-scrollbar { width:4px; }
+.spotify-library-list::-webkit-scrollbar-thumb { background:rgba(255,110,178,0.24); border-radius:999px; }
+.spotify-library-track {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:10px;
+  align-items:center;
+  padding:11px 12px;
+  border-radius:16px;
+  background:rgba(255,255,255,0.72);
+  border:1px solid rgba(255,183,214,0.18);
+  box-shadow:0 10px 24px rgba(255,87,165,0.06);
+  transform:translateY(0);
+  transition:transform 0.28s var(--ease-spring), box-shadow 0.28s ease, border-color 0.22s ease;
+}
+.spotify-library-track:hover {
+  transform:translateY(-2px);
+  box-shadow:0 14px 28px rgba(255,87,165,0.1);
+  border-color:rgba(255,183,214,0.34);
+}
+.spotify-library-track-main { min-width:0; }
+.spotify-library-track-name {
+  font-size:13.5px;
+  font-weight:700;
+  color:var(--text-soft);
+  line-height:1.4;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+.spotify-library-track-meta {
+  margin-top:3px;
+  font-size:11.5px;
+  color:#b07a95;
+  line-height:1.4;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+.spotify-library-play {
+  min-width:92px;
+}
+.spotify-library-empty {
+  padding:12px;
+  border-radius:16px;
+  background:rgba(255,255,255,0.58);
+  border:1px dashed rgba(255,183,214,0.34);
+  font-size:12px;
+  color:#a86c8a;
+  line-height:1.55;
 }
 
 
@@ -1499,6 +1752,14 @@
 .spotify-preview-actions { display:grid; grid-template-columns:1fr; }
 .spotify-preview-track { grid-template-columns:auto minmax(0,1fr); }
 .spotify-preview-play { grid-column:1/-1; }
+.spotify-library-head,
+.spotify-library-toolbar,
+.spotify-library-track { grid-template-columns:1fr; }
+.spotify-library-head { display:grid; }
+.spotify-library-toggle,
+.spotify-library-play { width:100%; min-width:0; }
+.spotify-library-list { max-height:220px; }
+.spotify-library-count { padding:0; }
 /* intro mobile */
 
       .intro-choice-wrap { gap:18px; padding:16px; }
@@ -1984,6 +2245,9 @@ let spotifyPlaybackBase = null;
 let spotifyProgressRaf = 0;
 let spotifyActiveContext = null;
 let spotifyPlaybackEnabled = false;
+let spotifyPendingTrackSelection = null;
+let spotifyLastHighlightedTrackKey = "";
+const spotifyPlaylistTracksCache = new Map();
 
 function randomSpotifyString(length = 64) {
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -2046,6 +2310,87 @@ function getCurrentSpotifyTrack(state = spotifyPlaybackState) {
     cover: current.album?.images?.[0]?.url || "",
     durationMs: Number(current.duration_ms || 0)
   };
+}
+
+function getActiveSpotifyReferenceTrack() {
+  const currentTrack = getCurrentSpotifyTrack();
+  if (currentTrack?.id || currentTrack?.uri) return currentTrack;
+  return spotifyPendingTrackSelection || null;
+}
+
+function updateActiveTrackButtonsText(root, isActive, isPlaying) {
+  if (!root) return;
+  root.querySelectorAll(".spotify-preview-play, .spotify-library-play").forEach(btn => {
+    btn.textContent = isActive ? (isPlaying ? "Playing" : "Resume") : "Play";
+  });
+}
+
+function syncPlaylistTrackHighlights(options = {}) {
+  const { forceScroll = false } = options || {};
+  const activeTrack = getActiveSpotifyReferenceTrack();
+  const activeId = activeTrack?.id || "";
+  const activeUri = activeTrack?.uri || "";
+  const activeKey = activeId ? `id:${activeId}` : (activeUri ? `uri:${activeUri}` : "");
+  const isPlaying = !!(spotifyPlaybackState && !spotifyPlaybackState.paused);
+  const shouldScroll = !!activeKey && (forceScroll || activeKey !== spotifyLastHighlightedTrackKey);
+
+  document.querySelectorAll(".spotify-preview-track[data-track-uri], .spotify-library-track[data-track-uri]").forEach(row => {
+    const matches = (!!activeId && row.dataset.trackId === activeId) || (!!activeUri && row.dataset.trackUri === activeUri);
+    row.classList.toggle("is-active", matches);
+    row.classList.toggle("is-paused", matches && !isPlaying && !spotifyPendingTrackSelection);
+    row.setAttribute("aria-current", matches ? "true" : "false");
+    updateActiveTrackButtonsText(row, matches, isPlaying);
+    if (matches && shouldScroll && row.classList.contains("spotify-library-track")) {
+      row.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  });
+
+  spotifyLastHighlightedTrackKey = activeKey;
+}
+
+function setPendingSpotifySelection(track, options = {}) {
+  const keepIfMissing = !!options.keepIfMissing;
+  if (track?.id || track?.uri) {
+    spotifyPendingTrackSelection = {
+      id: track.id || "",
+      uri: track.uri || "",
+      name: track.name || "",
+      artists: track.artists || []
+    };
+  } else if (!keepIfMissing) {
+    spotifyPendingTrackSelection = null;
+  }
+  syncPlaylistTrackHighlights({ forceScroll: !!options.forceScroll });
+}
+
+function bindTrackRowInteractions(root, itemSelector, playHandler) {
+  if (!root) return;
+  root.querySelectorAll(itemSelector).forEach(row => {
+    const track = {
+      id: row.getAttribute("data-track-id") || "",
+      uri: row.getAttribute("data-track-uri") || "",
+      name: row.getAttribute("data-track-name") || "",
+      artists: (row.getAttribute("data-track-artists") || "").split(" • ").filter(Boolean)
+    };
+
+    const activate = () => {
+      if (!track.uri) return;
+      playHandler(track);
+    };
+
+    row.addEventListener("click", event => {
+      const trigger = event.target.closest(".spotify-preview-play, .spotify-library-play, a");
+      if (trigger) return;
+      activate();
+    });
+
+    row.addEventListener("keydown", event => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        activate();
+      }
+    });
+  });
 }
 
 function stopSpotifyProgressTicker() {
@@ -2115,6 +2460,7 @@ function clearSpotifyPlaybackUi() {
   stopSpotifyProgressTicker();
   spotifyPlaybackState = null;
   spotifyPlaybackBase = null;
+  spotifyPendingTrackSelection = null;
   setSpotifyCover(spotifyNowPlayingCover, "", "♫");
   setSpotifyCover(musicMiniCover, "", "♫");
   if (spotifyNowPlayingTitle) spotifyNowPlayingTitle.textContent = spotifySharedPlaylist?.name || "Connect Spotify";
@@ -2124,6 +2470,7 @@ function clearSpotifyPlaybackUi() {
   renderSpotifyProgress(0, 0);
   updateSpotifyPlaybackButtons();
   setSpotifyBadge(getStoredSpotifyAccessToken() ? "Ready" : "Idle");
+  syncPlaylistTrackHighlights();
 }
 
 function updateSpotifyPlaybackButtons() {
@@ -2146,6 +2493,7 @@ function updateSpotifyPlaybackButtons() {
 
 function syncSpotifyUiFromState(state) {
   spotifyPlaybackState = state || null;
+  spotifyPendingTrackSelection = null;
   const currentTrack = getCurrentSpotifyTrack(state);
   const isPlaying = !!(state && !state.paused);
 
@@ -2165,6 +2513,7 @@ function syncSpotifyUiFromState(state) {
   updateMusicSurfaceCopy(currentTrack.name, "Now playing", currentTrack.artists || "Spotify");
   setSpotifyProgressBase(Number(state?.position || 0), currentTrack.durationMs, !isPlaying);
   updateSpotifyPlaybackButtons();
+  syncPlaylistTrackHighlights({ forceScroll: true });
 }
 
 function teardownSpotifyPlayer() {
@@ -2529,6 +2878,7 @@ async function toggleSpotifyPlayback() {
 
 async function playSharedSpotifyPlaylist() {
   const sharedPlaylistId = getSharedPlaylistId();
+  spotifyPendingTrackSelection = null;
   if (!sharedPlaylistId) {
     openMusicPanel();
     setSpotifyHint("There is no shared playlist yet.");
@@ -2554,6 +2904,9 @@ async function playSharedSpotifyPlaylist() {
 async function playSpotifyTrack(track) {
   if (!track?.uri) return;
 
+  setPendingSpotifySelection(track, { forceScroll: true });
+  setSpotifyHint(`Starting ${track?.name || "track"}...`);
+
   spotifyActiveContext = {
     type: "track",
     id: track.id || "",
@@ -2565,6 +2918,8 @@ async function playSpotifyTrack(track) {
       uris: [track.uri]
     });
   } catch (err) {
+    spotifyPendingTrackSelection = null;
+    syncPlaylistTrackHighlights();
     setSpotifyStatus("Playback failed");
     setSpotifyHint(err?.message || "Track playback could not start.");
   }
@@ -2654,16 +3009,18 @@ function buildSpotifyPreviewTracks(tracks = []) {
     return '<div class="spotify-preview-empty">Open in Spotify to browse the full playlist.</div>';
   }
   return tracks.slice(0, 6).map((track, index) => {
+    const rawArtists = Array.isArray(track?.artists) ? track.artists.filter(Boolean).join(" • ") : "Spotify";
     const name = escapeSpotifyHtml(track?.name || "Untitled track");
-    const artists = escapeSpotifyHtml(Array.isArray(track?.artists) ? track.artists.filter(Boolean).join(" • ") : "Spotify");
+    const artists = escapeSpotifyHtml(rawArtists);
     const uri = escapeSpotifyHtml(track?.uri || "");
     const id = escapeSpotifyHtml(track?.id || "");
     return `
-      <div class="spotify-preview-track">
+      <div class="spotify-preview-track" data-track-uri="${uri}" data-track-id="${id}" data-track-name="${name}" data-track-artists="${artists}" role="button" tabindex="0" aria-label="Play ${name}">
         <div class="spotify-preview-index">${index + 1}</div>
         <div class="spotify-preview-track-main">
           <div class="spotify-preview-track-name">${name}</div>
           <div class="spotify-preview-track-meta">${artists}</div>
+          <div class="spotify-track-active-badge">Now playing</div>
         </div>
         ${uri ? `<button class="spotify-preview-play" type="button" data-track-uri="${uri}" data-track-id="${id}" aria-label="Play ${name}">Play</button>` : ""}
       </div>`;
@@ -2678,6 +3035,176 @@ async function getSpotifyPlaylistPreview(playlistId) {
     name: item?.track?.name || "",
     artists: Array.isArray(item?.track?.artists) ? item.track.artists.map(artist => artist?.name).filter(Boolean) : []
   })).filter(item => item.name);
+}
+
+async function getSpotifyPlaylistTracks(playlistId, limit = 40, forceRefresh = false) {
+  const safeId = String(playlistId || "").trim();
+  if (!safeId) return [];
+  if (!forceRefresh && spotifyPlaylistTracksCache.has(safeId)) {
+    return spotifyPlaylistTracksCache.get(safeId) || [];
+  }
+
+  const tracks = [];
+  let offset = 0;
+  const targetLimit = Math.min(Math.max(Number(limit) || 0, 1), 100);
+
+  while (offset < targetLimit) {
+    const batchLimit = Math.min(50, targetLimit - offset);
+    const data = await spotifyApi(`/playlists/${safeId}/tracks?limit=${batchLimit}&offset=${offset}&fields=items(track(id,uri,name,artists(name),album(name,images(url))))`);
+    const items = Array.isArray(data?.items) ? data.items : [];
+    const mapped = items.map(item => ({
+      id: item?.track?.id || "",
+      uri: item?.track?.uri || "",
+      name: item?.track?.name || "",
+      artists: Array.isArray(item?.track?.artists) ? item.track.artists.map(artist => artist?.name).filter(Boolean) : [],
+      album: {
+        name: item?.track?.album?.name || "",
+        images: Array.isArray(item?.track?.album?.images) ? item.track.album.images : []
+      }
+    })).filter(item => item.name && item.uri);
+
+    tracks.push(...mapped);
+    if (items.length < batchLimit) break;
+    offset += batchLimit;
+  }
+
+  spotifyPlaylistTracksCache.set(safeId, tracks);
+  return tracks;
+}
+
+function buildSpotifyLibraryTrackMarkup(track = {}) {
+  const rawArtists = Array.isArray(track?.artists) ? track.artists.filter(Boolean).join(" • ") : "Spotify";
+  const name = escapeSpotifyHtml(track?.name || "Untitled track");
+  const artists = escapeSpotifyHtml(rawArtists);
+  const album = escapeSpotifyHtml(track?.album?.name || "");
+  const meta = [artists, album].filter(Boolean).join(" • ");
+  const uri = escapeSpotifyHtml(track?.uri || "");
+  const id = escapeSpotifyHtml(track?.id || "");
+  return `
+    <div class="spotify-library-track" data-track-uri="${uri}" data-track-id="${id}" data-track-name="${name}" data-track-artists="${artists}" role="button" tabindex="0" aria-label="Play ${name}">
+      <div class="spotify-library-track-main">
+        <div class="spotify-library-track-name">${name}</div>
+        <div class="spotify-library-track-meta">${meta || "Spotify"}</div>
+        <div class="spotify-track-active-badge">Now playing</div>
+      </div>
+      <button class="spotify-library-play" type="button" data-track-uri="${uri}" data-track-id="${id}" aria-label="Play ${name}">Play</button>
+    </div>`;
+}
+
+function renderSpotifyLibraryTracks(listEl, tracks = [], emptyMessage = "No songs found in this playlist.") {
+  if (!listEl) return;
+  if (!Array.isArray(tracks) || !tracks.length) {
+    listEl.innerHTML = `<div class="spotify-library-empty">${escapeSpotifyHtml(emptyMessage)}</div>`;
+    return;
+  }
+
+  listEl.innerHTML = tracks.map(buildSpotifyLibraryTrackMarkup).join("");
+  listEl.querySelectorAll(".spotify-library-play[data-track-uri]").forEach(btn => {
+    btn.addEventListener("click", event => {
+      event.stopPropagation();
+      playSpotifyTrack({
+        id: btn.getAttribute("data-track-id") || "",
+        uri: btn.getAttribute("data-track-uri") || "",
+        name: btn.closest(".spotify-library-track")?.getAttribute("data-track-name") || "",
+        artists: (btn.closest(".spotify-library-track")?.getAttribute("data-track-artists") || "").split(" • ").filter(Boolean)
+      });
+    });
+  });
+
+  bindTrackRowInteractions(listEl, ".spotify-library-track[data-track-uri]", playSpotifyTrack);
+  syncPlaylistTrackHighlights();
+}
+
+function bindSpotifyPlaylistBrowser(playlistId, initialTracks = []) {
+  const toggleBtn = document.getElementById("spotifyLibraryToggleBtn");
+  const panel = document.getElementById("spotifyLibraryPanel");
+  const searchInput = document.getElementById("spotifyLibrarySearch");
+  const listEl = document.getElementById("spotifyLibraryList");
+  const countEl = document.getElementById("spotifyLibraryCount");
+  const statusEl = document.getElementById("spotifyLibraryStatus");
+
+  if (!toggleBtn || !panel || !searchInput || !listEl || !countEl || !statusEl) return;
+
+  let allTracks = Array.isArray(initialTracks) ? [...initialTracks] : [];
+  let hydrated = false;
+
+  const updateCount = shown => {
+    const total = allTracks.length;
+    const shownCount = Math.max(0, Number(shown) || 0);
+    countEl.textContent = total ? `${shownCount}/${total} songs` : "0 songs";
+  };
+
+  const applyFilter = (term = "") => {
+    const query = String(term || "").trim().toLowerCase();
+    const filtered = !query
+      ? allTracks
+      : allTracks.filter(track => {
+          const haystack = [
+            track?.name || "",
+            Array.isArray(track?.artists) ? track.artists.join(" ") : "",
+            track?.album?.name || ""
+          ].join(" ").toLowerCase();
+          return haystack.includes(query);
+        });
+
+    renderSpotifyLibraryTracks(
+      listEl,
+      filtered,
+      query ? `No songs matched "${term}" in this playlist.` : "No songs found in this playlist."
+    );
+    updateCount(filtered.length);
+    syncPlaylistTrackHighlights({ forceScroll: !!query });
+  };
+
+  const loadFullPlaylist = async (forceRefresh = false) => {
+    if (!getStoredSpotifyAccessToken()) {
+      statusEl.textContent = "Connect Spotify to browse and pick songs from the playlist here.";
+      if (!allTracks.length) renderSpotifyLibraryTracks(listEl, [], "Connect Spotify to browse this playlist inside the site.");
+      updateCount(allTracks.length);
+      return;
+    }
+
+    statusEl.textContent = forceRefresh ? "Refreshing playlist songs..." : "Loading playlist songs...";
+
+    try {
+      allTracks = await getSpotifyPlaylistTracks(playlistId, 100, forceRefresh);
+      hydrated = true;
+      statusEl.textContent = allTracks.length
+        ? "Choose any song below and play it right here."
+        : "This playlist has no playable songs yet.";
+      applyFilter(searchInput.value);
+    } catch (err) {
+      statusEl.textContent = err?.message || "Playlist songs could not be loaded right now.";
+      if (!allTracks.length) renderSpotifyLibraryTracks(listEl, [], statusEl.textContent);
+      updateCount(allTracks.length);
+    }
+  };
+
+  statusEl.textContent = allTracks.length
+    ? "Quick picks are ready. Open the browser to choose a specific song or tap any row to play it."
+    : "Open the browser to load songs from this playlist.";
+  renderSpotifyLibraryTracks(listEl, allTracks, "Open the browser to load songs from this playlist.");
+  updateCount(allTracks.length);
+  syncPlaylistTrackHighlights();
+
+  toggleBtn.addEventListener("click", async () => {
+    const isOpen = panel.classList.toggle("open");
+    toggleBtn.setAttribute("aria-expanded", String(isOpen));
+    toggleBtn.querySelector(".spotify-library-toggle-label").textContent = isOpen ? "Hide songs" : "Browse songs";
+
+    if (isOpen && (!hydrated || !allTracks.length)) {
+      await loadFullPlaylist(false);
+    }
+  });
+
+  searchInput.addEventListener("input", () => {
+    applyFilter(searchInput.value);
+  });
+
+  document.getElementById("spotifyPreviewRefreshBtn")?.addEventListener("click", async () => {
+    if (!panel.classList.contains("open")) return;
+    await loadFullPlaylist(true);
+  });
 }
 
 function populateSpotifyPlaylistSelect() {
@@ -2823,7 +3350,31 @@ function renderSharedSpotifyPlaylist(shared) {
           </div>
         </div>
       </div>
-      <div class="spotify-preview-list">${buildSpotifyPreviewTracks(spotifySharedPlaylist.tracksPreview || [])}</div>`;
+      <div class="spotify-preview-section">
+        <div class="spotify-preview-section-head">
+          <div class="spotify-preview-section-title">Quick picks</div>
+        </div>
+        <div class="spotify-preview-list">${buildSpotifyPreviewTracks(spotifySharedPlaylist.tracksPreview || [])}</div>
+      </div>
+      <div class="spotify-library-shell">
+        <div class="spotify-library-head">
+          <div class="spotify-library-copy">
+            <div class="spotify-preview-section-title">Choose a song from this playlist</div>
+            <div class="spotify-library-status" id="spotifyLibraryStatus">Open the browser to load songs from this playlist.</div>
+          </div>
+          <button class="spotify-library-toggle" id="spotifyLibraryToggleBtn" type="button" aria-expanded="false">
+            <span class="spotify-library-toggle-label">Browse songs</span>
+            <span class="spotify-library-toggle-icon">⌄</span>
+          </button>
+        </div>
+        <div class="spotify-library-panel" id="spotifyLibraryPanel">
+          <div class="spotify-library-toolbar">
+            <input class="spotify-library-search" id="spotifyLibrarySearch" type="text" placeholder="Filter this playlist" />
+            <div class="spotify-library-count" id="spotifyLibraryCount">0 songs</div>
+          </div>
+          <div class="spotify-library-list" id="spotifyLibraryList"></div>
+        </div>
+      </div>`;
 
     document.getElementById("spotifyPreviewPlayBtn")?.addEventListener("click", () => {
       playSharedSpotifyPlaylist();
@@ -2835,6 +3386,7 @@ function renderSharedSpotifyPlaylist(shared) {
         return;
       }
       try {
+        spotifyPlaylistTracksCache.delete(spotifySharedPlaylist.id);
         const previewTracks = await getSpotifyPlaylistPreview(spotifySharedPlaylist.id);
         await set(SPOTIFY_SHARED_REF, {
           ...spotifySharedPlaylist,
@@ -2848,13 +3400,20 @@ function renderSharedSpotifyPlaylist(shared) {
     });
 
     spotifyPreviewCard.querySelectorAll(".spotify-preview-play[data-track-uri]").forEach(btn => {
-      btn.addEventListener("click", () => {
+      btn.addEventListener("click", event => {
+        event.stopPropagation();
         playSpotifyTrack({
           id: btn.getAttribute("data-track-id") || "",
-          uri: btn.getAttribute("data-track-uri") || ""
+          uri: btn.getAttribute("data-track-uri") || "",
+          name: btn.closest(".spotify-preview-track")?.getAttribute("data-track-name") || "",
+          artists: (btn.closest(".spotify-preview-track")?.getAttribute("data-track-artists") || "").split(" • ").filter(Boolean)
         });
       });
     });
+
+    bindTrackRowInteractions(spotifyPreviewCard, ".spotify-preview-track[data-track-uri]", playSpotifyTrack);
+    bindSpotifyPlaylistBrowser(spotifySharedPlaylist.id, spotifySharedPlaylist.tracksPreview || []);
+    syncPlaylistTrackHighlights();
   }
 
   updateMusicSurfaceCopy(sharedName, "Shared playlist", "Tap play to start listening here");
@@ -2884,7 +3443,7 @@ function updateSpotifyUI() {
   if (spotifyUser) {
     if (spotifyProfile) {
       const name = spotifyProfile.display_name || spotifyProfile.id || "Spotify account";
-      spotifyUser.textContent = `Connected as ${name}. Pick a playlist, switch account, or search any song.`;
+      spotifyUser.textContent = `Connected as ${name}. Pick a playlist or search a song.`;
     } else if (connected) {
       spotifyUser.textContent = "Spotify connected. Refresh your playlists if they do not appear yet.";
     } else {
@@ -3037,7 +3596,7 @@ async function setSharedSpotifyPlaylist() {
   await set(SPOTIFY_SHARED_REF, payload);
   setSpotifyStatus("Shared playlist updated");
   setSpotifyHint("Shared playlist saved. You can play it inside the page now.");
-  if (spotifyUser) spotifyUser.textContent = `Shared playlist set to ${payload.name}. Both of you will now see it on the site.`;
+  if (spotifyUser) spotifyUser.textContent = `Shared playlist set to ${payload.name}. You can now play it here or browse its songs below.`;
 }
 
 async function initSpotifyIntegration() {
