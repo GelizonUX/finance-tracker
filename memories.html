@@ -3889,6 +3889,50 @@ body.chat-open .music-shell { right:96px !important; }
 }
 /* === FINAL DOCK SPACING FIX END === */
 
+
+
+/* === FINAL RESPONSIVE SPOTIFY + DOCK ALIGNMENT PATCH START === */
+@media (min-width: 861px) {
+  .music-panel { left:auto !important; right:18px !important; top:18px !important; bottom:var(--music-panel-bottom,112px) !important; width:min(680px,calc(100vw - 48px)) !important; max-width:min(680px,calc(100vw - 48px)) !important; max-height:calc(100dvh - var(--music-panel-bottom,112px) - 18px) !important; border-radius:30px !important; }
+  .music-shell { left:auto !important; right:96px !important; bottom:max(18px,env(safe-area-inset-bottom,0px) + 18px) !important; width:min(420px,calc(100vw - 220px)) !important; max-width:min(420px,calc(100vw - 220px)) !important; }
+  .spotify-account-card .spotify-title { font-size:clamp(30px,3.2vw,42px) !important; }
+}
+@media (max-width: 1100px) {
+  .mood-cluster { left:max(16px,env(safe-area-inset-left,0px) + 16px) !important; bottom:max(18px,env(safe-area-inset-bottom,0px) + 18px) !important; }
+  .chat-fab { right:max(18px,env(safe-area-inset-right,0px) + 18px) !important; bottom:max(18px,env(safe-area-inset-bottom,0px) + 18px) !important; width:64px !important; height:64px !important; flex:0 0 64px !important; z-index:72 !important; }
+  .music-shell { left:clamp(128px,15vw,170px) !important; right:clamp(104px,12vw,140px) !important; bottom:max(18px,env(safe-area-inset-bottom,0px) + 18px) !important; width:auto !important; max-width:none !important; z-index:42 !important; }
+  .music-mini-bar { width:100% !important; min-height:76px !important; padding:10px 12px !important; gap:12px !important; border-radius:26px !important; }
+  .music-mini-cover { width:56px !important; height:56px !important; border-radius:18px !important; flex:0 0 56px !important; }
+  .music-mini-btn { width:56px !important; height:56px !important; border-radius:20px !important; flex:0 0 56px !important; }
+  .chat-panel { left:auto !important; right:max(18px,env(safe-area-inset-right,0px) + 18px) !important; bottom:var(--chat-panel-bottom,124px) !important; width:min(520px,calc(100vw - 36px)) !important; height:min(64vh,calc(100dvh - var(--chat-panel-bottom,124px) - 24px)) !important; max-height:calc(100dvh - var(--chat-panel-bottom,124px) - 24px) !important; border-radius:26px !important; }
+  .music-panel { left:max(14px,env(safe-area-inset-left,0px) + 14px) !important; right:max(14px,env(safe-area-inset-right,0px) + 14px) !important; top:max(14px,env(safe-area-inset-top,0px) + 10px) !important; bottom:var(--music-panel-bottom,124px) !important; width:auto !important; max-width:none !important; max-height:calc(100dvh - var(--music-panel-bottom,124px) - 24px) !important; border-radius:28px !important; }
+}
+@media (max-width: 760px) {
+  .music-shell { left:112px !important; right:104px !important; }
+  .music-mini-bar { min-height:70px !important; padding:9px 10px !important; border-radius:24px !important; }
+  .music-mini-cover { width:50px !important; height:50px !important; border-radius:17px !important; flex-basis:50px !important; }
+  .music-mini-btn { width:50px !important; height:50px !important; border-radius:18px !important; flex-basis:50px !important; }
+  .music-mini-label { font-size:10px !important; }
+  .music-mini-title { font-size:15px !important; line-height:1.1 !important; }
+  .music-mini-sub { font-size:12px !important; line-height:1.15 !important; }
+  .chat-panel { left:12px !important; right:12px !important; width:auto !important; height:min(58vh,calc(100dvh - var(--chat-panel-bottom,124px) - 24px)) !important; }
+}
+@media (max-width: 520px) {
+  .mood-fab,.chat-fab { width:58px !important; height:58px !important; flex-basis:58px !important; }
+  .music-shell { left:88px !important; right:88px !important; }
+  .music-mini-bar { min-height:64px !important; gap:8px !important; padding:8px !important; border-radius:22px !important; }
+  .music-mini-cover { width:46px !important; height:46px !important; border-radius:16px !important; flex-basis:46px !important; }
+  .music-mini-btn { width:46px !important; height:46px !important; border-radius:16px !important; flex-basis:46px !important; }
+  .music-mini-label { font-size:9px !important; }
+  .music-mini-title { font-size:14px !important; }
+  .music-mini-sub { font-size:11px !important; }
+}
+@media (max-width: 380px) { .music-shell { left:82px !important; right:82px !important; } .music-mini-sub { display:none !important; } }
+.love-cursor-particle { position:fixed; left:0; top:0; z-index:999999; pointer-events:none; user-select:none; font-size:22px; line-height:1; transform:translate3d(var(--x,0),var(--y,0),0) scale(.8) rotate(var(--r,0deg)); animation:loveCursorFloat 920ms ease-out forwards; filter:drop-shadow(0 8px 12px rgba(255,47,141,.24)); }
+@keyframes loveCursorFloat { 0%{opacity:0;transform:translate3d(var(--x,0),var(--y,0),0) scale(.72) rotate(var(--r,0deg));} 15%{opacity:1;} 100%{opacity:0;transform:translate3d(calc(var(--x,0) + var(--dx,0px)),calc(var(--y,0) - var(--dy,58px)),0) scale(1.22) rotate(calc(var(--r,0deg) + 18deg));} }
+@media (prefers-reduced-motion: reduce) { .love-cursor-particle { display:none !important; } }
+/* === FINAL RESPONSIVE SPOTIFY + DOCK ALIGNMENT PATCH END === */
+
 </style>
 </head>
 <body>
@@ -7165,6 +7209,45 @@ updateProgressUI();
   scheduleDockAlignment();
   setTimeout(scheduleDockAlignment, 120);
   setTimeout(scheduleDockAlignment, 600);
+})();
+</script>
+
+
+<script>
+/* === ROSE + HEART CURSOR TRAIL PATCH === */
+(function(){
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = window.matchMedia && window.matchMedia('(pointer: fine)').matches;
+  if (reduceMotion || !finePointer) return;
+  const emojis = ['🌹','💗','💕','💖','💋'];
+  let last = 0;
+  let live = 0;
+  const maxLive = 22;
+  function spawn(x,y,burst){
+    if(live >= maxLive) return;
+    const particle = document.createElement('span');
+    particle.className = 'love-cursor-particle';
+    particle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    particle.style.setProperty('--x', x + 'px');
+    particle.style.setProperty('--y', y + 'px');
+    particle.style.setProperty('--dx', (Math.random() * 44 - 22).toFixed(1) + 'px');
+    particle.style.setProperty('--dy', ((burst ? Math.random() * 70 + 54 : Math.random() * 44 + 38).toFixed(1)) + 'px');
+    particle.style.setProperty('--r', (Math.random() * 34 - 17).toFixed(1) + 'deg');
+    document.body.appendChild(particle);
+    live += 1;
+    setTimeout(() => { particle.remove(); live = Math.max(0, live - 1); }, 980);
+  }
+  window.addEventListener('pointermove', event => {
+    const now = performance.now();
+    if(now - last < 38) return;
+    last = now;
+    spawn(event.clientX + 4, event.clientY + 4, false);
+  }, { passive:true });
+  document.addEventListener('click', event => {
+    for(let i=0;i<5;i+=1){
+      setTimeout(() => spawn(event.clientX + Math.random() * 12 - 6, event.clientY + Math.random() * 12 - 6, true), i * 28);
+    }
+  }, { passive:true });
 })();
 </script>
 
