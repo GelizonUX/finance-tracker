@@ -2387,6 +2387,296 @@ body.music-open .music-shell { z-index:43; }
   }
 }
 
+
+/* ── Spotify minimal redesign patch ───────────────────────── */
+.spotify-hidden-legacy,
+.spotify-hidden-legacy.show,
+.spotify-select-wrap.spotify-hidden-legacy,
+.spotify-shared-wrap.spotify-hidden-legacy,
+.spotify-embed-wrap.spotify-hidden-legacy {
+  display:none !important;
+  visibility:hidden !important;
+  pointer-events:none !important;
+}
+
+.music-panel {
+  right:18px;
+  top:18px;
+  bottom:106px;
+  width:min(560px,calc(100vw - 36px));
+  max-width:min(560px,calc(100vw - 36px));
+  gap:12px;
+  padding:16px;
+  overflow-x:hidden;
+}
+
+.music-panel-top {
+  border-bottom:1px solid rgba(255,183,214,0.24);
+  padding-bottom:12px;
+  margin-bottom:2px;
+}
+
+.music-panel-title {
+  font-size:clamp(20px,2.5vw,28px);
+}
+
+.spotify-section-label {
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--mood-title);
+  margin-bottom:8px;
+}
+
+.spotify-search-wrap {
+  order:1;
+  display:grid;
+  gap:10px;
+  padding:14px;
+  border-radius:24px;
+  background:linear-gradient(180deg,rgba(255,255,255,0.98),rgba(255,245,250,0.93));
+  border:1px solid rgba(255,183,214,0.28);
+  box-shadow:0 16px 34px rgba(255,87,165,0.08);
+}
+
+.spotify-search-wrap[hidden] {
+  display:none !important;
+}
+
+.spotify-search-row {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:8px;
+  align-items:center;
+}
+
+.spotify-search-field {
+  position:relative;
+  min-width:0;
+}
+
+.spotify-search-input {
+  height:48px;
+  padding:0 44px 0 16px;
+  border-radius:16px;
+  background:rgba(255,236,245,0.72);
+  border:1px solid rgba(255,183,214,0.22);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.42);
+}
+
+.spotify-search-input:focus {
+  background:rgba(255,255,255,0.96);
+  border-color:rgba(255,92,169,0.42);
+  box-shadow:0 0 0 4px rgba(255,92,169,0.11), inset 0 1px 0 rgba(255,255,255,0.72);
+}
+
+.spotify-search-clear {
+  position:absolute;
+  right:8px;
+  top:50%;
+  transform:translateY(-50%);
+  width:32px;
+  height:32px;
+  border:none;
+  border-radius:999px;
+  background:rgba(255,255,255,0.82);
+  color:var(--mood-title);
+  cursor:pointer;
+  font-size:14px;
+  line-height:1;
+  box-shadow:0 8px 18px rgba(255,87,165,0.08);
+  transition:transform 0.24s var(--ease-spring), background 0.2s ease, opacity 0.2s ease;
+}
+
+.spotify-search-clear:hover {
+  transform:translateY(-50%) scale(1.06) rotate(90deg);
+  background:rgba(255,236,245,0.98);
+}
+
+.spotify-search-clear[hidden] {
+  display:none !important;
+}
+
+.spotify-search-results {
+  max-height:min(38vh,320px);
+  padding-right:2px;
+}
+
+.spotify-search-item {
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:center;
+  gap:12px;
+  padding:12px;
+  border-radius:18px;
+  background:rgba(255,255,255,0.72);
+  border:1px solid rgba(255,183,214,0.24);
+  transition:transform 0.24s var(--ease-spring), box-shadow 0.24s ease, border-color 0.2s ease;
+}
+
+.spotify-search-item:hover {
+  transform:translateY(-2px);
+  border-color:rgba(255,92,169,0.36);
+  box-shadow:0 12px 26px rgba(255,87,165,0.10);
+}
+
+.spotify-search-actions {
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.spotify-result-open,
+.spotify-result-play {
+  min-width:72px;
+  padding:10px 12px;
+  border-radius:999px;
+}
+
+.spotify-player-card {
+  order:2;
+}
+
+.spotify-player-card[hidden] {
+  display:none !important;
+}
+
+.spotify-account-card {
+  order:3;
+  padding:14px;
+  border-radius:24px;
+}
+
+.spotify-account-actions {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:8px;
+}
+
+.spotify-connect-btn,
+.spotify-switch-btn,
+.spotify-disconnect-btn {
+  min-width:0;
+  width:100%;
+  padding:12px 14px;
+  border-radius:16px;
+}
+
+.spotify-connect-btn[hidden],
+.spotify-switch-btn[hidden],
+.spotify-disconnect-btn[hidden] {
+  display:none !important;
+}
+
+.spotify-user {
+  margin-top:0;
+  padding-bottom:0;
+}
+
+.music-mini-sub {
+  max-width:100%;
+}
+
+@media (max-width:680px) {
+  .music-panel {
+    left:10px !important;
+    right:10px !important;
+    top:max(10px,calc(env(safe-area-inset-top) + 6px)) !important;
+    bottom:92px !important;
+    width:auto !important;
+    max-width:none !important;
+    padding:12px !important;
+    border-radius:24px !important;
+  }
+
+  .music-shell {
+    left:max(76px, env(safe-area-inset-left) + 76px) !important;
+    right:max(76px, env(safe-area-inset-right) + 76px) !important;
+    bottom:max(12px, env(safe-area-inset-bottom)) !important;
+    width:auto !important;
+    max-width:none !important;
+    min-width:0 !important;
+    transform:none !important;
+    justify-content:center !important;
+  }
+
+  .music-mini-bar {
+    min-height:60px !important;
+    padding:8px 10px !important;
+    gap:8px !important;
+    border-radius:20px !important;
+  }
+
+  .spotify-search-row,
+  .spotify-account-actions {
+    grid-template-columns:1fr;
+  }
+
+  .spotify-search-item {
+    grid-template-columns:1fr;
+  }
+
+  .spotify-search-actions {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    width:100%;
+  }
+
+  .spotify-result-open,
+  .spotify-result-play {
+    width:100%;
+    min-width:0;
+  }
+
+  .spotify-player-top {
+    grid-template-columns:68px minmax(0,1fr) !important;
+  }
+
+  .spotify-player-cover {
+    width:68px !important;
+    height:68px !important;
+  }
+
+  .music-controls {
+    grid-template-columns:44px minmax(0,1fr) 44px 44px !important;
+    gap:7px !important;
+  }
+
+  .music-icon-btn,
+  .music-play-btn {
+    min-height:44px !important;
+    height:44px !important;
+    border-radius:14px !important;
+  }
+}
+
+@media (max-width:400px) {
+  .music-shell {
+    left:max(70px, env(safe-area-inset-left) + 70px) !important;
+    right:max(70px, env(safe-area-inset-right) + 70px) !important;
+    width:auto !important;
+    max-width:none !important;
+    min-width:0 !important;
+  }
+
+  .music-mini-cover,
+  .music-mini-btn {
+    width:34px !important;
+    height:34px !important;
+    min-width:34px !important;
+    flex-basis:34px !important;
+  }
+
+  .music-mini-title {
+    font-size:12px !important;
+  }
+
+  .music-mini-sub {
+    font-size:10px !important;
+  }
+}
+
+
   </style>
 </head>
 <body>
@@ -2498,22 +2788,35 @@ I'll message you pag gising ko, MWA!
 <!-- ── MUSIC ─────────────────────────────────────────────── -->
 <button id="musicToggleBtn" type="button" hidden aria-hidden="true" tabindex="-1"></button>
 <div class="music-shell">
-  <div class="music-panel" id="musicPanel">
+  <div class="music-panel" id="musicPanel" aria-label="Spotify music panel">
     <div class="music-panel-top">
       <div class="music-panel-heading">
         <div class="music-panel-kicker" id="musicPanelKicker">spotify</div>
-        <div class="music-panel-title" id="musicPanelTitle">Connect Spotify</div>
+        <div class="music-panel-title" id="musicPanelTitle">Search music</div>
       </div>
-      <button class="music-collapse-btn" id="musicCollapseBtn" aria-label="Close Spotify panel">✕</button>
+      <button class="music-collapse-btn" id="musicCollapseBtn" type="button" aria-label="Close Spotify panel">✕</button>
     </div>
 
-    <div class="spotify-player-card" id="spotifyPlayerCard">
+    <div class="spotify-search-wrap" id="spotifySearchWrap" hidden>
+      <div class="spotify-section-label">Search for music or artist</div>
+      <div class="spotify-search-row">
+        <div class="spotify-search-field">
+          <input id="spotifySearchInput" class="spotify-search-input" type="text" placeholder="Search any song or artist" autocomplete="off" />
+          <button class="spotify-search-clear" id="spotifySearchClearBtn" type="button" aria-label="Clear search" hidden>✕</button>
+        </div>
+        <button class="spotify-search-btn" id="spotifySearchBtn" type="button">Search</button>
+      </div>
+      <div class="spotify-search-results" id="spotifySearchResults" hidden></div>
+      <div class="spotify-search-empty" id="spotifySearchEmpty" hidden></div>
+    </div>
+
+    <div class="spotify-player-card" id="spotifyPlayerCard" hidden>
       <div class="spotify-player-top">
         <div class="spotify-player-cover fallback" id="spotifyNowPlayingCover" aria-hidden="true">♫</div>
         <div class="spotify-player-main">
-          <div class="spotify-player-track" id="spotifyNowPlayingTitle">Connect Spotify</div>
-          <div class="spotify-player-artist" id="spotifyNowPlayingArtist">Sign in to load your shared playlist and play music inside the site.</div>
-          <div class="spotify-player-album" id="spotifyNowPlayingAlbum">Playback needs Spotify Premium and browser playback scopes.</div>
+          <div class="spotify-player-track" id="spotifyNowPlayingTitle">No song selected</div>
+          <div class="spotify-player-artist" id="spotifyNowPlayingArtist">Search and pick a song to start listening here.</div>
+          <div class="spotify-player-album" id="spotifyNowPlayingAlbum">Spotify playback needs a connected account.</div>
           <div class="spotify-player-badge" id="spotifyNowPlayingBadge">Idle</div>
         </div>
       </div>
@@ -2528,54 +2831,44 @@ I'll message you pag gising ko, MWA!
 
       <div class="music-controls">
         <button class="music-icon-btn" id="prevSongBtn" type="button" aria-label="Previous track">⏮</button>
-        <button class="music-play-btn" id="playSongBtn" type="button" aria-label="Play shared playlist"><span id="musicPlayIcon">▶</span><span id="musicPlayText" aria-hidden="true">Play</span></button>
+        <button class="music-play-btn" id="playSongBtn" type="button" aria-label="Play selected track"><span id="musicPlayIcon">▶</span><span id="musicPlayText" aria-hidden="true">Play</span></button>
         <button class="music-icon-btn" id="nextSongBtn" type="button" aria-label="Next track">⏭</button>
         <button class="music-icon-btn" id="restartSongBtn" type="button" aria-label="Restart track">↺</button>
       </div>
 
-      <div class="spotify-player-hint" id="spotifyPlayerHint">You can control Spotify playback here after you connect your account.</div>
+      <div class="spotify-player-hint" id="spotifyPlayerHint">Search, select a song, then control playback here.</div>
     </div>
 
-    <div class="spotify-card" id="spotifyCard">
+    <div class="spotify-card spotify-account-card" id="spotifyCard">
       <div class="spotify-card-top">
         <div>
-          <div class="spotify-kicker">spotify</div>
-          <div class="spotify-title">shared playlist</div>
+          <div class="spotify-kicker">account</div>
+          <div class="spotify-title">Spotify controls</div>
         </div>
         <div class="spotify-status" id="spotifyStatus">Not connected</div>
       </div>
 
-      <div class="spotify-actions-row">
-        <button class="spotify-connect-btn" id="spotifyConnectBtn" type="button">Connect Spotify</button>
-        <div class="spotify-account-actions">
-          <button class="spotify-switch-btn" id="spotifySwitchBtn" type="button" hidden>Change account</button>
-          <button class="spotify-disconnect-btn" id="spotifyDisconnectBtn" type="button" hidden>Disconnect</button>
-        </div>
+      <div class="spotify-account-actions">
+        <button class="spotify-disconnect-btn" id="spotifyDisconnectBtn" type="button" hidden>Disconnect account</button>
+        <button class="spotify-connect-btn" id="spotifyConnectBtn" type="button">Connect Spotify account</button>
+        <button class="spotify-switch-btn" id="spotifySwitchBtn" type="button" hidden>Change Spotify account</button>
       </div>
 
-      <div class="spotify-user" id="spotifyUser">Connect your Spotify account to load your playlists and search tracks.</div>
+      <div class="spotify-user" id="spotifyUser">Connect your Spotify account to search and play music.</div>
 
-      <div class="spotify-select-wrap" id="spotifySelectWrap" hidden>
+      <!-- Legacy Spotify playlist nodes kept hidden so older Firebase/listener code cannot break. -->
+      <div class="spotify-select-wrap spotify-hidden-legacy" id="spotifySelectWrap" hidden>
         <select id="spotifyPlaylistSelect" class="music-select"></select>
         <button class="spotify-set-btn" id="spotifySetPlaylistBtn" type="button">Set as shared playlist</button>
       </div>
 
-      <div class="spotify-search-wrap" id="spotifySearchWrap" hidden>
-        <div class="spotify-search-row">
-          <input id="spotifySearchInput" class="spotify-search-input" type="text" placeholder="Search any song or artist" />
-          <button class="spotify-search-btn" id="spotifySearchBtn" type="button">Search</button>
-        </div>
-        <div class="spotify-search-results" id="spotifySearchResults" hidden></div>
-        <div class="spotify-search-empty" id="spotifySearchEmpty" hidden>Search results will appear here.</div>
-      </div>
-
-      <div class="spotify-shared-wrap" id="spotifySharedWrap" hidden>
+      <div class="spotify-shared-wrap spotify-hidden-legacy" id="spotifySharedWrap" hidden>
         <div class="spotify-shared-label">Current shared playlist</div>
         <div class="spotify-shared-name" id="spotifySharedName">No shared playlist yet.</div>
         <a class="spotify-open-link" id="spotifyOpenLink" href="#" target="_blank" rel="noopener noreferrer" hidden>Open in Spotify</a>
       </div>
 
-      <div class="spotify-embed-wrap" id="spotifyEmbedWrap" hidden>
+      <div class="spotify-embed-wrap spotify-hidden-legacy" id="spotifyEmbedWrap" hidden>
         <div class="spotify-preview-card" id="spotifyPreviewCard"></div>
       </div>
     </div>
@@ -2585,10 +2878,10 @@ I'll message you pag gising ko, MWA!
     <div class="music-mini-cover fallback" id="musicMiniCover" aria-hidden="true">🌹</div>
     <button class="music-mini-info" id="musicMiniInfo" type="button" aria-label="Open Spotify panel">
       <div class="music-mini-label" id="musicMiniLabel">Spotify</div>
-      <div class="music-mini-title" id="musicMiniTitle">Connect Spotify</div>
-      <div class="music-mini-sub" id="musicMiniSub">Shared playlist player</div>
+      <div class="music-mini-title" id="musicMiniTitle">Search music</div>
+      <div class="music-mini-sub" id="musicMiniSub">Tap to pick a song</div>
     </button>
-    <button class="music-mini-btn" id="musicMiniPlayBtn" type="button" aria-label="Play shared playlist">▶</button>
+    <button class="music-mini-btn" id="musicMiniPlayBtn" type="button" aria-label="Play selected song">▶</button>
     <div class="music-mini-time" id="musicMiniTime"></div>
   </div>
 </div>
@@ -2784,6 +3077,7 @@ I'll message you pag gising ko, MWA!
     const spotifySearchWrap   = document.getElementById("spotifySearchWrap");
     const spotifySearchInput  = document.getElementById("spotifySearchInput");
     const spotifySearchBtn    = document.getElementById("spotifySearchBtn");
+    const spotifySearchClearBtn = document.getElementById("spotifySearchClearBtn");
     const spotifySearchResults = document.getElementById("spotifySearchResults");
     const spotifySearchEmpty  = document.getElementById("spotifySearchEmpty");
     const spotifySharedWrap   = document.getElementById("spotifySharedWrap");
@@ -2919,6 +3213,61 @@ function getCurrentSpotifyTrack(state = spotifyPlaybackState) {
   };
 }
 
+function getSpotifyTrackArtistLabel(track = {}) {
+  const artists = Array.isArray(track?.artists) ? track.artists : [];
+  const names = artists.map(artist => typeof artist === "string" ? artist : artist?.name).filter(Boolean);
+  return names.join(" • ") || track?.artist || "Spotify";
+}
+
+function getSpotifyTrackCoverUrl(track = {}) {
+  return track?.cover || track?.album?.images?.[0]?.url || "";
+}
+
+function getSpotifyTrackDurationMs(track = {}) {
+  return Number(track?.durationMs || track?.duration_ms || 0);
+}
+
+function syncSpotifyPlayerVisibility(forceShow = false) {
+  if (!spotifyPlayerCard) return;
+  const hasTrack = !!getCurrentSpotifyTrack() || !!spotifyPendingTrackSelection;
+  spotifyPlayerCard.hidden = !(forceShow || hasTrack);
+}
+
+function syncSpotifySearchClearButton() {
+  if (!spotifySearchClearBtn || !spotifySearchInput) return;
+  spotifySearchClearBtn.hidden = !spotifySearchInput.value.trim();
+}
+
+function collapseSpotifySearchState(options = {}) {
+  const { keepFocus = false } = options || {};
+  spotifyTrackResults = [];
+  if (spotifySearchInput) spotifySearchInput.value = "";
+  if (spotifySearchResults) {
+    spotifySearchResults.innerHTML = "";
+    spotifySearchResults.hidden = true;
+  }
+  if (spotifySearchEmpty) {
+    spotifySearchEmpty.textContent = "";
+    spotifySearchEmpty.hidden = true;
+  }
+  syncSpotifySearchClearButton();
+  if (keepFocus && spotifySearchInput) spotifySearchInput.focus();
+}
+
+function showSpotifyTrackInPlayer(track = {}, badge = "Selected") {
+  if (!track) return;
+  setSpotifyCover(spotifyNowPlayingCover, getSpotifyTrackCoverUrl(track), "♫");
+  setSpotifyCover(musicMiniCover, getSpotifyTrackCoverUrl(track), "🌹");
+  if (spotifyNowPlayingTitle) spotifyNowPlayingTitle.textContent = track.name || "Selected song";
+  if (spotifyNowPlayingArtist) spotifyNowPlayingArtist.textContent = getSpotifyTrackArtistLabel(track);
+  if (spotifyNowPlayingAlbum) spotifyNowPlayingAlbum.textContent = track?.album?.name || "Spotify";
+  setSpotifyBadge(badge);
+  updateMusicSurfaceCopy(track.name || "Selected song", badge === "Playing" ? "Now playing" : "Selected", getSpotifyTrackArtistLabel(track));
+  const durationMs = getSpotifyTrackDurationMs(track);
+  renderSpotifyProgress(0, durationMs);
+  syncSpotifyPlayerVisibility(true);
+}
+
 function getActiveSpotifyReferenceTrack() {
   const currentTrack = getCurrentSpotifyTrack();
   if (currentTrack?.id || currentTrack?.uri) return currentTrack;
@@ -2962,10 +3311,15 @@ function setPendingSpotifySelection(track, options = {}) {
       id: track.id || "",
       uri: track.uri || "",
       name: track.name || "",
-      artists: track.artists || []
+      artists: Array.isArray(track.artists) ? track.artists : [],
+      album: track.album || null,
+      cover: getSpotifyTrackCoverUrl(track),
+      durationMs: getSpotifyTrackDurationMs(track)
     };
+    showSpotifyTrackInPlayer(track, "Starting");
   } else if (!keepIfMissing) {
     spotifyPendingTrackSelection = null;
+    syncSpotifyPlayerVisibility(false);
   }
   syncPlaylistTrackHighlights({ forceScroll: !!options.forceScroll });
 }
@@ -3005,14 +3359,14 @@ function stopSpotifyProgressTicker() {
   spotifyProgressRaf = 0;
 }
 
-function updateMusicSurfaceCopy(title, kicker = "Spotify", sub = "Shared playlist player") {
+function updateMusicSurfaceCopy(title, kicker = "Spotify", sub = "Tap to pick a song") {
   const safeTitle = (title || "Connect Spotify").trim();
   const safeKicker = (kicker || "Spotify").trim();
   if (musicPanelTitle) musicPanelTitle.textContent = safeTitle;
   if (musicMiniTitle) musicMiniTitle.textContent = safeTitle;
   if (musicPanelKicker) musicPanelKicker.textContent = safeKicker.toLowerCase();
   if (musicMiniLabel) musicMiniLabel.textContent = safeKicker;
-  if (musicMiniSub) musicMiniSub.textContent = sub || "Shared playlist player";
+  if (musicMiniSub) musicMiniSub.textContent = sub || "Tap to pick a song";
 }
 
 function renderSpotifyProgress(positionMs = 0, durationMs = 0) {
@@ -3070,31 +3424,32 @@ function clearSpotifyPlaybackUi() {
   spotifyPendingTrackSelection = null;
   setSpotifyCover(spotifyNowPlayingCover, "", "♫");
   setSpotifyCover(musicMiniCover, "", "🌹");
-  if (spotifyNowPlayingTitle) spotifyNowPlayingTitle.textContent = spotifySharedPlaylist?.name || "Connect Spotify";
-  if (spotifyNowPlayingArtist) spotifyNowPlayingArtist.textContent = spotifySharedPlaylist?.owner ? `Shared playlist • ${spotifySharedPlaylist.owner}` : "Sign in to load your shared playlist and play music inside the site.";
-  if (spotifyNowPlayingAlbum) spotifyNowPlayingAlbum.textContent = spotifySharedPlaylist?.setBy ? `Set by ${spotifySharedPlaylist.setBy}` : "Playback needs Spotify Premium and browser playback scopes.";
-  updateMusicSurfaceCopy(spotifySharedPlaylist?.name || "Connect Spotify", spotifySharedPlaylist ? "Shared playlist" : "Spotify", spotifySharedPlaylist ? "Tap play to start the shared playlist" : "Shared playlist player");
+  if (spotifyNowPlayingTitle) spotifyNowPlayingTitle.textContent = "No song selected";
+  if (spotifyNowPlayingArtist) spotifyNowPlayingArtist.textContent = "Search and pick a song to start listening here.";
+  if (spotifyNowPlayingAlbum) spotifyNowPlayingAlbum.textContent = "Spotify playback needs a connected account.";
+  updateMusicSurfaceCopy(getStoredSpotifyAccessToken() ? "Search music" : "Connect Spotify", "Spotify", getStoredSpotifyAccessToken() ? "Tap to pick a song" : "Connect to play music");
   renderSpotifyProgress(0, 0);
-  updateSpotifyPlaybackButtons();
   setSpotifyBadge(getStoredSpotifyAccessToken() ? "Ready" : "Idle");
+  syncSpotifyPlayerVisibility(false);
+  updateSpotifyPlaybackButtons();
   syncPlaylistTrackHighlights();
 }
 
 function updateSpotifyPlaybackButtons() {
-  const hasTrack = !!getCurrentSpotifyTrack();
+  const hasTrack = !!getCurrentSpotifyTrack() || !!spotifyPendingTrackSelection;
   const isPlaying = !!(spotifyPlaybackState && !spotifyPlaybackState.paused);
 
   if (musicPlayIcon) musicPlayIcon.textContent = isPlaying ? "⏸" : "▶";
   if (musicPlayText) musicPlayText.textContent = isPlaying ? "Pause" : hasTrack ? "Play" : "Play";
   if (playSongBtn) {
     const actionLabel = hasTrack
-      ? (isPlaying ? "Pause track" : "Resume track")
-      : (getSharedPlaylistId() ? "Play shared playlist" : "Connect Spotify");
+      ? (isPlaying ? "Pause track" : "Play selected track")
+      : (getStoredSpotifyAccessToken() ? "Search for a song first" : "Connect Spotify");
     playSongBtn.setAttribute("aria-label", actionLabel);
   }
   if (musicMiniPlayBtn) {
     musicMiniPlayBtn.textContent = isPlaying ? "⏸" : "▶";
-    musicMiniPlayBtn.setAttribute("aria-label", hasTrack ? (isPlaying ? "Pause track" : "Resume track") : (getSharedPlaylistId() ? "Play shared playlist" : "Connect Spotify"));
+    musicMiniPlayBtn.setAttribute("aria-label", hasTrack ? (isPlaying ? "Pause track" : "Play selected track") : (getStoredSpotifyAccessToken() ? "Search for a song first" : "Connect Spotify"));
   }
 }
 
@@ -3116,8 +3471,9 @@ function syncSpotifyUiFromState(state) {
   if (spotifyNowPlayingArtist) spotifyNowPlayingArtist.textContent = currentTrack.artists || "Spotify";
   if (spotifyNowPlayingAlbum) spotifyNowPlayingAlbum.textContent = currentTrack.album || "Spotify";
   setSpotifyBadge(isPlaying ? "Playing" : "Paused");
-  setSpotifyHint(spotifySharedPlaylist?.name ? `Shared playlist: ${spotifySharedPlaylist.name}` : "Spotify browser playback is active.");
+  setSpotifyHint("Spotify browser playback is active.");
   updateMusicSurfaceCopy(currentTrack.name, "Now playing", currentTrack.artists || "Spotify");
+  syncSpotifyPlayerVisibility(true);
   setSpotifyProgressBase(Number(state?.position || 0), currentTrack.durationMs, !isPlaying);
   updateSpotifyPlaybackButtons();
   syncPlaylistTrackHighlights({ forceScroll: true });
@@ -3150,9 +3506,8 @@ function resetSpotifySessionState() {
   spotifyTrackResults = [];
   spotifyActiveContext = null;
   if (spotifyPlaylistSelect) spotifyPlaylistSelect.innerHTML = "";
-  if (spotifySearchInput) spotifySearchInput.value = "";
   if (musicMiniTime) musicMiniTime.textContent = "";
-  renderSpotifySearchResults([]);
+  collapseSpotifySearchState();
   clearSpotifyPlaybackUi();
 }
 
@@ -3462,13 +3817,12 @@ async function toggleSpotifyPlayback() {
   try {
     const currentTrack = getCurrentSpotifyTrack();
     if (!currentTrack) {
-      const sharedPlaylistId = getSharedPlaylistId();
-      if (sharedPlaylistId) {
-        await playSharedSpotifyPlaylist();
+      if (spotifyPendingTrackSelection?.uri) {
+        await playSpotifyTrack(spotifyPendingTrackSelection);
         return;
       }
       openMusicPanel();
-      setSpotifyHint("Pick a playlist first, then tap play.");
+      setSpotifyHint("Search for a song first, then press play.");
       return;
     }
 
@@ -3484,28 +3838,8 @@ async function toggleSpotifyPlayback() {
 }
 
 async function playSharedSpotifyPlaylist() {
-  const sharedPlaylistId = getSharedPlaylistId();
-  spotifyPendingTrackSelection = null;
-  if (!sharedPlaylistId) {
-    openMusicPanel();
-    setSpotifyHint("There is no shared playlist yet.");
-    return;
-  }
-
-  spotifyActiveContext = {
-    type: "playlist",
-    id: sharedPlaylistId,
-    uri: buildSpotifyPlaylistUri(sharedPlaylistId)
-  };
-
-  try {
-    await startSpotifyPlayback({
-      contextUri: spotifyActiveContext.uri
-    });
-  } catch (err) {
-    setSpotifyStatus("Playback failed");
-    setSpotifyHint(err?.message || "Shared playlist playback could not start.");
-  }
+  openMusicPanel();
+  setSpotifyHint("Search for a song first, then press play.");
 }
 
 async function playSpotifyTrack(track) {
@@ -3553,7 +3887,8 @@ async function seekSpotifyPlayback(positionMs) {
 async function restartSpotifyTrack() {
   const currentTrack = getCurrentSpotifyTrack();
   if (!currentTrack) {
-    await playSharedSpotifyPlaylist();
+    openMusicPanel();
+    setSpotifyHint("Search and play a song first.");
     return;
   }
 
@@ -3575,7 +3910,8 @@ async function playNextSpotifyTrack() {
   try {
     const currentTrack = getCurrentSpotifyTrack();
     if (!currentTrack) {
-      await playSharedSpotifyPlaylist();
+      openMusicPanel();
+      setSpotifyHint("Search and play a song first.");
       return;
     }
     await initSpotifyWebPlayer();
@@ -3598,7 +3934,8 @@ async function playPrevSpotifyTrack() {
   try {
     const currentTrack = getCurrentSpotifyTrack();
     if (!currentTrack) {
-      await playSharedSpotifyPlaylist();
+      openMusicPanel();
+      setSpotifyHint("Search and play a song first.");
       return;
     }
     await initSpotifyWebPlayer();
@@ -3839,8 +4176,7 @@ function populateSpotifyPlaylistSelect() {
     opt.value = "";
     opt.textContent = "No playlists found";
     spotifyPlaylistSelect.appendChild(opt);
-    spotifySelectWrap.hidden = false;
-    updateMusicSurfaceCopy("No Spotify playlists found", "Spotify", "Try another account or refresh your playlists");
+    spotifySelectWrap.hidden = true;
     return;
   }
 
@@ -3853,18 +4189,20 @@ function populateSpotifyPlaylistSelect() {
     spotifyPlaylistSelect.appendChild(opt);
   });
 
-  spotifySelectWrap.hidden = false;
+  spotifySelectWrap.hidden = true;
 }
 
 function renderSpotifySearchResults(results = []) {
   if (!spotifySearchResults || !spotifySearchEmpty) return;
   spotifySearchResults.innerHTML = "";
   spotifyTrackResults = Array.isArray(results) ? results : [];
+  syncSpotifySearchClearButton();
 
+  const hasQuery = !!spotifySearchInput?.value?.trim();
   if (!spotifyTrackResults.length) {
     spotifySearchResults.hidden = true;
-    spotifySearchEmpty.hidden = false;
-    spotifySearchEmpty.textContent = spotifySearchInput?.value?.trim() ? "No matching songs found." : "Search results will appear here.";
+    spotifySearchEmpty.hidden = !hasQuery;
+    spotifySearchEmpty.textContent = hasQuery ? "No matching songs found. Try a song title or artist name." : "";
     return;
   }
 
@@ -3884,7 +4222,7 @@ function renderSpotifySearchResults(results = []) {
 
     const meta = document.createElement("div");
     meta.className = "spotify-search-meta";
-    const artists = Array.isArray(track.artists) ? track.artists.map(artist => artist?.name).filter(Boolean).join(" • ") : "";
+    const artists = getSpotifyTrackArtistLabel(track);
     const album = track.album?.name || "";
     meta.textContent = [artists, album].filter(Boolean).join(" • ");
 
@@ -3917,120 +4255,72 @@ function renderSpotifySearchResults(results = []) {
 }
 
 function renderSharedSpotifyPlaylist(shared) {
-  spotifySharedPlaylist = shared && shared.id ? shared : null;
-  const hasShared = !!spotifySharedPlaylist;
-  spotifySharedWrap.hidden = !hasShared;
-  spotifyEmbedWrap.hidden = !hasShared;
-  spotifyEmbedWrap.classList.toggle("show", hasShared);
-  elevateSpotifyBrowser();
-
-  if (!hasShared) {
-    if (spotifyPreviewCard) {
-      delete spotifyPreviewCard.dataset.playlistId;
-      spotifyPreviewCard.innerHTML = "";
-    }
-    if (spotifySharedName) spotifySharedName.textContent = "No shared playlist yet.";
-    if (spotifyOpenLink) {
-      spotifyOpenLink.hidden = true;
-      spotifyOpenLink.removeAttribute("href");
-    }
-    clearSpotifyPlaybackUi();
-    if (spotifyPlayerHint && !getStoredSpotifyAccessToken()) {
-      setSpotifyHint("Connect Spotify to start playing music here.");
-    }
-    return;
+  // The shared playlist browser was intentionally removed from the UI.
+  // Keep this listener safe so older Firebase data cannot recreate the black playlist box.
+  spotifySharedPlaylist = null;
+  if (spotifySharedWrap) spotifySharedWrap.hidden = true;
+  if (spotifyEmbedWrap) {
+    spotifyEmbedWrap.hidden = true;
+    spotifyEmbedWrap.classList.remove("show");
   }
-
-  const sharedName = spotifySharedPlaylist.name || "Spotify playlist";
-  if (spotifySharedName) spotifySharedName.textContent = sharedName;
-
-  if (spotifyOpenLink) {
-    if (spotifySharedPlaylist.externalUrl) {
-      spotifyOpenLink.hidden = false;
-      spotifyOpenLink.href = spotifySharedPlaylist.externalUrl;
-    } else {
-      spotifyOpenLink.hidden = true;
-      spotifyOpenLink.removeAttribute("href");
-    }
-  }
-
   if (spotifyPreviewCard) {
-    spotifyPreviewCard.dataset.playlistId = spotifySharedPlaylist.id;
-    spotifyPreviewCard.innerHTML = `
-      <div class="spotify-library-shell spotify-library-shell-primary">
-        <div class="spotify-library-head">
-          <div class="spotify-library-copy">
-            <div class="spotify-preview-section-title">Playlist songs</div>
-            <div class="spotify-library-status" id="spotifyLibraryStatus">Loading playlist songs…</div>
-          </div>
-          <div class="spotify-library-head-actions">
-            ${spotifySharedPlaylist.externalUrl ? `<a class="spotify-preview-open spotify-library-head-link" href="${escapeSpotifyHtml(spotifySharedPlaylist.externalUrl)}" target="_blank" rel="noopener noreferrer">Open in Spotify</a>` : ""}
-            <button class="spotify-preview-refresh spotify-library-head-link" id="spotifyPreviewRefreshBtn" type="button">Refresh songs</button>
-          </div>
-        </div>
-        <div class="spotify-library-toolbar">
-          <input class="spotify-library-search" id="spotifyLibrarySearch" type="text" placeholder="Search inside this playlist" />
-          <div class="spotify-library-count" id="spotifyLibraryCount">0 songs</div>
-        </div>
-        <div class="spotify-library-table-head" id="spotifyLibraryTableHead" hidden>
-          <div>#</div>
-          <div></div>
-          <div>Title</div>
-          <div>Album</div>
-          <div>Added by</div>
-          <div>Date added</div>
-          <div class="is-right">Time</div>
-          <div></div>
-        </div>
-        <div class="spotify-library-list" id="spotifyLibraryList"></div>
-      </div>`;
-
-    bindSpotifyPlaylistBrowser(spotifySharedPlaylist.id, spotifySharedPlaylist.tracksPreview || []);
-    syncPlaylistTrackHighlights();
+    delete spotifyPreviewCard.dataset.playlistId;
+    spotifyPreviewCard.innerHTML = "";
   }
-
-  updateMusicSurfaceCopy(sharedName, "Shared playlist", "Tap play to start listening here");
-  setSpotifyCover(spotifyNowPlayingCover, spotifySharedPlaylist.cover || "", "♫");
-  setSpotifyCover(musicMiniCover, spotifySharedPlaylist.cover || "", "🌹");
-  if (!getCurrentSpotifyTrack()) {
-    if (spotifyNowPlayingTitle) spotifyNowPlayingTitle.textContent = sharedName;
-    if (spotifyNowPlayingArtist) spotifyNowPlayingArtist.textContent = spotifySharedPlaylist.owner ? `Shared playlist • ${spotifySharedPlaylist.owner}` : "Shared playlist";
-    if (spotifyNowPlayingAlbum) spotifyNowPlayingAlbum.textContent = spotifySharedPlaylist.setBy ? `Set by ${spotifySharedPlaylist.setBy}` : "Tap play to start the playlist in this page.";
-    setSpotifyBadge(getStoredSpotifyAccessToken() ? "Ready" : "Idle");
+  if (spotifyOpenLink) {
+    spotifyOpenLink.hidden = true;
+    spotifyOpenLink.removeAttribute("href");
   }
-
-  if (playSongBtn) playSongBtn.setAttribute("aria-label", `Play ${sharedName}`);
-  if (musicMiniPlayBtn) musicMiniPlayBtn.setAttribute("aria-label", `Play ${sharedName}`);
+  if (!getCurrentSpotifyTrack() && !spotifyPendingTrackSelection) {
+    clearSpotifyPlaybackUi();
+    if (getStoredSpotifyAccessToken()) {
+      setSpotifyHint("Search for a song or artist to start listening here.");
+    }
+  }
 }
 
 function updateSpotifyUI() {
   const connected = !!getStoredSpotifyAccessToken();
 
   setSpotifyStatus(connected ? "Connected" : "Not connected");
-  if (spotifyConnectBtn) spotifyConnectBtn.textContent = connected ? "Refresh playlists" : "Connect Spotify";
-  if (spotifySwitchBtn) spotifySwitchBtn.hidden = !connected;
-  if (spotifyDisconnectBtn) spotifyDisconnectBtn.hidden = !connected;
+  if (spotifyConnectBtn) spotifyConnectBtn.textContent = connected ? "Refresh Spotify" : "Connect Spotify account";
+  if (spotifySwitchBtn) {
+    spotifySwitchBtn.textContent = "Change Spotify account";
+    spotifySwitchBtn.hidden = !connected;
+  }
+  if (spotifyDisconnectBtn) {
+    spotifyDisconnectBtn.textContent = "Disconnect account";
+    spotifyDisconnectBtn.hidden = !connected;
+  }
   if (spotifySearchWrap) spotifySearchWrap.hidden = !connected;
-  if (spotifySelectWrap) spotifySelectWrap.hidden = !connected || !spotifyPlaylists.length;
+  if (spotifySelectWrap) spotifySelectWrap.hidden = true;
+  if (spotifySharedWrap) spotifySharedWrap.hidden = true;
+  if (spotifyEmbedWrap) {
+    spotifyEmbedWrap.hidden = true;
+    spotifyEmbedWrap.classList.remove("show");
+  }
 
   if (spotifyUser) {
     if (spotifyProfile) {
       const name = spotifyProfile.display_name || spotifyProfile.id || "Spotify account";
-      spotifyUser.textContent = `Connected as ${name}.`;
+      spotifyUser.textContent = `Connected as ${name}. Search for any song or artist above.`;
     } else if (connected) {
-      spotifyUser.textContent = "Spotify connected.";
+      spotifyUser.textContent = "Spotify connected. Search for any song or artist above.";
     } else {
-      spotifyUser.textContent = "Connect your Spotify account.";
+      spotifyUser.textContent = "Connect your Spotify account to search and play music.";
     }
   }
 
   if (!connected) {
     teardownSpotifyPlayer();
     resetSpotifySessionState();
-    setSpotifyHint("Connect Spotify to play music here.");
-  } else if (!spotifySharedPlaylist && !getCurrentSpotifyTrack()) {
-    updateMusicSurfaceCopy("Choose a shared playlist", "Spotify", "Shared playlist player");
-    setSpotifyHint("Connect done. Pick a playlist or search a track.");
+    setSpotifyHint("Connect Spotify to search and play music here.");
+  } else if (!getCurrentSpotifyTrack() && !spotifyPendingTrackSelection) {
+    updateMusicSurfaceCopy("Search music", "Spotify", "Tap to pick a song");
+    setSpotifyHint("Search for a song or artist, then press play.");
+    syncSpotifyPlayerVisibility(false);
+  } else {
+    syncSpotifyPlayerVisibility(true);
   }
 }
 
@@ -4060,9 +4350,10 @@ async function fetchSpotifyPlaylists() {
 async function searchSpotifyTracks(query) {
   const safeQuery = (query || "").trim();
   if (!safeQuery) {
-    renderSpotifySearchResults([]);
+    collapseSpotifySearchState({ keepFocus: true });
     return;
   }
+  syncSpotifySearchClearButton();
   setSpotifyStatus("Searching");
   const data = await spotifyApi(`/search?type=track&limit=8&q=${encodeURIComponent(safeQuery)}`);
   const items = Array.isArray(data?.tracks?.items) ? data.tracks.items : [];
@@ -4145,7 +4436,7 @@ async function handleSpotifyCallback() {
   const cleanUrl = window.location.pathname + window.location.hash;
   window.history.replaceState({}, document.title, cleanUrl);
   setSpotifyStatus("Connected");
-  setSpotifyHint("Spotify connected. The browser player will be ready the first time you press play.");
+  setSpotifyHint("Spotify connected. Search for a song or artist to start listening.");
 }
 
 async function setSharedSpotifyPlaylist() {
@@ -4422,7 +4713,7 @@ const closeMusicPanel = () => { musicPanel.classList.remove("open"); document.bo
 const hasLocalSongs   = () => Array.isArray(playlist) && playlist.length > 0;
 
 function setMusicSurfaceTitle(title, kicker = "Spotify") {
-  updateMusicSurfaceCopy(title, kicker, musicMiniSub?.textContent || "Shared playlist player");
+  updateMusicSurfaceCopy(title, kicker, musicMiniSub?.textContent || "Tap to pick a song");
 }
 
 function updateMusicTitles() {
@@ -4431,11 +4722,7 @@ function updateMusicTitles() {
     updateMusicSurfaceCopy(currentTrack.name, "Now playing", currentTrack.artists || "Spotify");
     return;
   }
-  if (spotifySharedPlaylist?.name) {
-    updateMusicSurfaceCopy(spotifySharedPlaylist.name, "Shared playlist", "Tap play to start listening here");
-    return;
-  }
-  updateMusicSurfaceCopy(getStoredSpotifyAccessToken() ? "Choose a shared playlist" : "Connect Spotify", "Spotify", "Shared playlist player");
+  updateMusicSurfaceCopy(getStoredSpotifyAccessToken() ? "Search music" : "Connect Spotify", "Spotify", getStoredSpotifyAccessToken() ? "Tap to pick a song" : "Connect to play music");
 }
 
 function updateMusicButtons() {
@@ -4465,7 +4752,7 @@ async function togglePlayPause() {
 }
 
 async function playSongAtIndex() {
-  await playSharedSpotifyPlaylist();
+  await toggleSpotifyPlayback();
 }
 
 const playNextSong = () => playNextSpotifyTrack();
@@ -5209,7 +5496,17 @@ spotifySearchBtn?.addEventListener("click", async () => {
   }
 });
 
+spotifySearchInput?.addEventListener("input", () => {
+  syncSpotifySearchClearButton();
+  if (!spotifySearchInput.value.trim()) collapseSpotifySearchState();
+});
+
 spotifySearchInput?.addEventListener("keydown", async e => {
+  if (e.key === "Escape") {
+    e.preventDefault();
+    collapseSpotifySearchState({ keepFocus: true });
+    return;
+  }
   if (e.key !== "Enter") return;
   e.preventDefault();
   try {
@@ -5218,6 +5515,10 @@ spotifySearchInput?.addEventListener("keydown", async e => {
     setSpotifyStatus("Search failed");
     if (spotifyUser) spotifyUser.textContent = err?.message || "Spotify search could not run right now.";
   }
+});
+
+spotifySearchClearBtn?.addEventListener("click", () => {
+  collapseSpotifySearchState({ keepFocus: true });
 });
 
 /* ── music events ─────────────────────────────────────────── */
@@ -5265,7 +5566,7 @@ document.addEventListener("touchend", () => { isDraggingSeek = false; }, { passi
 /* ── init ─────────────────────────────────────────────────── */
 elevateSpotifyBrowser();
 initSpotifyIntegration();
-updateMusicSurfaceCopy("Connect Spotify", "Spotify", "Shared playlist player");
+updateMusicSurfaceCopy("Search music", "Spotify", "Tap to pick a song");
 updateMusicButtons();
 updateProgressUI();
 
