@@ -142,6 +142,8 @@
       align-items:center;
       justify-content:center;
       animation:dailyVerseIn 0.75s var(--ease-out-expo) 0.45s both,dailyVerseGlow 5.5s ease-in-out 1.2s infinite;
+      transition:transform 0.42s var(--ease-spring),border-color 0.35s var(--ease-smooth),background 0.35s var(--ease-smooth),filter 0.35s var(--ease-smooth);
+      will-change:transform;
     }
 
     .subtitle.daily-verse-card::before {
@@ -155,6 +157,19 @@
       animation:dailyVerseShine 7s ease-in-out 1.4s infinite;
     }
 
+    .subtitle.daily-verse-card::after {
+      content:"";
+      position:absolute;
+      inset:1px;
+      z-index:0;
+      pointer-events:none;
+      border-radius:inherit;
+      background:radial-gradient(circle at 50% 0%,rgba(255,255,255,0.55),transparent 56%),linear-gradient(135deg,rgba(255,101,178,0.10),rgba(255,255,255,0.04));
+      opacity:0;
+      transform:scale(0.985);
+      transition:opacity 0.38s var(--ease-smooth),transform 0.42s var(--ease-spring);
+    }
+
     .daily-verse-orb {
       position:absolute;
       border-radius:999px;
@@ -162,6 +177,7 @@
       z-index:0;
       opacity:0.5;
       filter:blur(2px);
+      transition:opacity 0.38s var(--ease-smooth),transform 0.42s var(--ease-spring),filter 0.38s var(--ease-smooth);
     }
 
     .daily-verse-orb-one {
@@ -211,6 +227,8 @@
       color:#79425e;
       scrollbar-width:thin;
       scrollbar-color:rgba(255,110,178,0.26) transparent;
+      transition:transform 0.35s var(--ease-smooth),color 0.35s var(--ease-smooth);
+      will-change:transform;
     }
 
     .daily-verse-text::before {
@@ -236,6 +254,50 @@
     .daily-verse-text::-webkit-scrollbar { width:4px; }
     .daily-verse-text::-webkit-scrollbar-thumb { background:rgba(255,110,178,0.26); border-radius:999px; }
 
+    @media (hover:hover) and (pointer:fine) {
+      .subtitle.daily-verse-card:hover {
+        transform:translateY(-5px) scale(1.012);
+        border-color:rgba(255,255,255,0.92);
+        filter:saturate(1.04) brightness(1.015);
+      }
+
+      .subtitle.daily-verse-card:hover::before {
+        animation:none;
+        transform:translateX(130%);
+        opacity:0.72;
+        transition:transform 0.85s var(--ease-smooth),opacity 0.35s var(--ease-smooth);
+      }
+
+      .subtitle.daily-verse-card:hover::after {
+        opacity:1;
+        transform:scale(1);
+      }
+
+      .subtitle.daily-verse-card:hover .daily-verse-orb-one {
+        opacity:0.82;
+        filter:blur(1.5px);
+        animation:none;
+        transform:translate3d(-10px,8px,0) scale(1.18);
+      }
+
+      .subtitle.daily-verse-card:hover .daily-verse-orb-two {
+        opacity:0.78;
+        filter:blur(1.5px);
+        animation:none;
+        transform:translate3d(10px,-6px,0) scale(1.14);
+      }
+
+      .subtitle.daily-verse-card:hover .daily-verse-text {
+        transform:translateY(-1px);
+        color:#6f3855;
+      }
+
+      .subtitle.daily-verse-card:hover .daily-verse-reference {
+        transform:translateY(1px);
+        color:#a85e83;
+      }
+    }
+
     .daily-verse-reference {
       display:block;
       margin-top:10px;
@@ -247,6 +309,8 @@
       text-align:center;
       width:100%;
       line-height:1.25;
+      transition:transform 0.35s var(--ease-smooth),color 0.35s var(--ease-smooth);
+      will-change:transform;
     }
 
     @keyframes dailyVerseIn {
