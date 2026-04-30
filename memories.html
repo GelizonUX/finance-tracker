@@ -2510,6 +2510,254 @@ body.music-open .music-shell { z-index:43; }
 
     .mood-confirm-text strong { color: var(--mood-title); }
 
+
+
+    /* custom mood widget responsive upgrade */
+    .mood-panel {
+      width:min(430px,calc(100vw - 36px));
+      max-height:min(640px,calc(100dvh - 112px));
+      overflow:hidden;
+    }
+
+    .mood-panel-header > div { min-width:0; }
+    .mood-panel-title,
+    .mood-panel-sub { overflow-wrap:anywhere; }
+
+    .mood-options {
+      grid-template-columns:repeat(auto-fit,minmax(68px,1fr));
+      gap:10px;
+      max-height:min(292px,34dvh);
+      overflow-y:auto;
+      overscroll-behavior:contain;
+      padding:2px 2px 4px;
+      scrollbar-width:thin;
+      scrollbar-color:rgba(255,110,178,0.28) rgba(255,255,255,0.08);
+    }
+    .mood-options::-webkit-scrollbar { width:5px; }
+    .mood-options::-webkit-scrollbar-thumb { background:rgba(255,110,178,0.28); border-radius:999px; }
+
+    .mood-opt {
+      position:relative;
+      min-width:0;
+      min-height:78px;
+      justify-content:center;
+      padding:9px 6px;
+      overflow:hidden;
+      isolation:isolate;
+    }
+    .mood-opt::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:inherit;
+      background:linear-gradient(120deg,transparent 15%,rgba(255,255,255,0.34) 50%,transparent 85%);
+      transform:translateX(-130%);
+      transition:transform 0.7s var(--ease-smooth);
+      z-index:-1;
+    }
+    .mood-opt:hover::before,
+    .mood-opt.selected::before { transform:translateX(130%); }
+    .mood-opt-emoji { font-size:24px; line-height:1; }
+    .mood-opt-label {
+      width:100%;
+      max-width:100%;
+      text-align:center;
+      line-height:1.15;
+      overflow-wrap:anywhere;
+      word-break:normal;
+      display:-webkit-box;
+      -webkit-line-clamp:2;
+      -webkit-box-orient:vertical;
+      overflow:hidden;
+    }
+
+    .mood-opt-remove {
+      position:absolute;
+      top:4px;
+      right:4px;
+      width:20px;
+      height:20px;
+      border:none;
+      border-radius:999px;
+      background:rgba(255,255,255,0.9);
+      color:var(--mood-title);
+      font-size:12px;
+      line-height:1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      box-shadow:0 4px 10px rgba(80,30,60,0.08);
+      transition:transform 0.25s var(--ease-spring), background 0.2s ease;
+      z-index:2;
+    }
+    .mood-opt-remove:hover { transform:scale(1.1) rotate(90deg); background:#fff; }
+
+    .mood-tools { display:grid; gap:8px; }
+
+    .mood-custom-toggle {
+      width:100%;
+      border:1px solid rgba(255,183,214,0.28);
+      border-radius:999px;
+      padding:10px 12px;
+      font-size:12px;
+      font-weight:700;
+      font-family:"Inter",sans-serif;
+      color:var(--mood-title);
+      background:rgba(255,255,255,0.78);
+      cursor:pointer;
+      transition:transform 0.3s var(--ease-spring), background 0.2s ease, box-shadow 0.25s ease;
+    }
+    .mood-custom-toggle:hover {
+      transform:translateY(-2px);
+      background:rgba(255,255,255,0.94);
+      box-shadow:0 10px 20px rgba(255,87,165,0.08);
+    }
+
+    .mood-customizer {
+      display:none;
+      gap:10px;
+      padding:12px;
+      border-radius:18px;
+      background:rgba(255,255,255,0.58);
+      border:1px solid rgba(255,183,214,0.26);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,0.58);
+    }
+    .mood-customizer.open {
+      display:grid;
+      animation:moodCustomizerIn 0.28s var(--ease-out-expo);
+    }
+    @keyframes moodCustomizerIn {
+      from { opacity:0; transform:translateY(8px); }
+      to { opacity:1; transform:translateY(0); }
+    }
+
+    .mood-customizer-title {
+      font-size:11px;
+      font-weight:800;
+      color:var(--mood-title);
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+    }
+
+    .mood-custom-grid {
+      display:grid;
+      grid-template-columns:72px minmax(0,1fr);
+      gap:8px;
+    }
+    .mood-custom-field,
+    .mood-custom-message {
+      width:100%;
+      min-width:0;
+      border:none;
+      outline:none;
+      border-radius:14px;
+      padding:11px 12px;
+      font-family:"Inter",sans-serif;
+      font-size:13px;
+      color:var(--text-soft);
+      background:rgba(255,236,245,0.72);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,0.45);
+      transition:background 0.2s ease, box-shadow 0.2s ease;
+    }
+    .mood-custom-field:focus,
+    .mood-custom-message:focus {
+      background:rgba(255,255,255,0.96);
+      box-shadow:0 0 0 2px rgba(255,110,178,0.20), inset 0 1px 0 rgba(255,255,255,0.65);
+    }
+    .mood-custom-message {
+      min-height:72px;
+      resize:vertical;
+      line-height:1.45;
+    }
+
+    .mood-custom-actions {
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:8px;
+      align-items:center;
+    }
+    .mood-add-btn,
+    .mood-custom-clear-btn {
+      border:none;
+      border-radius:999px;
+      padding:10px 12px;
+      font-size:12px;
+      font-weight:800;
+      font-family:"Inter",sans-serif;
+      cursor:pointer;
+      transition:transform 0.3s var(--ease-spring),filter 0.25s ease,background 0.2s ease;
+    }
+    .mood-add-btn {
+      color:white;
+      background:linear-gradient(135deg,var(--mood-grad-a),var(--mood-grad-b));
+      box-shadow:0 10px 20px var(--mood-glow), inset 0 1px 0 rgba(255,255,255,0.24);
+    }
+    .mood-custom-clear-btn {
+      color:var(--text-soft);
+      background:rgba(255,255,255,0.84);
+      border:1px solid rgba(255,183,214,0.25);
+    }
+    .mood-add-btn:hover,
+    .mood-custom-clear-btn:hover { transform:translateY(-2px); filter:brightness(1.04); }
+    .mood-add-btn:active,
+    .mood-custom-clear-btn:active { transform:scale(0.97); }
+
+    .mood-custom-status {
+      min-height:16px;
+      font-size:11.5px;
+      line-height:1.4;
+      color:var(--mood-sub);
+    }
+
+
+
+    .mood-panel.open { display:flex; animation:moodPanelIn 0.45s var(--ease-spring); }
+    @keyframes moodPanelIn { from{opacity:0;transform:scale(0.82) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
+    .mood-panel-title { font-family:"Playfair Display",serif; font-size:18px; color:var(--mood-title); line-height:1.1; }
+    .mood-panel-sub { font-size:12px; color:var(--mood-sub); margin-top:2px; }
+
+    /* cursor heart trail identical behavior to main page */
+    .cursor-heart {
+      position:fixed;
+      pointer-events:none;
+      user-select:none;
+      z-index:100000;
+      transform:translate(-50%,-50%);
+      will-change:transform,opacity;
+      filter:drop-shadow(0 4px 10px rgba(255,87,165,0.14));
+    }
+
+    @media (max-width:520px) {
+      .mood-panel {
+        left:10px;
+        right:10px;
+        bottom:82px;
+        width:auto;
+        max-height:min(620px,calc(100dvh - 104px));
+        border-radius:22px;
+        padding:16px;
+        gap:12px;
+      }
+      .mood-options {
+        grid-template-columns:repeat(auto-fit,minmax(62px,1fr));
+        gap:8px;
+        max-height:min(276px,36dvh);
+      }
+      .mood-opt { min-height:74px; padding:8px 5px; border-radius:15px; }
+      .mood-opt-emoji { font-size:23px; }
+      .mood-custom-grid { grid-template-columns:64px minmax(0,1fr); gap:7px; }
+      .mood-custom-message { min-height:66px; }
+      .mood-custom-actions { grid-template-columns:1fr; }
+    }
+
+    @media (max-height:700px) {
+      .mood-panel { gap:10px; padding:14px; }
+      .mood-options { max-height:190px; }
+      .mood-customizer { gap:8px; padding:10px; }
+      .mood-custom-message { min-height:54px; }
+    }
+
     /* ── SHARED KEYFRAMES ────────────────────────────────────── */
 
     @keyframes overlayFadeIn {
@@ -3790,6 +4038,94 @@ body.music-open .music-shell { z-index:43; }
 }
 
 </style>
+
+
+<!-- Chat and music dock spacing patch -->
+<style>
+  /* Keeps the open chat panel above the full bottom dock with clean spacing. */
+  .chat-panel {
+    bottom: var(--chat-panel-bottom, 116px) !important;
+  }
+
+  .music-panel {
+    bottom: var(--music-panel-bottom, 110px) !important;
+  }
+
+  .music-shell {
+    right: 86px !important;
+    bottom: max(18px, env(safe-area-inset-bottom, 0px) + 18px) !important;
+    width: min(380px, calc(100vw - 184px)) !important;
+    max-width: min(380px, calc(100vw - 184px)) !important;
+  }
+
+  @media (max-width: 680px) {
+    .chat-panel {
+      right: 10px !important;
+      left: 10px !important;
+      bottom: var(--chat-panel-bottom, 110px) !important;
+      width: auto !important;
+      height: min(62vh, 520px) !important;
+      border-radius: 20px !important;
+      z-index: 71 !important;
+    }
+
+    .music-shell {
+      left: 76px !important;
+      right: 76px !important;
+      bottom: max(14px, env(safe-area-inset-bottom, 0px) + 14px) !important;
+      width: auto !important;
+      max-width: none !important;
+    }
+
+    .music-mini-bar {
+      min-width: 0 !important;
+      max-width: 100% !important;
+      width: 100% !important;
+      min-height: 70px !important;
+      padding: 10px 12px !important;
+      gap: 10px !important;
+      border-radius: 22px !important;
+    }
+
+    .music-mini-cover {
+      width: 42px !important;
+      height: 42px !important;
+      border-radius: 14px !important;
+    }
+
+    .music-mini-btn {
+      width: 40px !important;
+      height: 40px !important;
+      flex-basis: 40px !important;
+      border-radius: 14px !important;
+      font-size: 16px !important;
+    }
+
+    .music-mini-title { font-size: 14px !important; }
+    .music-mini-sub { font-size: 11px !important; }
+
+    .music-panel {
+      left: 10px !important;
+      right: 10px !important;
+      top: max(10px, env(safe-area-inset-top, 0px) + 6px) !important;
+      bottom: var(--music-panel-bottom, 104px) !important;
+      width: auto !important;
+      max-width: none !important;
+      max-height: none !important;
+      border-radius: 22px !important;
+      padding: 12px !important;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .music-shell {
+      left: 72px !important;
+      right: 72px !important;
+      max-width: none !important;
+    }
+  }
+</style>
+
 </head>
 <body>
   <div class="page-photo-bg"></div>
@@ -3915,10 +4251,10 @@ body.music-open .music-shell { z-index:43; }
 
   <div class="mood-cluster">
     <div class="user-switcher" id="userSwitcher">
-      <button class="switcher-btn" id="btnRiri">🌸 Riri</button>
-      <button class="switcher-btn" id="btnVince">💙 Vince</button>
+      <button class="switcher-btn" id="btnRiri" type="button">🌸 Riri</button>
+      <button class="switcher-btn" id="btnVince" type="button">💙 Vince</button>
     </div>
-    <button class="mood-fab" id="moodFab">🌸</button>
+    <button class="mood-fab" id="moodFab" type="button">🌸</button>
   </div>
 
   <div class="mood-panel" id="moodPanel">
@@ -3927,10 +4263,26 @@ body.music-open .music-shell { z-index:43; }
         <div class="mood-panel-title" id="moodPanelTitle">how are you feeling? 💗</div>
         <div class="mood-panel-sub" id="moodPanelSub">let vince know right now</div>
       </div>
-      <button class="mood-close-btn" id="moodCloseBtn" aria-label="Close mood panel">✕</button>
+      <button class="mood-close-btn" id="moodCloseBtn" type="button" aria-label="Close mood panel">✕</button>
     </div>
     <div class="mood-options" id="moodOptions"></div>
-    <button class="mood-send-btn" id="moodSendBtn">let him know 💌</button>
+    <button class="mood-send-btn" id="moodSendBtn" type="button">let him know 💌</button>
+    <div class="mood-tools">
+      <button class="mood-custom-toggle" id="moodCustomToggle" type="button">customize feelings ✨</button>
+    </div>
+    <div class="mood-customizer" id="moodCustomizer" aria-hidden="true">
+      <div class="mood-customizer-title">add a feeling</div>
+      <div class="mood-custom-grid">
+        <input class="mood-custom-field" id="moodCustomEmoji" type="text" inputmode="text" maxlength="4" placeholder="Emoji" aria-label="Feeling emoji" />
+        <input class="mood-custom-field" id="moodCustomLabel" type="text" maxlength="18" placeholder="Feeling name" aria-label="Feeling name" />
+      </div>
+      <textarea class="mood-custom-message" id="moodCustomMessage" maxlength="140" placeholder="Message to send when this feeling is selected" aria-label="Feeling message"></textarea>
+      <div class="mood-custom-actions">
+        <button class="mood-add-btn" id="moodAddBtn" type="button">add feeling</button>
+        <button class="mood-custom-clear-btn" id="moodClearBtn" type="button">clear</button>
+      </div>
+      <div class="mood-custom-status" id="moodCustomStatus" aria-live="polite"></div>
+    </div>
     <div class="mood-confirm" id="moodConfirm">
       <div class="mood-confirm-emoji" id="moodConfirmEmoji">💗</div>
       <div class="mood-confirm-text">sent! <strong id="moodConfirmMsg"></strong></div>
@@ -4187,6 +4539,14 @@ body.music-open .music-shell { z-index:43; }
     const moodConfirmMsg   = document.getElementById("moodConfirmMsg");
     const moodPanelTitle   = document.getElementById("moodPanelTitle");
     const moodPanelSub     = document.getElementById("moodPanelSub");
+    const moodCustomToggle = document.getElementById("moodCustomToggle");
+    const moodCustomizer   = document.getElementById("moodCustomizer");
+    const moodCustomEmoji  = document.getElementById("moodCustomEmoji");
+    const moodCustomLabel  = document.getElementById("moodCustomLabel");
+    const moodCustomMessage = document.getElementById("moodCustomMessage");
+    const moodAddBtn       = document.getElementById("moodAddBtn");
+    const moodClearBtn     = document.getElementById("moodClearBtn");
+    const moodCustomStatus = document.getElementById("moodCustomStatus");
     const userSwitcher     = document.getElementById("userSwitcher");
     const btnRiri          = document.getElementById("btnRiri");
     const btnVince         = document.getElementById("btnVince");
@@ -6134,7 +6494,183 @@ const playPrevSong = () => playPrevSpotifyTrack();
 
     let currentUser = null;
     let selectedMoodOpt = null;
+    let selectedMoodData = null;
     let hasChosenPersona = false;
+    let moodCustomizerOpen = false;
+
+    const CUSTOM_MOODS_STORAGE_KEY = "loveSiteCustomMoodsV1";
+    const MAX_CUSTOM_MOODS_PER_PERSONA = 30;
+    let customMoods = loadCustomMoods();
+
+
+    function loadCustomMoods() {
+      const fallback = { riri: [], vince: [] };
+      try {
+        const parsed = JSON.parse(localStorage.getItem(CUSTOM_MOODS_STORAGE_KEY) || "{}");
+        return {
+          riri: Array.isArray(parsed.riri) ? parsed.riri.filter(isValidMood).slice(0, MAX_CUSTOM_MOODS_PER_PERSONA) : [],
+          vince: Array.isArray(parsed.vince) ? parsed.vince.filter(isValidMood).slice(0, MAX_CUSTOM_MOODS_PER_PERSONA) : []
+        };
+      } catch (err) {
+        console.warn("Custom moods could not load. Resetting local mood storage.", err);
+        return fallback;
+      }
+    }
+
+    function saveCustomMoods() {
+      try {
+        localStorage.setItem(CUSTOM_MOODS_STORAGE_KEY, JSON.stringify(customMoods));
+        return true;
+      } catch (err) {
+        console.error("Custom moods could not save.", err);
+        return false;
+      }
+    }
+
+    function isValidMood(mood) {
+      return mood && typeof mood.emoji === "string" && typeof mood.label === "string" && typeof mood.msg === "string";
+    }
+
+    function cleanMoodText(value, fallback, maxLength) {
+      const clean = String(value || "").replace(/\s+/g, " ").trim();
+      return (clean || fallback).slice(0, maxLength);
+    }
+
+    function getMoodList(user) {
+      const persona = PERSONAS[user] || PERSONAS.riri;
+      const custom = Array.isArray(customMoods[user]) ? customMoods[user] : [];
+      return [
+        ...persona.moods.map(mood => ({ ...mood, isCustom:false })),
+        ...custom.map(mood => ({ ...mood, isCustom:true }))
+      ];
+    }
+
+    function setMoodCustomStatus(message) {
+      if (!moodCustomStatus) return;
+      moodCustomStatus.textContent = message || "";
+    }
+
+    function clearMoodCustomInputs() {
+      if (moodCustomEmoji) moodCustomEmoji.value = "";
+      if (moodCustomLabel) moodCustomLabel.value = "";
+      if (moodCustomMessage) moodCustomMessage.value = "";
+      setMoodCustomStatus("");
+    }
+
+    function setMoodCustomizerOpen(open) {
+      moodCustomizerOpen = Boolean(open);
+      if (!moodCustomizer || !moodCustomToggle) return;
+      moodCustomizer.classList.toggle("open", moodCustomizerOpen);
+      moodCustomizer.setAttribute("aria-hidden", moodCustomizerOpen ? "false" : "true");
+      moodCustomToggle.textContent = moodCustomizerOpen ? "done customizing ✓" : "customize feelings ✨";
+      renderMoodOptions(currentUser || "riri");
+      if (!moodCustomizerOpen) setMoodCustomStatus("");
+    }
+
+    function resetMoodSelection(user) {
+      const persona = PERSONAS[user] || PERSONAS.riri;
+      selectedMoodOpt = null;
+      selectedMoodData = null;
+      moodSendBtn.classList.remove("ready");
+      moodSendBtn.textContent = `${persona.sendLabel} 💌`;
+    }
+
+    function makeMoodButton(mood, user) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "mood-opt";
+      btn.dataset.emoji = mood.emoji;
+      btn.dataset.msg = mood.msg;
+
+      const emojiSpan = document.createElement("span");
+      emojiSpan.className = "mood-opt-emoji";
+      emojiSpan.textContent = mood.emoji;
+
+      const labelSpan = document.createElement("span");
+      labelSpan.className = "mood-opt-label";
+      labelSpan.textContent = mood.label;
+
+      btn.appendChild(emojiSpan);
+      btn.appendChild(labelSpan);
+
+      if (mood.isCustom && moodCustomizerOpen) {
+        const removeBtn = document.createElement("button");
+        removeBtn.type = "button";
+        removeBtn.className = "mood-opt-remove";
+        removeBtn.setAttribute("aria-label", `Remove ${mood.label}`);
+        removeBtn.textContent = "×";
+        removeBtn.addEventListener("click", event => {
+          event.stopPropagation();
+          customMoods[user] = (customMoods[user] || []).filter(item => item.id !== mood.id);
+          saveCustomMoods();
+          renderMoodOptions(user);
+          resetMoodSelection(user);
+          setMoodCustomStatus("removed from this browser");
+        });
+        btn.appendChild(removeBtn);
+      }
+
+      btn.addEventListener("click", () => {
+        moodOptions.querySelectorAll(".mood-opt").forEach(opt => opt.classList.remove("selected"));
+        btn.classList.add("selected");
+        selectedMoodOpt = btn;
+        selectedMoodData = mood;
+        const persona = PERSONAS[user] || PERSONAS.riri;
+        moodSendBtn.classList.add("ready");
+        moodSendBtn.textContent = `${persona.sendLabel} ${mood.emoji}`;
+      });
+
+      return btn;
+    }
+
+    function renderMoodOptions(user) {
+      if (!moodOptions) return;
+      moodOptions.innerHTML = "";
+      getMoodList(user).forEach(mood => {
+        moodOptions.appendChild(makeMoodButton(mood, user));
+      });
+    }
+
+    function addCustomMoodForCurrentUser() {
+      const user = currentUser || "riri";
+      const personaName = user === "vince" ? "Vince" : "Riri";
+      const emoji = cleanMoodText(moodCustomEmoji?.value, "", 4);
+      const label = cleanMoodText(moodCustomLabel?.value, "", 18);
+      const customMsg = cleanMoodText(moodCustomMessage?.value, "", 140);
+
+      if (!emoji || !label) {
+        setMoodCustomStatus("add an emoji and feeling name first");
+        return;
+      }
+
+      customMoods[user] = Array.isArray(customMoods[user]) ? customMoods[user] : [];
+      if (customMoods[user].length >= MAX_CUSTOM_MOODS_PER_PERSONA) {
+        setMoodCustomStatus(`limit reached: ${MAX_CUSTOM_MOODS_PER_PERSONA} custom feelings per person`);
+        return;
+      }
+
+      const mood = {
+        id: `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`,
+        emoji,
+        label,
+        msg: customMsg || `${personaName} is feeling ${label} right now ${emoji}`
+      };
+
+      customMoods[user].push(mood);
+      if (!saveCustomMoods()) {
+        setMoodCustomStatus("couldn't save on this browser");
+        customMoods = loadCustomMoods();
+        return;
+      }
+
+      clearMoodCustomInputs();
+      renderMoodOptions(user);
+      resetMoodSelection(user);
+      setMoodCustomStatus("added on this browser ✓");
+      requestAnimationFrame(() => {
+        if (moodOptions) moodOptions.scrollTop = moodOptions.scrollHeight;
+      });
+    }
 
     function applyPersona(user, skipSave = false) {
       currentUser = user;
@@ -6146,25 +6682,9 @@ const playPrevSong = () => playPrevSpotifyTrack();
       moodPanelTitle.textContent = persona.title;
       moodPanelSub.textContent = persona.sub;
 
-      moodOptions.innerHTML = "";
-      persona.moods.forEach(mood => {
-        const btn = document.createElement("button");
-        btn.className = "mood-opt";
-        btn.dataset.emoji = mood.emoji;
-        btn.dataset.msg = mood.msg;
-        btn.innerHTML = `<span class="mood-opt-emoji">${mood.emoji}</span><span class="mood-opt-label">${mood.label}</span>`;
-        btn.addEventListener("click", () => {
-          moodOptions.querySelectorAll(".mood-opt").forEach(opt => opt.classList.remove("selected"));
-          btn.classList.add("selected");
-          selectedMoodOpt = btn;
-          moodSendBtn.classList.add("ready");
-          moodSendBtn.textContent = `${persona.sendLabel} ${mood.emoji}`;
-        });
-        moodOptions.appendChild(btn);
-      });
-
-      moodSendBtn.textContent = `${persona.sendLabel} 💌`;
-      moodSendBtn.classList.remove("ready");
+      renderMoodOptions(user);
+      resetMoodSelection(user);
+      setMoodCustomizerOpen(false);
       btnRiri.className = "switcher-btn" + (user === "riri" ? " active-riri" : "");
       btnVince.className = "switcher-btn" + (user === "vince" ? " active-vince" : "");
       chatSenderSelect.value = user;
@@ -6180,15 +6700,19 @@ const playPrevSong = () => playPrevSpotifyTrack();
       moodPanel.classList.add("open");
       moodOptions.querySelectorAll(".mood-opt").forEach(opt => opt.classList.remove("selected"));
       selectedMoodOpt = null;
-      moodSendBtn.classList.remove("ready");
-      const persona = PERSONAS[currentUser || "riri"];
-      moodSendBtn.textContent = `${persona.sendLabel} 💌`;
+      selectedMoodData = null;
+      resetMoodSelection(currentUser || "riri");
+      setMoodCustomizerOpen(false);
       moodConfirm.style.display = "none";
       moodSendBtn.style.display = "block";
       moodOptions.style.display = "grid";
+      if (moodCustomToggle) moodCustomToggle.style.display = "block";
     }
 
-    const closeMoodPanel = () => moodPanel.classList.remove("open");
+    const closeMoodPanel = () => {
+      moodPanel.classList.remove("open");
+      setMoodCustomizerOpen(false);
+    };
 
     btnRiri.addEventListener("click", () => {
       applyPersona("riri");
@@ -6217,10 +6741,31 @@ const playPrevSong = () => playPrevSpotifyTrack();
 
     moodCloseBtn.addEventListener("click", closeMoodPanel);
 
+    moodCustomToggle?.addEventListener("click", () => {
+      setMoodCustomizerOpen(!moodCustomizerOpen);
+    });
+
+    moodAddBtn?.addEventListener("click", addCustomMoodForCurrentUser);
+
+    moodClearBtn?.addEventListener("click", () => {
+      clearMoodCustomInputs();
+      moodCustomEmoji?.focus();
+    });
+
+    [moodCustomEmoji, moodCustomLabel, moodCustomMessage].forEach(input => {
+      input?.addEventListener("keydown", event => {
+        if (event.key === "Enter" && !event.shiftKey && input !== moodCustomMessage) {
+          event.preventDefault();
+          addCustomMoodForCurrentUser();
+        }
+      });
+    });
+
     moodSendBtn.addEventListener("click", async () => {
       if (!selectedMoodOpt) return;
-      const emoji = selectedMoodOpt.dataset.emoji;
-      const msg = selectedMoodOpt.dataset.msg;
+      const mood = selectedMoodData || selectedMoodOpt?.dataset || {};
+      const emoji = mood.emoji || selectedMoodOpt.dataset.emoji;
+      const msg = mood.msg || selectedMoodOpt.dataset.msg;
       const persona = PERSONAS[currentUser || "riri"];
 
       try {
@@ -6237,6 +6782,8 @@ const playPrevSong = () => playPrevSpotifyTrack();
 
       moodOptions.style.display = "none";
       moodSendBtn.style.display = "none";
+      if (moodCustomToggle) moodCustomToggle.style.display = "none";
+      setMoodCustomizerOpen(false);
       moodConfirm.style.display = "block";
       moodConfirmEmoji.textContent = emoji;
       moodConfirmMsg.textContent = msg;
@@ -7012,9 +7559,7 @@ updateProgressUI();
     const chatDockBottom = dockBottomFor(chatFab);
     const musicDockBottom = dockBottomFor(musicMini);
 
-    const chatBottom = window.innerWidth <= 760
-      ? Math.max(chatDockBottom || 0, musicDockBottom || 0)
-      : chatDockBottom;
+    const chatBottom = Math.max(chatDockBottom || 0, musicDockBottom || 0);
 
     if (chatBottom) {
       root.style.setProperty('--chat-panel-bottom', cleanPx(chatBottom));
@@ -7060,39 +7605,41 @@ updateProgressUI();
 
 
 <script>
-/* === ROSE + HEART CURSOR TRAIL PATCH === */
+/* homepage style rose and heart cursor trail */
 (function(){
   const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const finePointer = window.matchMedia && window.matchMedia('(pointer: fine)').matches;
   if (reduceMotion || !finePointer) return;
-  const emojis = ['🌹','💗','💕','💖','💋'];
-  let last = 0;
-  let live = 0;
-  const maxLive = 22;
-  function spawn(x,y,burst){
-    if(live >= maxLive) return;
-    const particle = document.createElement('span');
-    particle.className = 'love-cursor-particle';
-    particle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-    particle.style.setProperty('--x', x + 'px');
-    particle.style.setProperty('--y', y + 'px');
-    particle.style.setProperty('--dx', (Math.random() * 44 - 22).toFixed(1) + 'px');
-    particle.style.setProperty('--dy', ((burst ? Math.random() * 70 + 54 : Math.random() * 44 + 38).toFixed(1)) + 'px');
-    particle.style.setProperty('--r', (Math.random() * 34 - 17).toFixed(1) + 'deg');
-    document.body.appendChild(particle);
-    live += 1;
-    setTimeout(() => { particle.remove(); live = Math.max(0, live - 1); }, 980);
-  }
-  window.addEventListener('pointermove', event => {
-    const now = performance.now();
-    if(now - last < 38) return;
-    last = now;
-    spawn(event.clientX + 4, event.clientY + 4, false);
-  }, { passive:true });
-  document.addEventListener('click', event => {
-    for(let i=0;i<5;i+=1){
-      setTimeout(() => spawn(event.clientX + Math.random() * 12 - 6, event.clientY + Math.random() * 12 - 6, true), i * 28);
-    }
+
+  const rand = (min, max) => Math.random() * (max - min) + min;
+  let lastTrail = 0;
+
+  document.addEventListener('mousemove', event => {
+    if (Date.now() - lastTrail < 40) return;
+    lastTrail = Date.now();
+
+    const trail = document.createElement('div');
+    trail.className = 'cursor-heart';
+    trail.textContent = Math.random() > 0.4 ? '💕' : '🌹';
+    trail.style.cssText = `left:${event.clientX}px;top:${event.clientY}px;font-size:${rand(11,17)}px;opacity:0.94`;
+    document.body.appendChild(trail);
+
+    let x = event.clientX;
+    let y = event.clientY;
+    let opacity = 0.94;
+    let scale = 1;
+
+    (function tick(){
+      y -= 1.1;
+      x += (Math.random() - 0.5) * 0.4;
+      opacity -= 0.032;
+      scale += 0.006;
+      trail.style.top = y + 'px';
+      trail.style.left = x + 'px';
+      trail.style.opacity = opacity;
+      trail.style.transform = `translate(-50%,-50%) scale(${scale})`;
+      opacity <= 0 ? trail.remove() : requestAnimationFrame(tick);
+    })();
   }, { passive:true });
 })();
 </script>
@@ -7126,6 +7673,68 @@ updateProgressUI();
   sync();
 })();
 /* === SPOTIFY PLAYER VISIBILITY GUARD END === */
+</script>
+
+
+
+<script>
+/* Final dock spacing guard: keeps chat, music, and the bottom player separated. */
+(function finalFloatingDockSpacingGuard(){
+  const root = document.documentElement;
+  const cleanPx = value => Math.max(0, Math.round(value)) + 'px';
+  const gap = () => window.innerWidth <= 760 ? 28 : 24;
+
+  function dockBottomFor(element) {
+    if (!element) return 0;
+    const rect = element.getBoundingClientRect();
+    if (!rect || rect.height <= 0) return 0;
+    const bottomInset = Math.max(0, window.innerHeight - rect.bottom);
+    return bottomInset + rect.height + gap();
+  }
+
+  function syncDockSpacing() {
+    const chatFab = document.getElementById('chatFab');
+    const musicMini = document.getElementById('musicMiniBar');
+    const chatBottom = Math.max(dockBottomFor(chatFab), dockBottomFor(musicMini));
+    const musicBottom = dockBottomFor(musicMini);
+
+    if (chatBottom) root.style.setProperty('--chat-panel-bottom', cleanPx(chatBottom));
+    if (musicBottom) root.style.setProperty('--music-panel-bottom', cleanPx(musicBottom));
+  }
+
+  let ticking = false;
+  function requestSync() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      ticking = false;
+      syncDockSpacing();
+    });
+  }
+
+  window.addEventListener('load', requestSync, { once: true });
+  window.addEventListener('resize', requestSync);
+  window.addEventListener('orientationchange', () => setTimeout(requestSync, 220));
+  document.addEventListener('click', event => {
+    if (event.target.closest('#chatFab, #chatCloseBtn, #musicMiniBar, #musicMiniInfo, #musicCollapseBtn, #musicToggleBtn')) {
+      requestSync();
+      setTimeout(requestSync, 80);
+      setTimeout(requestSync, 260);
+    }
+  }, true);
+
+  if ('ResizeObserver' in window) {
+    const observer = new ResizeObserver(requestSync);
+    ['chatFab', 'musicMiniBar', 'chatPanel', 'musicPanel'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+  }
+
+  requestSync();
+  setTimeout(requestSync, 120);
+  setTimeout(requestSync, 600);
+})();
 </script>
 
 </body>
