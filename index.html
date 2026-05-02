@@ -4391,11 +4391,20 @@ body.devotion-open {
   background:rgba(255,239,247,0.98);
   box-shadow:0 8px 16px rgba(255,87,165,0.06);
 }
-.devotion-calendar-weekdays,
-.devotion-calendar-grid {
+.devotion-calendar-weekdays {
   display:grid;
   grid-template-columns:repeat(7,minmax(0,1fr));
   gap:8px;
+}
+.devotion-calendar-grid {
+  display:grid;
+  grid-template-columns:repeat(7,minmax(0,1fr));
+  grid-auto-rows:72px;
+  column-gap:8px;
+  row-gap:18px;
+  justify-items:center;
+  align-items:start;
+  padding-bottom:12px;
 }
 .devotion-calendar-weekday {
   text-align:center;
@@ -4407,37 +4416,45 @@ body.devotion-open {
   padding:4px 0;
 }
 .devotion-day-placeholder {
-  min-height:66px;
+  width:54px;
+  height:54px;
+  justify-self:center;
+  align-self:start;
 }
 .devotion-day-btn {
-  min-height:68px;
+  width:54px;
+  height:54px;
+  min-height:54px;
+  justify-self:center;
+  align-self:start;
+  margin:0;
   border:none;
-  border-radius:18px;
-  background:rgba(255,247,251,0.92);
-  box-shadow:inset 0 0 0 1px rgba(255,214,233,0.78);
+  border-radius:999px;
+  background:rgba(255,247,251,0.96);
+  box-shadow:inset 0 0 0 1px rgba(255,214,233,0.88);
   color:var(--text-soft);
   cursor:pointer;
-  padding:10px 8px 8px;
+  padding:0;
   display:flex;
   flex-direction:column;
   align-items:center;
-  justify-content:space-between;
-  gap:8px;
+  justify-content:center;
+  gap:0;
   position:relative;
   transition:transform 0.28s var(--ease-spring), box-shadow 0.28s var(--ease-smooth), background 0.28s ease;
 }
 .devotion-day-btn:hover {
-  transform:translateY(-2px);
-  box-shadow:inset 0 0 0 1px rgba(255,173,213,0.9),0 10px 22px rgba(255,87,165,0.1);
+  transform:translateY(-2px) scale(1.04);
+  box-shadow:inset 0 0 0 1px rgba(255,173,213,0.95),0 10px 22px rgba(255,87,165,0.12);
   background:rgba(255,241,248,1);
 }
 .devotion-day-btn.today {
-  box-shadow:inset 0 0 0 2px rgba(255,100,175,0.38),0 8px 18px rgba(255,87,165,0.08);
+  box-shadow:inset 0 0 0 2px rgba(255,100,175,0.34),0 8px 18px rgba(255,87,165,0.08);
 }
 .devotion-day-btn.active {
-  background:linear-gradient(135deg,rgba(255,131,194,0.92),rgba(255,82,169,0.92));
+  background:linear-gradient(135deg,rgba(255,131,194,0.96),rgba(255,82,169,0.96));
   color:white;
-  box-shadow:0 16px 28px rgba(255,87,165,0.18);
+  box-shadow:0 14px 26px rgba(255,87,165,0.22);
 }
 .devotion-day-btn.active .devotion-day-meta,
 .devotion-day-btn.active .devotion-day-number {
@@ -4447,23 +4464,27 @@ body.devotion-open {
   background:linear-gradient(180deg,rgba(255,246,250,0.98),rgba(247,255,250,0.92));
 }
 .devotion-day-number {
-  font-size:17px;
+  font-size:14px;
   font-weight:700;
   line-height:1;
   color:#8c566f;
 }
 .devotion-day-meta {
-  min-height:12px;
+  min-height:10px;
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:5px;
+  gap:4px;
+  position:absolute;
+  left:50%;
+  bottom:-12px;
+  transform:translateX(-50%);
 }
 .devotion-day-dot {
-  width:8px;
-  height:8px;
+  width:7px;
+  height:7px;
   border-radius:999px;
-  box-shadow:0 0 0 2px rgba(255,255,255,0.82);
+  box-shadow:0 0 0 2px rgba(255,255,255,0.9);
 }
 .devotion-day-dot.vince,
 .devotion-dot.devotion-dot-vince {
@@ -4518,24 +4539,37 @@ body.devotion-open {
   .devotion-calendar-title {
     font-size:24px;
   }
-  .devotion-calendar-weekdays,
-  .devotion-calendar-grid {
+  .devotion-calendar-weekdays {
     gap:6px;
+  }
+  .devotion-calendar-grid {
+    grid-auto-rows:60px;
+    column-gap:6px;
+    row-gap:14px;
   }
   .devotion-day-placeholder,
   .devotion-day-btn {
-    min-height:54px;
+    min-height:46px;
+  }
+  .devotion-day-placeholder {
+    width:46px;
+    height:46px;
   }
   .devotion-day-btn {
-    padding:8px 4px 6px;
-    border-radius:14px;
+    width:46px;
+    height:46px;
+    min-height:46px;
+    border-radius:999px;
   }
   .devotion-day-number {
-    font-size:15px;
+    font-size:13px;
+  }
+  .devotion-day-meta {
+    bottom:-10px;
   }
   .devotion-day-dot {
-    width:7px;
-    height:7px;
+    width:6px;
+    height:6px;
   }
   .devotion-calendar-legend {
     gap:10px;
