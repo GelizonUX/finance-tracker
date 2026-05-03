@@ -5267,6 +5267,37 @@ body.mobile-menu-open .mobile-menu-icon::after {
     }
   </style>
 
+
+  <style id="mobile-devotion-clickability-patch">
+    /* Keeps the mobile menu devotion button tappable above the mobile backdrop and floating UI. */
+    @media (max-width: 680px) {
+      .mobile-top-nav {
+        z-index: 10020 !important;
+      }
+
+      body.mobile-menu-open .mobile-menu-backdrop {
+        z-index: 10000 !important;
+      }
+
+      body.mobile-menu-open .mobile-menu-panel {
+        z-index: 10010 !important;
+        pointer-events: auto !important;
+        touch-action: manipulation;
+      }
+
+      body.mobile-menu-open .mobile-menu-item,
+      body.mobile-menu-open #mobileDevotionBtn {
+        pointer-events: auto !important;
+        touch-action: manipulation;
+      }
+
+      body.mobile-menu-open #mobileDevotionBtn {
+        position: relative !important;
+        z-index: 10011 !important;
+      }
+    }
+  </style>
+
 </head>
 <body>
   <div class="site-photo-bg"></div>
@@ -5306,7 +5337,7 @@ body.mobile-menu-open .mobile-menu-icon::after {
             </span>
             <span class="mobile-menu-arrow">→</span>
           </a>
-          <button class="mobile-menu-item" id="mobileDevotionBtn" type="button" style="--item-delay:0.11s" onclick="event.preventDefault();event.stopPropagation();document.body.classList.remove('mobile-menu-open');const menuBtn=document.getElementById('mobileMenuBtn');if(menuBtn)menuBtn.setAttribute('aria-expanded','false');const panel=document.getElementById('mobileMenuPanel');if(panel)panel.setAttribute('aria-hidden','true');const backdrop=document.getElementById('mobileMenuBackdrop');if(backdrop)backdrop.setAttribute('aria-hidden','true');setTimeout(()=>document.getElementById('devotionOpenBtn')?.click(),120);">
+          <button class="mobile-menu-item" id="mobileDevotionBtn" type="button" style="--item-delay:0.11s" onclick="if(window.openMobileDevotionsFromMenu){window.openMobileDevotionsFromMenu(event);}">
             <span class="mobile-menu-left">
               <span class="mobile-menu-emoji">📖</span>
               <span class="mobile-menu-copy"><strong>Our Devotions</strong><span>verses, reflections, and prayers</span></span>
@@ -9369,6 +9400,10 @@ function initDevotionSystem() {
     document.body.classList.remove("devotion-open");
   };
 
+  /* Mobile menu uses this direct opener so it does not rely on clicking a hidden desktop button. */
+  window.openDevotionsPanel = openDevotions;
+  window.closeDevotionsPanel = closeDevotions;
+
   const saveDevotion = async event => {
     event.preventDefault();
     if (isSavingDevotion) return;
@@ -9719,6 +9754,65 @@ updateProgressUI();
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape') setMobileMenuOpen(false);
   });
+})();
+</script>
+
+
+<script id="mobile-devotion-direct-open-fix">
+(function mobileDevotionDirectOpenFix() {
+  function closeMobileMenu() {
+    const menuBtn = document.getElementById('mobileMenuBtn');
+    const panel = document.getElementById('mobileMenuPanel');
+    const backdrop = document.getElementById('mobileMenuBackdrop');
+
+    document.body.classList.remove('mobile-menu-open');
+    if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
+    if (panel) panel.setAttribute('aria-hidden', 'true');
+    if (backdrop) backdrop.setAttribute('aria-hidden', 'true');
+  }
+
+  function openDevotionsFallback() {
+    if (typeof window.openDevotionsPanel === 'function') {
+      window.openDevotionsPanel();
+      return;
+    }
+
+    const devotionButton = document.getElementById('devotionOpenBtn');
+    if (devotionButton) {
+      devotionButton.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
+      return;
+    }
+
+    const devotionOverlay = document.getElementById('devotionOverlay');
+    if (devotionOverlay) {
+      devotionOverlay.classList.add('open');
+      devotionOverlay.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('devotion-open');
+    }
+  }
+
+  window.openMobileDevotionsFromMenu = function openMobileDevotionsFromMenu(event) {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      if (typeof event.stopImmediatePropagation === 'function') event.stopImmediatePropagation();
+    }
+
+    closeMobileMenu();
+    window.setTimeout(openDevotionsFallback, 80);
+  };
+
+  function bindMobileDevotionButton() {
+    const mobileDevotionButton = document.getElementById('mobileDevotionBtn');
+    if (!mobileDevotionButton || mobileDevotionButton.dataset.directDevotionBound === 'true') return;
+
+    mobileDevotionButton.dataset.directDevotionBound = 'true';
+    mobileDevotionButton.addEventListener('click', window.openMobileDevotionsFromMenu, true);
+  }
+
+  bindMobileDevotionButton();
+  document.addEventListener('DOMContentLoaded', bindMobileDevotionButton);
+  window.addEventListener('load', bindMobileDevotionButton);
 })();
 </script>
 
