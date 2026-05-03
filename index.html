@@ -3949,7 +3949,7 @@ body.vince-ai-open.chat-open .vince-ai-fab-wrap {
   display:none;
   align-items:center;
   justify-content:center;
-  padding:clamp(14px,2.4vw,28px);
+  padding:clamp(10px,1.8vw,22px);
   background:rgba(255,248,252,0.58);
   backdrop-filter:blur(20px);
   overflow:auto;
@@ -3963,17 +3963,17 @@ body.devotion-open {
 }
 .devotion-shell {
   position:relative;
-  width:min(1160px,100%);
-  max-height:min(92dvh,860px);
+  width:min(1180px,100%);
+  max-height:calc(100dvh - 24px);
   overflow:auto;
-  border-radius:34px;
-  padding:clamp(18px,2.4vw,30px);
+  border-radius:30px;
+  padding:clamp(16px,2vw,24px);
   background:
     radial-gradient(circle at 14% 12%,rgba(255,255,255,0.98) 0%,rgba(255,255,255,0.46) 25%,transparent 48%),
-    radial-gradient(circle at 94% 8%,rgba(255,196,226,0.44) 0%,transparent 42%),
+    radial-gradient(circle at 94% 8%,rgba(255,196,226,0.38) 0%,transparent 42%),
     linear-gradient(145deg,rgba(255,255,255,0.96),rgba(255,244,250,0.92));
   border:1px solid rgba(255,255,255,0.82);
-  box-shadow:0 34px 90px rgba(255,87,165,0.20),0 0 0 1px rgba(255,190,222,0.24),inset 0 1px 0 rgba(255,255,255,0.82);
+  box-shadow:0 28px 78px rgba(255,87,165,0.18),0 0 0 1px rgba(255,190,222,0.24),inset 0 1px 0 rgba(255,255,255,0.82);
   animation:cardPopIn 0.48s var(--ease-spring);
 }
 .devotion-shell::-webkit-scrollbar,
@@ -3984,15 +3984,15 @@ body.devotion-open {
 .devotion-panel::-webkit-scrollbar-thumb { background:rgba(255,110,178,0.32); border-radius:999px; }
 .devotion-close-btn {
   position:absolute;
-  top:16px;
-  right:16px;
-  width:38px;
-  height:38px;
+  top:14px;
+  right:14px;
+  width:36px;
+  height:36px;
   border:none;
   border-radius:999px;
   cursor:pointer;
   color:var(--pink-7);
-  font-size:18px;
+  font-size:17px;
   background:rgba(255,236,245,0.96);
   box-shadow:0 10px 22px rgba(255,80,158,0.12);
   transition:transform 0.35s var(--ease-spring),background 0.2s ease;
@@ -4003,19 +4003,19 @@ body.devotion-open {
   background:rgba(255,255,255,0.98);
 }
 .devotion-header {
-  padding-right:46px;
-  margin-bottom:22px;
+  padding-right:42px;
+  margin-bottom:14px;
   text-align:left;
 }
 .devotion-kicker {
   display:inline-flex;
   align-items:center;
-  gap:8px;
-  padding:7px 12px;
-  margin-bottom:12px;
+  gap:7px;
+  padding:6px 11px;
+  margin-bottom:8px;
   border-radius:999px;
   color:var(--pink-7);
-  font-size:11px;
+  font-size:10px;
   font-weight:700;
   letter-spacing:0.12em;
   text-transform:uppercase;
@@ -4024,115 +4024,115 @@ body.devotion-open {
 }
 .devotion-title {
   font-family:"Playfair Display",serif;
-  font-size:clamp(32px,4.4vw,54px);
+  font-size:clamp(28px,3.6vw,44px);
   line-height:0.98;
   color:var(--pink-7);
-  margin-bottom:10px;
+  margin-bottom:6px;
   text-shadow:0 10px 24px rgba(255,47,141,0.12);
 }
 .devotion-subtitle {
   max-width:720px;
   color:#8f4f6d;
-  font-size:15px;
-  line-height:1.7;
+  font-size:13px;
+  line-height:1.48;
 }
 .devotion-layout {
   display:grid;
-  grid-template-columns:minmax(0,1.12fr) minmax(330px,0.88fr);
-  gap:18px;
+  grid-template-columns:minmax(0,1.08fr) minmax(300px,0.92fr);
+  gap:14px;
   align-items:start;
 }
 .devotion-panel {
-  border-radius:26px;
+  border-radius:24px;
   background:linear-gradient(180deg,rgba(255,255,255,0.82),rgba(255,246,251,0.72));
   border:1px solid rgba(255,183,214,0.34);
-  box-shadow:0 18px 42px rgba(255,87,165,0.10),inset 0 1px 0 rgba(255,255,255,0.72);
-  padding:clamp(16px,2vw,22px);
+  box-shadow:0 16px 38px rgba(255,87,165,0.09),inset 0 1px 0 rgba(255,255,255,0.72);
+  padding:clamp(14px,1.7vw,18px);
   text-align:left;
 }
 .devotion-form {
   display:grid;
-  gap:16px;
+  gap:11px;
 }
 .devotion-form-grid {
   display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:12px;
+  grid-template-columns:1fr 0.78fr 0.78fr;
+  gap:10px;
 }
 .devotion-field {
   display:grid;
-  gap:7px;
+  gap:5px;
 }
 .devotion-field label,
 .devotion-label {
-  font-size:12px;
-  line-height:1.3;
+  font-size:11px;
+  line-height:1.25;
   color:#a65f80;
   font-weight:700;
-  letter-spacing:0.02em;
+  letter-spacing:0.01em;
 }
 .devotion-input,
 .devotion-select,
 .devotion-textarea {
   width:100%;
   border:1px solid rgba(255,180,215,0.54);
-  border-radius:18px;
+  border-radius:16px;
   outline:none;
   background:rgba(255,250,253,0.92);
   color:#704b5d;
   font-family:"Inter",sans-serif;
-  font-size:14px;
+  font-size:13px;
   box-shadow:inset 0 1px 0 rgba(255,255,255,0.72);
   transition:border-color 0.2s ease,box-shadow 0.2s ease,background 0.2s ease,transform 0.25s var(--ease-spring);
 }
 .devotion-input,
 .devotion-select {
-  min-height:48px;
-  padding:0 14px;
+  min-height:40px;
+  padding:0 12px;
 }
 .devotion-textarea {
-  min-height:118px;
+  min-height:74px;
   resize:vertical;
-  padding:13px 14px;
-  line-height:1.6;
+  padding:10px 12px;
+  line-height:1.45;
 }
 .devotion-textarea.tall {
-  min-height:138px;
+  min-height:92px;
 }
 .devotion-input:focus,
 .devotion-select:focus,
 .devotion-textarea:focus {
   border-color:rgba(255,94,170,0.74);
-  box-shadow:0 0 0 4px rgba(255,110,178,0.14),inset 0 1px 0 rgba(255,255,255,0.86);
+  box-shadow:0 0 0 3px rgba(255,110,178,0.12),inset 0 1px 0 rgba(255,255,255,0.86);
   background:rgba(255,255,255,0.98);
 }
 .devotion-save-btn {
   width:100%;
-  min-height:52px;
+  min-height:44px;
   border:none;
   border-radius:999px;
   cursor:pointer;
   color:#fff;
   font-family:"Inter",sans-serif;
-  font-size:15px;
+  font-size:14px;
   font-weight:700;
   background:linear-gradient(135deg,#ff6ab5 0%,#ff3897 48%,#ff137d 100%);
-  box-shadow:0 16px 32px rgba(255,41,133,0.22),inset 0 1px 0 rgba(255,255,255,0.26);
+  box-shadow:0 14px 28px rgba(255,41,133,0.18),inset 0 1px 0 rgba(255,255,255,0.26);
   transition:transform 0.34s var(--ease-spring),filter 0.25s ease,box-shadow 0.25s ease,opacity 0.25s ease;
 }
 .devotion-save-btn:hover:not(:disabled) {
   transform:translateY(-2px) scale(1.01);
   filter:brightness(1.05);
-  box-shadow:0 22px 42px rgba(255,41,133,0.28),inset 0 1px 0 rgba(255,255,255,0.30);
+  box-shadow:0 18px 34px rgba(255,41,133,0.23),inset 0 1px 0 rgba(255,255,255,0.30);
 }
 .devotion-save-btn:disabled {
   opacity:0.68;
   cursor:not-allowed;
 }
 .devotion-status {
-  min-height:20px;
-  font-size:13px;
-  line-height:1.45;
+  min-height:18px;
+  font-size:12px;
+  line-height:1.35;
   color:#a66c88;
   text-align:center;
 }
@@ -4143,288 +4143,115 @@ body.devotion-open {
   display:flex;
   align-items:flex-start;
   justify-content:space-between;
-  gap:12px;
-  margin-bottom:14px;
+  gap:10px;
+  margin-bottom:10px;
 }
-.devotion-storage-title {
+.devotion-storage-title,
+.devotion-results-title {
   font-family:"Playfair Display",serif;
   color:var(--pink-7);
-  font-size:28px;
+  font-size:22px;
   line-height:1.05;
 }
-.devotion-storage-sub {
+.devotion-storage-sub,
+.devotion-results-sub {
   color:#a66c88;
-  font-size:12.5px;
-  line-height:1.5;
-  margin-top:4px;
-}
-.devotion-week-list {
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:8px;
-  margin-bottom:12px;
-}
-.devotion-week-btn,
-.devotion-person-btn {
-  border:1px solid rgba(255,183,214,0.42);
-  border-radius:16px;
-  cursor:pointer;
-  font-family:"Inter",sans-serif;
-  font-weight:700;
-  color:#8f4f6d;
-  background:rgba(255,236,245,0.72);
-  transition:transform 0.28s var(--ease-spring),background 0.2s ease,border-color 0.2s ease,box-shadow 0.2s ease;
-}
-.devotion-week-btn {
-  min-height:42px;
-  font-size:12.5px;
-}
-.devotion-person-tabs {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-bottom:14px;
-}
-.devotion-person-btn {
-  min-height:46px;
-  font-size:14px;
-}
-.devotion-week-btn:hover,
-.devotion-person-btn:hover {
-  transform:translateY(-2px);
-  background:rgba(255,226,240,0.92);
-}
-.devotion-week-btn.active,
-.devotion-person-btn.active {
-  color:#fff;
-  border-color:rgba(255,94,170,0.72);
-  background:linear-gradient(135deg,#ff8fc2 0%,#ff4ba0 100%);
-  box-shadow:0 12px 24px rgba(255,87,165,0.18);
-}
-.devotion-view-meta {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  min-height:34px;
-  margin-bottom:12px;
-  padding:8px 11px;
-  border-radius:14px;
-  color:#a65f80;
-  background:rgba(255,255,255,0.58);
-  border:1px solid rgba(255,183,214,0.24);
-  font-size:12px;
-  font-weight:700;
-}
-.devotion-list {
-  display:grid;
-  gap:12px;
-  max-height:420px;
-  overflow:auto;
-  padding-right:2px;
-}
-.devotion-empty {
-  padding:22px 16px;
-  border-radius:20px;
-  color:#9f6982;
-  background:rgba(255,236,245,0.58);
-  border:1px dashed rgba(255,150,200,0.42);
-  line-height:1.6;
-  text-align:center;
-}
-.devotion-card {
-  border-radius:22px;
-  padding:15px;
-  background:linear-gradient(180deg,rgba(255,255,255,0.94),rgba(255,248,252,0.86));
-  border:1px solid rgba(255,183,214,0.32);
-  box-shadow:0 14px 30px rgba(255,87,165,0.08);
-  animation:fadeSlideUp 0.34s var(--ease-out-expo);
-}
-.devotion-card-date {
-  display:inline-flex;
-  margin-bottom:10px;
-  padding:5px 9px;
-  border-radius:999px;
-  color:var(--pink-7);
-  background:rgba(255,236,245,0.84);
-  border:1px solid rgba(255,183,214,0.32);
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:0.05em;
-  text-transform:uppercase;
-}
-.devotion-card-block {
-  display:grid;
-  gap:5px;
-  margin-top:10px;
-}
-.devotion-card-label {
-  color:#b56c8d;
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:0.08em;
-  text-transform:uppercase;
-}
-.devotion-card-text {
-  color:#704b5d;
-  font-size:13.5px;
-  line-height:1.62;
-  white-space:pre-line;
-  word-break:break-word;
-}
-@media (max-width:900px) {
-  .devotion-layout {
-    grid-template-columns:1fr;
-  }
-  .devotion-list {
-    max-height:none;
-  }
-}
-@media (max-width:680px) {
-  .devotion-overlay {
-    align-items:flex-start;
-    padding:10px;
-  }
-  .devotion-shell {
-    max-height:calc(100dvh - 20px);
-    border-radius:26px;
-    padding:16px;
-  }
-  .devotion-header {
-    padding-right:38px;
-  }
-  .devotion-subtitle {
-    font-size:13.5px;
-  }
-  .devotion-form-grid,
-  .devotion-week-list {
-    grid-template-columns:1fr 1fr;
-  }
-  .devotion-panel {
-    border-radius:22px;
-    padding:14px;
-  }
-  .devotion-input,
-  .devotion-select {
-    min-height:46px;
-  }
-  .devotion-textarea,
-  .devotion-textarea.tall {
-    min-height:112px;
-  }
-}
-@media (max-width:420px) {
-  .devotion-form-grid,
-  .devotion-week-list,
-  .devotion-person-tabs {
-    grid-template-columns:1fr;
-  }
-  .devotion-title {
-    font-size:32px;
-  }
-}
-
-
-
-/* Devotion calendar upgrade */
-.devotion-storage-head {
-  align-items:flex-start;
-}
-.devotion-storage-sub {
-  max-width:680px;
+  font-size:11.5px;
+  line-height:1.4;
+  margin-top:3px;
 }
 .devotion-calendar {
   display:grid;
-  gap:14px;
-  padding:18px;
-  border-radius:28px;
+  gap:8px;
+  padding:12px;
+  border-radius:22px;
   background:linear-gradient(180deg,rgba(255,252,254,0.98),rgba(255,246,250,0.94));
   border:1px solid rgba(255,205,229,0.58);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,0.78),0 14px 34px rgba(255,87,165,0.08);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.78),0 10px 24px rgba(255,87,165,0.07);
 }
 .devotion-calendar-top {
   display:grid;
-  grid-template-columns:auto 1fr auto;
-  gap:12px;
+  grid-template-columns:34px 1fr 34px;
+  gap:8px;
   align-items:center;
 }
 .devotion-calendar-nav,
 .devotion-calendar-today {
   border:none;
   cursor:pointer;
-  transition:transform 0.3s var(--ease-spring), box-shadow 0.3s var(--ease-smooth), background 0.25s ease;
+  transition:transform 0.28s var(--ease-spring),box-shadow 0.25s var(--ease-smooth),background 0.22s ease;
 }
 .devotion-calendar-nav {
-  width:44px;
-  height:44px;
-  border-radius:16px;
-  font-size:18px;
+  width:34px;
+  height:34px;
+  border-radius:13px;
+  font-size:15px;
   color:var(--pink-7);
   background:rgba(255,236,245,0.95);
-  box-shadow:0 10px 20px rgba(255,87,165,0.08);
+  box-shadow:0 8px 16px rgba(255,87,165,0.07);
 }
 .devotion-calendar-nav:hover,
 .devotion-calendar-today:hover {
-  transform:translateY(-2px) scale(1.02);
-  box-shadow:0 16px 28px rgba(255,87,165,0.14);
+  transform:translateY(-1px) scale(1.02);
+  box-shadow:0 12px 20px rgba(255,87,165,0.11);
 }
 .devotion-calendar-title-wrap {
   min-width:0;
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:6px;
+  gap:4px;
 }
 .devotion-calendar-title {
   font-family:"Playfair Display",serif;
-  font-size:clamp(22px,2.4vw,30px);
+  font-size:clamp(22px,2.4vw,28px);
   line-height:1;
   color:var(--pink-7);
   text-align:center;
 }
 .devotion-calendar-today {
-  padding:8px 14px;
+  padding:6px 12px;
   border-radius:999px;
-  font-size:12px;
-  font-weight:600;
+  font-size:11px;
+  font-weight:700;
   color:#9a5d7a;
   background:rgba(255,239,247,0.98);
-  box-shadow:0 8px 16px rgba(255,87,165,0.06);
+  box-shadow:0 6px 12px rgba(255,87,165,0.05);
 }
 .devotion-calendar-weekdays {
   display:grid;
   grid-template-columns:repeat(7,minmax(0,1fr));
-  gap:8px;
+  gap:5px;
 }
 .devotion-calendar-grid {
   display:grid;
   grid-template-columns:repeat(7,minmax(0,1fr));
-  grid-auto-rows:72px;
-  column-gap:8px;
-  row-gap:18px;
+  grid-auto-rows:43px;
+  column-gap:5px;
+  row-gap:8px;
   justify-items:center;
   align-items:start;
-  padding-bottom:12px;
+  padding-bottom:5px;
 }
 .devotion-calendar-weekday {
   text-align:center;
-  font-size:11px;
-  font-weight:700;
+  font-size:9px;
+  font-weight:800;
   letter-spacing:0.08em;
   text-transform:uppercase;
   color:#b07795;
-  padding:4px 0;
+  padding:2px 0 4px;
 }
 .devotion-day-placeholder {
-  width:54px;
-  height:54px;
+  width:34px;
+  height:34px;
   justify-self:center;
   align-self:start;
 }
 .devotion-day-btn {
-  width:54px;
-  height:54px;
-  min-height:54px;
+  width:34px;
+  height:34px;
+  min-height:34px;
   justify-self:center;
   align-self:start;
   margin:0;
@@ -4436,55 +4263,49 @@ body.devotion-open {
   cursor:pointer;
   padding:0;
   display:flex;
-  flex-direction:column;
   align-items:center;
   justify-content:center;
-  gap:0;
   position:relative;
-  transition:transform 0.28s var(--ease-spring), box-shadow 0.28s var(--ease-smooth), background 0.28s ease;
+  transition:transform 0.25s var(--ease-spring),box-shadow 0.25s var(--ease-smooth),background 0.25s ease;
 }
 .devotion-day-btn:hover {
-  transform:translateY(-2px) scale(1.04);
-  box-shadow:inset 0 0 0 1px rgba(255,173,213,0.95),0 10px 22px rgba(255,87,165,0.12);
+  transform:translateY(-1px) scale(1.05);
+  box-shadow:inset 0 0 0 1px rgba(255,173,213,0.95),0 8px 18px rgba(255,87,165,0.11);
   background:rgba(255,241,248,1);
 }
 .devotion-day-btn.today {
-  box-shadow:inset 0 0 0 2px rgba(255,100,175,0.34),0 8px 18px rgba(255,87,165,0.08);
+  box-shadow:inset 0 0 0 2px rgba(255,100,175,0.34),0 6px 14px rgba(255,87,165,0.08);
 }
 .devotion-day-btn.active {
   background:linear-gradient(135deg,rgba(255,131,194,0.96),rgba(255,82,169,0.96));
   color:white;
-  box-shadow:0 14px 26px rgba(255,87,165,0.22);
+  box-shadow:0 10px 18px rgba(255,87,165,0.19);
 }
-.devotion-day-btn.active .devotion-day-meta,
 .devotion-day-btn.active .devotion-day-number {
   color:white;
 }
-.devotion-day-btn.has-vince.has-riri:not(.active) {
-  background:linear-gradient(180deg,rgba(255,246,250,0.98),rgba(247,255,250,0.92));
-}
 .devotion-day-number {
-  font-size:14px;
-  font-weight:700;
+  font-size:11.5px;
+  font-weight:800;
   line-height:1;
   color:#8c566f;
 }
 .devotion-day-meta {
-  min-height:10px;
+  min-height:7px;
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:4px;
+  gap:3px;
   position:absolute;
   left:50%;
-  bottom:-12px;
+  bottom:-8px;
   transform:translateX(-50%);
 }
 .devotion-day-dot {
-  width:7px;
-  height:7px;
+  width:5.5px;
+  height:5.5px;
   border-radius:999px;
-  box-shadow:0 0 0 2px rgba(255,255,255,0.9);
+  box-shadow:0 0 0 1.5px rgba(255,255,255,0.92);
 }
 .devotion-day-dot.vince,
 .devotion-dot.devotion-dot-vince {
@@ -4497,83 +4318,566 @@ body.devotion-open {
 .devotion-calendar-legend {
   display:flex;
   flex-wrap:wrap;
-  gap:14px;
+  gap:10px;
   align-items:center;
   justify-content:center;
-  font-size:12px;
+  font-size:11px;
   color:#a06b87;
+  margin-top:2px;
 }
 .devotion-legend-item {
   display:inline-flex;
   align-items:center;
-  gap:8px;
+  gap:6px;
 }
 .devotion-dot {
-  width:10px;
-  height:10px;
+  width:8px;
+  height:8px;
   border-radius:999px;
   box-shadow:0 0 0 2px rgba(255,255,255,0.85);
 }
 .devotion-person-tabs {
-  margin-top:4px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:10px;
+}
+.devotion-person-btn {
+  min-height:38px;
+  border:1px solid rgba(255,183,214,0.42);
+  border-radius:15px;
+  cursor:pointer;
+  font-family:"Inter",sans-serif;
+  font-size:13px;
+  font-weight:800;
+  color:#8f4f6d;
+  background:rgba(255,236,245,0.72);
+  transition:transform 0.28s var(--ease-spring),background 0.2s ease,border-color 0.2s ease,box-shadow 0.2s ease;
+}
+.devotion-person-btn:hover {
+  transform:translateY(-1px);
+  background:rgba(255,226,240,0.92);
+}
+.devotion-person-btn.active {
+  color:#fff;
+  border-color:rgba(255,94,170,0.72);
+  background:linear-gradient(135deg,#ff8fc2 0%,#ff4ba0 100%);
+  box-shadow:0 10px 20px rgba(255,87,165,0.16);
+}
+.devotion-details-panel {
+  display:grid;
+  gap:8px;
+  padding:12px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.55);
+  border:1px solid rgba(255,183,214,0.28);
+}
+.devotion-results-head {
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:10px;
 }
 .devotion-view-meta {
-  margin-top:0;
+  display:inline-flex;
+  align-items:center;
+  min-height:26px;
+  margin-top:5px;
+  padding:5px 9px;
+  border-radius:999px;
+  color:#a65f80;
+  background:rgba(255,236,245,0.68);
+  border:1px solid rgba(255,183,214,0.26);
+  font-size:11px;
+  font-weight:800;
 }
 .devotion-list {
-  margin-top:0;
+  display:grid;
+  gap:7px;
+  max-height:190px;
+  overflow:auto;
+  padding-right:2px;
 }
-@media (max-width:900px) {
-  .devotion-calendar { padding:16px; }
+.devotion-empty {
+  padding:12px 14px;
+  border-radius:16px;
+  color:#9f6982;
+  background:rgba(255,236,245,0.58);
+  border:1px dashed rgba(255,150,200,0.42);
+  font-size:12px;
+  line-height:1.45;
+  text-align:center;
 }
-@media (max-width:640px) {
-  .devotion-calendar-top {
-    grid-template-columns:auto 1fr auto;
-    gap:8px;
+.devotion-accordion {
+  border-radius:16px;
+  background:linear-gradient(180deg,rgba(255,255,255,0.94),rgba(255,248,252,0.86));
+  border:1px solid rgba(255,183,214,0.32);
+  box-shadow:0 10px 22px rgba(255,87,165,0.07);
+  overflow:hidden;
+  animation:fadeSlideUp 0.28s var(--ease-out-expo);
+}
+.devotion-accordion-summary {
+  cursor:pointer;
+  list-style:none;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:10px 12px;
+  color:#8f4f6d;
+  font-size:12px;
+  font-weight:800;
+}
+.devotion-accordion-summary::-webkit-details-marker {
+  display:none;
+}
+.devotion-accordion-summary::after {
+  content:"⌄";
+  color:var(--pink-7);
+  font-size:15px;
+  transition:transform 0.25s var(--ease-spring);
+}
+.devotion-accordion[open] .devotion-accordion-summary::after {
+  transform:rotate(180deg);
+}
+.devotion-accordion-title {
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+.devotion-accordion-date {
+  color:var(--pink-7);
+  font-size:11px;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+}
+.devotion-accordion-snippet {
+  max-width:100%;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  color:#8f4f6d;
+  font-size:12px;
+  font-weight:700;
+}
+.devotion-accordion-body {
+  display:grid;
+  gap:8px;
+  padding:0 12px 12px;
+}
+.devotion-card-block {
+  display:grid;
+  gap:3px;
+}
+.devotion-card-label {
+  color:#b56c8d;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+}
+.devotion-card-text {
+  color:#704b5d;
+  font-size:12px;
+  line-height:1.48;
+  white-space:pre-line;
+  word-break:break-word;
+}
+@media (max-width:980px) {
+  .devotion-layout {
+    grid-template-columns:1fr;
   }
-  .devotion-calendar-nav {
-    width:40px;
-    height:40px;
-    border-radius:14px;
+  .devotion-list {
+    max-height:210px;
   }
-  .devotion-calendar-title {
-    font-size:24px;
+}
+@media (max-width:680px) {
+  .devotion-overlay {
+    align-items:flex-start;
+    padding:8px;
   }
-  .devotion-calendar-weekdays {
-    gap:6px;
+  .devotion-shell {
+    max-height:calc(100dvh - 16px);
+    border-radius:24px;
+    padding:14px;
+  }
+  .devotion-header {
+    padding-right:38px;
+  }
+  .devotion-subtitle {
+    font-size:12.5px;
+  }
+  .devotion-form-grid {
+    grid-template-columns:1fr;
+  }
+  .devotion-panel {
+    border-radius:20px;
+    padding:12px;
+  }
+  .devotion-calendar {
+    padding:10px;
   }
   .devotion-calendar-grid {
-    grid-auto-rows:60px;
-    column-gap:6px;
-    row-gap:14px;
+    grid-auto-rows:39px;
+    column-gap:4px;
+    row-gap:8px;
   }
   .devotion-day-placeholder,
   .devotion-day-btn {
-    min-height:46px;
-  }
-  .devotion-day-placeholder {
-    width:46px;
-    height:46px;
-  }
-  .devotion-day-btn {
-    width:46px;
-    height:46px;
-    min-height:46px;
-    border-radius:999px;
+    width:31px;
+    height:31px;
+    min-height:31px;
   }
   .devotion-day-number {
-    font-size:13px;
+    font-size:11px;
   }
   .devotion-day-meta {
-    bottom:-10px;
+    bottom:-8px;
   }
-  .devotion-day-dot {
-    width:6px;
-    height:6px;
+  .devotion-textarea {
+    min-height:68px;
   }
-  .devotion-calendar-legend {
+  .devotion-textarea.tall {
+    min-height:82px;
+  }
+}
+@media (max-width:420px) {
+  .devotion-person-tabs {
+    grid-template-columns:1fr;
+  }
+  .devotion-title {
+    font-size:30px;
+  }
+  .devotion-calendar-title {
+    font-size:22px;
+  }
+}
+
+
+/* Layer fix: keep AI chat off the Spotify music controls */
+body.music-open .chat-fab,
+body.music-open .chat-panel {
+  opacity:0 !important;
+  pointer-events:none !important;
+  transform:translateY(12px) scale(0.92) !important;
+}
+body.music-open .chat-panel {
+  display:none !important;
+}
+@media (max-width:720px) {
+  .chat-fab {
+    bottom:88px;
+  }
+  body.music-open .chat-fab {
+    opacity:0 !important;
+    pointer-events:none !important;
+  }
+}
+
+
+
+/* Quick fix: keep Talk to Vince bubble clear of the Spotify mini bar */
+body.music-open .vince-ai-fab-wrap,
+body.music-open .vince-ai-panel {
+  opacity:0 !important;
+  visibility:hidden !important;
+  pointer-events:none !important;
+  transform:translateY(12px) scale(0.92) !important;
+}
+body.music-open .vince-ai-panel {
+  display:none !important;
+}
+@media (max-width:680px) {
+  .vince-ai-fab-wrap {
+    bottom:calc(max(14px,env(safe-area-inset-bottom)) + 92px) !important;
+  }
+}
+@media (max-width:390px) {
+  .vince-ai-fab-wrap {
+    bottom:calc(max(12px,env(safe-area-inset-bottom)) + 90px) !important;
+  }
+}
+
+
+
+/* Mobile premium hamburger menu */
+.mobile-top-nav,
+.mobile-menu-backdrop,
+.mobile-menu-panel {
+  display:none;
+}
+.mobile-menu-btn {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:52px;
+  height:52px;
+  border:none;
+  border-radius:18px;
+  color:var(--pink-7);
+  background:linear-gradient(145deg,rgba(255,255,255,0.94),rgba(255,236,247,0.86));
+  border:1px solid rgba(255,255,255,0.92);
+  box-shadow:0 18px 36px rgba(255,67,152,0.16), inset 0 1px 0 rgba(255,255,255,0.74);
+  cursor:pointer;
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  position:relative;
+  overflow:hidden;
+  transition:transform 0.3s var(--ease-spring), box-shadow 0.3s var(--ease-smooth), background 0.25s ease;
+}
+.mobile-menu-btn::before {
+  content:"";
+  position:absolute;
+  inset:-40%;
+  background:linear-gradient(120deg,transparent 25%,rgba(255,255,255,0.88) 50%,transparent 75%);
+  transform:translateX(-90%) rotate(12deg);
+  opacity:0.75;
+  transition:transform 0.8s var(--ease-smooth);
+}
+.mobile-menu-btn:hover::before,
+body.mobile-menu-open .mobile-menu-btn::before {
+  transform:translateX(90%) rotate(12deg);
+}
+.mobile-menu-btn:hover {
+  transform:translateY(-2px) scale(1.04);
+  box-shadow:0 24px 42px rgba(255,67,152,0.2), inset 0 1px 0 rgba(255,255,255,0.8);
+}
+.mobile-menu-btn:active {
+  transform:scale(0.94);
+}
+.mobile-menu-icon {
+  width:22px;
+  height:16px;
+  position:relative;
+  display:block;
+  z-index:1;
+}
+.mobile-menu-icon::before,
+.mobile-menu-icon::after,
+.mobile-menu-icon span {
+  content:"";
+  position:absolute;
+  left:0;
+  width:100%;
+  height:2.5px;
+  border-radius:999px;
+  background:currentColor;
+  transition:top 0.26s ease, transform 0.32s var(--ease-spring), opacity 0.18s ease;
+}
+.mobile-menu-icon::before { top:0; }
+.mobile-menu-icon span { top:6.75px; }
+.mobile-menu-icon::after { top:13.5px; }
+body.mobile-menu-open .mobile-menu-icon::before {
+  top:6.75px;
+  transform:rotate(45deg);
+}
+body.mobile-menu-open .mobile-menu-icon span {
+  opacity:0;
+}
+body.mobile-menu-open .mobile-menu-icon::after {
+  top:6.75px;
+  transform:rotate(-45deg);
+}
+@media (max-width:680px) {
+  .core-memories-wrap {
+    display:none !important;
+  }
+  .container {
+    padding-top:calc(20px + env(safe-area-inset-top));
+  }
+  .mobile-top-nav {
+    display:block;
+    position:fixed;
+    top:calc(12px + env(safe-area-inset-top));
+    right:14px;
+    z-index:150;
+  }
+  .mobile-menu-backdrop {
+    display:block;
+    position:fixed;
+    inset:0;
+    background:radial-gradient(circle at 86% 12%,rgba(255,91,171,0.22),transparent 30%),rgba(91,10,48,0.08);
+    backdrop-filter:blur(0px);
+    -webkit-backdrop-filter:blur(0px);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.28s ease, backdrop-filter 0.28s ease;
+    z-index:140;
+  }
+  body.mobile-menu-open .mobile-menu-backdrop {
+    opacity:1;
+    pointer-events:auto;
+    backdrop-filter:blur(4px);
+    -webkit-backdrop-filter:blur(4px);
+  }
+  .mobile-menu-panel {
+    display:grid;
+    position:fixed;
+    top:calc(72px + env(safe-area-inset-top));
+    left:16px;
+    right:16px;
+    max-width:390px;
+    margin-left:auto;
+    padding:16px;
+    border-radius:28px;
+    background:linear-gradient(160deg,rgba(255,255,255,0.96),rgba(255,237,248,0.94));
+    border:1px solid rgba(255,255,255,0.9);
+    box-shadow:0 28px 70px rgba(255,47,141,0.22), 0 0 0 1px rgba(255,180,218,0.28), inset 0 1px 0 rgba(255,255,255,0.78);
+    backdrop-filter:blur(22px);
+    -webkit-backdrop-filter:blur(22px);
+    z-index:151;
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transform:translateY(-16px) scale(0.94);
+    transform-origin:top right;
+    filter:blur(6px);
+    transition:opacity 0.32s ease, visibility 0.32s ease, transform 0.42s var(--ease-spring), filter 0.32s ease;
+    overflow:hidden;
+  }
+  .mobile-menu-panel::before {
+    content:"";
+    position:absolute;
+    width:160px;
+    height:160px;
+    right:-56px;
+    top:-72px;
+    border-radius:999px;
+    background:radial-gradient(circle,rgba(255,91,171,0.22),transparent 68%);
+    pointer-events:none;
+  }
+  body.mobile-menu-open .mobile-menu-panel {
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+    transform:translateY(0) scale(1);
+    filter:blur(0);
+  }
+  .mobile-menu-kicker,
+  .mobile-menu-title,
+  .mobile-menu-item {
+    position:relative;
+    z-index:1;
+  }
+  .mobile-menu-kicker {
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:#ff2f8d;
+    text-align:left;
+    padding:2px 4px 0;
+  }
+  .mobile-menu-title {
+    font-family:"Playfair Display",serif;
+    font-size:28px;
+    line-height:1;
+    color:var(--pink-7);
+    text-align:left;
+    margin:2px 4px 12px;
+  }
+  .mobile-menu-list {
+    display:grid;
     gap:10px;
+  }
+  .mobile-menu-item {
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    border:none;
+    text-decoration:none;
+    text-align:left;
+    border-radius:22px;
+    padding:14px;
+    min-height:68px;
+    color:#823d60;
+    background:linear-gradient(145deg,rgba(255,255,255,0.98),rgba(255,246,251,0.9));
+    box-shadow:0 14px 30px rgba(255,67,152,0.1), inset 0 1px 0 rgba(255,255,255,0.8);
+    cursor:pointer;
+    font-family:"Inter",sans-serif;
+    opacity:0;
+    transform:translateY(14px) scale(0.97);
+  }
+  body.mobile-menu-open .mobile-menu-item {
+    animation:mobileMenuItemIn 0.5s var(--ease-spring) both;
+    animation-delay:var(--item-delay,0s);
+  }
+  .mobile-menu-item:hover {
+    transform:translateY(-2px) scale(1.01);
+    box-shadow:0 18px 36px rgba(255,67,152,0.14), inset 0 1px 0 rgba(255,255,255,0.82);
+  }
+  .mobile-menu-item:active {
+    transform:scale(0.97);
+  }
+  .mobile-menu-left {
+    display:flex;
+    align-items:center;
+    gap:12px;
+    min-width:0;
+  }
+  .mobile-menu-emoji {
+    width:42px;
+    height:42px;
+    flex:0 0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:16px;
+    background:linear-gradient(145deg,rgba(255,229,243,0.98),rgba(255,255,255,0.9));
+    box-shadow:inset 0 1px 0 rgba(255,255,255,0.76),0 8px 18px rgba(255,67,152,0.08);
+    font-size:20px;
+  }
+  .mobile-menu-copy {
+    min-width:0;
+    display:grid;
+    gap:3px;
+  }
+  .mobile-menu-copy strong {
+    display:block;
+    color:#ff2f8d;
+    font-size:15px;
+    line-height:1.1;
+  }
+  .mobile-menu-copy span {
+    display:block;
+    color:#9d5876;
     font-size:11px;
+    line-height:1.25;
+    font-weight:600;
+  }
+  .mobile-menu-arrow {
+    flex:0 0 auto;
+    width:34px;
+    height:34px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:999px;
+    color:white;
+    background:linear-gradient(135deg,#ff79bc,#ff147d);
+    box-shadow:0 12px 24px rgba(255,47,141,0.2);
+    font-size:18px;
+  }
+  @keyframes mobileMenuItemIn {
+    from { opacity:0; transform:translateY(14px) scale(0.97); }
+    to { opacity:1; transform:translateY(0) scale(1); }
+  }
+}
+@media (max-width:380px) {
+  .mobile-menu-panel {
+    left:12px;
+    right:12px;
+    padding:14px;
+  }
+  .mobile-menu-title {
+    font-size:25px;
+  }
+  .mobile-menu-item {
+    min-height:64px;
+    padding:12px;
   }
 }
 
@@ -4601,6 +4905,32 @@ body.devotion-open {
 
   <!-- ── MAIN ──────────────────────────────────────────────── -->
   <main class="container">
+    <div class="mobile-menu-backdrop" id="mobileMenuBackdrop" aria-hidden="true"></div>
+    <div class="mobile-top-nav" id="mobileTopNav">
+      <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open menu" aria-controls="mobileMenuPanel" aria-expanded="false">
+        <span class="mobile-menu-icon" aria-hidden="true"><span></span></span>
+      </button>
+      <nav class="mobile-menu-panel" id="mobileMenuPanel" aria-label="Mobile menu" aria-hidden="true">
+        <div class="mobile-menu-kicker">Riri and Vince</div>
+        <div class="mobile-menu-title">Where to, baby?</div>
+        <div class="mobile-menu-list">
+          <a href="memories.html" class="mobile-menu-item" id="mobileMemoriesLink" style="--item-delay:0.03s">
+            <span class="mobile-menu-left">
+              <span class="mobile-menu-emoji">🌹</span>
+              <span class="mobile-menu-copy"><strong>Core memories</strong><span>photos, moments, and us</span></span>
+            </span>
+            <span class="mobile-menu-arrow">→</span>
+          </a>
+          <button class="mobile-menu-item" id="mobileDevotionBtn" type="button" style="--item-delay:0.11s">
+            <span class="mobile-menu-left">
+              <span class="mobile-menu-emoji">📖</span>
+              <span class="mobile-menu-copy"><strong>Our Devotions</strong><span>verses, reflections, and prayers</span></span>
+            </span>
+            <span class="mobile-menu-arrow">→</span>
+          </button>
+        </div>
+      </nav>
+    </div>
     <div class="core-memories-wrap">
       <a href="memories.html" class="core-memories-btn">
         <span>🌹</span><span>Our core memories together</span><span class="core-arrow">→</span>
@@ -4686,13 +5016,26 @@ body.devotion-open {
 
           <button class="devotion-save-btn" id="devotionSaveBtn" type="submit">Save devotion</button>
           <div class="devotion-status" id="devotionStatus" aria-live="polite"></div>
+
+          <section class="devotion-details-panel" aria-label="Selected devotion details">
+            <div class="devotion-results-head">
+              <div>
+                <div class="devotion-results-title">Devotion details</div>
+                <div class="devotion-results-sub">Click a saved entry below to open it.</div>
+                <div class="devotion-view-meta" id="devotionViewMeta">Today • Vince</div>
+              </div>
+            </div>
+            <div class="devotion-list" id="devotionList">
+              <div class="devotion-empty">Loading saved devotions...</div>
+            </div>
+          </section>
         </form>
 
-        <aside class="devotion-panel devotion-storage" aria-label="Saved devotions">
+        <aside class="devotion-panel devotion-storage" aria-label="Saved devotions calendar">
           <div class="devotion-storage-head">
             <div>
               <div class="devotion-storage-title">Saved Devotions</div>
-              <div class="devotion-storage-sub">Choose a month and day. A green dot means Vince saved a devotion. A pink dot means Riri saved one. Pick a day, then tap a name to see the reflection below.</div>
+              <div class="devotion-storage-sub">Pick a date, then choose Vince or Riri. Green means Vince saved. Pink means Riri saved.</div>
             </div>
           </div>
 
@@ -4727,11 +5070,6 @@ body.devotion-open {
           <div class="devotion-person-tabs" id="devotionPersonTabs">
             <button class="devotion-person-btn active" type="button" data-person="vince">Vince</button>
             <button class="devotion-person-btn" type="button" data-person="riri">Riri</button>
-          </div>
-
-          <div class="devotion-view-meta" id="devotionViewMeta">Today • Vince</div>
-          <div class="devotion-list" id="devotionList">
-            <div class="devotion-empty">Loading saved devotions...</div>
           </div>
         </aside>
       </div>
@@ -6945,7 +7283,14 @@ async function initSpotifyIntegration() {
     };
 
     
-const openMusicPanel  = () => { musicPanel.classList.add("open"); document.body.classList.add("music-open"); };
+const openMusicPanel  = () => {
+  musicPanel.classList.add("open");
+  document.body.classList.add("music-open");
+  if (chatPanel) {
+    chatPanel.classList.remove("open");
+    document.body.classList.remove("chat-open");
+  }
+};
 const closeMusicPanel = () => { musicPanel.classList.remove("open"); document.body.classList.remove("music-open"); };
 const hasLocalSongs   = () => Array.isArray(playlist) && playlist.length > 0;
 
@@ -8348,7 +8693,6 @@ function initDevotionSystem() {
 
   const cleanValue = value => String(value || "").trim();
   const pad = value => String(value).padStart(2, "0");
-
   const getPersonLabel = key => people[key] || "Vince";
 
   const getTodayInManila = () => {
@@ -8383,8 +8727,6 @@ function initDevotionSystem() {
   };
 
   const formatMonthKey = date => `${date.getFullYear()}-${pad(date.getMonth() + 1)}`;
-  const formatDateKeyFromDate = date => `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
-
   const shiftMonth = (monthKey, delta) => {
     const date = monthDateFromKey(monthKey) || monthDateFromKey(getTodayInManila().slice(0, 7));
     date.setMonth(date.getMonth() + delta);
@@ -8402,7 +8744,7 @@ function initDevotionSystem() {
     const date = dateFromKey(value);
     if (!date) return value || "No date";
     return new Intl.DateTimeFormat("en-US", {
-      month:"long",
+      month:"short",
       day:"numeric",
       year:"numeric"
     }).format(date);
@@ -8440,14 +8782,8 @@ function initDevotionSystem() {
           const payload = data || {};
           const dateKey = cleanValue(payload.date);
           if (!dateKey) return;
-          if (!entriesByDate[dateKey]) {
-            entriesByDate[dateKey] = { vince:[], riri:[] };
-          }
-          entriesByDate[dateKey][personKey].push({
-            id,
-            weekKey,
-            ...(payload || {})
-          });
+          if (!entriesByDate[dateKey]) entriesByDate[dateKey] = { vince:[], riri:[] };
+          entriesByDate[dateKey][personKey].push({ id, weekKey, ...(payload || {}) });
         });
       });
     });
@@ -8481,7 +8817,6 @@ function initDevotionSystem() {
   };
 
   const renderCalendar = () => {
-    if (!devotionCalendarGrid) return;
     const monthKey = currentMonthKey || getTodayInManila().slice(0, 7);
     const monthDate = monthDateFromKey(monthKey) || monthDateFromKey(getTodayInManila().slice(0, 7));
     const todayKey = getTodayInManila();
@@ -8519,7 +8854,6 @@ function initDevotionSystem() {
 
       const meta = document.createElement("div");
       meta.className = "devotion-day-meta";
-
       if (hasVince) {
         const dot = document.createElement("span");
         dot.className = "devotion-day-dot vince";
@@ -8542,7 +8876,6 @@ function initDevotionSystem() {
         renderCalendar();
         renderDevotions();
       });
-
       devotionCalendarGrid.appendChild(button);
     }
   };
@@ -8563,23 +8896,37 @@ function initDevotionSystem() {
       const dateEntries = entriesByDate?.[selectedDate] || { vince:[], riri:[] };
       const otherPerson = selectedPerson === "vince" ? "riri" : "vince";
       const otherHasEntries = (dateEntries[otherPerson] || []).length > 0;
-
-      if (otherHasEntries) {
-        setListMessage(`No saved devotion for ${getPersonLabel(selectedPerson)} on ${formatDevotionDate(selectedDate)}. Try switching to ${getPersonLabel(otherPerson)}.`);
-      } else {
-        setListMessage(`No saved devotions yet on ${formatDevotionDate(selectedDate)}.`);
-      }
+      const message = otherHasEntries
+        ? `No saved devotion for ${getPersonLabel(selectedPerson)} on ${formatDevotionDate(selectedDate)}. Try switching to ${getPersonLabel(otherPerson)}.`
+        : `No saved devotions yet on ${formatDevotionDate(selectedDate)}.`;
+      setListMessage(message);
       return;
     }
 
     entries.forEach(entry => {
-      const card = document.createElement("article");
-      card.className = "devotion-card";
+      const details = document.createElement("details");
+      details.className = "devotion-accordion";
 
-      const date = document.createElement("div");
-      date.className = "devotion-card-date";
-      date.textContent = `${formatDevotionDate(entry.date)} • ${(entry.week || selectedWeek.label)}`;
-      card.appendChild(date);
+      const summary = document.createElement("summary");
+      summary.className = "devotion-accordion-summary";
+
+      const summaryText = document.createElement("span");
+      summaryText.className = "devotion-accordion-title";
+
+      const date = document.createElement("span");
+      date.className = "devotion-accordion-date";
+      date.textContent = `${formatDevotionDate(entry.date)} • ${entry.week || selectedWeek.label}`;
+
+      const snippet = document.createElement("span");
+      snippet.className = "devotion-accordion-snippet";
+      snippet.textContent = cleanValue(entry.bibleVerse) || "Saved devotion";
+
+      summaryText.appendChild(date);
+      summaryText.appendChild(snippet);
+      summary.appendChild(summaryText);
+
+      const body = document.createElement("div");
+      body.className = "devotion-accordion-body";
 
       [
         ["Bible verse", entry.bibleVerse],
@@ -8599,10 +8946,12 @@ function initDevotionSystem() {
 
         block.appendChild(blockLabel);
         block.appendChild(content);
-        card.appendChild(block);
+        body.appendChild(block);
       });
 
-      devotionList.appendChild(card);
+      details.appendChild(summary);
+      details.appendChild(body);
+      devotionList.appendChild(details);
     });
   };
 
@@ -8670,14 +9019,16 @@ function initDevotionSystem() {
 
       if (!devotionsCache[week.key]) devotionsCache[week.key] = {};
       if (!devotionsCache[week.key][personKey]) devotionsCache[week.key][personKey] = {};
-      devotionsCache[week.key][personKey][entryRef.key] = payload;
+      devotionsCache[week.key][personKey][entryRef.key || `local_${payload.createdAt}`] = payload;
       rebuildEntriesIndex();
 
       selectedDate = selectedFormDate;
       currentMonthKey = selectedFormDate.slice(0, 7);
       selectedPerson = personKey;
 
-      devotionForm.reset();
+      if (devotionBibleVerse) devotionBibleVerse.value = "";
+      if (devotionReflection) devotionReflection.value = "";
+      if (devotionAction) devotionAction.value = "";
       syncFormControls();
       setDevotionStatus("Saved. Your devotion is now marked on the calendar.", "success");
       renderCalendar();
@@ -8740,16 +9091,12 @@ function initDevotionSystem() {
   });
 
   devotionWeek?.addEventListener("change", () => {
-    if (devotionDate?.value) {
-      devotionWeek.value = getWeekFromDate(devotionDate.value).key;
-    }
+    if (devotionDate?.value) devotionWeek.value = getWeekFromDate(devotionDate.value).key;
     setDevotionStatus("Week label updates automatically based on the date you choose.", "loading");
     window.clearTimeout(initDevotionSystem._weekHintTimer);
     initDevotionSystem._weekHintTimer = window.setTimeout(() => {
-      if (cleanValue(devotionStatus?.textContent).includes("updates automatically")) {
-        setDevotionStatus("");
-      }
-    }, 1800);
+      if (cleanValue(devotionStatus?.textContent).includes("updates automatically")) setDevotionStatus("");
+    }, 1600);
   });
 
   devotionPerson?.addEventListener("change", () => {
@@ -8850,6 +9197,69 @@ updateProgressUI();
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape') setOpen(false);
   });
+})();
+</script>
+
+
+<script>
+(function initMobileHamburgerMenu() {
+  function start() {
+    const menuBtn = document.getElementById('mobileMenuBtn');
+    const panel = document.getElementById('mobileMenuPanel');
+    const backdrop = document.getElementById('mobileMenuBackdrop');
+    const devotionMenuBtn = document.getElementById('mobileDevotionBtn');
+    const memoriesLink = document.getElementById('mobileMemoriesLink');
+    const desktopDevotionBtn = document.getElementById('devotionOpenBtn');
+
+    if (!menuBtn || !panel) return;
+
+    const isOpen = () => document.body.classList.contains('mobile-menu-open');
+
+    const setMenuOpen = open => {
+      document.body.classList.toggle('mobile-menu-open', open);
+      menuBtn.setAttribute('aria-expanded', String(open));
+      panel.setAttribute('aria-hidden', String(!open));
+      if (backdrop) backdrop.setAttribute('aria-hidden', String(!open));
+    };
+
+    menuBtn.addEventListener('click', event => {
+      event.preventDefault();
+      event.stopPropagation();
+      setMenuOpen(!isOpen());
+    });
+
+    panel.addEventListener('click', event => {
+      event.stopPropagation();
+    });
+
+    backdrop?.addEventListener('click', () => setMenuOpen(false));
+
+    devotionMenuBtn?.addEventListener('click', event => {
+      event.preventDefault();
+      setMenuOpen(false);
+      window.setTimeout(() => desktopDevotionBtn?.click(), 120);
+    });
+
+    memoriesLink?.addEventListener('click', () => setMenuOpen(false));
+
+    document.addEventListener('click', () => {
+      if (isOpen()) setMenuOpen(false);
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && isOpen()) setMenuOpen(false);
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 680 && isOpen()) setMenuOpen(false);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
+  }
 })();
 </script>
 
